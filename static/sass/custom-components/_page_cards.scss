@@ -1,0 +1,26 @@
+.page_card {
+  display: block;
+  margin: 16px 0 !important;
+  border: none;
+  height: 160px;
+  background-color: #fff;
+  padding: 32px;
+  border-radius: 7px;
+  box-shadow: 0 7px 16px rgba(32, 41, 81, 0.17);
+  transition: 0.3s cubic-bezier(0.375, 0.885, 0.6, 1) all;
+  text-decoration: none !important;
+  &:hover {
+    transform: scale(1.03, 1.03);
+    background: #f5f6f8;
+  }
+  .title {
+    color: $dark-color;
+    font-size: 24px;
+    font-weight: 600;
+  }
+  .description {
+    margin-top: 8px;
+    color: #202951;
+    font-size: 16px;
+  }
+}

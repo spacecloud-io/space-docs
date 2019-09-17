@@ -1,0 +1,80 @@
+{{$pageUrl := .Page.URL}}
+{{ $sortedPages :=  slice }}
+{{ range $i, $section := .Site.Sections.ByWeight }}
+{{$sortedPages = $sortedPages | append $section }}
+{{ range $j, $subSection := .Sections.ByWeight}}
+{{$sortedPages = $sortedPages | append $subSection }}
+{{ range $k, $page := .Pages.ByWeight}}
+{{$sortedPages = $sortedPages | append $page }}
+{{end}}
+{{end}}
+{{ end}}
+
+{{$nextPage := ""}}
+{{$prevPage := ""}}
+{{ range $i, $page := $sortedPages}}
+{{ if eq $page.URL $pageUrl }}
+{{ if gt $i 0 }}
+{{$prevPage = index $sortedPages (sub $i 1)}}
+{{end}}
+{{ if lt $i (sub (len $sortedPages) 1) }}
+{{$nextPage = index $sortedPages (add $i 1)}}
+{{end}}
+{{end}}
+{{ end }}
+
+{{$prevPageTitle := ""}}
+{{$prevPageParentName := ""}}
+{{$nextPageTitle := ""}}
+{{$nextPageParentName := ""}}
+
+{{if ne $prevPage ""}}
+{{$prevPageTitle = $prevPage.Title}}
+{{$prevPageParentName = $prevPage.Parent.Name}}
+{{end}}
+
+{{if ne $nextPage ""}}
+{{$nextPageTitle = $nextPage.Title}}
+{{$nextPageParentName = $nextPage.Parent.Name}}
+{{end}}
+
+<div class="row" style="width: 100%">
+  <div class="col s12 l6">
+    {{if ne $prevPage ""}}
+    <a class="page_link_card" href="{{$prevPage.URL}}">
+      <div class="container">
+        <div>
+          <i class="material-icons">arrow_back</i>
+        </div>
+        <div class="content-holder align-right">
+          <div class="category">
+            {{$prevPageParentName}}
+          </div>
+          <div class="title">
+            {{$prevPageTitle}}
+          </div>
+        </div>
+      </div>
+    </a>
+    {{end}}
+  </div>
+  <div class="col s12 l6">
+    {{if ne $nextPage ""}}
+    <a class="page_link_card" href="{{$nextPage.URL}}">
+      <div class="container">
+        <div class="content-holder">
+          <div class="category">
+            {{$nextPageParentName}}
+          </div>
+          <div class="title">
+            {{$nextPageTitle}}
+          </div>
+        </div>
+        <div>
+          <i class="material-icons">arrow_forward</i>
+        </div>
+      </div>
+    </a>
+    {{end}}
+  </div>
+</div>

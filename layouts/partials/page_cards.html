@@ -1,0 +1,15 @@
+<div class="row">
+  {{$items := cond (gt (len .Pages) 0) .Pages .Sections }}
+  {{range $items }}
+  <div class="col s12 l6">
+    <a class="page_card" href="{{.URL}}">
+      <div class="title">
+        {{.Title}}
+      </div>
+      <div class="description">
+        {{.Params.description}}
+      </div>
+    </a>
+  </div>
+  {{end}}
+</div>

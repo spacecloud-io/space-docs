@@ -1,0 +1,18 @@
+#table_of_contents {
+  margin-bottom: 24px;
+  padding: 16px 24px;
+  border-radius: 4px;
+  border: 1px solid #eaeaec;
+  background-color: #f5f5f5;
+  p {
+    margin: 0;
+    font-weight: 600;
+  }
+  ul {
+    margin: 0;
+  }
+  a {
+    color: #d66700;
+    text-decoration: underline solid #d66700;
+  }
+}

@@ -1,0 +1,59 @@
+.graphql-container {
+  position: relative;
+  min-height: 325px;
+  border: 1px solid #eee;
+  -webkit-box-shadow: -1px 2px 20px 2px rgba(217, 217, 217, 1);
+  -moz-box-shadow: -1px 2px 20px 2px rgba(217, 217, 217, 1);
+  box-shadow: -1px 2px 20px 2px rgba(217, 217, 217, 1);
+  color: #1f61a0;
+  .highlight {
+    height: 100%;
+  }
+  .graphql-query {
+    position: absolute;
+    width: 50%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    code {
+      background: white;
+    }
+  }
+  .graphql-response {
+    position: absolute;
+    width: 50%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    border-left: solid 1px #e0e0e0;
+    code {
+      color: #555;
+      background: #f6f7f8;
+      .nt {
+        color: #1f61a0;
+      }
+      .mi,
+      .s2 {
+        color: #d64292;
+      }
+      span:nth-of-type(2) {
+        color: #d2054e;
+      }
+    }
+  }
+  pre {
+    margin: 0;
+    background-color: inherit !important;
+  }
+  .p {
+    color: #555;
+  }
+  .kd {
+    color: #b11a04;
+  }
+  pre {
+    height: 100%;
+  }
+}

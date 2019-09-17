@@ -1,0 +1,112 @@
+.sidenav {
+  font-size: 14px;
+  color: $dark-color;
+
+  @media #{$large-and-up} {
+    top: 64px;
+    z-index: 996;
+  }
+
+  // Override material sidenav values
+  li.active {
+    background-color: transparent;
+  }
+  li > a:hover {
+    color: $orange;
+    background-color: transparent;
+  }
+
+  .collapsible-header:hover {
+    background: transparent;
+  }
+
+  .material-icons {
+    font-size: 16px;
+  }
+
+
+  // Style for the most nested page
+  .page-item {
+    padding-left: 64px !important;
+    height: 40px;
+    &.selectedPage {
+      color: $orange;
+    }
+  }
+
+  // Logo wrapper for mobile
+  .logo-wrapper {
+    margin: 16px 0px;
+    display: block;
+    padding-left: 32px;
+  }
+
+
+  .section,
+  .sub-section {
+    & > span {
+      display: flex;
+      padding-right: 24px;
+      & > * {
+        color: inherit;
+        &:hover {
+          color: $orange !important;
+          transition: 0.2s ease-out;
+        }
+      }
+      & > a {
+        padding: 0 8px 0 32px;
+      }
+      & > i {
+        padding: 0;
+      }
+    }
+    .collapsible-body li a {
+      padding: 0 8px 0 48px;
+    }
+  }
+
+  .section {
+    &.active {
+      background: #eee;
+    }
+    &.selectedPage {
+      & > span > a {
+        color: $orange;
+      }
+    }
+    & > span {
+      font-weight: 700;
+      font-size: 15px;
+      justify-content: space-between;
+    }
+  }
+
+  .sub-section {
+    & > span {
+      font-weight: 400;
+      font-size: 15px;
+    }
+    &.selectedPage {
+      & > span > a {
+        color: $orange;
+      }
+    }
+  }
+
+  // toggle add remove icons in sub section
+  .icon-add {
+    display: inline-block;
+  }
+  .icon-remove {
+    display: none !important;
+  }
+
+  .sub-section.active > span > .collapsible-header.material-icons.icon-add {
+    display: none;
+  }
+
+  .sub-section.active > span > .collapsible-header.material-icons.icon-remove {
+    display: inline-block !important;
+  }
+}
