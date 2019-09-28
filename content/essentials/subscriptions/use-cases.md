@@ -33,7 +33,7 @@ subscription {
     where: {to: {_eq: "user1"}}
   ){
     type
-    doc {
+    payload {
       _id
       from
       to
@@ -99,7 +99,7 @@ subscription {
     where: {_id: {_eq: "user2"}}
   ){
     type
-    doc {
+    payload {
       _id
       status
       is_typing
@@ -165,7 +165,7 @@ subscription {
     where: {_id: {_eq: "1"}}
   ){
     type
-    doc {
+    payload {
       score
     }
   }

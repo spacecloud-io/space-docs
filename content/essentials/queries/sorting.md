@@ -27,7 +27,7 @@ Example: Sort all the trainers by their name:
 {{< highlight graphql "hl_lines=3">}}
 query {
   trainers(
-    sort: ["name"]
+    sort: {name: 1}
   ) @mongo {
     id
     name
@@ -62,12 +62,12 @@ Example: Sort all the trainers by their name in ascending order and their pokemo
 {{< highlight graphql >}}
 query {
   trainers(
-    sort: ["name"]
+    sort: { name: 1 }
   ) @mongo {
     id
     name
     pokemons(
-      sort: ["-combat_power"]
+      sort: { combat_power : -1 }
     ) {
       name
       combat_power
@@ -93,7 +93,7 @@ Example: Sort all caught pokemons first by their `name` in ascending order and t
 {{< highlight graphql >}}
 query {
   caught_pokemons(
-    sort: ["name", "-caught_on"]
+    sort: { name: 1, caught_on: -1 }
   ) @mongo {
     id
     name

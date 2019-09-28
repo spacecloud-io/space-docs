@@ -6,18 +6,18 @@ draft: true
 
 Let's explore some awesome powers of Space Cloud. In this guide, we will be:
 
-- Making trainers and catching few pokemons 😍 (Insert operation)
-- Get all trainers (Simple query operation)
-- Get all trainers with their pokemons 😎 (Join operation)
+- Creating trainers and catching Pokemons 😍 (Insert operation)
+- Retrieving all trainers (Simple query operation)
+- Retrieving all trainers with along with their Pokemons 😎 (Join operation)
 
 
-## Make trainers (insert operation)
+## Creating trainers (insert operation)
 
-Making trainers requires us to insert trainers' information in database.
+Creating trainers requires us to insert trainer documents into the database.
 
 Head over to the `Explorer` section in `Mission Control`. 
 
-Try running the following query in GraphiQL section:
+Try running the following query in the GraphiQL section:
 
 {{< highlight graphql >}}
 mutation {
@@ -35,7 +35,7 @@ mutation {
 
 On successful insert, you should be able to see the `status` as `200` which means the documents were inserted in the database.
 
-## Get all trainers (query operation)
+## Retrieving trainers (query operation)
 
 Now let's get the list of trainers back using graphql. Try running the following query:
 
@@ -50,9 +50,9 @@ query {
 
 There, we get our list of trainers!
 
-## Catch pokemons (insert operation)
+## Catch Pokemons (insert operation)
 
-Catching pokemons requires us to insert pokemons' data in database (And a lot of hard work ofcourse!😅)
+Catching Pokemons requires us to insert Pokemon data into the database (And a lot of hard work ofcourse!😅)
 
 {{< highlight graphql >}}
 mutation {
@@ -70,9 +70,9 @@ mutation {
 }
 {{< /highlight >}}
 
-Great! That's a lot of pokemon catching for the day. Now time for the trainers to show off their pokemons.
+Great! That's a lot of Pokemon catching for the day. Now time for the trainers to show off their Pokemons.
 
-## Get trainers with their pokemons (join operation) 
+## Retrieve trainers along with their Pokemons (join operation) 
 
 Try running the following query in GraphiQL:
 
@@ -127,7 +127,7 @@ The response should look something like this:
 
 ## Next Steps
 
-Awesome! We have just started our pokemon journey (without writing a single line of backend code). The journey ahead is surely going to be super exciting!
+Awesome! We have just started our Pokemon journey _without writing a single line of backend code_. The journey ahead is surely going to be super exciting!
 
 The next step is to dive into the various Space Cloud features:
 

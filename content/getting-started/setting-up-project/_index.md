@@ -15,19 +15,19 @@ Space Cloud supports a wide variety of protocols (GraphQL, HTTP, websockets and 
 
 ### For GraphQL lovers
 
-You can use any GraphQL client out there to talk to Space Cloud. However, it's always good to use some popular open source client (eg: Apollo).
+You can use any GraphQL client out there to talk to Space Cloud. However, it's always recommended to use a popular open source client (eg. Apollo).
 
 Follow this [guide](/getting-started/setting-up-project/graphql) to set up Apollo client (recommended for graphql) in your javascript project.
 
-> **Note:** Before choosing an option, check the [feature coverage](/getting-started/setting-up-project/#feature-coverage) across various options.
+> **Note:** Before choosing an option, check the [feature coverage](/getting-started/setting-up-project/#feature-coverage) for the various options.
 
 ### For REST lovers
 
 If you don't want to use graphql, we have made the following client SDKs for you:
 
 - [Javascript](/getting-started/setting-up-project/javascript) for web and Nodejs projects
-- [Java](/getting-started/setting-up-project/java) for Android or Java projects
 - [Golang](/getting-started/setting-up-project/golang) for Golang projects
+- [Java](/getting-started/setting-up-project/java) for Android or Java projects (Coming Soon!)
 
 The javascript client uses the HTTP and websocket endpoints under the hood whereas the other clients uses the gRPC endpoints of Space Cloud.
 
@@ -42,7 +42,7 @@ The javascript client uses the HTTP and websocket endpoints under the hood where
 | Mutations         | ✔️      | ✔️         | ✔️    |     ✔️ |
 | Subscriptions     | ✔️      | ✔️         | ✔️    |     ✔️ |
 | User management   | ❌      | ✔️         | ✔️    |    ✔️ ️ |
-| File Storage      | ✔️      | ✔️         | ✔️    |     ✔️ |
+| File Storage      | ❌      | ✔️         | ✔️    |     ✔️ |
 | Writing functions | ❌      | ✔️         | ✔️    |     ✔️ |
 | Calling functions | ✔️      | ✔️         | ✔️    |     ✔️ |
-| Pub Sub           | ✔️      | ✔️         | ✔️    |     ✔️ |
+| Pub Sub           | ❌      | ✔️         | ✔️    |     ✔️ |

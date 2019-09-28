@@ -29,7 +29,9 @@ subscription {
     where: {trainer_id: "1"}
   ) @mongo {
     type
-    doc
+    payload {
+      name
+    }
     docId # This is the primary key of the changed document 
   }
 }
@@ -75,7 +77,7 @@ if (on some logic) {
 Data pushed down in live query have the following fields: 
 
 - **type:** The type of operation which has resulted into Space Cloud pushing down data. Possible values are - `initial`, `insert`, `update`, and `delete`. `initial` is only applicable when Space Cloud is pushing the initial data down.
-- **doc:** The concerned document/object. `null` for `delete` operation.
+- **payload:** The concerned document/object. `null` for `delete` operation.
 - **docId:** The unique id of the corresponding document/object. In case of MongoDB it's the `_id` field of the concerned document and in case of SQL databases, it's the `id` of the concerned record.
 
 ## Subscribing to changes only
@@ -98,7 +100,9 @@ subscription {
     options: {skipInitial: true}
   ){
     type
-    doc
+    payload {
+      name
+    }
     docId
   }
 }
