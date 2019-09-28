@@ -17,7 +17,7 @@ If you instead want to start a project from scratch using Space Cloud, then chec
 
 ## Step 1: Download Space Cloud
 
-The first step is to download the binary. You need to download the binary for your operating system or you could build it directly from its source code. You will need go version 1.12.0 or later to build it from source.
+The first step is to download the binary. You need to download the binary for your operating system or you could build it directly from its source code. You will need go version 1.13.0 or later to build it from source.
 
 Download the binary for your OS from here:
 
@@ -102,7 +102,7 @@ The `Connection String` input contains the default connection string of MongoDB 
 If your MongodDB isn't running on this address, then paste the `connection string` of your MongoDB over there and hit `Save` button. That's all what is required to configure Space Cloud for this guide!
 
 
-## Step4: Let's try it out 
+## Step4: Let us try it out 
 
 Our backend is up and running, configured to expose APIs on MongoDB. Time to explore it's awesome powers. 
 

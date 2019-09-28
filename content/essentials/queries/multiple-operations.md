@@ -26,7 +26,7 @@ query {
     name
     pokemons(
       where: {type: "Water"},
-      sort: ["name"],
+      sort: {name: 1},
       limit: 2
     ) @mongo {
       id

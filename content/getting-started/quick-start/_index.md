@@ -5,9 +5,9 @@ draft: true
 weight: 1
 ---
 
-This guide will help you try Space Cloud quickly with MongoDB and GraphQL without having to set up any project. This is the easiest way to explore the powers of Space Cloud.
+This guide will help you try Space Cloud quickly with MongoDB and GraphQL without having to set up any client side project. This is the easiest way to explore the powers of Space Cloud.
 
-If you instead want to start a project with Space Cloud from scratch then check out the [deployment](/getting-started/deployment) guide.
+If you want to start a project with Space Cloud from scratch, then the [deployment guide](/getting-started/deployment) would be a better resource.
 
 > **Note:** MongoDB is not a dependency of Space Cloud. We are using MongoDB in this guide for ease of use because of it's schemaless nature.
 

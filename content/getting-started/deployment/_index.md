@@ -5,7 +5,7 @@ draft: true
 weight: 3
 ---
 
-This section talks in depth about deploying Space Cloud for a production like environment. If you would simply like to take Space Cloud for a quick spin, choose from our [Quick start guides](/getting-started/quick-start/).
+This section talks in depth about deploying Space Cloud in production. If you would simply like to take Space Cloud for a quick spin, refer to our [quick start guide](/getting-started/quick-start/).
 
 > **Note:** Make sure that any database that you want to integrate with Space Cloud is up and running.
 

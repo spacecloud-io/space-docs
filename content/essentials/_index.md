@@ -5,7 +5,7 @@ draft: true
 weight: 2
 ---
 
-This section covers the core features of Space Cloud which are required in almost all apps:
+This section covers the core features of Space Cloud:
 
 - [Queries](/essentials/queries)
 - [Mutations](/essentials/mutations)

@@ -14,7 +14,7 @@ This guide will help you set up Space Cloud via Docker.
 
 ## Step 1: Run Space Cloud
 
-The following command runs `space-cloud` in a docker container and exposes the HTTP and grpc endpoints on ports `4122` and `4124` respectively:  
+The following command runs `space-cloud` in a docker container and exposes the HTTP and gRPC endpoints on ports `4122` and `4124` respectively:  
 
 {{< highlight bash>}}
 docker run -d -p 4122:4122 -p 4124:4124 --name space-cloud \
@@ -24,15 +24,15 @@ docker run -d -p 4122:4122 -p 4124:4124 --name space-cloud \
   spaceuptech/space-cloud:latest
 {{< /highlight >}}
 
-Here, `ADMIN_USER` and `ADMIN_PASS` are the credentials to login into Mission Control (Admin UI), whereas `ADMIN_SECRET` is the JWT secret used to authenticate login requests for Mission Control. 
+Here, `ADMIN_USER` and `ADMIN_PASS` are the credentials to login into Mission Control (Admin UI), whereas `ADMIN_SECRET` is the JWT secret used to authenticate requests made via. Mission Control. 
 
 > **Note:** The HTTP and grpc endpoints are available in a secure fashion over SSL on ports `4126` and `4128` respectively.
 
 To expose the HTTP and grpc endpoints of Space Cloud in a secure way via SSL run the following command:
 
 {{< highlight bash>}}
-docker run -d -p 4126:4128 -p 4128:4128 --name space-cloud \
-  -v /path/to/ssl-folder:/ssl
+docker run -d -p 4126:4126 -p 4128:4128 --name space-cloud \
+  -v /path/to/ssl-certs:/ssl
   -e ADMIN_USER=some-admin \
   -e ADMIN_PASS=some-pass \
   -e ADMIN_SECRET=some-secret \
@@ -60,9 +60,9 @@ Space Cloud has it's own Mission Control (admin UI) to configure all of this in 
 
 **Open Mission Control**
 
-Head over to `http://localhost:4122/mission-control` or `https://localhost:4126/mission-control` to open Mission Control depending on how you started `space-cloud`.
+Head over to `http://YOUR_URL:4122/mission-control` or `https://YOUR_URL:4126/mission-control` to open Mission Control depending on how you started `space-cloud`.
 
-> **Note:** Replace `localhost` with the address of your Space Cloud if you are not running it locally. 
+> **Note:** Replace `YOUR_URL` with the address of your Space Cloud if you are not running it locally. 
 
 
 ## Next Steps

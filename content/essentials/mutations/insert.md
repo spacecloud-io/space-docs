@@ -25,7 +25,7 @@ Example: Let's say you have caught a Pikachu! This is how you would add it to yo
 mutation {
   insert_caught_pokemons(
     docs: [
-      {id: 1, name: "Pikachu", combat_power: 500}
+      {id: "1", name: "Pikachu", combat_power: 500}
     ]
   ) @postgres {
     status
@@ -35,7 +35,7 @@ mutation {
   </div>
   <div id="insert-one-js" class="col s12" style="padding:0">
 {{< highlight javascript>}}
-const docToBeInserted = {id: 1, name: "Pikachu", combat_power: 500}
+const docToBeInserted = {id: "1", name: "Pikachu", combat_power: 500}
 
 const { status } = await db.insert("caught_pokemons")
   .doc(docToBeInserted)
@@ -72,9 +72,9 @@ Example: Add 3 items received from Professor Oak to your list of items:
 mutation {
   insert_items(
     docs: [
-      {id: 1, type: "Pokeball"},
-      {id: 2, type: "Potion"},
-      {id: 3, type: "Antidote"}
+      {id: "1", type: "Pokeball"},
+      {id: "2", type: "Potion"},
+      {id: "3", type: "Antidote"}
     ]
   ) @postgres {
     status
@@ -85,9 +85,9 @@ mutation {
   <div id="insert-many-js" class="col s12" style="padding:0">
 {{< highlight javascript>}}
 const docsToBeInserted = [
-  {id: 1, type: "Pokeball"},
-  {id: 2, type: "Potion"},
-  {id: 3, type: "Antidote"}
+  {id: "1", type: "Pokeball"},
+  {id: "2", type: "Potion"},
+  {id: "3", type: "Antidote"}
 ]
 
 const { status } = await db.insert("items")

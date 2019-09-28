@@ -33,7 +33,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
 
 const link = new HttpLink({
-  uri: 'http://localhost:4122/v1/api/graphql/todo-app'
+  uri: 'http://localhost:4122/v1/api/PROJECT_ID/graphql'
 })
 
 const client = new ApolloClient({
@@ -96,11 +96,11 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 
 
 const httpLink = new HttpLink({
-  uri: "http://localhost:4122/v1/api/graphql/todo-app", // use https for secure endpoint
+  uri: "http://localhost:4122/v1/api/PROJECT_ID/graphql", // use https for secure endpoint
 });
 
 const wsLink = new WebSocketLink({
-  uri: "ws://localhost:4122/v1/api/graphql/todo-app", // use wss for a secure endpoint
+  uri: "ws://localhost:4122/v1/api/PROJECT_ID/graphql/socket", // use wss for a secure endpoint
   options: {
     reconnect: true
   }
@@ -133,7 +133,7 @@ const subscription = client
     query: gql`
       subscription {
         caught_pokemons(
-          where: {trainer_id: $trainerId}
+          where: {trainer_id: TRAINER_ID}
         ) @mongo {
           type
           doc
@@ -144,6 +144,7 @@ const subscription = client
   })
 
 subscription.subscribe(value => console.log(value));  
+
 {{< /highlight >}}
 
 > **Note:** In order to query a database, you need to mention a `@directive` to specify which database you want to query.

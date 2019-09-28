@@ -5,9 +5,7 @@ draft: true
 weight: 1
 ---
 
-This guide will help you run a local development setup that sets up both the Space Cloud and MongoDB. It will guide you through exploring the Space Cloud APIs on MongoDB without having to set up any project.
-
-If you instead want to start a project from scratch using Space Cloud, then check out the [deployment](/getting-started/deployment) guide.
+This guide will help you run a local development setup that sets up both, Space Cloud and MongoDB. It will help you explore the Space Cloud APIs on MongoDB without having to set up any client side projects.
 
 > **Note:** MongoDB is not a dependency of Space Cloud. We are using MongoDB in this guide for ease of use because of it's schemaless nature.
 
@@ -39,7 +37,7 @@ docker ps
 
 ## Step 3: Configure Space Cloud
 
-If you exec into docker container of Space Cloud, you can see a `config.yaml` file and a `raft-store` folder would have been generated in the home directory.
+If you `exec` into docker container of Space Cloud, you can see a `config.yaml` file and a `raft-store` folder would have been generated in the home directory.
 
 Space Cloud needs this config file in order to function. The config file is used to load information like the database to be used, its connection string, security rules, etc. 
 
@@ -70,7 +68,7 @@ Copy paste `mongodb://mongo:27017` in the `connection string` input.
 
 Hit `Save` button. That's all what is required to configure Space Cloud for this guide!
 
-## Step4: Let's try it out 
+## Step4: Let us try it out 
 
 Our backend is up and running, configured to expose APIs on MongoDB. Time to explore it's awesome powers. 
 
