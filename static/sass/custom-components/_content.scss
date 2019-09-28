@@ -70,8 +70,8 @@
     @media #{$large-and-up} {
       line-height: 1.7;
       font-size: 16px !important;
-      margin-top: 15px;
-      margin-bottom: 15px;
+      margin-top: 16px;
+      margin-bottom: 16px;
     }
   }
 
@@ -93,13 +93,10 @@
 
   ul {
     padding-left: 14px;
-    margin-top: 24px;
-    margin-bottom: 24px;
+    margin: 16px 0;
 
     @media #{$large-and-up} {
       padding-left: 16px;
-      margin-top: 30px;
-      margin-bottom: 30px;
     }
 
     li {
@@ -199,7 +196,7 @@
   }
 
   code {
-    padding: 0;
+    padding: 0.2em 0.4em;
     border-radius: 4px;
     background-color: #eee;
     overflow: auto;
