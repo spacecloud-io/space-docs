@@ -22,7 +22,7 @@ You can easily allow users to create a folder via the File Management module of 
 import { API } from "space-api";
 
 // Initialize api with the project name and url of the space cloud
-const api = new API("todo-app", "http://localhost:4122");
+const api = new API("todo_app", "http://localhost:4122");
 
 // Create a folder
 api.FileStore().createFolder("/some-path", "some-folder")

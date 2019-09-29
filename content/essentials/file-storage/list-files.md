@@ -22,7 +22,7 @@ You can list all files and folders within a specific folder by simply calling `l
 import { API } from "space-api";
 
 // Initialize api with the project name and url of the space cloud
-const api = new API("todo-app", "http://localhost:4122");
+const api = new API("todo_app", "http://localhost:4122");
 
 // Upload the file
 api.FileStore().listFiles("/some-path")

@@ -24,7 +24,7 @@ You can read the profile of a single user using `db.profile` function. It takes 
 import { API } from 'space-api';
 
 // Initialize api with the project name and url of the space cloud
-const api = new API('todo-app', 'http://localhost:4122');
+const api = new API('todo_app', 'http://localhost:4122');
 
 // Initialize database(s) you intend to use
 const db = api.Mongo();
@@ -139,7 +139,7 @@ You can read the profiles of all users with the help of `profiles` function as s
 import { API } from 'space-api';
 
 // Initialize api with the project name and url of the space cloud
-const api = new API('todo-app', 'http://localhost:4122');
+const api = new API('todo_app', 'http://localhost:4122');
 
 // Initialize database(s) you intend to use
 const db = api.Mongo();

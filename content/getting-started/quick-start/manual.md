@@ -101,6 +101,7 @@ The `Connection String` input contains the default connection string of MongoDB 
 
 If your MongodDB isn't running on this address, then paste the `connection string` of your MongoDB over there and hit `Save` button. That's all what is required to configure Space Cloud for this guide!
 
+> **Note:** If you are using an SQL database, you should hit the `Set Up Database` button to create the internal tables which Space Cloud requires after saving the right connection string.
 
 ## Step4: Let us try it out 
 

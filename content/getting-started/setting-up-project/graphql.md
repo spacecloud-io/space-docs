@@ -20,7 +20,7 @@ npm install --save apollo-client apollo-cache-inmemory apollo-link-http graphql-
 
 The `uri` for the client takes two parameters: 
 
-- **PROJECT_ID:** Unqiue identifier of a project. It's derived by converting your project name to lowercase and replacing all spaces to hiphens. For example `Todo App` becomes `todo-app`.
+- **PROJECT_ID:** Unqiue identifier of a project. It's derived by converting your project name to lowercase and replacing all spaces and hiphens to underscores. For example `Todo App` becomes `todo_app`.
 - **SPACE_CLOUD_URL:** This is the url of your `space-cloud` binary. It's `http://localhost:4122` or `https://localhost:4126` for HTTP and HTTPS endpoints respectively.
 
 > **Note:** Replace `localhost` with the address of your Space Cloud if you are not running it locally.

@@ -26,7 +26,7 @@ An `api` instance of Space Cloud on the frontend will help you talk to `space-cl
 
 The `API` constructor takes two parameters: 
 
-- **PROJECT_ID:** Unqiue identifier of a project. It's derived by converting your project name to lowercase and replacing all spaces to hiphens. For example `Todo App` becomes `todo-app`.
+- **PROJECT_ID:** Unqiue identifier of a project. It's derived by converting your project name to lowercase and replacing all spaces and hiphens to underscores. For example `Todo App` becomes `todo_app`.
 - **SPACE_CLOUD_URL:** This is the url of your `space-cloud` binary. It's `http://localhost:4122` or `https://localhost:4126` for HTTP and HTTPS endpoints respectively.
 
 > **Note:** Replace `localhost` with the address of your Space Cloud if you are not running it locally. 
@@ -36,7 +36,7 @@ The `API` constructor takes two parameters:
 {{< highlight javascript >}}
 import { API } from 'space-api';
 
-const api = new API('todo-app', 'http://localhost:4122');
+const api = new API('todo_app', 'http://localhost:4122');
 {{< /highlight >}}
 
 **For ES5/CommonJS:**
@@ -44,13 +44,13 @@ const api = new API('todo-app', 'http://localhost:4122');
 {{< highlight javascript >}}
 const { API } = require('space-api');
 
-const api = new API('todo-app', 'http://localhost:4122');
+const api = new API('todo_app', 'http://localhost:4122');
 {{< /highlight >}}
 
 **For stand alone:**
 
 {{< highlight javascript >}}
-var api = new Space.API("todo-app", "http://localhost:4122");
+var api = new Space.API("todo_app", "http://localhost:4122");
 {{< /highlight >}}
 
 

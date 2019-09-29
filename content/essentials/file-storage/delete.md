@@ -22,7 +22,7 @@ You can easily allow users to delete a file or folder via the File Management mo
 import { API } from "space-api";
 
 // Initialize api with the project name and url of the space cloud
-const api = new API("todo-app", "http://localhost:4122");
+const api = new API("todo_app", "http://localhost:4122");
 
 // Delete a file
 api.FileStore().delete("/some-path/some-file")

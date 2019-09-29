@@ -58,7 +58,7 @@ query {
 import { API } from "space-api";
 
 // Initialize api with the project name and url of the space cloud
-const api = new API("todo-app", "http://localhost:4122");
+const api = new API("todo_app", "http://localhost:4122");
 
 // Call a function running 'my-func' of 'my-service' running on backend
 api.call('my-service', 'my-func', { msg: 'Space Cloud is awesome!' }, 1000)
