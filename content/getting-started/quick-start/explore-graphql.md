@@ -41,10 +41,10 @@ Now let's get the list of trainers back using graphql. Try running the following
 
 {{< highlight graphql >}}
 query {
-  trainers {
+  trainers @mongo {
     _id
     name
-  } @mongo
+  }
 }
 {{< /highlight >}}
 
@@ -78,7 +78,7 @@ Try running the following query in GraphiQL:
 
 {{< highlight graphql >}}
 query {
-  trainers {
+  trainers @mongo {
     _id
     name
     pokemons(
@@ -87,7 +87,7 @@ query {
       _id
       name
     }
-  } @mongo
+  }
 }
 {{< /highlight >}}
 
