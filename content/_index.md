@@ -1,5 +1,5 @@
 # Space Cloud
-Space Cloud is an **open source, self hosted backend as a service**. It provides **GraphQL** and **REST** APIs that can be consumed directly from your frontend apps in a secure manner.
+Space Cloud is an **open source, self-hosted backend as a service**. It provides **GraphQL** and **REST** APIs that can be consumed directly from your frontend apps in a secure manner.
 
 ![Space Cloud Architecture](https://spaceuptech.com/icons/space-cloud-basic.png)
 
