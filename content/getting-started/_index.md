@@ -7,7 +7,7 @@ weight: 1
 
 This section helps you get started with Space Cloud.
 
-> **Note:** Space Cloud is an open-source, ** self-hosted backend as a service**. Read more about it's features from [here](/getting-started/introduction/features).
+> **Note:** Space Cloud is an open-source, **self-hosted backend as a service**. Read more about it's features from [here](/getting-started/introduction/features).
 
 - Take Space Cloud for a [quick spin](/getting-started/quick-start)
 - [Learn more](/getting-started/introduction) about Space Cloud

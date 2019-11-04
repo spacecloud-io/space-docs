@@ -75,7 +75,7 @@ Great! We have our remote service up and running. Let's start Space Cloud and us
 You can start Space Cloud in a docker container by simply runnning the following command:
 
 {{< highlight bash >}}
-docker run -d -p 4122:4122 -p  --name space-cloud -e DEV=true spaceuptech/space-cloud:latest
+docker run -d -p 4122:4122 --name space-cloud -e DEV=true spaceuptech/space-cloud:latest
 {{< /highlight >}}
 
 > **Note:** You can also start space-cloud without docker by following [this guide](/getting-started/deployment/manual).
@@ -117,7 +117,7 @@ Click on the `Add first remote service` button to open the following form:
 
 ![Add service screen](/images/screenshots/add-service.png)
 
-Put the service name as `arithmetic` and service URL as `http://localhost:5000` and hit `Add`.
+Put the service name as `arithmetic` and service URL as `http://<IP_ADDRESS>:5000` and hit `Add`.
 
 Once you have added the remote service, you should be able to see it the remote services table:
 
