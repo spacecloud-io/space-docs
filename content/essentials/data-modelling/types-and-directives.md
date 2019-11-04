@@ -8,20 +8,20 @@ This guide will give a detailed explanation of [object types](#object-types), [f
 
 ## Object types
 
-An object type is used to define a table/collection. It is defined in the schema with the keyword `type`.
+An object type is used to define a table/collection with the keyword `type`.
 
 **Example:** 
 
 {{< highlight graphql >}}
-type posts {
-  id: ID! @id
+type post {
+  id: ID! @primary
   title: String!
   text: String!
   is_published: Boolean
 }
 {{< /highlight >}}
 
-The above example will create a `posts` table/collection which has the `id`, `title`, `text` and `is_published` columns/fields.
+The above example will create a `post` table/collection which has the `id`, `title`, `text` and `is_published` columns/fields.
 
 ## Field types
 
@@ -29,15 +29,32 @@ Fields are the building blocks of an object type. A field either refers to a sca
 
 ### Scalar types
 
+**ID**
+
+An `ID` is used to hold a string value. You use `ID` to store prominent strings in your model like the unique identifier of a row/document. A field with type `ID` can store up to 50 characters. 
+
+Space Cloud auto-generates the value of `ID` fields with [ksuid](https://github.com/segmentio/ksuid) (sortable unique identifiers) if you don't provide their value during mutation.
+
+As of now, only `ID` fields can have primary and unique key constraints. If you want to alter this behaviour, contribute your thoughts on this [Github issue](https://github.com/spaceuptech/space-cloud/issues/479).
+
+**Example:** Uniquely identify an order in an e-commerce app:
+
+{{< highlight graphql "hl_lines=2">}}
+type order {
+  id: ID! @primary
+  amount: Float!
+}
+{{< /highlight >}}
+
 **String**
 
-A `String` holds text. `String` is used for fields like the customer name, the title of a blog post or anything else that is best represented as text.
+A `String` holds text. `String` is used for fields like the title of a blog post or anything that is best represented as text.
 
 **Example:**
 
 {{< highlight graphql "hl_lines=3">}}
-type posts {
-  id: ID! @id
+type post {
+  id: ID! @primary
   title: String!
   text: String!
 }
@@ -54,8 +71,8 @@ An `Integer` is a number that cannot have decimals. Use this to store values suc
 **Example:**
 
 {{< highlight graphql "hl_lines=4">}}
-type pokemons {
-  id: ID! @id
+type pokemon {
+  id: ID! @primary
   name: String!
   combat_power: Integer!
 }
@@ -70,8 +87,8 @@ A `Float` is a number that can have decimals. `Float` helps you store values suc
 **Example:**
 
 {{< highlight graphql "hl_lines=4">}}
-type items {
-  id: ID! @id
+type item {
+  id: ID! @primary
   name: String!
   price: Float!
   description: String
@@ -87,8 +104,8 @@ A `Boolean` can have the value `true` or `false`. `Boolean` can help you keep tr
 **Example:**
 
 {{< highlight graphql "hl_lines=4">}}
-type pokemons {
-  id: ID! @id
+type pokemon {
+  id: ID! @primary
   name: String!
   is_favourite: Boolean!
 }
@@ -102,8 +119,8 @@ A `DateTime` stores date or time values. A good example might be a person's date
 
 **Example:**
 {{< highlight graphql "hl_lines=5">}}
-type posts {
-  id: ID! @id
+type post {
+  id: ID! @primary
   title: String!
   is_published: Boolean
   published_date: DateTime
@@ -112,38 +129,21 @@ type posts {
 
 In queries or mutations, `DateTime` fields have to be specified either in ISO 8601 format with enclosing double quotes or in milliseconds since epoch without enclosing double quotes:
 
-- `datetime: "2015"`
-- `datetime: "2015-11"`
 - `datetime: "2015-11-22"`
 - `datetime: "2015-11-22T13:57:31.123Z"`
 - `datetime: 1571207400000`
-
-**ID**
-
-An `ID` is used to hold a unique value. They are mostly used to identify a row/document uniquely. It is a string which can be 55 bytes long maximum.
-
-Right now, you have to provide its value during insert mutation. However, in future, this can be auto-generated.
-
-**Example:** Uniquely identify an order in an e-commerce app:
-
-{{< highlight graphql "hl_lines=2">}}
-type orders {
-  id: ID! @id
-  amount: Float!
-}
-{{< /highlight >}}
 
 **Nested fields**
 
 Document oriented databases like MongoDB can have nested structures. 
 
-**Example:** Let's say each document in `posts` collection has an embedded document called `author`: 
+**Example:** Let's say each document in `post` collection has an embedded document called `author`: 
 
 > **Note:** All the embedded types for a collection are provided in the schema of the collection itself.
 
 {{< highlight graphql "hl_lines=6">}}
-type posts {
-  id: ID! @id
+type post {
+  id: ID! @primary
   title: String!
   text: String!
   is_published: Boolean
@@ -156,7 +156,7 @@ type author {
 }
 {{< /highlight >}}
 
-> `Note:` The schema in MongoDB is just used for data validation.
+> `Note:` The schema in MongoDB is used only for data validation.
 
 
 ### Field constraints
@@ -169,13 +169,27 @@ You use a not-null constraint for required fields in your app.  You can add a no
 **Example:** Making email a required field for a user:
 
 {{< highlight graphql "hl_lines=3" >}}
-type users {
-  id: ID! @id
+type user {
+  id: ID! @primary
   email: String!
   name: String
 }
 {{< /highlight >}}
 
+**Primary key constraint**
+
+Primary key constraint is used to make a field as a unique identifier of the table/collection. 
+
+**Example:** Making order_id the unique identifier of an order:
+
+{{< highlight graphql "hl_lines=3" >}}
+type order {
+  order_id: ID! @primary
+  amount: Float!
+}
+{{< /highlight >}}
+
+> Note: Space Cloud doesn't support composite primary keys ([Github issue](https://github.com/spaceuptech/space-cloud/issues/476)) yet.
 
 **Unique constraint**
 
@@ -184,29 +198,31 @@ A unique constraint is used to ensure that a field always has a unique value.
 **Example:** Making username of a user unique:
 
 {{< highlight graphql "hl_lines=3" >}}
-type users {
-  id: ID! @id
+type user {
+  id: ID! @primary
   username: String! @unique
   email: String!
 }
 {{< /highlight >}}
 
+> Note: Space Cloud doesn't support composite unique keys ([Github issue](https://github.com/spaceuptech/space-cloud/issues/477)) yet.
+
 **Foreign key constraint**
 
 A foreign key constraint is used to maintain the integrity of a relation.
 
-**Example:** Create a foreign key on the `id` field of `authors` for `posts` table:
+**Example:** Create a foreign key on the `id` field of `author` for `post` table:
 
 {{< highlight graphql "hl_lines=3" >}}
-type authors {
-  id: ID! @id
+type author {
+  id: ID! @primary
   name: String! @unique
 }
 
-type posts {
-  id: ID! @id
+type post {
+  id: ID! @primary
   title: String!
-  author_id: authors @relation(field: "id")
+  author: author @relation(field: "id")
 }
 {{< /highlight >}}
 
@@ -216,14 +232,14 @@ type posts {
 Directives are used to provide additional information in your data model. They look like this: `@name(argument: "value")` or simply `@name` when there are no arguments.
 
 ### Primary key
-The `@id` directive is used to make a field as the **primary key** in that table/collection.
+The `@primary` directive is used to make a field as the **primary key** in that table/collection.
 
-> **Note:** Only one field in a type can have `@id` directive.
+> **Note:** Only one field in a type can have `@primary` directive.
 
 **Example:** 
 {{< highlight graphql "hl_lines=2" >}}
-type orders {
-  id: ID! @id
+type order {
+  id: ID! @primary
   amount: Float!
 }
 {{< /highlight >}}
@@ -234,8 +250,8 @@ The `@unique` directive is used to put a unique constraint on a field.
 **Example:** Make sure that each user has a unique `username`:
 
 {{< highlight graphql "hl_lines=3" >}}
-type users {
-  id: ID! @id
+type user {
+  id: ID! @primary
   username: String! @unique
 }
 {{< /highlight >}}
@@ -243,31 +259,34 @@ type users {
 ### Relation directive
 The `@relation` directive is used to put foreign key constraints on a field. Learn more about modelling relationships from [here](/essentials/data-modelling/relations).
 
-**Example:** `one-to-many` relation between `customers` and `orders`:
+**Example:** `one-to-many` relation between `customer` and `order`:
 
 {{< highlight graphql "hl_lines=10">}}
-type customers {
-  id: ID! @id
+type customer {
+  id: ID! @primary
   name: String!
+  orders: [order] @relation
 }
 
-type orders {
-  id: ID! @id
+type order {
+  id: ID! @primary
   order_date: DateTime!
   amount: Float!
-  customer_id: customers! @relation(field: "id")
+  customer: customer! @relation(field: "id")
 }
 {{< /highlight >}}
 
-The above example creates a foreign key on the `id` field of `customers` table.
+The above example creates a foreign key on the `id` field of `customer` table.
+
+> **Note:** The `orders` field in the `customer` table does nothing as of now. But in future, Space Cloud would be able to make your join queries easier with this info.
 
 ### createdAt directive
 
-If you want to capture the creation time of a document/row, you should use the `@createdAt` directive. A good example is the order date in the `orders` table:
+If you want to capture the creation time of a document/row, you should use the `@createdAt` directive. A good example is the order date of order:
 
 {{< highlight graphql "hl_lines=4" >}}
-type orders {
-  id: ID! @id
+type order {
+  id: ID! @primary
   order_date: DateTime! @createdAt
   amount: Float!
 }
@@ -282,8 +301,8 @@ In an insert mutation, you don't need to provide values for the fields with `@cr
 If you want to store the time of the last update made to a document/row, you should use the `@updatedAt` directive. A good example is showing the last modified date on a blog post:
 
 {{< highlight graphql "hl_lines=4" >}}
-type posts {
-  id: ID! @id
+type post {
+  id: ID! @primary
   title: String!
   last_edited: DateTime! @updatedAt
   content: String!

@@ -24,8 +24,8 @@ With Space Cloud, you can easily model your databases using a Schema Definition 
 While creating a table/collection through Mission Control, you provide its schema which looks something like this:
 
 {{< highlight graphql >}}
-type posts {
-  id: ID! @id
+type post {
+  id: ID! @primary
   title: String!
   text: String!
   category: String
@@ -46,10 +46,15 @@ Whenever anyone performs a mutation on any table/collection, Space Cloud validat
  
 ## Features
 - Supported data types: string, integer, float, boolean, datetime.
+- Optional auto-generated unique `ID` fields.
 - Optional auto-generated `createdAt` and `updatedAt` timestamps.
-- Constraints like unique key, foreign key and not null.
+- Constraints like unique key, foreign key, primary key and not null.
 - Data validation on CRUD operation.
 
 ## Upcoming Features
-- Composite unique keys.
-- More constraints. (eg: default value)
+
+Space Cloud has other useful schema features in the pipeline. Contribute your suggestions/thoughts on this [Github issue](https://github.com/spaceuptech/space-cloud/issues/479) to improve them. Some of the notable upcoming features include:
+
+- Managing indexes
+- Composite unique and primary keys
+- More constraints (eg: default value)

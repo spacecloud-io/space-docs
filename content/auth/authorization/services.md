@@ -1,29 +1,27 @@
 ---
-title: "Securing functions"
+title: "Securing remote services"
 date: 2019-09-23T10:08:05+05:30
 draft: true
 weight: 3
 ---
 
-The security rules for functions works to authorize client request for function calls. Authorization works on the function level of each service. This means that you can have different rules for each function in a service. Here's a sample snippet which shows the security rules to access function `func1` of service `service1`.
+The security rules for remote services works to authorize client request for remote services. Authorization works on the endpoint level of each service. This means that you can have different rules for each endpoint in a service. Here's a sample snippet which shows the security rules to access the endpoint `endpoint1` of service `service1`.
 
 {{< highlight json >}}
 {
-  "func1": {
-    "rule": "allow"
-  }
+  "rule": "allow"
 }
 {{< /highlight >}}
 
 
-You can add write rules for multiple functions under each service. A function call is denied if there is no corresponding rule for it. This ensures that all function calls are secure by default.
+You can add write rules for each endpoint under each service. A request to an endpoint is denied if there is no corresponding rule for it. This ensures that all calls to remote services are secure by default.
 
 ## Features
-With security rules for functions you can:
+With security rules for remote service you can:
 
-- Allow / deny access to a function.
-- Allow a particular function call only if the user is authenticated.
-- Allow a particular function call only if certain conditions are met (via JSON rules or custom logic).
+- Allow / deny access to a remote endpoint.
+- Allow access to a remote endpoint only if the user is authenticated.
+- Allow access to a remote endpoint only if certain conditions are met (via JSON rules or custom logic).
 
 ## Popular use cases
 

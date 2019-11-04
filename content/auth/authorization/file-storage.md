@@ -33,7 +33,7 @@ The following needs to be kept in mind for the security rules in the file storag
 - The prefix may contain path parameters (`/:userId` in this case). The value of the path parameter is available in the `args.params` object. The key would be `userId` and the value would be the actual value in the path provided.
 
 ## Features
-With security rules for functions you can:
+With security rules for file storage you can:
 
 - Allow / deny access to a file/folder.
 - Allow access to a particular file/folder only if the user is authenticated.
@@ -233,20 +233,20 @@ Example (The Instagram problem - Make sure the user can view a profile picture i
 
 ### Custom validations
 
-In case where the matching and db query for validating conditions are not enough, you can bring your own custom validation logic by writing a function with the functions module. You can configure Space Cloud to use your function to authorize a particular request. Here's an example showing how to do this by rule `func`:
+In case where the matching and db query for validating conditions are not enough, Space Cloud can use your custom authorization logic by triggering a webhook on your servers. Here's an example showing how to do this by rule `webhook`:
 
 {{< highlight json >}}
 {
   "prefix": "/profiles/:profileId",
   "read": {
-    "rule": "func",
-    "service": "my-service",
-    "func": "my-func"
+    "rule": "webhook",
+    "url": "http://localhost:8080/my-custom-logic"
   }
 }
 {{< /highlight >}}
 
-In the above case, `my-func` will receive the path `auth` and `params` objects as the arguments of the function. See [functions mesh](/docs/functions) to understand how to write a function. The request will be considered authorized by the Space Cloud in this case only when the function returns an object with `ack` property set to true.
+In the above case, Space Cloud will make a POST request to your remote server on the above `url`. If the remote server returns a status of `200`, the request will be considered authenticated. Otherwise, Space Cloud will consider the request as unauthorized. The webhook body will consist of the same variables that were available under the `args` key in security rules.
+
 
 ## Next steps
-Great! You have learned how to secure file access. You may now checkout the [security rules for functions module](/auth/authorization/functions).
+Great! You have learned how to secure file access. You may now checkout the [security rules for remote services](/auth/authorization/services).

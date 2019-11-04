@@ -18,16 +18,15 @@ Space Cloud sends the initial result set on subscription request. Thereafter, it
 
 ## Architecture
 
-In order to _offload the database_, Space Cloud does not relies on any CDC (Change Data Capture) mechanism. Space Cloud uses it's in-built eventing system and [Nats](https://nats.io) (a pubsub broker) to guarantee that **all changes irrespective of any network failures will be propagated to the clients** over a bi-directional link in an orderly fashion. 
+In order to _offload the database_, Space Cloud does not relies on any CDC (Change Data Capture) mechanism. Space Cloud uses it's in-built eventing system to guarantee that **all changes irrespective of any network failures will be propagated to the clients** over a bi-directional link in an orderly fashion. 
 
 Isolating the database querying and the realtime module helps it scale the realtime piece independent of database. However this poses some limitations which are acceptable for most applications. 
 
 ## Limitations
 
-- The primary key must be `_id` in case of MongoDB and `id` for MySQL and Postgres and of type `text`, `varchar` or `string`.
-- All documents to be inserted must have the _id (for MongoDB) or id (for MySQL and Postgres) fields set.
+- The table/collection should have a primary key that must be `_id` in case of MongoDB and `id` for MySQL and Postgres and of type [ID](/essentials/data-modelling/types-and-directives/#scalar-types).
+- All mutations (inserts, updates and deletes) have to take place via Space Cloud.
+- All updates and deletes can be made on a single document only using the `_id` or `id` field in the where clause.
 - The fields used in the where clause of liveQuery should not be updated by another request.
-- All updates and deletes can be made on a single document only using the _id or id field in the where clause.
-- All mutations (inserts, updates and deletes) have to take place via Space Cloud
 
 > **Note:** This limitations are only applicable if you intend to use the realtime functionality.

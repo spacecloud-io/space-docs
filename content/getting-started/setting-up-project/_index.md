@@ -5,44 +5,28 @@ draft: true
 weight: 4
 ---
 
-This section talks in depth about setting up a frontend or backend project to use Space Cloud in your preferred language.
+This section talks in-depth about setting up a frontend or backend project to use Space Cloud in your preferred language.
 
 > **Note:** Make sure you have already [deployed](/getting-started/deployment) Space Cloud.
 
 ## Available options
 
-Space Cloud supports a wide variety of protocols (GraphQL, HTTP, websockets and gRPC).
+Space Cloud supports both GraphQL and REST (HTTP and WebSockets) APIs so that you can stick to what you find comfortable.
 
-### For GraphQL lovers
+### GraphQL API
 
-You can use any GraphQL client out there to talk to Space Cloud. However, it's always recommended to use a popular open source client (eg. Apollo).
+GraphQL is the recommended way to use Space Cloud. It unlocks incredible powers like joins which are not exposed by REST APIs yet.
+
+You can use any GraphQL client out there to talk to Space Cloud. However, it's always recommended to use a popular open-source client (e.g. Apollo).
 
 Follow this [guide](/getting-started/setting-up-project/graphql) to set up Apollo client (recommended for graphql) in your javascript project.
 
-> **Note:** Before choosing an option, check the [feature coverage](/getting-started/setting-up-project/#feature-coverage) for the various options.
+> **Note:** The file storage and user management APIs are only available via REST APIs as of now.
 
-### For REST lovers
+### REST API
 
-If you don't want to use graphql, we have made the following client SDKs for you:
+You can use the [REST APIs of Space Cloud](https://app.swaggerhub.com/apis/YourTechBud/space-cloud/0.12.0) if you are more comfortable with REST. For file storage and user management module, REST is the only option as of now.
 
-- [Javascript](/getting-started/setting-up-project/javascript) for web and Nodejs projects
-- [Golang](/getting-started/setting-up-project/golang) for Golang projects
-- [Java](/getting-started/setting-up-project/java) for Android or Java projects (Coming Soon!)
+To make it easy to consume the REST APIs in web projects, we have created a Javascript SDK which consumes REST APIs internally. 
 
-The javascript client uses the HTTP and websocket endpoints under the hood whereas the other clients uses the gRPC endpoints of Space Cloud.
-
-> **Note:** For other languages, you can use our REST APIs directly which are documented [here](https://app.swaggerhub.com/apis/YourTechBud/space-cloud/0.11.0).
-
-## Feature coverage
-
-| Features          | GraphQL | Javascript | Java  | Golang |
-| :---------------- | ------- | ---------- | ----- | -----: |
-| Queries           | ✔️      | ✔️         | ️️ ✔️ |     ✔️ |
-| Joins             | ✔️      | ❌         | ❌    |     ❌ |
-| Mutations         | ✔️      | ✔️         | ✔️    |     ✔️ |
-| Subscriptions     | ✔️      | ✔️         | ✔️    |     ✔️ |
-| User management   | ❌      | ✔️         | ✔️    |    ✔️ ️ |
-| File Storage      | ❌      | ✔️         | ✔️    |     ✔️ |
-| Writing functions | ❌      | ✔️         | ✔️    |     ✔️ |
-| Calling functions | ✔️      | ✔️         | ✔️    |     ✔️ |
-| Pub Sub           | ❌      | ✔️         | ✔️    |     ✔️ |
+Follow this [guide](/getting-started/setting-up-project/javascript) to set up Javascript SDK in your project.

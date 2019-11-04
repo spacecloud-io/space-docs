@@ -24,8 +24,6 @@ Example: Update the name of your pokemon:
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#set-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#set-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#set-java">Java</a></li>
-      <li class="tab col s2"><a href="#set-golang">Golang</a></li>
     </ul>
   </div>
   <div id="set-graphql" class="col s12" style="padding:0">
@@ -50,16 +48,6 @@ const { status } = await db.update("caught_pokemons")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="set-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="set-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 ### Increment operation
@@ -73,8 +61,6 @@ Example: Increment the combat power of your pokemon by 50:
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#inc-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#inc-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#inc-java">Java</a></li>
-      <li class="tab col s2"><a href="#inc-golang">Golang</a></li>
     </ul>
   </div>
   <div id="inc-graphql" class="col s12" style="padding:0">
@@ -99,16 +85,6 @@ const { status } = await db.update("caught_pokemons")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="inc-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="inc-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 Example: Decrement the hit points of your pokemon by 10:
@@ -118,8 +94,6 @@ Example: Decrement the hit points of your pokemon by 10:
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#dec-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#dec-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#dec-java">Java</a></li>
-      <li class="tab col s2"><a href="#dec-golang">Golang</a></li>
     </ul>
   </div>
   <div id="dec-graphql" class="col s12" style="padding:0">
@@ -144,16 +118,6 @@ const { status } = await db.update("caught_pokemons")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="dec-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="dec-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 ### Multipy operation
@@ -169,8 +133,6 @@ Example: Your pokemon has evolved and you want to multiply it's combat power by 
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#mul-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#mul-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#mul-java">Java</a></li>
-      <li class="tab col s2"><a href="#mul-golang">Golang</a></li>
     </ul>
   </div>
   <div id="mul-graphql" class="col s12" style="padding:0">
@@ -195,16 +157,6 @@ const { status } = await db.update("caught_pokemons")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="mul-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="mul-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 ### Min operation
@@ -218,8 +170,6 @@ Example: Update the trainer's lowest score after a battle:
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#min-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#min-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#min-java">Java</a></li>
-      <li class="tab col s2"><a href="#min-golang">Golang</a></li>
     </ul>
   </div>
   <div id="min-graphql" class="col s12" style="padding:0">
@@ -244,16 +194,6 @@ const { status } = await db.update("trainers")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="min-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="min-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 > **Note:** The above example will only update the `lowest_score` if it's current value was greater than 50.
@@ -269,8 +209,6 @@ Example: Update the trainer's highest score after a battle:
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#max-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#max-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#max-java">Java</a></li>
-      <li class="tab col s2"><a href="#max-golang">Golang</a></li>
     </ul>
   </div>
   <div id="max-graphql" class="col s12" style="padding:0">
@@ -295,16 +233,6 @@ const { status } = await db.update("trainers")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="max-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="max-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 > **Note:** The above example will only update the `highest_score` if it's current value was lesser than 200.
@@ -320,8 +248,6 @@ Example: Update `last_battled` field of a pokemon to current date and `last_modi
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#current-date-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#current-date-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#current-date-java">Java</a></li>
-      <li class="tab col s2"><a href="#current-date-golang">Golang</a></li>
     </ul>
   </div>
   <div id="current-date-graphql" class="col s12" style="padding:0">
@@ -350,16 +276,6 @@ const { status } = await db.update("caught_pokemons")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="current-date-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="current-date-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 ### Push operation
@@ -375,8 +291,6 @@ Example: Push `thunderbolt` to your pokemon's list of attacks:
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#push-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#push-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#push-java">Java</a></li>
-      <li class="tab col s2"><a href="#push-golang">Golang</a></li>
     </ul>
   </div>
   <div id="push-graphql" class="col s12" style="padding:0">
@@ -400,17 +314,7 @@ const { status } = await db.update("caught_pokemons")
   .push({attacks: "thunderbolt"})
   .apply()
 {{< /highlight >}}  
-  </div>
-  <div id="push-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="push-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
+  </div> 
 </div>
 
 ### Unset operation
@@ -426,8 +330,6 @@ Example: Delete `is_favourite` field from your pokemons:
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#unset-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#unset-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#unset-java">Java</a></li>
-      <li class="tab col s2"><a href="#unset-golang">Golang</a></li>
     </ul>
   </div>
   <div id="unset-graphql" class="col s12" style="padding:0">
@@ -452,16 +354,6 @@ const { status } = await db.update("caught_pokemons")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="unset-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="unset-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 > **Note:** The specified value in the \$unset expression (i.e. "") does not impact the operation.
@@ -479,8 +371,6 @@ Example: Rename `is_favourite` field to `favourite`:
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#rename-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#rename-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#rename-java">Java</a></li>
-      <li class="tab col s2"><a href="#rename-golang">Golang</a></li>
     </ul>
   </div>
   <div id="rename-graphql" class="col s12" style="padding:0">
@@ -505,14 +395,4 @@ const { status } = await db.update("caught_pokemons")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="rename-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="rename-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>

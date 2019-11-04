@@ -5,7 +5,6 @@ draft: true
 weight: 3
 ---
 
-This section covers those features of Space Cloud which are required in advanced use cases:
+This section covers those features of Space Cloud required in advanced use cases:
 
 - [Event triggers](/advanced/event-triggers)
-- [Pubsub](/advanced/pubsub)

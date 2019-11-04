@@ -7,7 +7,7 @@ weight: 2
 
 Space Cloud offers robust authentication and authorization mechanism with the philosophy that applications and platforms built with Space Cloud should be secure by default. Treating security as an afterthought is a recipe for disaster.
 
-The security module in Space Cloud secures the requests to database, functions and file storage module via security rules written by user. Any operation to a resource (database, function or a file path) not specified in the configuration file is denied. This ensures that all operations are secure by default in Space Cloud.
+The security module in Space Cloud secures the requests to database, file storage and remote services via security rules written by user. Any operation to a resource (database, function or a file path) not specified in the configuration file is denied. This ensures that all operations are secure by default in Space Cloud.
 
 ## What can I do with authorization module?
 
@@ -17,7 +17,7 @@ The security module in Space Cloud secures the requests to database, functions a
 
 ## How it works
 
-As an user, you have to write security rules for the various operations on all the resources (database, file storage and custom functions) exposed by the Space Cloud. These security rules have to be written in the config file provided to Space Cloud. All incoming requests to Space Cloud are first validated by the API controller via the security module based on the corresponding rule in the config file. Validation happens in two stages: Authentication and Authorization.
+As an user, you have to write security rules for the various operations on all the resources (database, file storage and remote services) exposed by the Space Cloud. These security rules have to be written in the config file provided to Space Cloud. All incoming requests to Space Cloud are first validated by the API controller via the security module based on the corresponding rule in the config file. Validation happens in two stages: Authentication and Authorization.
 
 ### JWT based authentication
 
@@ -51,4 +51,4 @@ Each module has their own way of using security rules. You can head over to the 
 
 - [Database](/docs/security/database)
 - [File storage](/docs/security/file-storage)
-- [Functions](/docs/security/functions)
+- [Remote Services](/docs/security/services)

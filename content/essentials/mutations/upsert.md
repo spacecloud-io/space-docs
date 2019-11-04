@@ -18,8 +18,6 @@ Example: Insert a pokemon or update it if it's already present:
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#upsert-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#upsert-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#upsert-java">Java</a></li>
-      <li class="tab col s2"><a href="#upsert-golang">Golang</a></li>
     </ul>
   </div>
   <div id="upsert-graphql" class="col s12" style="padding:0">
@@ -46,15 +44,5 @@ const { status } = await db.upsert("pokemons")
   .set({name: "Pikachu", type: "Electric"})
   .apply()
 {{< /highlight >}}  
-  </div>
-  <div id="upsert-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="upsert-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
   </div>  
 </div>

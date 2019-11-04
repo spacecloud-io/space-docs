@@ -19,8 +19,6 @@ Example: Sort all the trainers by their name:
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#sorting-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#sorting-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#sorting-java">Java</a></li>
-      <li class="tab col s2"><a href="#sorting-golang">Golang</a></li>
     </ul>
   </div>
   <div id="sorting-graphql" class="col s12" style="padding:0">
@@ -35,23 +33,6 @@ query {
 }
 {{< /highlight >}}   
   </div>
-  <div id="sorting-js" class="col s12" style="padding:0">
-{{< highlight javascript>}}
-const { status, data } = await db.get("trainers")
-  .sort("name")
-  .apply()
-{{< /highlight >}}  
-  </div>
-  <div id="sorting-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="sorting-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 
@@ -68,7 +49,7 @@ query {
     name
     pokemons(
       sort: { combat_power : -1 }
-    ) {
+    ) @mongo {
       name
       combat_power
     }
@@ -85,8 +66,6 @@ Example: Sort all caught pokemons first by their `name` in ascending order and t
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#sorting-multiple-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#sorting-multiple-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#sorting-multiple-java">Java</a></li>
-      <li class="tab col s2"><a href="#sorting-multiple-golang">Golang</a></li>
     </ul>
   </div>
   <div id="sorting-multiple-graphql" class="col s12" style="padding:0">
@@ -110,14 +89,4 @@ const { status, data } = await db.get("caught_pokemons")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="sorting-multiple-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="sorting-multiple-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>

@@ -19,7 +19,7 @@ Authentication in Space Cloud is based on **JWT (JSON Web Token)**. As long as t
 
 Authorization module in Space Cloud determines whether a request is authorized or not.
 
-Space Cloud helps you define granular JSON based security rules for every other modules (database, file storage, functions and pub sub) in Space Cloud.
+Space Cloud helps you define granular JSON based security rules for every other modules (database, file storage and remote services) in Space Cloud.
 
 Space Cloud's authorization module is powerful enough to even allow you **define custom logic** for authorization.
 

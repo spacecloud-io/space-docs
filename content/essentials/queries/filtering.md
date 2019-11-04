@@ -15,8 +15,6 @@ You can use `where` in your queries to filter results based on some field’s va
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#filtering-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#filtering-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#filtering-java">Java</a></li>
-      <li class="tab col s2"><a href="#filtering-golang">Golang</a></li>
     </ul>
   </div>
   <div id="filtering-graphql" class="col s12" style="padding:0">
@@ -24,7 +22,7 @@ You can use `where` in your queries to filter results based on some field’s va
 query {
   pokemons(
     where: { type : { _eq: "Fire" }}
-  ) {
+  ) @mongo {
     _id
     name
   }
@@ -40,16 +38,6 @@ const { status, data } = await db.get("pokemons")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="filtering-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="filtering-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 Let’s take a look at different operators that can be used to filter results and other advanced use cases:
@@ -71,8 +59,6 @@ Fetch the list of all 3rd evolution pokemons (`level` is an integer field which 
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#filtering-eq-int-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#filtering-eq-int-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#filtering-eq-int-java">Java</a></li>
-      <li class="tab col s2"><a href="#filtering-eq-int-golang">Golang</a></li>
     </ul>
   </div>
   <div id="filtering-eq-int-graphql" class="col s12" style="padding:0">
@@ -97,16 +83,6 @@ const { status, data } = await db.get("pokemons")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="filtering-eq-int-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="filtering-eq-int-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 > **Syntatic Sugar:** In GraphQL, you can skip the `_eq` for equality operator. **Example**:  `where: {level: 3}`
@@ -120,8 +96,6 @@ Fetch list of all caught pokemons with `name` (a text field) as "Pikachu":
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#filtering-eq-string-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#filtering-eq-string-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#filtering-eq-string-java">Java</a></li>
-      <li class="tab col s2"><a href="#filtering-eq-string-golang">Golang</a></li>
     </ul>
   </div>
   <div id="filtering-eq-string-graphql" class="col s12" style="padding:0">
@@ -145,16 +119,6 @@ const { status, data } = await db.get("caught_pokemons")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="filtering-eq-string-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="filtering-eq-string-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 ### Example: Boolean
@@ -166,8 +130,6 @@ Fetch list of all caught pokemons that have been marked favourite by their train
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#filtering-eq-bool-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#filtering-eq-bool-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#filtering-eq-bool-java">Java</a></li>
-      <li class="tab col s2"><a href="#filtering-eq-bool-golang">Golang</a></li>
     </ul>
   </div>
   <div id="filtering-eq-bool-graphql" class="col s12" style="padding:0">
@@ -191,16 +153,6 @@ const { status, data } = await db.get("caught_pokemons")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="filtering-eq-bool-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="filtering-eq-bool-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 ### Example: Date (Works with Timestamp as well)
@@ -212,8 +164,6 @@ Fetch list of all pokemons that you caught on some special day 😉 (`caught_on`
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#filtering-eq-date-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#filtering-eq-date-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#filtering-eq-date-java">Java</a></li>
-      <li class="tab col s2"><a href="#filtering-eq-date-golang">Golang</a></li>
     </ul>
   </div>
   <div id="filtering-eq-date-graphql" class="col s12" style="padding:0">
@@ -237,16 +187,6 @@ const { status, data } = await db.get("caught_pokemons")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="filtering-eq-date-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="filtering-eq-date-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 ## Comparison operators
@@ -266,8 +206,6 @@ Fetch list of all strong pokemons (with `combat_power` of 2000 or more):
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#filtering-comparison-int-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#filtering-comparison-int-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#filtering-comparison-int-java">Java</a></li>
-      <li class="tab col s2"><a href="#filtering-comparison-int-golang">Golang</a></li>
     </ul>
   </div>
   <div id="filtering-comparison-int-graphql" class="col s12" style="padding:0">
@@ -292,16 +230,6 @@ const { status, data } = await db.get("todos")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="filtering-comparison-int-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="filtering-comparison-int-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 ### Example: String or Text
@@ -313,8 +241,6 @@ Fetch list of pokemons whose names begin with any letter that comes after P (ess
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#filtering-comparison-string-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#filtering-comparison-string-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#filtering-comparison-string-java">Java</a></li>
-      <li class="tab col s2"><a href="#filtering-comparison-string-golang">Golang</a></li>
     </ul>
   </div>
   <div id="filtering-comparison-string-graphql" class="col s12" style="padding:0">
@@ -338,16 +264,6 @@ const { status, data } = await db.get("pokemons")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="filtering-comparison-string-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="filtering-comparison-string-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 ### Example: Date (Works with Timestamp as well)
@@ -359,8 +275,6 @@ Fetch list of all caught pokemons that were caught before a certain date:
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#filtering-comparison-date-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#filtering-comparison-date-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#filtering-comparison-date-java">Java</a></li>
-      <li class="tab col s2"><a href="#filtering-comparison-date-golang">Golang</a></li>
     </ul>
   </div>
   <div id="filtering-comparison-date-graphql" class="col s12" style="padding:0">
@@ -384,16 +298,6 @@ const { status, data } = await db.get("caught_pokemons")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="filtering-comparison-date-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="filtering-comparison-date-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 ## List based operators
@@ -413,8 +317,6 @@ Fetch a list of all `pokemons` with `level` either 1, 2 or 3:
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#filtering-list-int-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#filtering-list-int-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#filtering-list-int-java">Java</a></li>
-      <li class="tab col s2"><a href="#filtering-list-int-golang">Golang</a></li>
     </ul>
   </div>
   <div id="filtering-list-int-graphql" class="col s12" style="padding:0">
@@ -438,16 +340,6 @@ const { status, data } = await db.get("pokemons")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="filtering-list-int-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="filtering-list-int-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 ### Example: String or Text
@@ -459,8 +351,6 @@ Fetch a list of all `pokemons` that are not of the following `type` - Water, Fir
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#filtering-list-string-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#filtering-list-string-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#filtering-list-string-java">Java</a></li>
-      <li class="tab col s2"><a href="#filtering-list-string-golang">Golang</a></li>
     </ul>
   </div>
   <div id="filtering-list-string-graphql" class="col s12" style="padding:0">
@@ -484,16 +374,6 @@ const { status, data } = await db.get("pokemons")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="filtering-list-string-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="filtering-list-string-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 ## Using multiple filters in the same query
@@ -513,8 +393,6 @@ Let's say we want to fetch all `pokemons` that were caught between two particula
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#filtering-and-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#filtering-and-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#filtering-and-java">Java</a></li>
-      <li class="tab col s2"><a href="#filtering-and-golang">Golang</a></li>
     </ul>
   </div>
   <div id="filtering-and-graphql" class="col s12" style="padding:0">
@@ -550,16 +428,6 @@ const { status, data } = await db.get("caught_pokemons")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="filtering-and-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="filtering-and-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 ### Example: OR
@@ -571,8 +439,6 @@ Let's say we want to fetch information of all Fire type or Legemdary pokemons. T
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#filtering-or-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#filtering-or-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#filtering-or-java">Java</a></li>
-      <li class="tab col s2"><a href="#filtering-or-golang">Golang</a></li>
     </ul>
   </div>
   <div id="filtering-or-graphql" class="col s12" style="padding:0">
@@ -604,16 +470,6 @@ const { status, data } = await db.get("pokemons")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="filtering-or-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="filtering-or-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 ## Filter nested queries

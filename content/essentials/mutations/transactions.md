@@ -14,8 +14,6 @@ You can perform multiple mutations in a single database transaction with automat
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#upsert-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#upsert-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#upsert-java">Java</a></li>
-      <li class="tab col s2"><a href="#upsert-golang">Golang</a></li>
     </ul>
   </div>
   <div id="upsert-graphql" class="col s12" style="padding:0">
@@ -46,14 +44,4 @@ batch.add(db.delete("caught_pokemons").where(cond("id", "==", 4)))
 const { status } = batch.apply()
 {{< /highlight >}}  
   </div>
-  <div id="upsert-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="upsert-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>

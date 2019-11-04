@@ -20,8 +20,6 @@ Example: Fetch the first 5 trainers from the list of all trainers:
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#limit-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#limit-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#limit-java">Java</a></li>
-      <li class="tab col s2"><a href="#limit-golang">Golang</a></li>
     </ul>
   </div>
   <div id="limit-graphql" class="col s12" style="padding:0">
@@ -43,16 +41,6 @@ const { status, data } = await db.get("trainers")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="limit-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="limit-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 ## Skip and limit results
@@ -64,8 +52,6 @@ Example: Fetch 5 trainers from the list of all trainers starting from the 6th on
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#skip-limit-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#skip-limit-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#skip-limit-java">Java</a></li>
-      <li class="tab col s2"><a href="#skip-limit-golang">Golang</a></li>
     </ul>
   </div>
   <div id="skip-limit-graphql" class="col s12" style="padding:0">
@@ -89,16 +75,6 @@ const { status, data } = await db.get("trainers")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="skip-limit-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="skip-limit-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 ## Skip and limit results on nested queries
@@ -115,7 +91,9 @@ query {
     pokemons(
       skip: 5,
       limit: 2
-    ) 
+    ) @mongo {
+      name
+    } 
   }
 }
 {{< /highlight >}}   

@@ -14,14 +14,12 @@ Example: Fetch a list of trainers and only their first two Water type pokemons s
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#multiple-operations-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#multiple-operations-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#multiple-operations-java">Java</a></li>
-      <li class="tab col s2"><a href="#multiple-operations-golang">Golang</a></li>
     </ul>
   </div>
   <div id="multiple-operations-graphql" class="col s12" style="padding:0">
 {{< highlight graphql >}}
 query {
-  trainers {
+  trainers @mongo {
     _id
     name
     pokemons(
@@ -47,14 +45,4 @@ const { status, data } = await db.get("pokemons")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="multiple-operations-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="multiple-operations-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>

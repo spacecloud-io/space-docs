@@ -4,18 +4,21 @@ date: 2019-09-26T12:58:22+05:30
 draft: true
 ---
 
-Let's explore some awesome powers of Space Cloud. In this guide, we will be:
+Let's explore some awesome powers of Space Cloud. In this guide, we will:
 
-- Creating trainers and catching Pokemons 😍 (Insert operation)
-- Retrieving all trainers (Simple query operation)
-- Retrieving all trainers with along with their Pokemons 😎 (Join operation)
+- Create trainers and catch Pokemons 😍 (Insert operation)
+- Retrieve all trainers (Simple query operation)
+- Retrieve all trainers along with their Pokemons 😎 (Join operation)
 
 
 ## Creating trainers (insert operation)
 
 Creating trainers requires us to insert trainer documents into the database.
 
-Head over to the `Explorer` section in `Mission Control`. 
+Head over to the `Explorer` section in `Mission Control`:
+
+
+![Explorer](/images/screenshots/explorer.png)
 
 Try running the following query in the GraphiQL section:
 
@@ -52,7 +55,7 @@ There, we get our list of trainers!
 
 ## Catch Pokemons (insert operation)
 
-Catching Pokemons requires us to insert Pokemon data into the database (And a lot of hard work ofcourse!😅)
+Catching Pokemons requires us to insert Pokemon data into the database (And lots of hard work, of course!😅)
 
 {{< highlight graphql >}}
 mutation {
@@ -70,7 +73,7 @@ mutation {
 }
 {{< /highlight >}}
 
-Great! That's a lot of Pokemon catching for the day. Now time for the trainers to show off their Pokemons.
+Great! That's enough of Pokemon catching for the day. Now time for the trainers to show off their Pokemons.
 
 ## Retrieve trainers along with their Pokemons (join operation) 
 
@@ -127,7 +130,7 @@ The response should look something like this:
 
 ## Next Steps
 
-Awesome! We have just started our Pokemon journey _without writing a single line of backend code_. The journey ahead is surely going to be super exciting!
+Awesome! We have just started our Pokemon journey _without writing a single line of backend code_. The journey ahead is undoubtedly going to be super exciting!
 
 The next step is to dive into the various Space Cloud features:
 

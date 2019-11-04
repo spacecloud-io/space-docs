@@ -14,7 +14,7 @@ Follow this guide to use javascript client SDK in your web app or any Javascript
 npm install space-api --save
 {{< /highlight >}}
 
-**Or import as a stand alone library:**
+**Or import as a stand-alone library:**
 
 {{< highlight html >}}
 <script src="https://spaceuptech.com/downloads/libraries/space-api.js"></script>
@@ -22,12 +22,12 @@ npm install space-api --save
 
 ## Step 2: Create an API instance
 
-An `api` instance of Space Cloud on the frontend will help you talk to `space-cloud` binary and perform backend operations directly from the frontend. 
+An `api` instance of Space Cloud on the frontend helps you talk to `space-cloud` binary and perform backend operations directly from the frontend. 
 
 The `API` constructor takes two parameters: 
 
-- **PROJECT_ID:** Unqiue identifier of a project. It's derived by converting your project name to lowercase and replacing all spaces and hiphens to underscores. For example `Todo App` becomes `todo_app`.
-- **SPACE_CLOUD_URL:** This is the url of your `space-cloud` binary. It's `http://localhost:4122` or `https://localhost:4126` for HTTP and HTTPS endpoints respectively.
+- **PROJECT_ID:** Unique identifier of a project. It's derived by converting your project name to lowercase and replacing all spaces and hyphens to underscores. For example `Todo App` becomes `todo_app`.
+- **SPACE_CLOUD_URL:** This is the URL of your `space-cloud` binary. It's `http://localhost:4122` or `https://localhost:4126` for HTTP and HTTPS endpoints respectively.
 
 > **Note:** Replace `localhost` with the address of your Space Cloud if you are not running it locally. 
 
@@ -47,7 +47,7 @@ const { API } = require('space-api');
 const api = new API('todo_app', 'http://localhost:4122');
 {{< /highlight >}}
 
-**For stand alone:**
+**For stand-alone:**
 
 {{< highlight javascript >}}
 var api = new Space.API("todo_app", "http://localhost:4122");
@@ -56,9 +56,9 @@ var api = new Space.API("todo_app", "http://localhost:4122");
 
 ## Step 3: Create a DB instance
 
-The `api` instance created above will help you to directly use `fileStorage` and `functions` modules. However, to use `crud`, `realTime` and `auth` modules you will also need to create a `db` instance.
+The `API` instance created above helps you to use `fileStorage` and `remote-services` modules directly. However, to use `crud`, `realTime` and `auth` modules, you also have to create a `db` instance.
 
-> **Note:** You can use multiple databases in the same project. (For eg. MongoDB and MySQL)
+> **Note:** You can use multiple databases in the same project. (For, eg. MongoDB and MySQL)
 
 **For MongoDB:**
 
@@ -69,7 +69,7 @@ const db = api.Mongo();
 
 **For PostgreSQL:**
 
-> **Note:** This can also be used for any other database that is PostgreSQL compatible (For eg. CockroachDB, Yugabyte etc.)
+> **Note:** This works for all databases that are PostgreSQL compatible (For, e.g. CockroachDB, Yugabyte etc.)
 
 {{< highlight javascript >}}
 const db = api.Postgres();
@@ -77,14 +77,14 @@ const db = api.Postgres();
 
 **For MySQL:**
 
-> **Note:** This can also be used for any other database that is MySQL compatible (For eg. TiDB)
+> **Note:** This works for all databases that are MySQL compatible (For, e.g. TiDB)
 
 {{< highlight javascript >}}
 const db = api.MySQL();
 {{< /highlight >}}
 
 ## Next steps
-Great! Since you have initialized the `api` and `db` instance you can start building apps with `space-cloud`. 
+Great! Since you have initialized the `api` and `db` instance, you can start building apps with `space-cloud`. 
 
 Feel free to check out various capabalities of `space-cloud`:
 

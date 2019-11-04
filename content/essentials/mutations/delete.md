@@ -14,8 +14,6 @@ Example: Delete all pokemons with combat_power lesser than 200:
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#delete-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#delete-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#delete-java">Java</a></li>
-      <li class="tab col s2"><a href="#delete-golang">Golang</a></li>
     </ul>
   </div>
   <div id="delete-graphql" class="col s12" style="padding:0">
@@ -38,14 +36,4 @@ const { status } = await db.delete("caught_pokemons")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="delete-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="delete-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>

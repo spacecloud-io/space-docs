@@ -16,8 +16,6 @@ Example: Let's say you have caught a Pikachu! This is how you would add it to yo
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#insert-one-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#insert-one-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#insert-one-java">Java</a></li>
-      <li class="tab col s2"><a href="#insert-one-golang">Golang</a></li>
     </ul>
   </div>
   <div id="insert-one-graphql" class="col s12" style="padding:0">
@@ -42,16 +40,6 @@ const { status } = await db.insert("caught_pokemons")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="insert-one-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="insert-one-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 ## Insert multiple objects of the same type in the same mutation
@@ -63,8 +51,6 @@ Example: Add 3 items received from Professor Oak to your list of items:
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#insert-many-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#insert-many-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#insert-many-java">Java</a></li>
-      <li class="tab col s2"><a href="#insert-many-golang">Golang</a></li>
     </ul>
   </div>
   <div id="insert-many-graphql" class="col s12" style="padding:0">
@@ -95,14 +81,4 @@ const { status } = await db.insert("items")
   .apply()
 {{< /highlight >}}  
   </div>
-  <div id="insert-many-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="insert-many-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>

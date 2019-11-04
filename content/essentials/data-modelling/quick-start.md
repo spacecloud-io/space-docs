@@ -11,9 +11,9 @@ This guide helps you model a Pokemon app 😛 to explore the data modelling in S
 
 ## Setup
 
-If you want to follow this guide along practically, first [deploy Space Cloud](/getting-started/deployment) along with PostgreSQL and create a project with PostgreSQL as the primary database.
+If you want to follow this guide along practically, first [deploy Space Cloud](/getting-started/deployment) along with PostgreSQL and create a project in Mission Control with PostgreSQL as the primary database.
 
-After creating the project, head over to the `Overview` tab in the `Database` section.
+Then head over to the `Overview` tab in the `Database` section.
 
 Time for some data modelling now!
 
@@ -27,7 +27,9 @@ Each pokemon belongs to a single trainer, and each trainer can have multiple pok
 
 We want each trainer to have a unique id, name and city field. 
 
-Click `Add table` button in the Database Overview page in Mission Control.
+Click the `Add table` button in the Database Overview page in Mission Control to open the following form:
+
+![Add table screen](/images/screenshots/add-table.png)
 
 Name your table as `trainers`.
 
@@ -35,7 +37,7 @@ Copy-paste the following schema and hit `Save`:
 
 {{< highlight graphql >}}
 type trainers {
-  id: ID! @id
+  id: ID! @primary
   name: String!
   city: String
 }
@@ -55,7 +57,7 @@ Once again click on the `Add table` button to add `pokemons` table with the foll
 
 {{< highlight graphql >}}
 type pokemons {
-  id: ID! @id
+  id: ID! @primary
   name: String!
   combat_power: Integer
   trainer_id: trainers! @relation(field: "id")
@@ -71,7 +73,9 @@ The `@createdAt` directive helps Space Cloud to automatically insert the datetim
 
 Let's insert some data and see whether Space Cloud is validating our data and maintaining its integrity or not.
 
-Head over to the `Explorer` section in Mission Control.
+Head over to the `Explorer` section in Mission Control:
+
+![Explorer](/images/screenshots/explorer.png)
 
 ### Creating some trainers and catching pokemons 
 
@@ -114,6 +118,8 @@ You would see a response like this:
 {{< /highlight >}}
 
 This means we have successfully inserted trainers and pokemons.
+
+> Note: The above mutations are performed in a single database transaction. Read more about transaction from [here](/essentials/mutations/transactions).
 
 ### Retrieve trainers along with their Pokemons (join operation)
 

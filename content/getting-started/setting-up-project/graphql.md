@@ -18,10 +18,10 @@ npm install --save apollo-client apollo-cache-inmemory apollo-link-http graphql-
 
 ### Creating client
 
-The `uri` for the client takes two parameters: 
+The `URI` for the client takes two parameters: 
 
-- **PROJECT_ID:** Unqiue identifier of a project. It's derived by converting your project name to lowercase and replacing all spaces and hiphens to underscores. For example `Todo App` becomes `todo_app`.
-- **SPACE_CLOUD_URL:** This is the url of your `space-cloud` binary. It's `http://localhost:4122` or `https://localhost:4126` for HTTP and HTTPS endpoints respectively.
+- **PROJECT_ID:** Unique identifier of a project. It's derived by converting your project name to lowercase and replacing all spaces and hyphens to underscores. For example `Todo App` becomes `todo_app`.
+- **SPACE_CLOUD_URL:** This is the URL of your `space-cloud` binary. It's `http://localhost:4122` or `https://localhost:4126` for HTTP and HTTPS endpoints respectively.
 
 > **Note:** Replace `localhost` with the address of your Space Cloud if you are not running it locally.
 
@@ -60,7 +60,7 @@ client
   .then(result => console.log(result));
 {{< /highlight >}}
 
-> **Note:** In order to query a database, you need to mention a `@directive` to specify which database you want to query.
+> **Note:** To query a database, you need to mention a `@directive` to specify which database you want to query.
 
 The directives for databases are:
 
@@ -70,7 +70,7 @@ The directives for databases are:
 
 ## Advanced client
 
-This client setup uses both the HTTP and websocket links in a smart way.
+This client setup uses both the HTTP and WebSocket links smartly based on the type of request.
 
 ### Installing dependencies
 
@@ -80,9 +80,9 @@ npm install --save apollo-client apollo-link-ws apollo-link-http apollo-link apo
 
 ### Creating client
 
-We will be using the capability of splitting links to dynamically choose a link based on the operation. 
+We are using the capability of splitting links to choose a link based on the operation dynamically. 
 
-All queries and mutations go over the HTTP link, whereas the subscriptions go over the websocket link.  
+All queries and mutations go over the HTTP link, whereas the subscriptions go over the WebSocket link.  
 
 **Example:**
 
@@ -147,7 +147,7 @@ subscription.subscribe(value => console.log(value));
 
 {{< /highlight >}}
 
-> **Note:** In order to query a database, you need to mention a `@directive` to specify which database you want to query.
+> **Note:** To query a database, you need to mention a `@directive` to specify which database you want to query.
 
 The directives for databases are:
 

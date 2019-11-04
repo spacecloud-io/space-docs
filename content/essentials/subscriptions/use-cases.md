@@ -22,16 +22,14 @@ Example: Subscribe to chat messages:
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#chat-messages-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#chat-messages-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#chat-messages-java">Java</a></li>
-      <li class="tab col s2"><a href="#chat-messages-golang">Golang</a></li>
     </ul>
   </div>
   <div id="chat-messages-graphql" class="col s12" style="padding:0">
 {{< highlight graphql >}}
 subscription {
-  messages @mongo (
+  messages (
     where: {to: {_eq: "user1"}}
-  ){
+  ) @mongo {
     type
     payload {
       _id
@@ -69,16 +67,6 @@ if (on some logic) {
 }
 {{< /highlight >}}  
   </div>
-  <div id="chat-messages-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="chat-messages-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>
 
 Example: Subscribe to is_typing indicator and status of a user:
@@ -88,16 +76,14 @@ Example: Subscribe to is_typing indicator and status of a user:
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#is-typing-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#is-typing-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#is-typing-java">Java</a></li>
-      <li class="tab col s2"><a href="#is-typing-golang">Golang</a></li>
     </ul>
   </div>
   <div id="is-typing-graphql" class="col s12" style="padding:0">
 {{< highlight graphql >}}
 subscription {
-  users @mongo (
+  users (
     where: {_id: {_eq: "user2"}}
-  ){
+  ) @mongo {
     type
     payload {
       _id
@@ -132,16 +118,6 @@ if (on some logic) {
   subscription.unsubscribe()
 }
 {{< /highlight >}}  
-  </div>
-  <div id="is-typing-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="is-typing-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
   </div>  
 </div>
 
@@ -154,16 +130,14 @@ Let's say you want to display the score of a particular game in realtime without
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#scores-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#scores-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#scores-java">Java</a></li>
-      <li class="tab col s2"><a href="#scores-golang">Golang</a></li>
     </ul>
   </div>
   <div id="scores-graphql" class="col s12" style="padding:0">
 {{< highlight graphql >}}
 subscription {
-  games @mongo (
+  games (
     where: {_id: {_eq: "1"}}
-  ){
+  ) @mongo {
     type
     payload {
       score
@@ -196,14 +170,4 @@ if (on some logic) {
 }
 {{< /highlight >}}  
   </div>
-  <div id="scores-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="scores-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>

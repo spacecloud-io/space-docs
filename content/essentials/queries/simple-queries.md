@@ -16,14 +16,12 @@ Example: Let's say we want to fetch a list of all pokemons. This is how you woul
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#client-graphql">GraphQL</a></li>
       <li class="tab col s2"><a href="#client-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#client-java">Java</a></li>
-      <li class="tab col s2"><a href="#client-golang">Golang</a></li>
     </ul>
   </div>
   <div id="client-graphql" class="col s12" style="padding:0">
 {{< highlight graphql>}}
 query {
-  pokemons {
+  pokemons @mongo {
     _id
     name
   }
@@ -42,14 +40,4 @@ console.log("Pokemons", data.result)
 // const { status, data } = db.get("pokemons").apply()
 {{< /highlight >}}  
   </div>
-  <div id="client-java" class="col s12" style="padding:0">
-{{< highlight java>}}
-
-{{< /highlight >}}    
-  </div>
-  <div id="client-golang" class="col s12" style="padding:0">
-{{< highlight golang>}}
-
-{{< /highlight >}}    
-  </div>  
 </div>

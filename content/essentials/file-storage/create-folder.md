@@ -8,16 +8,6 @@ toc: false
 
 You can easily allow users to create a folder via the File Management module of Space Cloud by calling `createFolder` on frontend. Here's a code snippet to do so:
 
- <div class="row tabs-wrapper">
-  <div class="col s12" style="padding:0">
-    <ul class="tabs">
-      <li class="tab col s2"><a class="active" href="#create-folder-js">Javascript</a></li>
-      <li class="tab col s2"><a href="#create-folder-golang">Golang</a></li>
-      <li class="tab col s2"><a href="#create-folder-java">Java</a></li>
-      <li class="tab col s2"><a href="#create-folder-python">Python</a></li>
-    </ul>
-  </div>
-  <div id="create-folder-js" class="col s12" style="padding:0">
 {{< highlight javascript "hl_lines=7" >}}
 import { API } from "space-api";
 
@@ -35,68 +25,7 @@ api.FileStore().createFolder("/some-path", "some-folder")
   .catch(ex => {
     // Exception occured while processing request
   });
-{{< /highlight >}}   
-  </div>
-  <div id="create-folder-golang" class="col s12" style="padding:0">
-{{< highlight golang "hl_lines=6" >}}
-api, err := api.New("books-app", "localhost:4124", false)
-if(err != nil) {
-  fmt.Println(err)
-}
-filestore := api.Filestore()
-resp, err := filestore.CreateFolder("\\myFolder100", "Folder1")
-if err != nil {
-  fmt.Println("Error:", err)
-} else {
-  if resp.Status == 200 {
-    fmt.Println("Success")
-  } else {
-    fmt.Println("Error Processing Request:", resp.Error)
-  }
-}
-{{< /highlight >}}   
-  </div>
-  <div id="create-folder-java" class="col s12" style="padding:0">
-{{< highlight java "hl_lines=4" >}}
-API api = new API("books-app", "localhost", 4124);
-FileStore fileStore = api.fileStore();
-
-fileStore.createFolder("\\", "aNewFolder", new Utils.ResponseListener() {
-    @Override
-    public void onResponse(int statusCode, Response response) {
-        if (statusCode == 200) {
-          System.out.println("Success");
-        } else {
-          System.out.println(response.getError());
-        }
-    }
-
-    @Override
-    public void onError(Exception e) {
-        System.out.println(e.getMessage());
-    }
-});
-{{< /highlight >}}   
-  </div>
- <div id="create-folder-python" class="col s12" style="padding:0">
-{{< highlight python "hl_lines=10" >}}
-from space_api import API
-
-# Initialize api with the project name and url of the space cloud
-api = API("books-app", "localhost:4124")
-
-# Initialize file storage module
-file_store = api.file_store()
-
-# Create a folder ("folder" [remote]) in the location ("\\" [remote])
-response = file_store.create_folder("\\", "folder")
-if response.status == 200:
-    print("Success")
-else:
-    print(response.error)
 {{< /highlight >}}  
-  </div>
-</div>
 
 The `createFolder` function takes two parameters and creates a folder. The two parameters are as follows:
 
