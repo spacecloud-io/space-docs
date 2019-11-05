@@ -44,13 +44,13 @@ Let’s take a look at different operators that can be used to filter results an
 
 ## Equality operators 
 
-The euality operators can be used to fetch specific objects based on equality comparison of a field.
+The equality operators can be used to fetch specific objects based on equality comparison of a field.
 
-For GraphQL, the equality operators are `_eq` (eqaul to) and `_ne` (not equal to). Whereas for the client SDKs, these operators are `==` and `!=` respectively.
+For GraphQL, the equality operators are `_eq` (equal to) and `_ne` (not equal to). Whereas for the client SDKs, these operators are `==` and `!=` respectively.
 
-The following are examples of using the equality operators on different types.
+The following are examples of using equality operators on different types.
 
-### Example: Integer (Works with Double, Float, Numeric, etc.)
+### Example: Integer (Works with Double, Float, Numeric)
 
 Fetch the list of all 3rd evolution pokemons (`level` is an integer field which indicates the evolution level):
 
@@ -197,7 +197,7 @@ For GraphQL, the comparison operators are `_gt` (greater than), `_gte` (greater 
 
 The following are examples of using these operators on different types.
 
-### Example: Integer (Works with Double, Float, Numeric, etc.)
+### Example: Integer (Works with Double, Float, Numeric)
 
 Fetch list of all strong pokemons (with `combat_power` of 2000 or more):
 
@@ -268,7 +268,7 @@ const { status, data } = await db.get("pokemons")
 
 ### Example: Date (Works with Timestamp as well)
 
-Fetch list of all caught pokemons that were caught before a certain date:
+Fetch list of all caught pokemons that are caught before a certain date:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -302,13 +302,13 @@ const { status, data } = await db.get("caught_pokemons")
 
 ## List based operators
 
-The list based operators can be used to compare field values to a list of values.
+The list-based operators can be used to compare field values to a list of values.
 
-For GraphQL, the list based operators are `_in` (in a list) and `_nin` (not in list). Whereas for the client SDKs, these operators are `in` and `notIn` respectively.
+For GraphQL, the list based operators are `_in` (in a list) and `_nin` (not in list). Whereas for the client SDKs, these operators are `in` and `notIn`, respectively.
 
 The following are examples of using these operators on different types.
 
-### Example: Integer (Works with Double, Float, Numeric, etc.)
+### Example: Integer (Works with Double, Float, Numeric)
 
 Fetch a list of all `pokemons` with `level` either 1, 2 or 3:
 
@@ -378,7 +378,7 @@ const { status, data } = await db.get("pokemons")
 
 ## Using multiple filters in the same query
 
-You can group multiple parameters in the same `where` clause using the logical **AND** and **OR** operations. These logical operations can even be **infinitely nested** to apply **complex filters**.
+You can group multiple parameters in the same `where` clause using the logical **AND** and **OR** operations. These logical operations can be **infinitely nested** to apply **complex filters**.
 
 For GraphQL, `_and` and `_or` are the logical **AND** and **OR** operators respectively. 
 
@@ -386,7 +386,7 @@ Whereas for the client SDKs, `and` and `or` are the methods used for **AND** and
 
 ### Example: AND
 
-Let's say we want to fetch all `pokemons` that were caught between two particular dates by `Ash` (trainer_id - 1). This is how you would do it:
+Let's say we want to fetch all `pokemons` that are between two particular dates by `Ash` (trainer_id - 1). This is how you would do it:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -432,7 +432,7 @@ const { status, data } = await db.get("caught_pokemons")
 
 ### Example: OR
 
-Let's say we want to fetch information of all Fire type or Legemdary pokemons. This is how you would do it:
+Let's say we want to fetch information of all Fire-type or Legendary pokemons. This is how you would do it:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -476,7 +476,7 @@ const { status, data } = await db.get("pokemons")
 
 The `where` argument can be used to filter even nested queries. 
 
-Let's say we want to fetch a list of all the trainers who have joined the game after a particular date along with their Fire type pokemons. This is how you would do it:
+Let's say we want to fetch a list of all the trainers who have joined the game after a particular date along with their Fire-type pokemons. This is how you would do it:
 
 {{< highlight graphql >}}
 query {
@@ -499,3 +499,4 @@ query {
   }
 }
 {{< /highlight >}}
+

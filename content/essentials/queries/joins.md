@@ -7,9 +7,9 @@ weight: 7
 
 You can join data from **different data sources** by making nested queries. 
 
-These joins work for **any database** even if it is not relational (eg: MongoDB).
+These join work for **any database** even if it is not relational (e.g., MongoDB).
 
-> **Note:** The joins capability is available only via GraphQL as of now. If you instead want to join data from our client SDKs or have some complex join operations, we recommend to make views on your tables and query them as normal tables.
+> **Note:** The joins capability is available only via GraphQL as of now. If you instead want to join data from our client SDKs or have some complex join operations, we recommend to make views on your tables and query them as regular tables.
 
 ## Same database joins
 
@@ -33,11 +33,11 @@ If you would have noticed, you can access the parent query's data in your nested
 
 > **Note:** You can even sort and paginate the nested queries.
 
-## Cross database joins
+## Cross-database joins
 
-Cross database joins are used to join **data from different databases**. 
+Cross-database joins are used to join **data from different databases**. 
 
-For instance, some of our data can be in MongoDB and some can be in PostgreSQL and you want to query them in a single request.
+For instance, some of our data can be in MongoDB, and some can be in PostgreSQL, and you want to query them in a single request.
 
 **Example:** Fetch a list of trainers along with their caught pokemons (trainers is in PostgreSQL and caught pokemons in MongoDB):
 
@@ -54,6 +54,3 @@ query {
   }
 }
 {{< /highlight >}}
-
-
-

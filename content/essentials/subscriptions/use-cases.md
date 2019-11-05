@@ -12,7 +12,7 @@ The following are a few use cases for using subscription:
 If you want to build a realtime chat app, then you can use Space Cloud for various realtime features in your app like:
 
 - Realtime stream of chat messages
-- Online / offline status of a user
+- Online/offline status of a user
 - Is typing indicator for a user
 
 Example: Subscribe to chat messages:
@@ -123,7 +123,7 @@ if (on some logic) {
 
 ## Live score updates
 
-Let's say you want to display the score of a particular game in realtime without polling the database again and again. In this case you can subscribe to the game score and get notified whenever it's updated.
+Let's say you want to display the score of a particular game in realtime without polling the database again and again. In this case, you can subscribe to the game score and get notified whenever it's updated.
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">

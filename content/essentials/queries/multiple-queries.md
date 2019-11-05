@@ -6,7 +6,7 @@ weight: 6
 ---
 
 
-With Space Cloud you can make multiple queries even to **different databases** in a single request. If multiple queries are part of the same request, they are executed in parallel, the individual responses are collated and returned. 
+With Space Cloud, you can make multiple queries even to **different databases** in a single request. If multiple queries are part of the same request, they get executed in parallel, and the individual responses are collated and returned. 
 
 > **Note:** This is only a GraphQL feature and not available in any client SDKs.
 

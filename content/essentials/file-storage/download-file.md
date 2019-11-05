@@ -12,8 +12,8 @@ All files uploaded via File Management module are accessible on the following ur
 url = `$SPACE_CLOUD_ADDRESS/v1/api/$projectID/files/$path/$fileName`
 {{< /highlight >}}
 
-The url is different for each file and has following variable parts to it:
+The URL is different for each file and has the following variable parts to it:
 
 - **$projectID** - This is the project id with which you initialized the API
-- **$path** - This is the path at which the file was uploaded
-- **$fileName** - This is the name with which the file was uploaded (eg: profile.jpg)
+- **$path** - The path at which you have uploaded the file
+- **$fileName** - The name with which you have uploaded the file (e.g., profile.jpg)

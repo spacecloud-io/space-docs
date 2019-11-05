@@ -28,9 +28,9 @@ api.FileStore().listFiles("/some-path")
   });
 {{< /highlight >}} 
 
-As shown above, the `listFiles` function takes a single parameter `path` and lists all the files / folders located at that path.
+As shown above, the `listFiles` function takes a single parameter `path` and lists all the files/folders located at that path.
 
-The `path` can be nested as well. For e.g if you give a  `path` - /folder1/folder2, then `listFiles` method will list all the files / folders located in folder2 which is in folder1.
+The `path` can be nested as well. For example, if you give a  `path` - /folder1/folder2, then `listFiles` method returns all the files/folders located in folder2, which are in folder1.
 
 ## Response
 
@@ -64,9 +64,9 @@ A response object sent by the server contains the **status** and **data** fields
 
 Possible values for **status**:
 
-- 200 - Successfully fetched list of files / folders
+- 200 - Successfully fetched list of files/folders
 - 401 - Request was unauthenticated
 - 403 - Request was unauthorized
-- 404 - Path does not exists
+- 404 - Path does not exist
 - 500 - Internal server error
 

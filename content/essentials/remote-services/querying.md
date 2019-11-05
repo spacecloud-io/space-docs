@@ -2,6 +2,7 @@
 title: "Querying Remote Service"
 date: 2019-11-04T09:56:01+05:30
 draft: true
+weight: 3
 ---
 
 Once you [have added a remote service](/essentials/remote-services/adding-remote-service), you can access it via the GraphQL and REST APIs of Space Cloud.

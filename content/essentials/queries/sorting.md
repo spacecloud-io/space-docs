@@ -4,7 +4,7 @@ date: 2019-09-17T07:22:31+05:30
 draft: true
 weight: 3
 ---
-Results from your query can be sorted by using the `sort` argument. The `sort` argument can be used to sort nested queries too.
+You can sort your query results via Space Cloud by using the `sort` argument. The `sort` argument can be used to sort nested queries too.
 
 The value of `sort` argument should be an array containing the name of fields to sort the results by.
 

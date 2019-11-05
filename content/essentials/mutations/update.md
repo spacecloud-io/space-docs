@@ -7,7 +7,7 @@ weight: 2
 
 An update request consists of two parts - a `where` clause and `update operators` for new values. The `where` clause has the same [filtering options](/essentials/queries/filtering) as queries.
 
-> **Note:** Atleast any one of the `update operations` is required to update the rows.
+> **Note:** At least any one of the `update operations` is required to update the rows.
 
 ## Update operations
 
@@ -120,13 +120,13 @@ const { status } = await db.update("caught_pokemons")
   </div>
 </div>
 
-### Multipy operation
+### Multiply operation
 
 `mul` operator multiplies a field's value by the given value.
 
 > **Note:** The multiplier can be float as well to achieve division.
 
-Example: Your pokemon has evolved and you want to multiply it's combat power by 2:
+Example: Your pokemon has evolved, and you want to multiply its combat power by 2:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -196,7 +196,7 @@ const { status } = await db.update("trainers")
   </div>
 </div>
 
-> **Note:** The above example will only update the `lowest_score` if it's current value was greater than 50.
+> **Note:** In the above example, the `lowest_score`  is updated, only if it's current value is greater than 50.
 
 ### Max operation
 
@@ -235,7 +235,7 @@ const { status } = await db.update("trainers")
   </div>
 </div>
 
-> **Note:** The above example will only update the `highest_score` if it's current value was lesser than 200.
+> **Note:** In the above example the `highest_score` is updated, only if it's current value is lesser than 200.
 
 ### Current date operation
 

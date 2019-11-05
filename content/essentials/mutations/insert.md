@@ -5,7 +5,7 @@ draft: true
 weight: 1
 ---
 
-An insert request only requires the `docs` argument which is nothing but the array of objects to be inserted.
+An insert request only requires the `docs` argument, which is nothing but the array of objects to be inserted.
 
 ## Insert a single object
 

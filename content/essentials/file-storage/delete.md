@@ -6,7 +6,7 @@ weight: 5
 toc: false
 ---
 
-You can easily allow users to delete a file or folder via the File Management module of Space Cloud by calling a simple function as shown below:
+You can easily allow users to delete a file or folder via the File Management module of Space Cloud by calling a simple function, as shown below:
 
 {{< highlight javascript "hl_lines=7" >}}
 import { API } from "space-api";
@@ -27,9 +27,9 @@ api.FileStore().delete("/some-path/some-file")
   });
 {{< /highlight >}}
 
-The `delete` function takes a `path` of the file or folder to be deleted.
+The `delete` function takes a `path` of the file or folder you want to delete.
 
-The `delete` function will recursively delete all files / folders in a folder if the `path` was for a folder. The `path` can be nested as well. For e.g a `path` - /folder1/folder2/file1 would mean to delete the file - `file1` inside folder2 which is in folder1.
+The `delete` function recursively deletes all files/folders in a folder if the `path` was for a folder. The `path` can be nested as well. For e.g a `path` - /folder1/folder2/file1 would mean to delete the file - `file1` inside folder2 which is in folder1.
 
 ## Response
 
@@ -37,9 +37,7 @@ A response object sent by the server contains the **status** fields explained be
 
 **status:** Number describing the status of the upload operation. Following values are possible:
 
-- 200 - Successfully deleted file / folder
+- 200 - Successfully deleted file/folder
 - 401 - Request was unauthenticated
 - 403 - Request was unauthorized
 - 500 - Internal server error
-
-

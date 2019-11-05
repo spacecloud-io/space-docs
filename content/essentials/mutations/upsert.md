@@ -5,9 +5,9 @@ draft: true
 weight: 3
 ---
 
-Upsert is usually used when it's unclear whether the object to be updated will be present or not.
+Upsert is useful when it's unclear whether the object to be updated is present or not.
 
-An upsert query works like a normal update query if any document matching the `where` clause exists. Otherwise, it acts as an insert query, i.e. it creates a new document with all the fields from the `where` clause and update operators. 
+An upsert query works like a regular update query if any document matching the `where` clause exists. Otherwise, it acts as an insert query, i.e. it creates a new document with all the fields from the `where` clause and update operators. 
 
 Space Cloud performs all upsert operations with snapshot level isolations so that all upserts are race safe.
 

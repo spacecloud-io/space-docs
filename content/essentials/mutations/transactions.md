@@ -5,7 +5,7 @@ draft: true
 weight: 5
 ---
 
-You can perform multiple mutations in a single database transaction with automatic rollbacks in case of failures. (i.e. either all of the mutations in a transaction will succeed or none of them)
+You can perform multiple mutations in a single database transaction with automatic rollbacks in case of failures. (i.e. either all of them succeed or none)
 
 **For example**, let's say you want to trade a pokemon, i.e. add a new pokemon to your list of pokemons and delete one from it simultaneously. This is how you would do it:
 

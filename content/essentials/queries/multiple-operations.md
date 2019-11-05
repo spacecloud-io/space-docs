@@ -7,7 +7,7 @@ weight: 5
 
 Multiple operations can be used together in the same query. For example, you can filter the results, sort and limit them all in a single query.
 
-Example: Fetch a list of trainers and only their first two Water type pokemons sorted by their name:
+Example: Fetch a list of trainers and only their first two Water-type pokemons sorted by their name:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">

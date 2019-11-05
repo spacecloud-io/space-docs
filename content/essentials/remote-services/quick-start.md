@@ -117,9 +117,13 @@ Click on the `Add first remote service` button to open the following form:
 
 ![Add service screen](/images/screenshots/add-service.png)
 
-Put the service name as `arithmetic` and service URL as `http://$IP_ADDRESS:5000` and hit `Add`.
+Put the service name as `arithmetic` and service URL as:
 
-`$IP_ADDRESS` is the address of your remote service.
+{{< highlight bash >}}
+http://$HOST_ADDRESS:5000
+{{< /highlight >}}
+
+> **Note:** The `$HOST_ADDRESS` is the address of the host machine where the remote service is running.
 
 Once you have added the remote service, you should be able to see it the remote services table:
 

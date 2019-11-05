@@ -7,7 +7,7 @@ weight: 2
 
 Queries are used to fetch data from the database via Space Cloud. 
 
-Space Cloud can query data from any database (MongoDB, MySQL and PostgreSQL). It even allows you to perform **cross database joins**.
+Space Cloud can query data from any database (MongoDB, MySQL and PostgreSQL). It even allows you to perform **cross-database joins**.
 
 The following topics will be covered in this section:
 

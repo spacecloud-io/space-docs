@@ -36,7 +36,7 @@ As you can see, the `uploadFile` function takes 3 parameters:
 - **file** - A file of the type HTML5 File API
 - **name** - Name of the file
 
-The `path` can be nested as well. For e.g a path - /folder1/folder2 would mean to upload the file inside folder2 which is in folder1. If any of the folders mentioned in the path were not present, they would be created before uploading the file.
+The `path` can be nested as well. For example, a path - /folder1/folder2 would mean to upload the file inside folder2 which is in folder1. If any of the folders mentioned in the path were not present, they would get created before uploading the file.
 
 ## Response
 A response object sent by the server contains the **status** fields explained below:
@@ -44,6 +44,6 @@ A response object sent by the server contains the **status** fields explained be
 **status**: Number describing the status of the upload operation. Following values are possible:
 
 - 200 - Successful upload
-- 401 - Request was unauthenticatedoverview
+- 401 - Request was unauthenticated
 - 403 - Request was unauthorized
 - 500 - Internal server error

@@ -32,7 +32,7 @@ The `createFolder` function takes two parameters and creates a folder. The two p
 - **path:** The path at which to create the folder.
 - **name:** The name of the folder.
 
-The `path` can be nested as well. For e.g a `path` - /folder1/folder2 would mean to create the folder inside folder2 which is in folder1. If any of the folders mentioned in the `path` were not present, they would be created before creating the specified folder.
+The `path` can be nested as well. For example, a `path` - /folder1/folder2 would mean to create the folder inside folder2 which is in folder1. If any of the folders mentioned in the `path` were not present, they would get created before creating the specified folder.
 
 ## Response
 

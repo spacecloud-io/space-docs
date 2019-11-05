@@ -7,7 +7,7 @@ weight: 1
 
 
 ## Live query
-When you make a live query request to Space Cloud, it first pushes down the initial data in the result set one by one and there after notifies you of any changes that happens to your result set.
+When you make a live query request to Space Cloud, it first pushes down the initial data in the result set one by one.  After that, it just notifies you of any changes that happen to your result set.
 
 Example: Live query to the list of pokemons caught by a trainer:
 
@@ -64,10 +64,10 @@ if (on some logic) {
 
 Data pushed down in live query have the following fields: 
 
-- **type:** The type of operation which has resulted into Space Cloud pushing down data. Possible values are - `initial`, `insert`, `update`, and `delete`. `initial` is only applicable when Space Cloud is pushing the initial data down.
+- **type:** The type of operation which has resulted in Space Cloud pushing down data. Possible values are - `initial`, `insert`, `update`, and `delete`. `initial` is only applicable when Space Cloud is pushing the initial data down.
 - **payload:** The concerned document/object. `null` for `delete` operation.
-- **docId:** The unique id of the corresponding document/object. In case of MongoDB it's the `_id` field of the concerned document and in case of SQL databases, it's the `id` of the concerned record.
-- **time:** The timestamp of the operation in miilis.
+- **docId:** The unique id of the corresponding document/object. In case of MongoDB it's the `_id` field of the concerned document, and in case of SQL databases, it's the `id` of the concerned record.
+- **time:** The timestamp of the operation in milliseconds.
 
 ## Subscribing to changes only
 In case you are interested in only the changes and not the initial values, pass the `options.skipInitial` argument to the live query:
