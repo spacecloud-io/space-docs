@@ -29,6 +29,7 @@ mutation {
       name: "Pikachu",
       type: "Electric"
     }
+    op: upsert
   ) @mongo {
     status
   }
