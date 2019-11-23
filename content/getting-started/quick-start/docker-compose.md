@@ -5,9 +5,9 @@ draft: true
 weight: 1
 ---
 
-This guide helps you run a local development setup that sets up both Space Cloud and MongoDB. It lets you explore the Space Cloud APIs on MongoDB without having to set up any frontend projects.
+This guide helps you run a local development setup that sets up both Space Cloud and Postgres. It lets you explore the GraphQL APIs of Space Cloud on Postgres without having to set up any frontend projects.
 
-> **Note:** MongoDB is not a dependency of Space Cloud. We are using MongoDB in this guide for ease of use because of its schemaless nature.
+> **Note:** If you want to get started with some other database, then you can follow these getting started guides - [Getting started with MySQL](https://blog.spaceuptech.com/posts/getting-started-with-graphql-and-mysql/) and [Getting started with MongoDB](https://blog.spaceuptech.com/posts/getting-started-with-graphql-and-mongo/).
 
 ## Prerequisites
 
@@ -20,10 +20,36 @@ This guide helps you run a local development setup that sets up both Space Cloud
 The [spaceuptech/space-cloud/install-manifests](https://github.com/spaceuptech/space-cloud/tree/master/install-manifests) repo contains all installation manifests required to deploy Space Cloud anywhere. Get the docker compose file from there:
 
 {{< highlight bash>}}
-wget https://raw.githubusercontent.com/spaceuptech/space-cloud/master/install-manifests/quick-start/docker-compose/mongo/docker-compose.yaml
+wget https://raw.githubusercontent.com/spaceuptech/space-cloud/master/install-manifests/quick-start/docker-compose/postgres/docker-compose.yaml
 {{< /highlight >}}
 
-## Step 2: Run Space Cloud & MongoDB
+You should be able to see a `docker-compose.yaml` file with the following contents:
+
+{{< highlight yaml >}}
+version: '3.6'
+services:
+  postgres:
+    image: postgres
+    restart: always
+  space-cloud:
+    image: spaceuptech/space-cloud
+    ports:
+    - "4122:4122"
+    - "4126:4126"
+    depends_on:
+    - "postgres"
+    restart: always
+    environment:
+      ## The DEV environment lets you use Mission Control (Admin UI) without login
+      ## Change the dev mode to false if you want a login to your Mission Control UI
+      DEV: "true"
+      ## Uncomment next lines to change the login credentials of Mission Control UI
+      # ADMIN_USER: "admin"
+      # ADMIN_PASS: "123"
+      # ADMIN_SECRET: "some-secret" # This is the JWT secret used for login authentication in Mission Control
+{{< /highlight >}}
+
+## Step 2: Run Space Cloud & Postgres
 
 {{< highlight bash>}}
 docker-compose up -d
@@ -45,7 +71,7 @@ Space Cloud has it's own Mission Control (admin UI) to configure all of this qui
 
 ### Open Mission Control
 
-Head over to `http://localhost:4122/mission-control` to open Mission Control.
+Head over to [http://localhost:4122/mission-control](http://localhost:4122/mission-control) to open Mission Control.
 
 > **Note:** Replace `localhost` with the address of your Space Cloud if you are not running it locally. 
 
@@ -55,7 +81,9 @@ Click on `Create a Project` button to open the following screen:
 
 ![Create a project screen](/images/screenshots/create-project.png)
 
-Give a `name` to your project. MongoDB is selected as your database by default. Keep it as it is for this guide.
+Give a `name` to your project. 
+
+`Select POSTGRESQL` as your database.
 
 Hit `Next` to create the project. 
 
@@ -67,18 +95,18 @@ As you can see, the connection status would be disconnected.
 
 Click on the `Edit Connection` button:
 
-![Edit connection details](/images/screenshots/edit-connection.png)
+![Edit connection details](/images/screenshots/edit-connection-postgres.png)
 
-Copy paste the following connection string in it: 
+Copy-paste the following connection string in it: 
 
 {{< highlight html >}}
-mongodb://mongo:27017
+postgres://postgres:mysecretpassword@postgres:5432/postgres?sslmode=disable
 {{< /highlight >}}
 
 That's all that is required to configure Space Cloud for this guide!
 
 ## Step4: Let us try it out 
 
-Our backend is up and running, configured to expose APIs on MongoDB. Time to explore its awesome powers. 
+Our backend is up and running, configured to expose APIs on Postgres. Time to explore its awesome powers. 
 
 [Explore GraphQL APIs](/getting-started/quick-start/explore-graphql) of Space Cloud using GraphiQL.

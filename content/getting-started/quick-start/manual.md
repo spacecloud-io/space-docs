@@ -5,15 +5,15 @@ draft: true
 weight: 2
 ---
 
-This guide helps you set up Space Cloud quickly on your local machine via its binary executable. It lets you explore the Space Cloud APIs on MongoDB without having to set up any project.
+This guide helps you set up Space Cloud quickly on your local machine via its binary executable. It lets you explore the Space Cloud APIs on Postgres without having to set up any project.
 
 If you instead want to start a project from scratch using Space Cloud, then check out the [getting started](/docs/getting-started) guide.
 
 ## Prerequisites
 
-- [MongoDB Database](https://docs.mongodb.com/manual/installation/)
+- [Postgres Database](https://www.tutorialspoint.com/postgresql/postgresql_environment.htm)
 
-> **Note:** MongoDB is not a dependency of Space Cloud. We are using MongoDB in this guide for ease of use because of its schemaless nature.
+> **Note:** Postgres is not a dependency of Space Cloud. You can use any other database that we support (MongoDB and MySQL).
 
 ## Step 1: Download Space Cloud
 
@@ -45,7 +45,7 @@ space-cloud-ee version 0.13.0
 
 ## Step 2: Start Space Cloud
 
-> **Note:** Make sure your MongoDB is up and running before this point
+> **Note:** Make sure your Postgres is up and running before this point
 
 To start Space Cloud in `dev` mode, copy-paste the following command and hit enter:
 
@@ -76,7 +76,7 @@ Space Cloud has it's own Mission Control (admin UI) to configure all of this qui
 
 ### Open Mission Control
 
-Head over to `http://localhost:4122/mission-control` to open Mission Control.
+Head over to [http://localhost:4122/mission-control](http://localhost:4122/mission-control) to open Mission Control.
 
 > **Note:** Replace `localhost` with the address of your Space Cloud if you are not running it locally. 
 
@@ -86,7 +86,9 @@ Click on `Create a Project` button to open the following screen:
 
 ![Create a project screen](/images/screenshots/create-project.png)
 
-Give a `name` to your project. MongoDB is selected as your database by default. Keep it as it is for this guide.
+Give a `name` to your project. 
+
+`Select POSTGRESQL` as your database.
 
 Hit `Next` to create the project.
 
@@ -98,12 +100,12 @@ As you can see, the `Overview` tab shows the connection status (i.e. whether Spa
 
 If it shows disconnected, then click on the edit button to enter the correct connection string of your database:
 
-![Edit connection details](/images/screenshots/edit-connection.png)
+![Edit connection details](/images/screenshots/edit-connection-postgres.png)
 
 That's all that is required to configure Space Cloud for this guide!
 
 ## Step4: Let us try it out 
 
-Our backend is up and running, configured to expose APIs on MongoDB. Time to explore its awesome powers. 
+Our backend is up and running, configured to expose APIs on Postgres. Time to explore its awesome powers. 
 
 [Explore GraphQL APIs](/getting-started/quick-start/explore-graphql) of Space Cloud using GraphiQL.

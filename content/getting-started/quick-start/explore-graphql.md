@@ -6,17 +6,51 @@ draft: true
 
 Let's explore some awesome powers of Space Cloud. In this guide, we will:
 
-- Create trainers and catch Pokemons 😍 (Insert operation)
+- Create tables
+- Make trainers and catch Pokemons 😍 (Insert operation)
 - Retrieve all trainers (Simple query operation)
 - Retrieve all trainers along with their Pokemons 😎 (Join operation)
 
+## Create tables
 
-## Creating trainers (insert operation)
+> **Note:** If you are using MongoDB, you can skip this step, since MongoDB is schemaless.
 
-Creating trainers requires us to insert trainer documents into the database.
+Head over to the `Database` section in `Mission Control`.
+
+Click on `Add table` button to open this form:
+
+![Create a project screen](/images/screenshots/add-table.png)
+
+Give your table name as `trainer`.
+
+**Copy-paste the following schema and hit save:**
+
+{{< highlight graphql >}}
+type trainer {
+  id: ID! @primary
+  name: String!
+}
+{{< /highlight >}}
+
+> **Note:** Don't worry if this syntax is new to you. It is GraphQL SDL which Space Cloud uses to create tables for you. You can read more about it later from [here](/essentials/data-modelling).
+
+Similarly, to create `pokemon` table click on `Add Table` button once again.
+
+Give your table name as `pokemon`.
+
+{{< highlight graphql >}}
+type pokemon {
+  id: ID! @primary
+  name: String!
+  trainer_id: ID!
+}
+{{< /highlight >}}
+
+## Making trainers (insert operation)
+
+Making trainers requires us to insert records of trainers into the database.
 
 Head over to the `Explorer` section in `Mission Control`:
-
 
 ![Explorer](/images/screenshots/explorer.png)
 
@@ -24,19 +58,19 @@ Try running the following query in the GraphiQL section:
 
 {{< highlight graphql >}}
 mutation {
-  insert_trainers(
+  insert_trainer(
     docs: [
-      {_id: "1", name: "Ash"},
-      {_id: "2", name: "Misty"},
-      {_id: "3", name: "Brock"}
+      { id: "1", name: "Ash" },
+      { id: "2", name: "Misty" },
+      { id: "3", name: "Brock" }
     ]
-  ) @mongo {
+  ) @postgres {
     status
   }
 }
 {{< /highlight >}}
 
-On successful insert, you should be able to see the `status` as `200` which means the documents were inserted in the database.
+On successful insert, you should be able to see the `status` as `200` which means you have inserted the records in the database successfully.
 
 ## Retrieving trainers (query operation)
 
@@ -44,8 +78,8 @@ Now let's get the list of trainers back using graphql. Try running the following
 
 {{< highlight graphql >}}
 query {
-  trainers @mongo {
-    _id
+  trainer @postgres {
+    id
     name
   }
 }
@@ -59,15 +93,15 @@ Catching Pokemons requires us to insert Pokemon data into the database (And lots
 
 {{< highlight graphql >}}
 mutation {
-  insert_pokemons(
+  insert_pokemon(
     docs: [
-      {_id: "1", name: "Pikachu", trainerId: "1"},
-      {_id: "2", name: "Snorlax", trainerId: "1"},
-      {_id: "3", name: "Psyduck", trainerId: "2"},
-      {_id: "4", name: "Staryu", trainerId: "2"},
-      {_id: "5", name: "Onix", trainerId: "3"}
+      { id: "1", name: "Pikachu", trainer_id: "1" },
+      { id: "2", name: "Snorlax", trainer_id: "1" },
+      { id: "3", name: "Psyduck", trainer_id: "2" },
+      { id: "4", name: "Staryu", trainer_id: "2" },
+      { id: "5", name: "Onix", trainer_id: "3" }
     ]
-  ) @mongo {
+  ) @postgres {
     status
   }
 }
@@ -81,13 +115,13 @@ Try running the following query in GraphiQL:
 
 {{< highlight graphql >}}
 query {
-  trainers @mongo {
-    _id
+  trainer @postgres {
+    id
     name
-    pokemons(
-      where: {trainerId: {_eq: "trainers._id"}}
-    ) @mongo {
-      _id
+    pokemon (
+      where: {trainer_id: {_eq: "trainer.id"}}
+    ) @postgres {
+      id
       name
     }
   }
@@ -99,28 +133,28 @@ The response should look something like this:
 {{< highlight json >}}
 {
   "data": {
-    "trainers": [
+    "trainer": [
       {
-        "_id": "1",
+        "id": "1",
         "name": "Ash",
-        "pokemons": [
-          {"_id": "1", "name": "Pikachu"},
-          {"_id": "2", "name": "Snorlax"}
+        "pokemon": [
+          { "id": "1", "name": "Pikachu" },
+          { "id": "2", "name": "Snorlax" }
         ]
       },
       {
-        "_id": "2",
+        "id": "2",
         "name": "Misty",
         "pokemons": [
-          {"_id": "3", "name": "Snorlax"},
-          {"_id": "4", "name": "Staryu"}
+          { "id": "3", "name": "Snorlax" },
+          { "id": "4", "name": "Staryu" }
         ]
       },
       {
-        "_id": "3",
+        "id": "3",
         "name": "Brock",
         "pokemons": [
-          {"_id": "5", "name": "Onix"}
+          { "id": "5", "name": "Onix" }
         ]
       }      
     ]
@@ -132,10 +166,10 @@ The response should look something like this:
 
 Awesome! We have just started our Pokemon journey _without writing a single line of backend code_. The journey ahead is undoubtedly going to be super exciting!
 
-The next step is to dive into the various Space Cloud features:
+Read more about:
 
+- [Building your schema](/essentials/data-modelling)
 - [Database queries](/essentials/queries)
 - [Mutations](/essentials/mutations)
 - [Realtime subscriptions](/essentials/subscriptions)
-- [Custom business logic](/essentials/custom-logic)
 - [Authentication & Authorization](/auth)

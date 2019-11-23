@@ -93,5 +93,5 @@ Feel free to check out various capabalities of `space-cloud`:
 - [Realtime](/essentials/subscriptions) data sync across all devices
 - Manage files with ease using [File Storage](/essentials/file-storage) module
 - [Authenticate](/auth/authentication) your users
-- Write [custom business logic](/essentials/custom-logic)
+- Write [custom business logic](/essentials/remote-services)
 - [Secure](/auth/authorization) your apps
