@@ -43,5 +43,9 @@ Click on the `Add` button to add an endpoint to your remote service:
 You need to enter the following information:
 
 - **Name:** Used in your frontend queries along with the service name to uniquely identify an endpoint. This name should be unique within a service. 
-- **Path:** Endpoint for your custom logic. Space Cloud makes a `POST` request to the endpoint formed by `Service URL + Path`.
+- **Method:** The HTTP method for your endpoint.
+- **Path:** Endpoint for your custom logic. Space Cloud makes an HTTP request of the specified method to the endpoint formed by `Service URL + Path`.
+
+> **Note:** You can also use arguments to make the path dynamic. For example, a path - `/hello/{args.name}` will receive the `name` URL param from the arguments sent by the client in the query.
+
 - **Rules:** These are the security rules for your endpoint. Read more about security [here](/auth/authorization).

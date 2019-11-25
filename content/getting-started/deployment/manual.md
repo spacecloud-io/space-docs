@@ -122,6 +122,28 @@ Example:
 
 Space Cloud calculates the HTTPs port by adding 4 to the HTTP port. Hence the default value of HTTPs port is `4126`.
 
+### Providing existing config file
+You can tell Space Cloud to take an existing config file that you may have rather than creating a new one by providing `--config` flag. Here's how you can do it:
+
+<div class="row tabs-wrapper">
+  <div class="col s12" style="padding:0">
+    <ul class="tabs">
+      <li class="tab col s2"><a class="active" href="#run-sc-on-linux-config">Linux/Mac</a></li>
+      <li class="tab col s2"><a href="#run-sc-on-windows-config">Windows</a></li>
+    </ul>
+  </div>
+  <div id="run-sc-on-linux-config" class="col s12" style="padding:0">
+{{< highlight bash>}}
+./space-cloud run --dev --config ./config.yaml
+{{< /highlight >}}
+  </div>
+  <div id="run-sc-on-windows-config" class="col s12" style="padding:0">
+{{< highlight bash>}}
+space-cloud.exe run --dev --config config.yaml
+{{< /highlight >}}
+  </div>
+</div>
+
 ## Step 3: Configure Space Cloud
 
 As you would have noticed, `space-cloud` generates a `config.yaml` file in the working directory.

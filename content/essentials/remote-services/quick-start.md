@@ -56,7 +56,7 @@ var server = app.listen(5000, function () {
 });
 {{< /highlight >}}
 
-As you can see, the code is pretty straight forward. We have just created an HTTP server using ExpressJS that is listening on port 3000.
+As you can see, the code is pretty straight forward. We have just created an HTTP server using ExpressJS that is listening on port 5000.
 
 This server listens for `POST` request on `/adder` endpoint. We are expecting to receive two numbers - num1 and num2 in the request body. All we are doing is returning the sum of these numbers. That's all we need to perform our complex arithmetic operation 😛.
 
