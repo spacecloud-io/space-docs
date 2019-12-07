@@ -29,6 +29,7 @@ In this guide, we are taking a real-world example to describe all of these relat
 ## Modelling relations
 
 Modelling relations in Space Cloud have two parts:
+
 - `@foreign`: Helps maintain the integrity of the relation by creating a foreign key.
 - `@link`: Helps simplify the queries on frontend by linking related types in schema.
 

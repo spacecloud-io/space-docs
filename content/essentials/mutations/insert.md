@@ -27,6 +27,11 @@ mutation {
     ]
   ) @postgres {
     status
+    error
+    returning {
+      id
+      name
+    }
   }
 }
 {{< /highlight >}}   
@@ -41,6 +46,24 @@ const { status } = await db.insert("caught_pokemons")
 {{< /highlight >}}  
   </div>
 </div>
+
+The result of the above mutation is as follows:
+
+{{< highlight json >}}
+{
+  "data": {
+    "insert_caught_pokemons": {
+      "returning": [
+        {
+           "id": "1",
+           "name": "Pikachu"
+        }
+      ],
+      "status": 200
+    }
+  }
+}
+{{< /highlight >}}   
 
 ## Insert multiple objects of the same type in the same mutation
 
@@ -64,6 +87,11 @@ mutation {
     ]
   ) @postgres {
     status
+    error
+    returning {
+      id
+      type
+    }
   }
 }
 {{< /highlight >}}   
@@ -112,6 +140,16 @@ mutation {
   ) @postgres {
     status
     error
+    returning {
+      id
+      name
+      city
+      pokemons {
+        id
+        name
+        combat_power
+      }
+    }
   }
 }
 {{< /highlight >}}
