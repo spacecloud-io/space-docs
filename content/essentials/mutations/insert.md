@@ -82,3 +82,36 @@ const { status } = await db.insert("items")
 {{< /highlight >}}  
   </div>
 </div>
+
+## Insert an object along with its related objects through relationships
+
+Let's say you have linked the `pokemon` table to the `pokemons` field of the `trainer` table via the [`@link`](/essentials/data-modelling/types-and-directives/#link-directive) directive. Then you can insert a trainer along with their pokemons:
+
+{{< highlight graphql >}}
+mutation {
+  insert_trainer(
+    docs: [
+      {
+        id: "ash", 
+        name: "Ash", 
+        city: "Pallete Town",
+        pokemons: [
+          {
+            id: "1",
+            name: "Pikachu",
+            combat_power: 200
+          },
+          {
+            id: "2",
+            name: "Charmender",
+            combat_power: 150
+          }
+        ]
+      }
+    ]
+  ) @postgres {
+    status
+    error
+  }
+}
+{{< /highlight >}}

@@ -23,7 +23,7 @@ The Pokemon app which we are going to build have trainers and pokemons (quite ob
 
 Each pokemon belongs to a single trainer, and each trainer can have multiple pokemons😋. Note that this a **one-to-many relationship**. Read more about modelling relations [here](/essentials/data-modelling/relations).
 
-### Trainers
+### Trainer table
 
 We want each trainer to have a unique id, name and city field. 
 
@@ -31,43 +31,43 @@ Click the `Add table` button in the Database Overview page in Mission Control to
 
 ![Add table screen](/images/screenshots/add-table.png)
 
-Name your table as `trainers`.
+Name your table as `trainer`.
 
 Copy-paste the following schema and hit `Save`:
 
 {{< highlight graphql >}}
-type trainers {
+type trainer {
   id: ID! @primary
   name: String!
   city: String
+  pokemons: [pokemon] @link(table: "pokemon", from: "id", to: "trainer_id")
 }
 {{< /highlight >}}
 
-> **Note:** Space Cloud have created a `trainers` table in your database with the above schema.
+Space Cloud creates a `trainer` table with the above schema. The exclamation mark `!` for `id` and `name` indicates that these fields are required (i.e. they can't be null).
 
-The exclamation mark `!` for `id` and `name` indicates that these fields are required (i.e. they can't be null).
+> **Note:** The `pokemons` field is not a physical field in the `trainer` table. It's just a virtual field that links to the `pokemon` table to make GraphQL queries and mutations simpler from the frontend. We are going to cover it in more details below.
 
-### Pokemons and their relation with trainers
+
+### Pokemon table
 
 Let's say a trainer wants to record the name and combat power of each pokemon along with the date when he captured it. 
 
-We must not forget that each pokemon can belong to only one trainer.
-
-Once again click on the `Add table` button to add `pokemons` table with the following schema:
+Once again click on the `Add table` button to add the `pokemon` table with the following schema:
 
 {{< highlight graphql >}}
-type pokemons {
+type pokemon {
   id: ID! @primary
   name: String!
   combat_power: Integer
-  trainer_id: trainers! @relation(field: "id")
   caught_on: DateTime! @createdAt
+  trainer_id: ID! @foreign(table: "trainer", field: "id")
 }
 {{< /highlight >}}
 
-The `@relation` directive above instructs Space Cloud to create a foreign key on the `id` field of the `trainers` table.  This foreign key prevents any actions that would destroy the links between the `pokemons` and `trainers` table. Which means that the database would throw an error if you delete a trainer before deleting their pokemons.
+The `@foreign` directive above instructs Space Cloud to create a foreign key on the `id` field of the `trainer` table.  This foreign key prevents any actions that would destroy the links between the `pokemon` and `trainer` table. Which means that the database would throw an error if you delete a trainer before deleting their pokemons.
 
-The `@createdAt` directive helps Space Cloud to automatically insert the datetime value whenever you insert a pokemon into the `pokemons` table.
+The `@createdAt` directive helps Space Cloud to automatically insert the datetime value whenever you insert a pokemon into the `pokemon` table.
 
 ## Time to play around
 
@@ -77,29 +77,52 @@ Head over to the `Explorer` section in Mission Control:
 
 ![Explorer](/images/screenshots/explorer.png)
 
-### Creating some trainers and catching pokemons 
+### Inserting trainers along with their pokemons 
 
 Try running the following graphql queries to insert some trainers and pokemons:
 
 {{< highlight graphql >}}
 mutation {
-  insert_trainers(
+  insert_trainer(
     docs: [
-      {id: "ash", name: "Ash", city: "Pallete Town"},
-      {id: "misty", name: "Misty", city: "Cerulean City"}
+      {
+        id: "ash", 
+        name: "Ash", 
+        city: "Pallete Town",
+        pokemons: [
+          {
+            id: "1",
+            name: "Pikachu",
+            combat_power: 200
+          },
+          {
+            id: "2",
+            name: "Charmender",
+            combat_power: 150
+          }
+        ]
+      },
+      {
+        id: "misty", 
+        name: "Misty", 
+        city: "Cerulean City",
+        pokemons: [
+          {
+            id: "3",
+            name: "Psyduck",
+            combat_power: 180
+          },
+          {
+            id: "4",
+            name: "Goldeen",
+            combat_power: 150
+          }
+        ]        
+      }
     ]
   ) @postgres {
     status
-  }
-  insert_pokemons(
-    docs: [
-      {id: "1", name: "Pikachu", combat_power: 200, trainer_id: "ash"},
-      {id: "2", name: "Charmender", combat_power: 150, trainer_id: "ash"},
-      {id: "3", name: "Psyduck", combat_power: 180, trainer_id: "misty"},
-      {id: "4", name: "Goldeen", combat_power: 150, trainer_id: "misty"}
-    ]
-  ) @postgres {
-    status
+    error
   }
 }
 {{< /highlight >}}
@@ -108,32 +131,29 @@ You would see a response like this:
 
 {{< highlight json >}}
 {
-  "insert_pokemons": {
-    "status": 200
-  },
-  "insert_trainers": {
+  "insert_trainer": {
     "status": 200
   }
 }
 {{< /highlight >}}
 
-This means we have successfully inserted trainers and pokemons.
+This means we have successfully inserted trainers along with their pokemons.
 
-> Note: The above mutations are performed in a single database transaction. Read more about transaction from [here](/essentials/mutations/transactions).
+Space Cloud inserts the trainers info in the `trainer` table while the nested `pokemons` info in the `pokemon` table.
 
-### Retrieve trainers along with their Pokemons (join operation)
+If you remember, we mentioned a `@link` directive on the `pokemons` field in the `trainer` table along with the argument - `table: "pokemon"`. Space Cloud uses this information to insert the pokemons array correctly into the `pokemon` table. It also inserts the `pokemon.trainer_id` field automatically based on the foreign key that we mentioned.
+
+### Query trainers along with their pokemons
 
 Try running the following graphql query in the GraphiQL section:
 
 {{< highlight graphql >}}
 query {
-  trainers @postgres {
+  trainer @postgres {
     id
     name
     city
-    pokemons(
-      where: {trainer_id: "trainers.id"}
-    ) @postgres {
+    pokemons {
       name
       combat_power
       caught_on
@@ -147,13 +167,7 @@ You should be able to see a response which looks like this:
 
 {{< highlight json >}}
 {
-  "trainers": [
-    {
-      "id": "1",
-      "name": "Ash",
-      "city": "Pallete Town",
-      "pokemons": []
-    },
+  "trainer": [
     {
       "id": "ash",
       "name": "Ash",
@@ -192,7 +206,7 @@ You should be able to see a response which looks like this:
 }
 {{< /highlight >}}
 
-We just performed a join operation now. Read more about joins [here](/essentials/queries/joins).
+The query that we used above performs a join operation on the backend between `trainer` and `pokemon` table with the condition - `trainer.id == pokemon.trainer_id`. This condition is derived by the arguments (`table`, `from`, `to`) of the `@link` directive, which we mentioned earlier. You can read more about `@link` directive from [here](/essentials/data-modelling/types-and-directives/#link-directive).
 
 Notice that we even received the values for `caught_on` even though we did not specify it while inserting. It means that Space Cloud auto-generated the values for `caught_on` field for us! Pretty great right?
 
@@ -206,7 +220,7 @@ Try running the following query in the GraphiQL section:
 
 {{< highlight graphql >}}
 mutation {
-  insert_trainers(
+  insert_trainer(
     docs: [
       {id: "brock", city: "Pallete Town"},
     ]
@@ -223,7 +237,7 @@ This query should return the following error - `Field name Not Present`.
 
 {{< highlight graphql >}}
 mutation {
-  insert_trainers(
+  insert_trainer(
     docs: [
       {id: "brock", name: 123, city: "Pallete Town"},
     ]
@@ -243,7 +257,7 @@ This **robust validation layer** ensures that no one can mess around with your d
 
 {{< highlight graphql >}}
 mutation {
-  delete_trainers(
+  delete_trainer(
     where: {id: "ash"}
   ) @postgres {
     status
@@ -256,8 +270,8 @@ This mutation should fail with the following response:
 
 {{< highlight json >}}
 {
-  "delete_trainers": {
-    "error": "pq: update or delete on table \"trainers\" violates foreign key constraint \"c_pokemons_trainer_id\" on table \"pokemons\"",
+  "delete_trainer": {
+    "error": "pq: update or delete on table \"trainer\" violates foreign key constraint \"c_pokemon_trainer_id\" on table \"pokemon\"",
     "status": 500
   }
 }

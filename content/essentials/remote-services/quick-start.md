@@ -125,7 +125,7 @@ http://$HOST_ADDRESS:5000
 
 > **Note:** The `$HOST_ADDRESS` is the address of the host machine where the remote service is running.
 
-Once you have added the remote service, you should be able to see it the remote services table:
+Once you have added the remote service, you should be able to see it in the remote services table:
 
 ![Services table](/images/screenshots/services.png)
 

@@ -31,7 +31,7 @@ Fields are the building blocks of an object type. A field either refers to a sca
 
 **ID**
 
-An `ID` is used to hold a string value. You use `ID` to store prominent strings in your model like the unique identifier of a row/document. A field with type `ID` can store up to 50 characters. 
+An `ID` is used to hold a string value of up to 50 characters. You use `ID` to store prominent strings in your model like the unique identifier of a row/document.
 
 Space Cloud auto-generates the value of `ID` fields with [ksuid](https://github.com/segmentio/ksuid) (sortable unique identifiers) if you don't provide their value during mutation.
 
@@ -133,7 +133,7 @@ In queries or mutations, `DateTime` fields have to be specified either in ISO 86
 - `datetime: "2015-11-22T13:57:31.123Z"`
 - `datetime: 1571207400000`
 
-**Nested fields**
+**Nested/embedded fields**
 
 Document oriented databases like MongoDB can have nested structures. 
 
@@ -222,7 +222,7 @@ type author {
 type post {
   id: ID! @primary
   title: String!
-  author: author @relation(field: "id")
+  author: ID @foreign(table: "author", field: "id")
 }
 {{< /highlight >}}
 
@@ -256,29 +256,153 @@ type user {
 }
 {{< /highlight >}}
 
-### Relation directive
-The `@relation` directive is used to put foreign key constraints on a field. Learn more about modelling relationships from [here](/essentials/data-modelling/relations).
+### Foreign directive
+The `@foreign` directive is used to create a foreign key constraint. Foreign keys are used to maintain the integrity of relations in your data model.
 
-**Example:** `one-to-many` relation between `customer` and `order`:
+**Example:** Create a foreign key between the `order` and its `customer`:
 
 {{< highlight graphql "hl_lines=10">}}
 type customer {
   id: ID! @primary
   name: String!
-  orders: [order] @relation
 }
 
 type order {
   id: ID! @primary
   order_date: DateTime!
   amount: Float!
-  customer: customer! @relation(field: "id")
+  customer_id: ID! @foreign(table: "customer", field: "id")
 }
 {{< /highlight >}}
 
-The above example creates a foreign key on the `id` field of `customer` table.
+In the above example, a foreign key is created from the `customer_id` field of `order` table to the `id` field of `customer` table.
 
-> **Note:** The `orders` field in the `customer` table does nothing as of now. But in future, Space Cloud would be able to make your join queries easier with this info.
+> **Note:** Both the fields involved in the foreign key (in this case `order.customer_id` and `customer.id`) should have the same type (`ID` in this case).
+
+### Link directive
+
+Links are used to model relational data. They help you fetch a type along with its related type with a simple query. 
+
+> **Note:** Links are not physical fields in table. They are virtual fields which help Space Cloud to perform join operations on the backend.
+
+The `@link` directive is used to link a field to:
+
+- Another type/table
+- A field within another type/table
+- Another link
+
+**Case 1: (Linking to another type/table)**
+
+In this example, we are going to link the orders of a customer to `orders` field in `customer` so that you can query a customer along with all his orders. Here's a schema example to achieve this: 
+
+{{< highlight graphql "hl_lines=4">}}
+type customer {
+  id: ID! @primary
+  name: String!
+  orders: [order] @link(table: "order", from: "id", to: "customer_id")
+}
+
+type order {
+  id: ID! @primary
+  order_date: DateTime!
+  amount: Float!
+  customer_id: ID! @foreign(table: "customer", field: "id")
+}
+{{< /highlight >}}
+
+> **Note:** There is no physical `orders` field in the `customer` table. The `customer.orders` is a **virtual field linked to another table** (order table in this case). 
+
+So now you can perform this query on frontend:
+{{< highlight graphql >}}
+query {
+  customer @mysql {
+    id
+    name
+    orders {
+      id
+      amount
+      order_date
+    }
+  }
+}
+{{< /highlight >}}
+
+The above query results in a join between the customer and order table with the condition - `customer.id == order.customer_id`. This condition is described by the `from` and `to` arguments in the `@link` directive. 
+
+
+**Case 2: (Linking to a field in another type/table)**
+
+Let's say you want to query a customer along with the dates of all his orders. For that, we need to link the `order_dates` of all the orders placed by a `customer`. Here's a schema example to achieve this:
+
+{{< highlight graphql "hl_lines=4">}}
+type customer {
+  id: ID! @primary
+  name: String!
+  order_dates: [DateTime] @link(table: "order", field: "order_date", from: "id", to: "customer_id")
+}
+
+type order {
+  id: ID! @primary
+  order_date: DateTime!
+  amount: Float!
+  customer_id: ID! @foreign(table: "customer", field: "id")
+}
+{{< /highlight >}}
+
+So now you can perform this query on frontend:
+{{< highlight graphql >}}
+query {
+  customer @mysql {
+    id
+    name
+    order_dates
+  }
+}
+{{< /highlight >}}
+
+**Case 3: (Linking to another link)**
+
+Many to many relationships in SQL are tracked by a third table called the **tracking table**. 
+
+Let's say we want to fetch all the orders with their items. In this case, we first link the `order` table to the `items` field in `order_item` table (tracking table), which then links to the `item` table. Here's how you can model the schema for this example:
+
+{{< highlight graphql "hl_lines=4 11">}}
+type order {
+  id: ID! @primary
+  order_date: DateTime!
+  items: [item] @link(table: "order_item", field: "items", from : "id", to: "order_id")
+}
+
+type order_item {
+  id: ID! @primary
+  order_id: ID! @foreign(table: "order", field: "id")
+  item_id: ID! @foreign(table: "item", field: "id")
+  items: [item] @link(table: "item", from: "item_id", to: "id")
+}
+
+type item {
+  id: ID! @primary
+  name: String!
+  description: String!
+  price: Float!
+}
+{{< /highlight >}}
+
+So now you can perform this query on frontend:
+{{< highlight graphql >}}
+query {
+  order @mysql {
+    id
+    order_date
+    items {
+      id
+      name
+      description
+      price
+    }
+  }
+}
+{{< /highlight >}}
 
 ### createdAt directive
 

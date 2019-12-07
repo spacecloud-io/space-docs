@@ -8,7 +8,6 @@ Let's explore some awesome powers of Space Cloud. In this guide, we will:
 
 - Create tables
 - Make trainers and catch Pokemons 😍 (Insert operation)
-- Retrieve all trainers (Simple query operation)
 - Retrieve all trainers along with their Pokemons 😎 (Join operation)
 
 ## Create tables
@@ -29,12 +28,13 @@ Give your table name as `trainer`.
 type trainer {
   id: ID! @primary
   name: String!
+  pokemons: [pokemon] @link(table: "pokemon", from: "id", to: "trainer_id")
 }
 {{< /highlight >}}
 
 > **Note:** Don't worry if this syntax is new to you. It is GraphQL SDL which Space Cloud uses to create tables for you. You can read more about it later from [here](/essentials/data-modelling).
 
-Similarly, to create `pokemon` table click on `Add Table` button once again.
+Similarly, to create a `pokemon` table, click on `Add Table` button once again.
 
 Give your table name as `pokemon`.
 
@@ -42,13 +42,14 @@ Give your table name as `pokemon`.
 type pokemon {
   id: ID! @primary
   name: String!
-  trainer_id: ID!
+  trainer_id: ID! @foreign(table: "trainer", field: "id")
 }
 {{< /highlight >}}
 
-## Making trainers (insert operation)
 
-Making trainers requires us to insert records of trainers into the database.
+## Making trainers and catching pokemons (insert operation)
+
+Let's insert some trainers along with their pokemons.
 
 Head over to the `Explorer` section in `Mission Control`:
 
@@ -60,9 +61,22 @@ Try running the following query in the GraphiQL section:
 mutation {
   insert_trainer(
     docs: [
-      { id: "1", name: "Ash" },
-      { id: "2", name: "Misty" },
-      { id: "3", name: "Brock" }
+      { 
+        id: "1",
+        name: "Ash",
+        pokemons: [
+          { id: "1", name: "Pikachu" },
+          { id: "2", name: "Snorlax" }
+        ] 
+      },
+      { 
+        id: "2",
+        name: "Misty",
+        pokemons: [
+          { id: "3", name: "Psyduck" },
+          { id: "4", name: "Staryu" }
+        ] 
+      },      
     ]
   ) @postgres {
     status
@@ -71,43 +85,6 @@ mutation {
 {{< /highlight >}}
 
 On successful insert, you should be able to see the `status` as `200` which means you have inserted the records in the database successfully.
-
-## Retrieving trainers (query operation)
-
-Now let's get the list of trainers back using graphql. Try running the following query:
-
-{{< highlight graphql >}}
-query {
-  trainer @postgres {
-    id
-    name
-  }
-}
-{{< /highlight >}}
-
-There, we get our list of trainers!
-
-## Catch Pokemons (insert operation)
-
-Catching Pokemons requires us to insert Pokemon data into the database (And lots of hard work, of course!😅)
-
-{{< highlight graphql >}}
-mutation {
-  insert_pokemon(
-    docs: [
-      { id: "1", name: "Pikachu", trainer_id: "1" },
-      { id: "2", name: "Snorlax", trainer_id: "1" },
-      { id: "3", name: "Psyduck", trainer_id: "2" },
-      { id: "4", name: "Staryu", trainer_id: "2" },
-      { id: "5", name: "Onix", trainer_id: "3" }
-    ]
-  ) @postgres {
-    status
-  }
-}
-{{< /highlight >}}
-
-Great! That's enough of Pokemon catching for the day. Now time for the trainers to show off their Pokemons.
 
 ## Retrieve trainers along with their Pokemons (join operation) 
 
@@ -118,9 +95,7 @@ query {
   trainer @postgres {
     id
     name
-    pokemon (
-      where: {trainer_id: {_eq: "trainer.id"}}
-    ) @postgres {
+    pokemons {
       id
       name
     }
@@ -132,33 +107,36 @@ The response should look something like this:
 
 {{< highlight json >}}
 {
-  "data": {
-    "trainer": [
-      {
-        "id": "1",
-        "name": "Ash",
-        "pokemon": [
-          { "id": "1", "name": "Pikachu" },
-          { "id": "2", "name": "Snorlax" }
-        ]
-      },
-      {
-        "id": "2",
-        "name": "Misty",
-        "pokemons": [
-          { "id": "3", "name": "Snorlax" },
-          { "id": "4", "name": "Staryu" }
-        ]
-      },
-      {
-        "id": "3",
-        "name": "Brock",
-        "pokemons": [
-          { "id": "5", "name": "Onix" }
-        ]
-      }      
-    ]
-  }
+  "trainer": [
+    {
+      "id": "1",
+      "name": "Ash",
+      "pokemons": [
+        {
+          "id": "1",
+          "name": "Pikachu"
+        },
+        {
+          "id": "2",
+          "name": "Snorlax"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Misty",
+      "pokemons": [
+        {
+          "id": "3",
+          "name": "Psyduck"
+        },
+        {
+          "id": "4",
+          "name": "Staryu"
+        }
+      ]
+    }
+  ]
 }
 {{< /highlight >}}
 

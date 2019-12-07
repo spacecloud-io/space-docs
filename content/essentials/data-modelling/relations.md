@@ -2,13 +2,13 @@
 title: "Modelling Relations"
 date: 2019-10-16T08:21:54+05:30
 draft: true
-weight: 3
+weight: 2
 ---
 
-Most real-world applications have relations between their entities. Making your database aware of those relations have two significant advantages:
+Most real-world applications have relations between their entities. Describing these relations in your schema has two significant advantages:
 
 - It ensures that the integrity of relations is maintained.
-- Inferring information to make [join](/essentials/queries/joins) queries simpler (upcoming).
+- Simpler queries to fetch related data on frontend. (Joins are implied by the relations you describe in the schema)
 
 ## Table relationships
 
@@ -23,78 +23,142 @@ In this guide, we are taking a real-world example to describe all of these relat
 | Type           | Example                  | Meaning                                                                                      |
 |:---------------|--------------------------|----------------------------------------------------------------------------------------------|
 | `one-to-one`   | `customer` and `address` | A `customer` can have only one `address` and one `address` can only belong to one `customer` |
-| `one-to-many`  | `customer` and `order`   | A `customer` can have many `order` but a `order` can belong to only one `customer`                |
+| `one-to-many`  | `customer` and `order`   | A `customer` can have many `order`, but an `order` can belong to only one `customer`           |
 | `many-to-many` | `order` and `item`       | An `order` can have many `item` and one `item` can be in many `order`                        |
 
+## Modelling relations
 
-## Modelling one-to-one and one-to-many relations
+Modelling relations in Space Cloud have two parts:
+- `@foreign`: Helps maintain the integrity of the relation by creating a foreign key.
+- `@link`: Helps simplify the queries on frontend by linking related types in schema.
 
-`one-to-one` and `one-to-many` relations are modelled the same way in Space Cloud.
+In this guide, we are going to look at the best practices for modelling different types of relations in Space Cloud using the links and foreign keys. 
 
-Such relations are modelled using the `@relation` directive on the child/dependent table.
+> **Note:** Both the links and foreign keys are optional and independent of each other. For example, you can skip creating the foreign key if you don't care about the integrity of the relationship and vice versa.
 
-### one-to-one example
+### One-to-one example
 
-The schema modelling for our `customer` and `address` will look like these:
+Let's take an example where each customer can have only one address. Note that this is a one-to-one relationship. The schema modelling to enable this relationship is as follows:
 
-{{< highlight graphql "hl_lines=10">}}
+{{< highlight graphql "hl_lines=4 11">}}
 type customer {
   id: ID! @primary
   name: String!
+  address: address! @link(table: "address", from: "id", to: "customer_id")
 }
 
 type address {
   id: ID! @primary
-  address: String!
+  street: String!
   pin_code: Integer!
-  customer: customer! @relation(field: "id")
+  customer_id: ID! @foreign(table: "customer", field: "id")
 }
 {{< /highlight >}}
 
-Note that there is a @relation directive on the `customer` field. The `@relation` directive is used to specify that the `customer` field in `address` is referring to the `id` field of `customer` table. 
+**Link:**
+
+The above example links the `customer.address` field to the `address` type/table. 
+
+> **Note:** `customer.address` is not a physical field. It's just a virtual field to describe the relationship between customer and address types.
+
+The advantage of describing this link is that you can now query a customer along with its address in a simple query from frontend:
+
+{{< highlight graphql >}}
+query {
+  customer @mysql {
+    id
+    name
+    address {
+      street
+      pin_code
+    }
+  }
+}
+{{< /highlight >}}
+
+The above query will join the customer and address table on the backend with the condition - `customer.id == address.customer_id`. This condition is described by the arguments - `table`, `from` and `to` of the `@link` directive.
 
 
-> **Syntactic sugar:** If you want to refer to the `id` field in SQL databases or `_id` field in MongoDB, you can use the `@relation` directive without `field` argument.
+**Foreign Key:**
 
-Space Cloud creates a **foreign key** on the field specified in the `@relation` directive. This foreign key helps maintain the integrity of the relation. For example, in this case, a customer can't be deleted before deleting his address since address depends on the customer.
+If you have noticed, we specified a `@foreign` directive at the `address.customer_id` field. This instructs Space Cloud to create a foreign key from the `address.customer_id` field to the `id` field of the `customer` table. The target of the foreign key is described by the `table` and `field` arguments of the `@foreign` directive. A foreign key helps to maintain the integrity of the relationship, i.e. a customer can't be deleted without deleting his address.
 
-### one-to-many example
+If you also wanted to fetch an address along with its customer, then you would also have to create a similar virtual field in address table linking to the customer table:
 
-The schema modelling for our `customer` and `order` will look like these:
-
-{{< highlight graphql "hl_lines=5 12">}}
+{{< highlight graphql "hl_lines=12">}}
 type customer {
   id: ID! @primary
   name: String!
-  address_id: String!
-  orders: [order] @relation
+  address: address! @link(table: "address", from: "id", to: "customer_id")
 }
 
-type order {
+type address {
   id: ID! @primary
-  order_date: DateTime!
-  amount: Float!
-  customer: customer! @relation(field: "id")
+  street: String!
+  pin_code: Integer!
+  customer_id: ID! @foreign(table: "customer", field: "id")
+  customer: customer! @link(table: "customer", from: "customer_id", to: "id")
 }
 {{< /highlight >}}
 
-The `@relation` directive is used to specify that the `customer` field in the `order` table is referring to the `id` field of `customer` table. 
+### One-to-many example
 
-Space Cloud creates a foreign key on the field specified in the `@relation` directive. This foreign key helps maintain the integrity of the relation. For example, in this case, a customer can't be deleted before deleting all of his orders since order depends on the customer.
+The schema modelling for our `customer` and `order` (one-to-many relation) will look like these:
 
-> **Note:** The `orders` field in the `customer` table does nothing as of now. But in future, Space Cloud would be able to make your join queries easier with this info.
+{{< highlight graphql "hl_lines=4 11">}}
+type customer {
+  id: ID! @primary
+  name: String!
+  orders: [order] @link(table: "order", from: "id", to: "customer_id")
+}
 
-## Modelling many-to-many relations
-
-Two `one-to-one` relations along with an extra table are required to model `many-to-many` relations.
-
-The schema modelling for our `order` and `item` table will look like these:
-
-{{< highlight graphql "hl_lines=16-17">}}
 type order {
   id: ID! @primary
   order_date: DateTime!
   amount: Float!
+  customer_id: ID! @foreign(table: "customer", field: "id")
+}
+{{< /highlight >}}
+
+Note how we are expecting `customer.orders` to be an array of type `order`. However, there is no such physical field called `orders` in the `customer` table. It's just a virtual field that is referring to the `order` table. 
+
+So now you can perform this query on the frontend:
+
+{{< highlight graphql >}}
+query {
+  customer @mysql {
+    id
+    name
+    orders {
+      id
+      order_date
+      amount
+    }
+  }
+}
+{{< /highlight >}}
+
+As in the previous example, we have also mentioned a `@foreign` directive to create a foreign key between `order.customer_id` and `customer.id`.
+
+## Modelling many-to-many relations
+
+You can model many-to-many relationships in SQL with the help of an extra tracking table that tracks the relationships between the two tables. 
+
+Let's take an example where each order can have multiple items, and each item can be in multiple orders. To maintain this relation, we need to create a third table that tracks the relation between orders and items. To fetch an order with all of its items, we need to describe two links - first between the `order` and `order_item` table and second between the `order_item` and `item` table. Here's an example that does this:
+
+{{< highlight graphql "hl_lines=5 12">}}
+type order {
+  id: ID! @primary
+  order_date: DateTime!
+  amount: Float!
+  items: [item] @link(table: "order_item", field: "items" from: "id", to: "order_id")
+}
+
+type order_item {
+  id: ID! @primary
+  order_id: ID! @foreign(table: "order", field: "id")
+  item_id: ID! @relation(table: "item", field: "item")
+  items: [item] @link (table: "item", from: "item_id", to:"id")
 }
 
 type item {
@@ -104,14 +168,25 @@ type item {
   price: Float!
 }
 
-type order_item {
-  id: ID! @primary
-  order: orders! @relation(field: "id")
-  item: items! @relation(field: "id")
+{{< /highlight >}}
+
+In this example, we are first linking `order.items` to the `order_item.items` field, which in turn links to the `item` table. 
+
+Thus we can now query order along with their items in a simple query:
+{{< highlight graphql >}}
+query {
+  order @mysql {
+    id
+    order_date
+    amount
+    items {
+      id
+      name
+      description
+      price
+    }
+  }
 }
 {{< /highlight >}}
 
-
-We are making an extra table here - `order_item` to store two one-to-one relations -  one with `order` and one with `item`.
-
-These make foreign keys on both the tables. Thus, you would first have to delete the linkage in the `order_item` table before deleting an order or an item.
+Note that we are also making two foreign keys in this case - one for the order and one for the item table. 

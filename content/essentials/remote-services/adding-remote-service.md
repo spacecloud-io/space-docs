@@ -28,7 +28,7 @@ You need to enter the following information:
 
 Click on the `Add` button to add the remote service. 
 
-Once you have added the remote service, you should be able to see it the remote services table:
+Once you have added the remote service, you should be able to see it in the remote services table:
 
 ![Services table](/images/screenshots/services.png)
 
