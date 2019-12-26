@@ -1,7 +1,7 @@
 ---
 title: "Sort query results"
 date: 2019-09-17T07:22:31+05:30
-draft: true
+draft: false
 weight: 3
 ---
 You can sort your query results via Space Cloud by using the `sort` argument. The `sort` argument can be used to sort nested queries too.

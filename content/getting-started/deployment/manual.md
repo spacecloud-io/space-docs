@@ -1,7 +1,7 @@
 ---
 title: "Manual"
 date: 2019-09-26T18:04:00+05:30
-draft: true
+draft: false
 weight: 2
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Auth"
 date: 2019-09-23T08:08:05+05:30
-draft: true
+draft: false
 weight: 4
 ---
 

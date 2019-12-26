@@ -1,7 +1,7 @@
 ---
 title: "Types and Directives"
 date: 2019-10-16T10:51:01+05:30
-draft: true
+draft: false
 weight: 3
 ---
 This guide will give a detailed explanation of [object types](#object-types), [field types](#field-types), [field-constraints](#field-constraints) and [directives](#directives) in Space Cloud schema definition language.
@@ -255,6 +255,21 @@ type user {
   username: String! @unique
 }
 {{< /highlight >}}
+
+### Default value directive
+The `@default` directive is used to assign a column / field a default value. During an insert, if the field containing the `@default` directive wasn't set, the default value is used
+
+**Example:** Setting the default value of `role` to `user`:
+
+{{< highlight graphql "hl_lines=4">}}
+type account {
+  id: ID! @primary
+  name: String!
+  role: String! @default(value: user)
+}
+{{< /highlight >}}
+
+> **Note:** The `@default` directive works for SQL databases and MongoDB.
 
 ### Foreign directive
 The `@foreign` directive is used to create a foreign key constraint. Foreign keys are used to maintain the integrity of relations in your data model.

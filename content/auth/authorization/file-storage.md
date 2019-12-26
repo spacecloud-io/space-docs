@@ -1,7 +1,7 @@
 ---
 title: "Securing file storage"
 date: 2019-09-23T10:07:57+05:30
-draft: true
+draft: false
 weight: 2
 ---
 
@@ -245,8 +245,19 @@ In case where the matching and db query for validating conditions are not enough
 }
 {{< /highlight >}}
 
-In the above case, Space Cloud will make a POST request to your remote server on the above `url`. If the remote server returns a status of `200`, the request will be considered authenticated. Otherwise, Space Cloud will consider the request as unauthorized. The webhook body will consist of the same variables that were available under the `args` key in security rules.
+In the above case, Space Cloud will make a POST request to your remote server on the above `url`. If the remote server returns a status of `2XX`, the request will be considered authenticated. Otherwise, Space Cloud will consider the request as unauthorized. The webhook body will consist of the same variables that were available under the `args` key in security rules.
 
+<b>End to end user authentication</b>
+
+As the name suggests, we authenticate the end user in this form of authentication. This is essential if you need to verify or restrict requests from authorized users only. 
+
+Space Cloud transparently forwards the token provided by the user in the `Authorization` header. This token is signed with the `secret` key provided in the project's configuration.
+
+<b>Service to service authentication</b>
+
+In some cases, you would want to verify the sender of the request received by your service. This is required when your service is running in an open or untrusted network.
+
+Space cloud adds a `X-SC-Token` header which contains a token containing the identity of the caller space cloud instance. This token can be used to check if the incoming request is coming from an authentic source. This token is signed with the `secret` key provided in the project's configuration.
 
 ## Next steps
 Great! You have learned how to secure file access. You may now checkout the [security rules for remote services](/auth/authorization/services).

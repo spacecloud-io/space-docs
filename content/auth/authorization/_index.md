@@ -1,7 +1,7 @@
 ---
 title: "Authorization"
 date: 2019-09-23T08:08:25+05:30
-draft: true
+draft: false
 weight: 2
 ---
 
@@ -31,7 +31,7 @@ This stage decides whether an authenticated user is authorized or not to make a 
 
 - Matching based on the fields in the incoming request and the auth object (JWT claims).
 - Making a database query.
-- Calling a custom function to return `true/false` to validate the request.
+- Calling a custom http server to return `2XX` to validate the request.
 
 ## Security rule types
 
@@ -43,7 +43,7 @@ Security rules are a mechanism used to enforce authorization. The request is all
 - **match:** This rule is used to allow a certain request only when a certain condition has been met. Generally it is used to match the input parameters (like the where clause or certain fields in the document to be inserted) with the auth object. It can also be used for role based authentication (match the role of user to a particular value).
 - **query:** This rule is used to allow a certain request only if a database request returns successfully. The query's find clause is generated dynamically using this rule. The query is considered to be successful if even a single row is successfully returned.
 - **and, or:** These rules helps you mix and match the `match` and `query` rules to tackle complex authorization tasks.
-- **func:** These rule allows you to write a custom function in any language to authorize the incoming request.
+- **webhook:** These rule allows you to write a custom http server in any language to authorize the incoming request.
 
 ## Next steps
 

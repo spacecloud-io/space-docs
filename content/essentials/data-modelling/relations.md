@@ -1,7 +1,7 @@
 ---
 title: "Modelling Relations"
 date: 2019-10-16T08:21:54+05:30
-draft: true
+draft: false
 weight: 2
 ---
 

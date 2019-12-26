@@ -1,7 +1,7 @@
 ---
 title: "Email Signin"
 date: 2019-09-23T09:21:49+05:30
-draft: true
+draft: false
 weight: 1
 toc: false
 ---

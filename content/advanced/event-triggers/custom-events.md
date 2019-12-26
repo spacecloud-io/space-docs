@@ -1,7 +1,7 @@
 ---
 title: "Custom Events"
 date: 2019-10-19T13:38:53+05:30
-draft: true
+draft: false
 weight: 2
 ---
 

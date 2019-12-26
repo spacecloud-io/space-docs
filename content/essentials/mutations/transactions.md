@@ -1,7 +1,7 @@
 ---
 title: "Transactions"
 date: 2019-09-18T18:24:26+05:30
-draft: true
+draft: false
 weight: 5
 ---
 

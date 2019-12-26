@@ -1,7 +1,7 @@
 ---
 title: "List files/folders"
 date: 2019-09-21T08:16:29+05:30
-draft: true
+draft: false
 weight: 4
 toc: false
 ---

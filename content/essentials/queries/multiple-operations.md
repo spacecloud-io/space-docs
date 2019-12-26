@@ -1,7 +1,7 @@
 ---
 title: "Using Multiple Operations"
 date: 2019-09-17T17:36:29+05:30
-draft: true
+draft: false
 weight: 5
 ---
 

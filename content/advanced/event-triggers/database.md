@@ -1,7 +1,7 @@
 ---
 title: "Database events"
 date: 2019-10-19T13:38:05+05:30
-draft: true
+draft: false
 weight: 1
 ---
 You can trigger webhooks on any mutations performed on your database via Space Cloud.

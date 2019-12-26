@@ -1,7 +1,7 @@
 ---
 title: "Manual (using binary)"
 date: 2019-09-26T12:40:33+05:30
-draft: true
+draft: false
 weight: 2
 ---
 

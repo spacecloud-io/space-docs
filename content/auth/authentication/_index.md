@@ -1,7 +1,7 @@
 ---
 title: "Authentication"
 date: 2019-09-23T08:08:17+05:30
-draft: true
+draft: false
 weight: 1
 ---
 
@@ -37,11 +37,11 @@ Head to the `Database` section and create a table/collection with the following 
 
 {{< highlight graphql >}}
 type users {
-  id ID! @id ## _id for MongoDB
-  email String!
-  name String!
-  pass String
-  role String
+  id: ID! @id     ## _id for MongoDB
+  email: String!
+  name: String!
+  pass: String
+  role: String
 }
 {{< /highlight >}}
 

@@ -1,7 +1,7 @@
 ---
 title: "Remove event logs"
 date: 2019-10-19T13:39:18+05:30
-draft: true
+draft: false
 weight: 3
 ---
 

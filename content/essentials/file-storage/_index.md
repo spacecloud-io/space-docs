@@ -1,7 +1,7 @@
 ---
 title: "File Storage"
 date: 2019-09-21T08:13:24+05:30
-draft: true
+draft: false
 weight: 5
 ---
 
