@@ -67,6 +67,7 @@ The directives for databases are:
 - `@mongo`: For MongoDB
 - `@postgres` : For PostgreSQL and PostgreSQL compatible databases (eg: CockroachDB, Yugabyte)
 - `@mysql`: For MySQL and MySQL compatible databases (eg: TiDB)
+- `@sqlserver`: For SQL Server
 
 ## Advanced client
 
@@ -154,6 +155,7 @@ The directives for databases are:
 - `@mongo`: For MongoDB
 - `@postgres` : For PostgreSQL and PostgreSQL compatible databases (eg: CockroachDB, Yugabyte)
 - `@mysql`: For MySQL and MySQL compatible databases (eg: TiDB)
+- `@sqlserver`: For SQL Server
 
 
 ## Next steps

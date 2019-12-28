@@ -13,7 +13,7 @@ If you instead want to start a project from scratch using Space Cloud, then chec
 
 - [Postgres Database](https://www.tutorialspoint.com/postgresql/postgresql_environment.htm)
 
-> **Note:** Postgres is not a dependency of Space Cloud. You can use any other database that we support (MongoDB and MySQL).
+> **Note:** Postgres is not a dependency of Space Cloud. You can use any other database that we support (MongoDB, MySQL or SQL Server).
 
 ## Step 1: Download Space Cloud
 
@@ -88,21 +88,19 @@ Click on `Create a Project` button to open the following screen:
 
 Give a `name` to your project. 
 
-`Select POSTGRESQL` as your database.
+Hit `Create Project` button to create the project. 
 
-Hit `Next` to create the project.
+### Adding database to your project
 
-### Configuring DB config
+After creating the project, the next step is to add a database to your project:
 
-Head over to the `Database` section:
+![Add database](/images/screenshots/add-database.png)
 
-As you can see, the `Overview` tab shows the connection status (i.e. whether Space Cloud is connected or not to your database). 
+Select `POSTGRESQL` as your database and provide the correct connection string.
 
-If it shows disconnected, then click on the edit button to enter the correct connection string of your database:
+Hit `Add database` button. That's all that is required to configure Space Cloud for this guide!
 
-![Edit connection details](/images/screenshots/edit-connection-postgres.png)
-
-That's all that is required to configure Space Cloud for this guide!
+> **Note:** If you get error while adding a database, make sure that the connection string is correct. You can also skip ading the database now and add it later from within the project.
 
 ## Step4: Let us try it out 
 

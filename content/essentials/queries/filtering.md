@@ -300,6 +300,44 @@ const { status, data } = await db.get("caught_pokemons")
   </div>
 </div>
 
+
+## Search operator (Regex based)
+
+The regex based search operator in Space Cloud is used to compare field values to a particular regex pattern.
+
+**Example:** Make an case insensitive search for all pokemons that have word `strong` in their description:
+<div class="row tabs-wrapper">
+  <div class="col s12" style="padding:0">
+    <ul class="tabs">
+      <li class="tab col s2"><a class="active" href="#regex-graphql">GraphQL</a></li>
+      <li class="tab col s2"><a href="#regex-js">Javascript</a></li>
+    </ul>
+  </div>
+  <div id="regex-graphql" class="col s12" style="padding:0">
+{{< highlight graphql >}}
+query {
+  pokemons(
+    where: { description: { _regex_: "/strong/i"}}
+  ) @mongo {
+    _id
+    name
+  }
+}
+{{< /highlight >}}
+  </div>
+  <div id="regex-js" class="col s12" style="padding:0">
+{{< highlight javascript>}}
+const whereClause = cond("description", "regex", "/regex/i")
+
+const { status, data } = await db.get("pokemons")
+  .where(whereClause)
+  .apply()
+{{< /highlight >}}  
+  </div>
+</div>
+
+> **Note:** Regex support isn't available in SQL Server as of now. You can [raise an issue](https://github.com/spaceuptech/space-cloud/issues) for it if you want it.
+
 ## List based operators
 
 The list-based operators can be used to compare field values to a list of values.

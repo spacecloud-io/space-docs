@@ -24,7 +24,7 @@ Isolating the database querying and the realtime module helps it scale the realt
 
 ## Limitations
 
-- The table/collection should have a primary key that must be `_id` in case of MongoDB and `id` for MySQL and Postgres and of type [ID](/essentials/data-modelling/types-and-directives/#scalar-types).
+- The table/collection should have a primary key that must be `_id` in case of MongoDB and `id` for MySQL, Postgres or SQL Server and of type [ID](/essentials/data-modelling/types-and-directives/#scalar-types).
 - All mutations (inserts, updates and deletes) have to take place via Space Cloud.
 - All updates and deletes can be made on a single document only using the `_id` or `id` field in the where clause.
 - Another request should not update the fields used in the where clause of `liveQuery`.

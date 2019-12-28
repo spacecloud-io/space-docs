@@ -33,6 +33,8 @@ Events can be of the following types:
 - `CRUD_CREATE`: When a row/document gets created.
 - `CRUD_UPDATE`: When a row/document gets updated.
 - `CRUD_DELETE`: When a row/document gets deleted.
+- `FILE_CREATE`: When a file/folder is created.
+- `FILE_DELETE`: When a file/folder is deleted.
 - `<CUSTOM>`: Whenever you queue a custom event to Space Cloud.
 
 Whenever an event takes place (e.g., insert mutation via Space Cloud or a custom event), Space Cloud invokes the webhook with the event payload. If the webhook responds with a `2xx` status code, Space Cloud marks the event to be `processed`. Otherwise, it retries the webhook, a certain number of times (configurable) before finally marking it as `failed`. 

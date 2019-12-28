@@ -43,6 +43,7 @@ With security rules for database you can:
 - Role based authentication (For example only allow admin to delete a project)
 - Allow a user to be able to query only his / her own data.
 - Allow users to read posts without signin but allow only signed in users to create a post.
+- Protect certain private fields based on roles.
 - Check if the request contains a certain field.
 - The Instagram problem - Allow a user to view a profile only if it is public or if he is following them.
 - Custom validation.
@@ -160,6 +161,50 @@ Example (Check if a field is present in the request):
 {{< /highlight >}}
 
 `utils.exists` is a utility function by the security rules which checks if a given field exists or not and returns true or false.
+
+### Remove fields from request/response
+
+This rule is used to remove certain fields from request or response.  This is specially helpful if you want to [protect certain fields from some operation](https://github.com/spaceuptech/space-cloud/issues/552).
+
+**Example:** Protect the `password` field from being queried by removing it from the response:
+
+{{< highlight json >}}
+{
+  "rule": "remove",
+  "fields": ["res.password"]
+}
+{{< /highlight >}}
+
+As yo can see the above rule instructs the Space Cloud to remove `password` field from the `res` (response) object. 
+
+> **Note:** Even if the response is an array of objects, the above rule will still work and will remove the `password` field fom each object in the response array.
+
+In order to remove fields from the request, you have the `args` object. 
+
+**Example:** Prevent the `role` from being updated in a mutation by removing the `role` field from the mutation request:
+
+{{< highlight json >}}
+{
+  "rule": "remove",
+  "fields": ["args.update.$set.role"]
+}
+{{< /highlight >}}
+
+### Force certain fields
+
+This rule is used to [override request/response] by forcing the value of certain fields in the request or response.
+
+**Example:** Allow the user to query only his todos by enforcing the `id` from the `JWT token` as the `userId` in the where clause:
+
+{{< highlight json >}}
+{
+  "rule": "force",
+  "field": "args.find.userId",
+  "value": "args.auth.id"
+}
+{{< /highlight >}}
+
+The above rule sets the value of `args.find.userId` (`args.find` is the `where` clause sent to the database) with the value of `args.auth.id` (auth object contains the token claims) before the request is sent to the database.
 
 ### Database Query
 This rule is used to allow a certain request only if a database request returns successfully. The query's find clause is generated dynamically using this rule. The query is considered to be successful if even a single row is successfully returned.

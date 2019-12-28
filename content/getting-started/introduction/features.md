@@ -16,6 +16,7 @@ The database module is the core of Space Cloud. It allows you to perform CRUD op
 - MongoDB
 - PostgreSQL and PostgreSQL compatible databases (For eg. CockroachDB, Yugabyte etc.)
 - MySQL and MySQL compatible databases (For eg. TiDB)
+- SQL Server
 
 <br>
 
@@ -88,8 +89,6 @@ Notable features of Remote services:
 ## Eventing Module
 
 [Eventing module](/advanced/event-triggers/) is used to asynchronously trigger your custom business logic (e.g., AWS Lambda functions) based on any events in your app.
-
-> **Note:** Right now the database and custom event triggers are supported. In a future release, eventing would also work on file storage events.
 
 All event triggers are:
 
