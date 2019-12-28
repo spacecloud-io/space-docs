@@ -1,7 +1,7 @@
 ---
 title: "Setting up graphql"
 date: 2019-09-26T09:23:36+05:30
-draft: true
+draft: false
 weight: 1
 ---
 

@@ -1,3 +1,6 @@
 baseURL = "https://docs.spaceuptech.com/"
 languageCode = "en-us"
 title = "Space Cloud"
+
+[markup.goldmark.renderer]
+unsafe= true

@@ -1,7 +1,7 @@
 ---
 title: "Event Triggers"
 date: 2019-10-19T10:46:59+05:30
-draft: true
+draft: false
 weight: 1
 ---
 
@@ -38,3 +38,9 @@ Events can be of the following types:
 Whenever an event takes place (e.g., insert mutation via Space Cloud or a custom event), Space Cloud invokes the webhook with the event payload. If the webhook responds with a `2xx` status code, Space Cloud marks the event to be `processed`. Otherwise, it retries the webhook, a certain number of times (configurable) before finally marking it as `failed`. 
 
 Space Cloud stores the events log in `event_logs` table in the eventing database (both of them are configurable). The primary database that you selected while creating a project is selected as the eventing database by default.
+
+### Service to service authentication
+
+In some cases, you would want to verify the sender of the request received by your service. This is required when your service is running in an open or untrusted network.
+
+Space cloud adds a `X-SC-Token` header which contains a token containing the identity of the caller space cloud instance. This token can be used to check if the incoming request is coming from an authentic source. This token is signed with the `secret` key provided in the project's configuration.

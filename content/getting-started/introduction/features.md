@@ -1,7 +1,7 @@
 ---
 title: "Features"
 date: 2019-09-20T06:42:53+05:30
-draft: true
+draft: false
 weight: 3
 ---
 

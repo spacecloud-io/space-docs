@@ -1,7 +1,7 @@
 ---
 title: "Insert"
 date: 2019-09-18T11:17:25+05:30
-draft: true
+draft: false
 weight: 1
 ---
 

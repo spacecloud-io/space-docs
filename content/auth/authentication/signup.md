@@ -1,7 +1,7 @@
 ---
 title: "Email Signup"
 date: 2019-09-23T09:21:46+05:30
-draft: true
+draft: false
 weight: 2
 toc: false
 ---

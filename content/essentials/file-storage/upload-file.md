@@ -1,7 +1,7 @@
 ---
 title: "Upload file"
 date: 2019-09-21T08:15:38+05:30
-draft: true
+draft: false
 weight: 1
 toc: false
 ---

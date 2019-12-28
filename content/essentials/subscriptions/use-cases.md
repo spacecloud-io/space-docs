@@ -1,7 +1,7 @@
 ---
 title: "Sample use cases"
 date: 2019-09-17T18:18:52+05:30
-draft: true
+draft: false
 weight: 2
 ---
 

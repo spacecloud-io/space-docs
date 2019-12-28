@@ -1,7 +1,7 @@
 ---
 title: "Securing remote services"
 date: 2019-09-23T10:08:05+05:30
-draft: true
+draft: false
 weight: 3
 ---
 
@@ -201,17 +201,28 @@ Example (Make sure an user can call a function only if he has the role `admin` o
 
 ### Custom validations
 
-In case where the matching and db query for validating conditions are not enough, you can authorize the request within the function itself or configure Space Cloud to call another function for authorization. Here's an example showing how to configure Space Cloud to use another function to authorize a particular function call:
+In case where the matching and db query for validating conditions are not enough, Space Cloud can use your custom authorization logic by triggering a webhook on your servers. Here's an example showing how to do this by rule `webhook`:
 
 {{< highlight json >}}
 {
-  "func1": {
-    "rule": "func",
-    "service": "auth-service",
-    "func": "auth-func"
+  "endpoint": {
+    "rule": "webhook",
+    "url": "http://localhost:8080/my-custom-logic"
   }
 }
 {{< /highlight >}}
 
+In the above case, Space Cloud will make a POST request to your remote server on the above `url`. If the remote server returns a status of `2XX`, the request will be considered authenticated. Otherwise, Space Cloud will consider the request as unauthorized. The webhook body will consist of the same variables that were available under the `args` key in security rules.
 
-In the above case, to authorize a request to call `func1`, the Space Cloud will make a call to the `auth-func` function of the `auth-service`. The request to `func1` will be considered authorized by the Space Cloud only when the `auth-func` returns an object with `ack` property set to true.
+
+<b>End to end user authentication</b>
+
+As the name suggests, we authenticate the end user in this form of authentication. This is essential if you need to verify or restrict requests from authorized users only. 
+
+Space Cloud transparently forwards the token provided by the user in the `Authorization` header. This token is signed with the `secret` key provided in the project's configuration.
+
+<b>Service to service authentication</b>
+
+In some cases, you would want to verify the sender of the request received by your service. This is required when your service is running in an open or untrusted network.
+
+Space cloud adds a `X-SC-Token` header which contains a token containing the identity of the caller space cloud instance. This token can be used to check if the incoming request is coming from an authentic source. This token is signed with the `secret` key provided in the project's configuration.

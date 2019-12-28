@@ -1,7 +1,7 @@
 ---
 title: "Delete file/folder"
 date: 2019-09-21T08:16:48+05:30
-draft: true
+draft: false
 weight: 5
 toc: false
 ---

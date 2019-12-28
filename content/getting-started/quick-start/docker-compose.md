@@ -1,7 +1,7 @@
 ---
 title: "Docker Compose"
 date: 2019-09-26T12:40:23+05:30
-draft: true
+draft: false
 weight: 1
 ---
 

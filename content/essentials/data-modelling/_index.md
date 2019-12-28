@@ -1,7 +1,7 @@
 ---
 title: "Data Modelling"
 date: 2019-10-15T08:56:08+05:30
-draft: true
+draft: false
 weight: 1
 ---
 

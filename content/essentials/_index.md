@@ -1,7 +1,7 @@
 ---
 title: "Essentials"
 date: 2019-09-20T08:04:39+05:30
-draft: true
+draft: false
 weight: 2
 ---
 

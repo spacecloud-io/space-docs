@@ -1,7 +1,7 @@
 ---
 title: "Simple Queries"
 date: 2019-09-17T07:19:50+05:30
-draft: true
+draft: false
 weight: 1
 ---
 

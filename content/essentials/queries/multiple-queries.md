@@ -1,7 +1,7 @@
 ---
 title: "Multiple Queries"
 date: 2019-09-17T17:36:20+05:30
-draft: true
+draft: false
 weight: 6
 ---
 
