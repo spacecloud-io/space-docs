@@ -35,7 +35,7 @@ An `ID` is used to hold a string value of up to 50 characters. You use `ID` to s
 
 Space Cloud auto-generates the value of `ID` fields with [ksuid](https://github.com/segmentio/ksuid) (sortable unique identifiers) if you don't provide their value during mutation.
 
-As of now, only `ID` fields can have primary and unique key constraints. If you want to alter this behaviour, contribute your thoughts on this [Github issue](https://github.com/spaceuptech/space-cloud/issues/479).
+As of now, only `ID` fields can have primary, unique key and default value constraints. If you want to alter this behaviour, contribute your thoughts on this [Github issue](https://github.com/spaceuptech/space-cloud/issues/479).
 
 **Example:** Uniquely identify an order in an e-commerce app:
 
@@ -200,7 +200,7 @@ A unique constraint is used to ensure that a field always has a unique value.
 {{< highlight graphql "hl_lines=3" >}}
 type user {
   id: ID! @primary
-  username: String! @unique
+  username: ID! @unique
   email: String!
 }
 {{< /highlight >}}
@@ -214,6 +214,8 @@ type user {
   last_name: String! @unique("group": "unique_name", order: 2)
 }
 {{< /highlight >}}
+
+> **Note:** The `@unique` index only works with type `ID`, `Integer`, `Float`, `Boolean` and `DateTime`.
 
 The above example creates a composite unique key on two columns - `first_name` and `last_name`. Read more about `@unique` directive from [here].
 
@@ -267,6 +269,8 @@ type user {
 
 The above schema creates an unique index on the `email` field. (i.e. No two users will have the same `email`)
 
+> **Note:** The `@unique` index only works with type `ID`, `Integer`, `Float`, `Boolean` and `DateTime`.
+
 You can provide the following arguments in order to customize the unique index:
 
 - `group`: (String) If two or more fields have the same `group`, then they form a **composite unique index**.
@@ -277,8 +281,8 @@ You can provide the following arguments in order to customize the unique index:
 {{< highlight graphql "hl_lines=4" >}}
 type user {
   id: ID! @primary
-  first_name: @unique(group: "user_name", order: 1),
-  last_name: @unique(group: "user_name", order: 2)
+  first_name: ID! @unique(group: "user_name", order: 1),
+  last_name: ID! @unique(group: "user_name", order: 2)
 }
 {{< /highlight >}}
 
@@ -295,12 +299,12 @@ The `@default` directive is used to assign a column / field a default value. Dur
 {{< highlight graphql "hl_lines=4">}}
 type account {
   id: ID! @primary
-  name: String!
-  role: String! @default(value: user)
+  name: ID!
+  role: ID! @default(value: "user")
 }
 {{< /highlight >}}
 
-> **Note:** The `@default` directive works for SQL databases and MongoDB.
+> **Note:** The `@default` directive only works with type `ID`, `Integer`, `Float`, `Boolean` and `DateTime`.
 
 ### Foreign directive
 The `@foreign` directive is used to create a foreign key constraint. Foreign keys are used to maintain the integrity of relations in your data model.
@@ -464,7 +468,10 @@ type user {
 
 The above schema creates an index on the `email` field. 
 
-> **Note:** The `@index` directive isn't available on MongoDB yet. [Create an issue](https://github.com/spaceuptech/space-cloud/issues) for it if you want Space Cloud to have this feature on MongoDB as well.
+
+> **Note:** The `@unique` index 
+
+> **Note:** The `@index` directive isn't available on MongoDB yet and only works with type `ID`, `Integer`, `Float`, `Boolean` and `DateTime`.
 
 You can provide the following arguments in order to customize the index:
 
@@ -477,8 +484,8 @@ You can provide the following arguments in order to customize the index:
 {{< highlight graphql "hl_lines=4" >}}
 type user {
   id: ID! @primary
-  first_name: @index(group: "user_name", order: 1, sort: "asc"),
-  last_name: @index(group: "user_name", order: 2, sort: "desc")
+  first_name: ID! @index(group: "user_name", order: 1, sort: "asc"),
+  last_name: ID! @index(group: "user_name", order: 2, sort: "desc")
 }
 {{< /highlight >}}
 
