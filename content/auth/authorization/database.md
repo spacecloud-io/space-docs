@@ -110,7 +110,7 @@ The basic syntax looks like this:
 {{< highlight json >}}
 {
   "rule": "match",
-  "eval": "== | != | > | >= | < | <=",
+  "eval": "== | != | > | >= | < | <= | in | notIn",
   "type": "string | number | bool",
   "f1": "< field1 >",
   "f2": "< field2 >"
@@ -145,6 +145,19 @@ Example (Role based authentication - allow only admin to delete a project):
 }
 {{< /highlight >}}
 
+Example (Role based authentication - allow admin/moderator to delete a project):
+
+{{< highlight json >}}
+{
+  "delete": {
+    "rule": "match",
+    "eval": "in",
+    "type": "string",
+    "f1": "args.auth.role",
+    "f2": ["admin", "moderator"]
+  }
+}
+{{< /highlight >}}
 
 Example (Check if a field is present in the request):
 

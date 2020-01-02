@@ -317,7 +317,7 @@ The regex based search operator in Space Cloud is used to compare field values t
 {{< highlight graphql >}}
 query {
   pokemons(
-    where: { description: { _regex_: "/strong/i"}}
+    where: { description: { _regex: "(?i)strong"}}
   ) @mongo {
     _id
     name
@@ -327,7 +327,7 @@ query {
   </div>
   <div id="regex-js" class="col s12" style="padding:0">
 {{< highlight javascript>}}
-const whereClause = cond("description", "regex", "/regex/i")
+const whereClause = cond("description", "regex", "(?i)strong")
 
 const { status, data } = await db.get("pokemons")
   .where(whereClause)
@@ -336,7 +336,7 @@ const { status, data } = await db.get("pokemons")
   </div>
 </div>
 
-> **Note:** Regex support isn't available in SQL Server as of now. You can [raise an issue](https://github.com/spaceuptech/space-cloud/issues) for it if you want it.
+**Note:** The regex operator is mapped to the `~` operator in Postgres, `$regex` operator in MongoDB and `REGEXP` in MySQL.
 
 ## List based operators
 
@@ -439,11 +439,11 @@ query {
   caught_pokemons(
     where: {
       _and: {
-        "caught_on": {
+        caught_on: {
           _gte: "2019-06-01",
           _lte: "2019-09-15"
         },
-        "trainer_id": "1"
+        trainer_id: "1"
       }
     } 
   ) @mongo {

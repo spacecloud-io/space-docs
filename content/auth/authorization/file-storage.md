@@ -105,7 +105,7 @@ The basic syntax looks like this:
 {{< highlight json >}}
 {
   "rule": "match",
-  "eval": "== | != | > | >= | < | <=",
+  "eval": "== | != | > | >= | < | <= | in | notIn",
   "type": "string | number | bool",
   "f1": "< field1 >",
   "f2": "< field2 >"
