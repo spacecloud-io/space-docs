@@ -9,7 +9,7 @@ An insert request only requires the `docs` argument, which is nothing but the ar
 
 ## Insert a single object
 
-Example: Let's say you have caught a Pikachu! This is how you would add it to your list of caught pokemons:
+**Example:** Let's say you have caught a Pikachu! This is how you would add it to your list of caught pokemons:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -67,7 +67,7 @@ The result of the above mutation is as follows:
 
 ## Insert multiple objects of the same type in the same mutation
 
-Example: Add 3 items received from Professor Oak to your list of items:
+**Example:** Add 3 items received from Professor Oak to your list of items:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">

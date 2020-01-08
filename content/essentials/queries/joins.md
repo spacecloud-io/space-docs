@@ -2,7 +2,7 @@
 title: "Joins / nested queries"
 date: 2019-09-17T07:20:48+05:30
 draft: false
-weight: 7
+weight: 8
 ---
 
 You can join data from **different data sources** by making nested queries. Joins can be performed based on the [relations](/essentials/data-modelling/relations) described in your schema.

@@ -9,7 +9,7 @@ You can fetch a single or multiple objects of the same type using a simple objec
 
 ## Fetch list of objects
 
-Example: Let's say we want to fetch a list of all pokemons. This is how you would do it: 
+**Example:** Let's say we want to fetch a list of all pokemons. This is how you would do it: 
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">

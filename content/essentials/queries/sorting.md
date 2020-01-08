@@ -12,7 +12,7 @@ The default order of sorting for any field provided in the `sort` array is **asc
 
 ## Sorting simple queries
 
-Example: Sort all the trainers by their name:
+**Example:** Sort all the trainers by their name:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -25,7 +25,7 @@ Example: Sort all the trainers by their name:
 {{< highlight graphql "hl_lines=3">}}
 query {
   trainers(
-    sort: {name: 1}
+    sort: ["name"]
   ) @mongo {
     id
     name
@@ -33,22 +33,29 @@ query {
 }
 {{< /highlight >}}   
   </div>
+  <div id="sorting-js" class="col s12" style="padding:0">
+{{< highlight javascript>}}
+const { status, data } = await db.get("trainers")
+  .sort("name")
+  .apply()
+{{< /highlight >}}  
+  </div>
 </div>
 
 
 ## Sorting nested queries
 
-Example: Sort all the trainers by their name in ascending order and their pokemons by their combat_power in descending order:
+**Example:** Sort all the trainers by their name in ascending order and their pokemons by their combat_power in descending order:
 
 {{< highlight graphql >}}
 query {
   trainers(
-    sort: { name: 1 }
+    sort: ["name"]
   ) @mongo {
     id
     name
     pokemons(
-      sort: { combat_power : -1 }
+      sort: ["-combat_power]
     ) @mongo {
       name
       combat_power
@@ -59,7 +66,7 @@ query {
 
 ## Sorting by multiple fields
 
-Example: Sort all caught pokemons first by their `name` in ascending order and then by their `caught_on` date in descending order:
+**Example:** Sort all caught pokemons first by their `name` in ascending order and then by their `caught_on` date in descending order:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -72,7 +79,7 @@ Example: Sort all caught pokemons first by their `name` in ascending order and t
 {{< highlight graphql >}}
 query {
   caught_pokemons(
-    sort: { name: 1, caught_on: -1 }
+    sort: ["name", "-caught_on"]
   ) @mongo {
     id
     name

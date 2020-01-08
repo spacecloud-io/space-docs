@@ -115,7 +115,7 @@ Here, `--admin-user` and `--admin-pass` are the credentials to login into Missio
 
 Space Cloud only has two ports - HTTP and HTTPs. The HTTP port is available by default on `4122`, and you can change it by passing the `PORT` flag.
 
-Example: 
+**Example:** 
 {{< highlight bash>}}
 ./space-cloud run --port 5000
 {{< /highlight >}}

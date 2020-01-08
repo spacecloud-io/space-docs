@@ -33,9 +33,9 @@ Fields are the building blocks of an object type. A field either refers to a sca
 
 An `ID` is used to hold a string value of up to 50 characters. You use `ID` to store prominent strings in your model like the unique identifier of a row/document.
 
-Space Cloud auto-generates the value of `ID` fields with [ksuid](https://github.com/segmentio/ksuid) (sortable unique identifiers) if you don't provide their value during mutation.
+> **Note:** As of now, only field with type`ID` can be a primary key.
 
-As of now, only `ID` fields can have primary, unique key and default value constraints. If you want to alter this behaviour, contribute your thoughts on this [Github issue](https://github.com/spaceuptech/space-cloud/issues/479).
+Space Cloud auto-generates the value of `ID` fields with [ksuid](https://github.com/segmentio/ksuid) (sortable unique identifiers) if you don't provide their value during an insert operation.
 
 **Example:** Uniquely identify an order in an e-commerce app:
 

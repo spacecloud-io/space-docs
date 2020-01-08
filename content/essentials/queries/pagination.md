@@ -2,7 +2,7 @@
 title: "Paginate query results"
 date: 2019-09-17T07:22:47+05:30
 draft: false
-weight: 4
+weight: 5
 ---
 
 The operators `limit` and `skip` are used for pagination.
@@ -13,7 +13,7 @@ The following are examples of different pagination scenarios:
 
 ## Limit results
 
-Example: Fetch the first 5 trainers from the list of all trainers:
+**Example:** Fetch the first 5 trainers from the list of all trainers:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -45,7 +45,7 @@ const { status, data } = await db.get("trainers")
 
 ## Skip and limit results
 
-Example: Fetch 5 trainers from the list of all trainers starting from the 6th one:
+**Example:** Fetch 5 trainers from the list of all trainers starting from the 6th one:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -79,7 +79,7 @@ const { status, data } = await db.get("trainers")
 
 ## Skip and limit results on nested queries
 
-Example: Fetch first 3 trainers and 2 pokemons of each trainer starting from the 6th one:
+**Example:** Fetch first 3 trainers and 2 pokemons of each trainer starting from the 6th one:
 
 {{< highlight graphql >}}
 query {
