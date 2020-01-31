@@ -418,13 +418,11 @@ const { status, data } = await db.get("pokemons")
 
 You can group multiple parameters in the same `where` clause using the logical **AND** and **OR** operations. These logical operations can be **infinitely nested** to apply **complex filters**.
 
-For GraphQL, `_and` and `_or` are the logical **AND** and **OR** operators respectively. 
-
-Whereas for the client SDKs, `and` and `or` are the methods used for **AND** and **OR** operations respectively.
-
 ### Example: AND
 
-Let's say we want to fetch all `pokemons` that are between two particular dates by `Ash` (trainer_id - 1). This is how you would do it:
+By default a logical AND operation is performed on all the conditions mentioned in the where clause. 
+
+Let's say we want to fetch all `pokemons` that are caught between two particular dates by `Ash` (trainer_id - 1). This is how you would do it:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -438,13 +436,11 @@ Let's say we want to fetch all `pokemons` that are between two particular dates 
 query {
   caught_pokemons(
     where: {
-      _and: {
-        caught_on: {
-          _gte: "2019-06-01",
-          _lte: "2019-09-15"
-        },
-        trainer_id: "1"
-      }
+      caught_on: {
+        _gte: "2019-06-01",
+        _lte: "2019-09-15"
+       },
+      trainer_id: "1"
     } 
   ) @mongo {
     _id
@@ -469,6 +465,8 @@ const { status, data } = await db.get("caught_pokemons")
 </div>
 
 ### Example: OR
+
+To perform a logical OR operation, we have to use the `_or` operator in GraphQL. 
 
 Let's say we want to fetch information of all Fire-type or Legendary pokemons. This is how you would do it:
 
@@ -525,10 +523,8 @@ query {
     name
     caught_pokemons(
       where: {
-        _and: {
-          trainer_id: "trainers.id"
-          type: "Fire"
-        }
+        trainer_id: "trainers.id"
+        type: "Fire"
       }
     ) @mongo {
       _id
