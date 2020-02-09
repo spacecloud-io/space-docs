@@ -1,0 +1,24 @@
+{
+  "name": "space-docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "sass static/sass/app.scss:static/css/app.css --style compressed",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spaceuptech/space-docs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spaceuptech/space-docs/issues"
+  },
+  "homepage": "https://github.com/spaceuptech/space-docs#readme",
+  "dependencies": {
+    "sass": "^1.25.0"
+  }
+}

@@ -1,2 +1,4 @@
 # Ignore the css files since they can be generated from the scss files
 static/css
+public/*
+node_modules/*
