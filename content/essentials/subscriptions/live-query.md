@@ -1,7 +1,7 @@
 ---
 title: "Live Query"
 date: 2019-09-28T11:37:46+05:30
-draft: true
+draft: false
 weight: 1
 ---
 
@@ -9,7 +9,7 @@ weight: 1
 ## Live query
 When you make a live query request to Space Cloud, it first pushes down the initial data in the result set one by one.  After that, it just notifies you of any changes that happen to your result set.
 
-Example: Live query to the list of pokemons caught by a trainer:
+**Example:** Live query to the list of pokemons caught by a trainer:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -30,7 +30,7 @@ subscription {
     payload {
       name
     }
-    docId # This is the primary key of the changed document 
+    find # Object containing the unique fields of the concerned document 
   }
 }
 {{< /highlight >}}   
@@ -40,10 +40,10 @@ subscription {
 const whereClause = cond("trainer_id", "==", "1")
 
 // Callback for data changes:
-const onSnapshot  = (docs, type, doc) => {
+const onSnapshot  = (docs, type, find, doc) => {
    // docs is the entire result set maintained by the client SDK
-   // whereas doc is the concerned doc
-   console.log(docs, type, doc)
+   // doc is the concerned doc whereas find is the object containing the unique fields
+   console.log(docs, type, find, doc)
 }
 
 // Callback for error while subscribing
@@ -66,7 +66,7 @@ Data pushed down in live query have the following fields:
 
 - **type:** The type of operation which has resulted in Space Cloud pushing down data. Possible values are - `initial`, `insert`, `update`, and `delete`. `initial` is only applicable when Space Cloud is pushing the initial data down.
 - **payload:** The concerned document/object. `null` for `delete` operation.
-- **docId:** The unique id of the corresponding document/object. In case of MongoDB it's the `_id` field of the concerned document, and in case of SQL databases, it's the `id` of the concerned record.
+- **find:** An object containing the unique fields of the document. 
 - **time:** The timestamp of the operation in milliseconds.
 
 ## Subscribing to changes only
@@ -100,10 +100,10 @@ subscription {
 const whereClause = cond("trainer_id", "==", "1")
 
 // Callback for data changes:
-const onSnapshot  = (docs, type, doc) => {
+const onSnapshot  = (docs, type, find, doc) => {
    // docs is the entire result set maintained by the client SDK
-   // whereas doc is the concerned doc
-   console.log(docs, type, doc)
+   // doc is the concerned doc whereas find is the object containing the unique fields
+   console.log(docs, type, find, doc)
 }
 
 // Callback for error while subscribing

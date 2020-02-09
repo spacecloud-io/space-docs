@@ -1,7 +1,7 @@
 ---
 title: "Setting up project"
 date: 2019-09-26T09:23:13+05:30
-draft: true
+draft: false
 weight: 4
 ---
 

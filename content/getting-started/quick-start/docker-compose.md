@@ -1,7 +1,7 @@
 ---
 title: "Docker Compose"
 date: 2019-09-26T12:40:23+05:30
-draft: true
+draft: false
 weight: 1
 ---
 
@@ -83,27 +83,23 @@ Click on `Create a Project` button to open the following screen:
 
 Give a `name` to your project. 
 
-`Select POSTGRESQL` as your database.
+Hit `Create Project` button to create the project. 
 
-Hit `Next` to create the project. 
+### Adding database to your project
 
-### Configuring DB config
+After creating the project, the next step is to add a database to your project:
 
-Head over to the `Database` section. 
+![Add database](/images/screenshots/add-database.png)
 
-As you can see, the connection status would be disconnected.
+Select `POSTGRESQL` as your database.
 
-Click on the `Edit Connection` button:
-
-![Edit connection details](/images/screenshots/edit-connection-postgres.png)
-
-Copy-paste the following connection string in it: 
+Copy-paste the following connection string:
 
 {{< highlight html >}}
 postgres://postgres:mysecretpassword@postgres:5432/postgres?sslmode=disable
 {{< /highlight >}}
 
-That's all that is required to configure Space Cloud for this guide!
+Hit `Add database` button. That's all that is required to configure Space Cloud for this guide!
 
 ## Step4: Let us try it out 
 

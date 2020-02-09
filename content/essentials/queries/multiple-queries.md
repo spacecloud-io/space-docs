@@ -1,8 +1,8 @@
 ---
 title: "Multiple Queries"
 date: 2019-09-17T17:36:20+05:30
-draft: true
-weight: 6
+draft: false
+weight: 7
 ---
 
 
@@ -10,7 +10,7 @@ With Space Cloud, you can make multiple queries even to **different databases** 
 
 > **Note:** This is only a GraphQL feature and not available in any client SDKs.
 
-Example: Fetch list of trainers (from PostgreSQL) and pokemons (from MongoDB):
+**Example:** Fetch list of trainers (from PostgreSQL) and pokemons (from MongoDB):
 
 {{< highlight graphql "hl_lines=2 6">}}
 query {

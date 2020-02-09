@@ -1,7 +1,7 @@
 ---
 title: "Sample use cases"
 date: 2019-09-17T18:18:52+05:30
-draft: true
+draft: false
 weight: 2
 ---
 
@@ -15,7 +15,7 @@ If you want to build a realtime chat app, then you can use Space Cloud for vario
 - Online/offline status of a user
 - Is typing indicator for a user
 
-Example: Subscribe to chat messages:
+**Example:** Subscribe to chat messages:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -48,7 +48,7 @@ subscription {
 const whereClause = cond("to", "==", "user1")
 
 // Callback for data changes:
-const onSnapshot  = (messages, type, message) => {
+const onSnapshot  = (messages, type, find, message) => {
 
 }
 
@@ -69,7 +69,7 @@ if (on some logic) {
   </div>
 </div>
 
-Example: Subscribe to is_typing indicator and status of a user:
+**Example:** Subscribe to is_typing indicator and status of a user:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -100,7 +100,7 @@ subscription {
 const whereClause = cond("_id", "==", "user2")
 
 // Callback for data changes:
-const onSnapshot  = (_, type, user) => {
+const onSnapshot  = (_, type, find, user) => {
 
 }
 
@@ -151,7 +151,7 @@ subscription {
 const whereClause = cond("_id", "==", "1")
 
 // Callback for data changes:
-const onSnapshot  = (_, type, game) => {
+const onSnapshot  = (_, type, find, game) => {
 
 }
 

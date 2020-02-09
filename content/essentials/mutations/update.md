@@ -1,7 +1,7 @@
 ---
 title: "Update"
 date: 2019-09-18T11:59:24+05:30
-draft: true
+draft: false
 weight: 2
 ---
 
@@ -17,7 +17,7 @@ You can perform different types of update operations like `set`, `inc`, `push`, 
 
 `set` operator is used to set a field's value with the given value.
 
-Example: Update the name of your pokemon:
+**Example:** Update the name of your pokemon:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -54,7 +54,7 @@ const { status } = await db.update("caught_pokemons")
 
 `inc` operator is used to increment/decrement a field's value by the provided value.
 
-Example: Increment the combat power of your pokemon by 50:
+**Example:** Increment the combat power of your pokemon by 50:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -87,7 +87,7 @@ const { status } = await db.update("caught_pokemons")
   </div>
 </div>
 
-Example: Decrement the hit points of your pokemon by 10:
+**Example:** Decrement the hit points of your pokemon by 10:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -126,7 +126,7 @@ const { status } = await db.update("caught_pokemons")
 
 > **Note:** The multiplier can be float as well to achieve division.
 
-Example: Your pokemon has evolved, and you want to multiply its combat power by 2:
+**Example:** Your pokemon has evolved, and you want to multiply its combat power by 2:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -163,7 +163,7 @@ const { status } = await db.update("caught_pokemons")
 
 `min` operator updates a field's value with the **least** (minimum) value amongst the specified value and the current value.
 
-Example: Update the trainer's lowest score after a battle:
+**Example:** Update the trainer's lowest score after a battle:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -202,7 +202,7 @@ const { status } = await db.update("trainers")
 
 `max` operator updates a field's value with the **maximum** value amongst the specified value and the current value.
 
-Example: Update the trainer's highest score after a battle:
+**Example:** Update the trainer's highest score after a battle:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -241,7 +241,7 @@ const { status } = await db.update("trainers")
 
 `currentDate` operator updates a field's value with the current date/timestamp value.
 
-Example: Update `last_battled` field of a pokemon to current date and `last_modified` field with the current timestamp:
+**Example:** Update `last_battled` field of a pokemon to current date and `last_modified` field with the current timestamp:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -284,7 +284,7 @@ const { status } = await db.update("caught_pokemons")
 
 `push` operator can be used to push a given value to an array in a document.
 
-Example: Push `thunderbolt` to your pokemon's list of attacks:
+**Example:** Push `thunderbolt` to your pokemon's list of attacks:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -323,7 +323,7 @@ const { status } = await db.update("caught_pokemons")
 
 `unset` operator deletes the value of a particular field.
 
-Example: Delete `is_favourite` field from your pokemons:
+**Example:** Delete `is_favourite` field from your pokemons:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -364,7 +364,7 @@ const { status } = await db.update("caught_pokemons")
 
 `rename` operator rename the field's name.
 
-Example: Rename `is_favourite` field to `favourite`:
+**Example:** Rename `is_favourite` field to `favourite`:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">

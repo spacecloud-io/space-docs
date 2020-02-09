@@ -1,7 +1,7 @@
 ---
 title: "Quick Start"
 date: 2019-09-26T12:40:40+05:30
-draft: true
+draft: false
 weight: 1
 ---
 

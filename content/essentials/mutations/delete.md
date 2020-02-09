@@ -1,13 +1,13 @@
 ---
 title: "Delete"
 date: 2019-09-18T18:23:50+05:30
-draft: true
+draft: false
 weight: 4
 ---
 
 A delete request only requires a `where` clause to filter rows to be deleted. The `where` clause has the same [filtering options](/essentials/queries/filtering) as queries.
 
-Example: Delete all pokemons with combat_power lesser than 200:
+**Example:** Delete all pokemons with combat_power lesser than 200:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">

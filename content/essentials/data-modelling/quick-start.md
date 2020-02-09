@@ -1,7 +1,7 @@
 ---
 title: "Getting Started"
 date: 2019-10-15T10:25:42+05:30
-draft: true
+draft: false
 weight: 1
 ---
 

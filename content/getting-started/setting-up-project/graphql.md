@@ -1,7 +1,7 @@
 ---
 title: "Setting up graphql"
 date: 2019-09-26T09:23:36+05:30
-draft: true
+draft: false
 weight: 1
 ---
 
@@ -67,6 +67,7 @@ The directives for databases are:
 - `@mongo`: For MongoDB
 - `@postgres` : For PostgreSQL and PostgreSQL compatible databases (eg: CockroachDB, Yugabyte)
 - `@mysql`: For MySQL and MySQL compatible databases (eg: TiDB)
+- `@sqlserver`: For SQL Server
 
 ## Advanced client
 
@@ -154,6 +155,7 @@ The directives for databases are:
 - `@mongo`: For MongoDB
 - `@postgres` : For PostgreSQL and PostgreSQL compatible databases (eg: CockroachDB, Yugabyte)
 - `@mysql`: For MySQL and MySQL compatible databases (eg: TiDB)
+- `@sqlserver`: For SQL Server
 
 
 ## Next steps

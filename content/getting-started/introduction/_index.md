@@ -1,7 +1,7 @@
 ---
 title: "Introduction"
 date: 2019-09-20T06:42:20+05:30
-draft: true
+draft: false
 weight: 1
 ---
 

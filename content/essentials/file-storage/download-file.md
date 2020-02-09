@@ -1,7 +1,7 @@
 ---
 title: "Download file"
 date: 2019-09-21T08:15:47+05:30
-draft: true
+draft: false
 weight: 2
 toc: false
 ---

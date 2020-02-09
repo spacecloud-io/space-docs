@@ -1,7 +1,7 @@
 ---
 title: "Types and Directives"
 date: 2019-10-16T10:51:01+05:30
-draft: true
+draft: false
 weight: 3
 ---
 This guide will give a detailed explanation of [object types](#object-types), [field types](#field-types), [field-constraints](#field-constraints) and [directives](#directives) in Space Cloud schema definition language.
@@ -33,9 +33,9 @@ Fields are the building blocks of an object type. A field either refers to a sca
 
 An `ID` is used to hold a string value of up to 50 characters. You use `ID` to store prominent strings in your model like the unique identifier of a row/document.
 
-Space Cloud auto-generates the value of `ID` fields with [ksuid](https://github.com/segmentio/ksuid) (sortable unique identifiers) if you don't provide their value during mutation.
+> **Note:** As of now, only field with type`ID` can be a primary key.
 
-As of now, only `ID` fields can have primary and unique key constraints. If you want to alter this behaviour, contribute your thoughts on this [Github issue](https://github.com/spaceuptech/space-cloud/issues/479).
+Space Cloud auto-generates the value of `ID` fields with [ksuid](https://github.com/segmentio/ksuid) (sortable unique identifiers) if you don't provide their value during an insert operation.
 
 **Example:** Uniquely identify an order in an e-commerce app:
 
@@ -200,12 +200,24 @@ A unique constraint is used to ensure that a field always has a unique value.
 {{< highlight graphql "hl_lines=3" >}}
 type user {
   id: ID! @primary
-  username: String! @unique
+  username: ID! @unique
   email: String!
 }
 {{< /highlight >}}
 
-> Note: Space Cloud doesn't support composite unique keys ([Github issue](https://github.com/spaceuptech/space-cloud/issues/477)) yet.
+**Example:** Composite unique keys:
+
+{{< highlight graphql >}}
+type user {
+  id: ID! @primary
+  first_name: String! @unique("group": "unique_name", order: 1)
+  last_name: String! @unique("group": "unique_name", order: 2)
+}
+{{< /highlight >}}
+
+> **Note:** The `@unique` index only works with type `ID`, `Integer`, `Float`, `Boolean` and `DateTime`.
+
+The above example creates a composite unique key on two columns - `first_name` and `last_name`. Read more about `@unique` directive from [here].
 
 **Foreign key constraint**
 
@@ -245,16 +257,54 @@ type order {
 {{< /highlight >}}
 
 ### Unique key
-The `@unique` directive is used to put a unique constraint on a field.
+The `@unique` directive is used to put a unique constraint/index on a field(s). In its simplest form it looks like this:
 
-**Example:** Make sure that each user has a unique `username`:
-
-{{< highlight graphql "hl_lines=3" >}}
+{{< highlight graphql "hl_lines=3">}}
 type user {
   id: ID! @primary
-  username: String! @unique
+  email: ID! @unique
+  name: String!
 }
 {{< /highlight >}}
+
+The above schema creates an unique index on the `email` field. (i.e. No two users will have the same `email`)
+
+> **Note:** The `@unique` index only works with type `ID`, `Integer`, `Float`, `Boolean` and `DateTime`.
+
+You can provide the following arguments in order to customize the unique index:
+
+- `group`: (String) If two or more fields have the same `group`, then they form a **composite unique index**.
+- `order`: (Integer starting from 1) Used to set the order of the column within the index . Required in case of composite unique index.
+
+**Full fledged example:** Make sure that the combination of `first_name` and `last_name` is unique:
+
+{{< highlight graphql "hl_lines=4" >}}
+type user {
+  id: ID! @primary
+  first_name: ID! @unique(group: "user_name", order: 1),
+  last_name: ID! @unique(group: "user_name", order: 2)
+}
+{{< /highlight >}}
+
+The `@unique` directive is used to put a unique constraint/index on a field(s). It takes the following arguments:
+
+- `group`: Optional. A string used to name the unique index. If two or more fields have the same `group`, then they form a composite unique key.
+- `order`: Optional. An integer used to set the order of the column within the index . Required in case of composite unique key.
+
+### Default value directive
+The `@default` directive is used to assign a column / field a default value. During an insert, if the field containing the `@default` directive wasn't set, the default value is used
+
+**Example:** Setting the default value of `role` to `user`:
+
+{{< highlight graphql "hl_lines=4">}}
+type account {
+  id: ID! @primary
+  name: ID!
+  role: ID! @default(value: "user")
+}
+{{< /highlight >}}
+
+> **Note:** The `@default` directive only works with type `ID`, `Integer`, `Float`, `Boolean` and `DateTime`.
 
 ### Foreign directive
 The `@foreign` directive is used to create a foreign key constraint. Foreign keys are used to maintain the integrity of relations in your data model.
@@ -401,6 +451,41 @@ query {
       price
     }
   }
+}
+{{< /highlight >}}
+
+### Index directive
+
+The `@index` directive is used to create an index on your table/collection. In its simplest form it looks like this:
+
+{{< highlight graphql "hl_lines=3">}}
+type user {
+  id: ID! @primary
+  email: ID! @index
+  name: String!
+}
+{{< /highlight >}}
+
+The above schema creates an index on the `email` field. 
+
+
+> **Note:** The `@unique` index 
+
+> **Note:** The `@index` directive isn't available on MongoDB yet and only works with type `ID`, `Integer`, `Float`, `Boolean` and `DateTime`.
+
+You can provide the following arguments in order to customize the index:
+
+- `group`: (String) If two or more fields have the same `group`, then they form a **composite index**.
+- `order`: (Integer starting from 1) Used to set the order of the column within the index . Required in case of composite index.
+- `sort`: (String - `asc`|`desc`) Used to set the sorting of the index.
+
+**Full fledged example:** 
+
+{{< highlight graphql "hl_lines=4" >}}
+type user {
+  id: ID! @primary
+  first_name: ID! @index(group: "user_name", order: 1, sort: "asc"),
+  last_name: ID! @index(group: "user_name", order: 2, sort: "desc")
 }
 {{< /highlight >}}
 

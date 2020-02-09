@@ -1,8 +1,8 @@
 ---
 title: "Remove event logs"
 date: 2019-10-19T13:39:18+05:30
-draft: true
-weight: 3
+draft: false
+weight: 4
 ---
 
 Space Cloud stores the event logs related to Event Triggers in the `event_logs` table/collection. If there are lots of events, the `event_logs` table can get huge, and you may want to prune them. You can use any of the following options to prune your event logs depending on your need.

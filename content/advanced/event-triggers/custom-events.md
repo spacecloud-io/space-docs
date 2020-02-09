@@ -1,8 +1,8 @@
 ---
 title: "Custom Events"
 date: 2019-10-19T13:38:53+05:30
-draft: true
-weight: 2
+draft: false
+weight: 3
 ---
 
 With Space Cloud, you can trigger webhooks on any custom events in your application. Space Cloud uses an in-built eventing queue to invoke your webhooks reliably.
@@ -89,7 +89,7 @@ http://<space-cloud-url>/v1/api/<project-id>/event-triggers/queue
 
 ### Scheduling events
 
-You ca schedule events to be triggered later by using `timestamp` and/or `delay` fields:
+You can schedule events to be triggered later by using `timestamp` and/or `delay` fields:
 
 **Example:** Delay event trigger by 1 minute:
 

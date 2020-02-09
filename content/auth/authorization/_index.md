@@ -1,7 +1,7 @@
 ---
 title: "Authorization"
 date: 2019-09-23T08:08:25+05:30
-draft: true
+draft: false
 weight: 2
 ---
 
@@ -31,7 +31,7 @@ This stage decides whether an authenticated user is authorized or not to make a 
 
 - Matching based on the fields in the incoming request and the auth object (JWT claims).
 - Making a database query.
-- Calling a custom function to return `true/false` to validate the request.
+- Calling a custom http server to return `2XX` to validate the request.
 
 ## Security rule types
 
@@ -41,9 +41,11 @@ Security rules are a mechanism used to enforce authorization. The request is all
 - **authenticated:** This rule is used to allow the request if a valid JWT token is found in the request. No checks are imposed beyond that. Basically it authorizes every request which has passed the authentication stage.
 - **deny:** This rule is to deny all incoming requests. It is especially useful to deny certain operations like `delete` while selectively allowing the other ones.
 - **match:** This rule is used to allow a certain request only when a certain condition has been met. Generally it is used to match the input parameters (like the where clause or certain fields in the document to be inserted) with the auth object. It can also be used for role based authentication (match the role of user to a particular value).
+- **remove:** This rule is used to remove certain fields from the request or response. This is usually useful if you want to [protect certain private fields](https://github.com/spaceuptech/space-cloud/issues/552).
+- **force:** This rule is used to [override certain fields in the request or response](https://github.com/spaceuptech/space-cloud/issues/553). This is specially helpful when you want to enforce certain security rules without giving `403` error to the client.
 - **query:** This rule is used to allow a certain request only if a database request returns successfully. The query's find clause is generated dynamically using this rule. The query is considered to be successful if even a single row is successfully returned.
 - **and, or:** These rules helps you mix and match the `match` and `query` rules to tackle complex authorization tasks.
-- **func:** These rule allows you to write a custom function in any language to authorize the incoming request.
+- **webhook:** These rule allows you to write a custom http server in any language to authorize the incoming request.
 
 ## Next steps
 

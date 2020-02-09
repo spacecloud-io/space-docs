@@ -1,0 +1,1 @@
+sass --style compressed static/sass/app.scss:static/css/app.css

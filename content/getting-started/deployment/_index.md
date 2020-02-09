@@ -1,7 +1,7 @@
 ---
 title: "Deployment"
 date: 2019-09-26T18:03:26+05:30
-draft: true
+draft: false
 weight: 3
 ---
 

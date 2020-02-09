@@ -1,7 +1,7 @@
 ---
 title: "Quick Start"
 date: 2019-10-19T10:45:30+05:30
-draft: true
+draft: false
 weight: 1
 ---
 
@@ -97,17 +97,23 @@ Head over to `http://localhost:4122/mission-control` to open Mission Control.
 
 > **Note:** Replace `localhost` with the address of your Space Cloud if you are not running it locally. 
 
-### Create project
+### Creating a project
 
 Click on `Create a Project` button to open the following screen:
 
 ![Create a project screen](/images/screenshots/create-project.png)
 
-Give a `name` to your project. For this guide, we'll use the name `my-adder`. 
+Give a `name` to your project. 
 
-It doesn't matter which database you choose here since we won't be using it anyways.
+Hit `Create Project` button to create the project. 
 
-Hit `Next` to create the project.
+After you create a project, you will be asked to add a database:
+
+![Add database](/images/screenshots/add-database.png)
+
+Click on `Skip for now` as we won't be using database anyways in this project.
+
+> **Note:** You can add database to your project later if you wish to from the `Database` section inside the project.
 
 ## Step 5: Add remote service to Space Cloud
 

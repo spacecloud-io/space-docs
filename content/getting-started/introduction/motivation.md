@@ -1,7 +1,7 @@
 ---
 title: "Motivation"
 date: 2019-09-20T06:42:30+05:30
-draft: true
+draft: false
 weight: 1
 ---
 

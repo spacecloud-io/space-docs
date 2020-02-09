@@ -1,7 +1,7 @@
 ---
 title: "Upsert"
 date: 2019-09-18T18:23:46+05:30
-draft: true
+draft: false
 weight: 3
 ---
 
@@ -11,7 +11,7 @@ An upsert query works like a regular update query if any document matching the `
 
 Space Cloud performs all upsert operations with snapshot level isolations so that all upserts are race safe.
 
-Example: Insert a pokemon or update it if it's already present:
+**Example:** Insert a pokemon or update it if it's already present:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">

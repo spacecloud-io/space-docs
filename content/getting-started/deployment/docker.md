@@ -1,7 +1,7 @@
 ---
 title: "Docker"
 date: 2019-09-26T18:03:53+05:30
-draft: true
+draft: false
 weight: 1
 ---
 
@@ -53,7 +53,7 @@ Here, `ADMIN_USER` and `ADMIN_PASS` are the credentials to login into Mission Co
 
 Space Cloud only has two ports - HTTP and HTTPs. The HTTP port is available by default on `4122`, and you can change it by passing the environment variable of `PORT`.
 
-Example: 
+**Example:** 
 {{< highlight bash>}}
 docker run -d -p 8000:8000 -e PORT=8000 --name space-cloud spaceuptech/space-cloud:latest
 {{< /highlight >}}

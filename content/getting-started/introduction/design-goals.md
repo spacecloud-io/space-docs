@@ -1,7 +1,7 @@
 ---
 title: "Design Goals"
 date: 2019-09-20T06:42:41+05:30
-draft: true
+draft: false
 weight: 2
 ---
 
