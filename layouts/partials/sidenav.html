@@ -1,4 +1,4 @@
-{{$pageUrl := .Page.URL}}
+{{$pageUrl := .Page.Permalink}}
 <ul id="slide-out" class="sidenav sidenav-fixed">
   <a href="/" class="logo-wrapper hide-on-large-only">
     <img class="logo-img" src="/images/kit/logo_full.svg" alt="">
@@ -6,33 +6,13 @@
   <li class="no-padding">
     <ul class="collapsible collapsible-accordion">
       {{ range .Site.Sections.ByWeight }}
-      <li class="section {{ if in $pageUrl .URL }}active{{end}} {{ if eq $pageUrl .URL }}selectedPage{{end}}">
+      <li class="section {{ if in $pageUrl .Permalink }}active{{end}}">
         <span>
-          <a href="{{.URL}}">{{ upper .Name }}</a>
+          <a class="{{ if eq $pageUrl .Permalink }}selectedPage{{end}}" href="{{.RelPermalink}}">{{ upper .Name }}</a>
           <i class="material-icons collapsible-header">dehaze</i>
         </span>
-        <div class="collapsible-body">
-          <ul class="collapsible collapsible-accordion">
-            {{ range .Sections.ByWeight }}
-            <li class="sub-section {{ if in $pageUrl .URL }}active{{end}} {{ if eq $pageUrl .URL }}selectedPage{{end}}">
-              <span>
-                <a href="{{.URL}}">{{ .Name }}</a>
-                <i class="material-icons collapsible-header icon-add">add_box</i>
-                <i class="material-icons collapsible-header icon-remove">indeterminate_check_box</i>
-              </span>
-              <div class="collapsible-body">
-                <ul>
-                  {{ range .Pages.ByWeight }}
-                  <li>
-                    <a class="page-item {{ if eq $pageUrl .URL }}selectedPage{{end}}" href="{{ .URL }}">{{ .Title }}</a>
-                  </li>
-                  {{ end }}
-                </ul>
-              </div>
-            </li>
-            {{ end }}
-          </ul>
-        </div>
+        {{ .Scratch.Set "pageUrl" $pageUrl }}
+        {{ partial "sidenav_section.html" . }}
       </li>
       {{ end }}
     </ul>

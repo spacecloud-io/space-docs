@@ -1,0 +1,27 @@
+{{ $pageUrl := .Scratch.Get "pageUrl" }}
+
+<div class="collapsible-body">
+  <ul class="{{if gt (len .Sections) 0}}collapsible collapsible-accordion{{end}}">
+    {{ range .Pages.ByWeight }}
+
+    {{ if gt (len .Pages) 0 }}
+    <li class="{{ if in $pageUrl .RelPermalink }}active $pageUrl{{end}}">
+      <span>
+        <a class="sidenav-link {{ if eq $pageUrl .Permalink }}selectedPage $pageUrl{{end}}" href="{{.RelPermalink}}">{{ .Name }}</a>
+        <i class="material-icons collapsible-header icon-add">add_box</i>
+        <i class="material-icons collapsible-header icon-remove">indeterminate_check_box</i>
+      </span>
+      {{ .Scratch.Set "pageUrl" $pageUrl }}
+      {{ partial "sidenav_section.html" . }}
+    </li>
+    {{ end }}
+
+    {{ if eq (len .Pages) 0 }}
+    <li>
+      <a class="sidenav-link {{ if eq $pageUrl .Permalink }}selectedPage $pageUrl{{end}}" href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </li>
+    {{ end }}
+
+    {{ end }}
+  </ul>
+</div>

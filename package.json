@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "sass static/sass/app.scss:static/css/app.css --style compressed",
+    "watch": "sass --watch static/sass/app.scss:static/css/app.css --style compressed",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

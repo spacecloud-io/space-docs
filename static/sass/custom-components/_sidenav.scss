@@ -7,13 +7,32 @@
     z-index: 996;
   }
 
-  // Override material sidenav values
-  li.active {
-    background-color: transparent;
+  .sidenav-link {
+    padding-right: 10px !important;
+    
   }
-  li > a:hover {
+  
+  .collapsible-body {
+    padding-left: 1rem;
+  }
+
+  // Override material sidenav values
+  li {
+    background-color: transparent !important;
+
+    a {
+      color: $dark-color;
+      background-color: transparent !important;
+    }
+    
+    a:hover {
+      color: $orange;
+    }
+  }
+
+
+  .selectedPage {
     color: $orange;
-    background-color: transparent;
   }
 
   .collapsible-header:hover {
@@ -21,17 +40,8 @@
   }
 
   .material-icons {
+    padding: 0 !important;
     font-size: 16px;
-  }
-
-
-  // Style for the most nested page
-  .page-item {
-    padding-left: 64px !important;
-    height: 40px;
-    &.selectedPage {
-      color: $orange;
-    }
   }
 
   // Logo wrapper for mobile
@@ -41,9 +51,10 @@
     padding-left: 32px;
   }
 
-
-  .section,
-  .sub-section {
+  .section {
+    &.active {
+      background: #eee;
+    }
     & > span {
       display: flex;
       padding-right: 24px;
@@ -60,37 +71,9 @@
       & > i {
         padding: 0;
       }
-    }
-    .collapsible-body li a {
-      padding: 0 8px 0 48px;
-    }
-  }
-
-  .section {
-    &.active {
-      background: #eee;
-    }
-    &.selectedPage {
-      & > span > a {
-        color: $orange;
-      }
-    }
-    & > span {
       font-weight: 700;
       font-size: 15px;
       justify-content: space-between;
-    }
-  }
-
-  .sub-section {
-    & > span {
-      font-weight: 400;
-      font-size: 15px;
-    }
-    &.selectedPage {
-      & > span > a {
-        color: $orange;
-      }
     }
   }
 

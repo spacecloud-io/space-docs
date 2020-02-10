@@ -1,14 +1,23 @@
 {{$pageUrl := .Page.URL}}
 {{ $sortedPages :=  slice }}
-{{ range $i, $section := .Site.Sections.ByWeight }}
-{{$sortedPages = $sortedPages | append $section }}
-{{ range $j, $subSection := .Sections.ByWeight}}
-{{$sortedPages = $sortedPages | append $subSection }}
-{{ range $k, $page := .Pages.ByWeight}}
-{{$sortedPages = $sortedPages | append $page }}
-{{end}}
-{{end}}
-{{ end}}
+{{ range $a, $section0 := .Site.Sections.ByWeight }}
+{{$sortedPages = $sortedPages | append $section0 }}
+{{ range $b, $section1 := $section0.Sections.ByWeight}}
+{{$sortedPages = $sortedPages | append $section1 }}
+{{ range $c, $section2 := $section1.Pages.ByWeight}}
+{{$sortedPages = $sortedPages | append $section2 }}
+{{ range $d, $section3 := $section2.Pages.ByWeight}}
+{{$sortedPages = $sortedPages | append $section3 }}
+{{ range $e, $section4 := $section3.Pages.ByWeight}}
+{{$sortedPages = $sortedPages | append $section4 }}
+{{ range $f, $section5 := $section4.Pages.ByWeight}}
+{{$sortedPages = $sortedPages | append $section5 }}
+{{ end }}
+{{ end }}
+{{ end }}
+{{ end }}
+{{ end }}
+{{ end }}
 
 {{$nextPage := ""}}
 {{$prevPage := ""}}
@@ -28,16 +37,6 @@
 {{$nextPageTitle := ""}}
 {{$nextPageParentName := ""}}
 
-{{if ne $prevPage ""}}
-{{$prevPageTitle = $prevPage.Title}}
-{{$prevPageParentName = $prevPage.Parent.Name}}
-{{end}}
-
-{{if ne $nextPage ""}}
-{{$nextPageTitle = $nextPage.Title}}
-{{$nextPageParentName = $nextPage.Parent.Name}}
-{{end}}
-
 <div class="row" style="width: 100%">
   <div class="col s12 l6">
     {{if ne $prevPage ""}}
@@ -48,10 +47,14 @@
         </div>
         <div class="content-holder align-right">
           <div class="category">
-            {{$prevPageParentName}}
+            {{ if or (not $prevPage.Parent) (eq $prevPage.Parent.Name "") }}
+            Space Cloud
+            {{ else }}
+            {{$prevPage.Parent.Name}}
+            {{ end }}
           </div>
           <div class="title">
-            {{$prevPageTitle}}
+            {{$prevPage.Title}}
           </div>
         </div>
       </div>
@@ -64,10 +67,14 @@
       <div class="container">
         <div class="content-holder">
           <div class="category">
-            {{$nextPageParentName}}
+            {{ if or (not $nextPage.Parent) (eq $nextPage.Parent.Name "") }}
+            Space Cloud
+            {{ else }}
+            {{$nextPage.Parent.Name}}
+            {{ end }}
           </div>
           <div class="title">
-            {{$nextPageTitle}}
+            {{$nextPage.Title}}
           </div>
         </div>
         <div>
