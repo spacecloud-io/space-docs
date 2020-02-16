@@ -1,8 +1,8 @@
-{{$pageUrl := .Page.URL}}
+{{$pageUrl := .Page.RelPermalink}}
 {{ $sortedPages :=  slice }}
 {{ range $a, $section0 := .Site.Sections.ByWeight }}
 {{$sortedPages = $sortedPages | append $section0 }}
-{{ range $b, $section1 := $section0.Sections.ByWeight}}
+{{ range $b, $section1 := $section0.Pages.ByWeight}}
 {{$sortedPages = $sortedPages | append $section1 }}
 {{ range $c, $section2 := $section1.Pages.ByWeight}}
 {{$sortedPages = $sortedPages | append $section2 }}
@@ -22,7 +22,7 @@
 {{$nextPage := ""}}
 {{$prevPage := ""}}
 {{ range $i, $page := $sortedPages}}
-{{ if eq $page.URL $pageUrl }}
+{{ if eq $page.RelPermalink $pageUrl }}
 {{ if gt $i 0 }}
 {{$prevPage = index $sortedPages (sub $i 1)}}
 {{end}}
@@ -40,7 +40,7 @@
 <div class="row" style="width: 100%">
   <div class="col s12 l6">
     {{if ne $prevPage ""}}
-    <a class="page_link_card" href="{{$prevPage.URL}}">
+    <a class="page_link_card" href="{{$prevPage.RelPermalink}}">
       <div class="container">
         <div>
           <i class="material-icons">arrow_back</i>
@@ -63,7 +63,7 @@
   </div>
   <div class="col s12 l6">
     {{if ne $nextPage ""}}
-    <a class="page_link_card" href="{{$nextPage.URL}}">
+    <a class="page_link_card" href="{{$nextPage.RelPermalink}}">
       <div class="container">
         <div class="content-holder">
           <div class="category">

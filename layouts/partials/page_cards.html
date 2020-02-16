@@ -2,7 +2,7 @@
   {{$items := cond (gt (len .Pages) 0) .Pages .Sections }}
   {{range $items }}
   <div class="col s12 l6">
-    <a class="page_card" href="{{.URL}}">
+    <a class="page_card" href="{{.RelPermalink}}">
       <div class="title">
         {{.Title}}
       </div>

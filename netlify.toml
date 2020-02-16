@@ -9,3 +9,9 @@
   HUGO_VERSION = "0.64.0"
 [context.deploy-preview.environment]
   HUGO_VERSION = "0.64.0"  
+
+[[redirects]]
+  from = "/getting-started/*"
+  to = "https://learn.spaceuptech.com/space-cloud/basics/setup/"
+  status = 301
+  force = true
