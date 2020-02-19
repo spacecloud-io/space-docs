@@ -29,13 +29,13 @@ Service Id  | Docker Image                | Port
 
 We just created a service named `myapp` and instructed Space Cloud to pull the `spaceuptech/basic-service` docker image from Docker Hub. We also specified that our `myapp` service listens on port `8080`.
 
-> **We haven't changed any of the advanced configuration in this example. Feel free to explore those as well.**
+> **We haven't changed any of the advanced configurations in this example. Feel free to explore those as well.**
 
-This makes Space Cloud pull the image, and start it with the default configs. It also creates an internal domain `myapp.myproject.svc.cluster.local` to access our service from within the cluster.
+Space Cloud now pulls the docker image and starts it with the default configs. It also creates an internal domain `myapp.myproject.svc.cluster.local` to access our service from within the cluster.
 
 > **Domains are created in the format `<service-id>.<project-id>.svc.cluster.local`.**
 
-Under the hood Space Cloud also configures [Istio](https://istio.io) and setups up **mtls**, **authentication policies** and more to secure your deployment by default.
+Under the hood Space Cloud also configures [Istio](https://istio.io) and setups up **mtls**, **authentication policies** and more to secure your deployments by default.
 
 ## Next steps
 

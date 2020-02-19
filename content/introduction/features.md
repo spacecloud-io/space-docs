@@ -77,7 +77,7 @@ Supported storage mechanisms are:
 
 ## GraphQL APIs for Restful Services
 
-Remote services are a means to extend Space Cloud by means of microservices and serverless functions. You can write your microservices in the form of HTTP services that run alongside Space Cloud. These services can be accessed securely via GraphQL or directly.
+Services are a means to extend Space Cloud using microservices and serverless functions. You can write your microservices in the form of HTTP services that run alongside Space Cloud. These services can be accessed securely via GraphQL or directly.
 
 Notable features of Remote services:
 
@@ -115,9 +115,9 @@ Security rules allow you to:
 
 ## Deployments Module
 
-The [Deployments Module](/microservices/deployments) is used to automatically deploy and scale you docker images on any Kubernetes cluster. It has first class support of Istio, hence all your services enjoy the benefit of using a Service Mesh.
+The [Deployments Module](/microservices/deployments) automatically deploys and scales your docker images on any Kubernetes cluster. It has first-class support of Istio. Hence all your services enjoy the benefit of using a Service Mesh.
 
-In a nutshell the deployments module lets you:
+In a nutshell, the deployments module lets you:
 - Deploy docker images to Kubernetes
 - Fully encrypt all internal traffic by default for enhanced security.
 - AutoScale HTTP workloads even down to zero!

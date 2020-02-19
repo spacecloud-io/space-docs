@@ -1,5 +1,5 @@
 ---
-title: "Using secrets"
+title: "Using Secrets"
 date: 2020-02-14T10:45:00+05:30
 draft: false
 weight: 5
@@ -11,7 +11,7 @@ Space Cloud provides the ability to describe such `secrets` and inject them in c
 
 ## Advantage of using Secrets
 
-- All secrets are encrypted at rest hence are stored securely.
+- All secrets are made available to the containers at runtime.
 - Changing secrets redeploys all services using it automatically.
 - Makes the container images for flexible to use in different environments.
 - You can create the secret once and use it in multiple services.
@@ -28,6 +28,6 @@ Here's how you create the two secrets:
 
 ![Create file secret](/images/screenshots/create-file-secret.png)
 
-To apply these secrets to a service, simply mention them in the service configuration.
+To apply these secrets to a service, mention them in the service configuration.
 
 ![Using secrets](/images/screenshots/using-secrets.png)

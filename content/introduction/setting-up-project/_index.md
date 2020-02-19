@@ -1,5 +1,5 @@
 ---
-title: "Setting up project"
+title: "Setting up a Project"
 date: 2019-09-26T09:23:13+05:30
 draft: false
 weight: 5
@@ -17,7 +17,7 @@ Space Cloud supports both GraphQL and REST (HTTP and WebSockets) APIs so that yo
 
 GraphQL is the recommended way to use Space Cloud. It unlocks incredible powers like joins which are not exposed by REST APIs yet.
 
-You can use any GraphQL client out there to talk to Space Cloud. However, it's always recommended to use a popular open-source client (e.g. Apollo).
+You can use any GraphQL client out there to talk to Space Cloud. However, we recommend using a popular open-source client (e.g. Apollo).
 
 Follow this [guide](/introduction/setting-up-project/graphql) to set up Apollo client (recommended for graphql) in your javascript project.
 

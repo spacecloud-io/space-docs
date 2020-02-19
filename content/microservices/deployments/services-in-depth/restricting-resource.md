@@ -5,7 +5,7 @@ draft: false
 weight: 3
 ---
 
-Space Cloud provides a mechanism to restrict the resources each task of a service can consume. This lets you optimize your cluster resources.
+Space Cloud provides a mechanism to restrict the resources each task can consume. These limits let you optimize your cluster resources.
 
 ![Service resources](/images/screenshots/service-resources.png)
 
@@ -13,7 +13,7 @@ Space Cloud provides a mechanism to restrict the resources each task of a servic
 
 ## Available Resource Types
 
-Currently you can restrict the following resources:
+Currently, you can restrict the following resources:
 - **CPU:** Expressed as a fraction. (Eg. 0.5)
 - **Memory:** Expressed in MBs. (Eg. 256)
 
@@ -21,7 +21,7 @@ Currently you can restrict the following resources:
 
 ## Default Resource Restrictions
 
-Space Cloud always restricts resources by default. While these work for most use cases, you might want to tweak them as per your needs. Here's the default restrictions Space Cloud applies.
+Space Cloud always restricts resources by default. While these work for most use cases, you might want to tweak them as per your needs. Here are the default restrictions Space Cloud applies.
 
 CPU   | Memory
 ---   | ---
@@ -29,4 +29,4 @@ CPU   | Memory
 
 ## How it Works?
 
-In Kubernetes, the resource restrictions is implemented as _Resource Requests_. You can read more about it [here](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#how-pods-with-resource-limits-are-run).
+In Kubernetes, the resource restrictions are implemented as _Resource Requests_. You can read more about it [here](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#how-pods-with-resource-limits-are-run).

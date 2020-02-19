@@ -56,7 +56,7 @@ var api = new Space.API("todo_app", "http://localhost:4122");
 
 ## Step 3: Create a DB instance
 
-The `API` instance created above helps you to use `fileStorage` and `remote-services` modules directly. However, to use `crud`, `realTime` and `auth` modules, you also have to create a `db` instance.
+The `API` instance created above helps you to use `file storage` and `services` modules directly. However, to use `database` and `realTime` modules, you also have to create a `db` instance.
 
 > **Note:** You can use multiple databases in the same project. (For, eg. MongoDB and MySQL)
 
@@ -69,7 +69,7 @@ const db = api.Mongo();
 
 **For PostgreSQL:**
 
-> **Note:** This works for all databases that are PostgreSQL compatible (For, e.g. CockroachDB, Yugabyte etc.)
+> **Note:** This works for all databases that are PostgreSQL compatible (For, e.g. CockroachDB and Yugabyte)
 
 {{< highlight javascript >}}
 const db = api.Postgres();

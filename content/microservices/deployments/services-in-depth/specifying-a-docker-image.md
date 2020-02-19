@@ -11,17 +11,17 @@ To use Space Cloud's _Deployments Module_ you need to specify a docker image to 
 
 ## Specify an image from Docker Hub
 
-In the add service form, you'll see the following config
+In the add service form, you'll see the following config.
 
 ![Docker image public](/images/screenshots/docker-image-public.png)
 
-All you need to do is supply the docker image name and that's it. For eg. `spaceuptech/basic-service`.
+All you need to do is supply the docker image name, and that's it. For eg. `spaceuptech/basic-service`.
 
-> **Space Cloud will search for the image on Docker Hub by default.**
+> **Space Cloud searches for the image on Docker Hub by default.**
 
 ## Specify an image from another registry
 
-In some cases, you may want to use a registry apart from Docker Hub. This is especially true when using the registry provided by a cloud vendor. In this case you simply prefix the url of the registry to the name of the docker image.
+In some cases, you may want to use a docker registry apart from Docker Hub. This is especially true when using the registry provided by a cloud vendor. In this case, you prefix the URL of the registry to the name of the docker image.
 
 Here are a few examples of `spaceuptech/basic-service` being on different registries.
 
@@ -33,15 +33,15 @@ Here are a few examples of `spaceuptech/basic-service` being on different regist
 
 You might want to create private images for the more sensitive applications. Space Cloud gives you the provision to pull private images as well.
 
-The first step is creating a docker secret from the `Secrets` section. You will be asked to provide the following:
+The first step is creating a docker secret from the `Secrets` section. You are required to provide the following:
 - **Name:** The name to use while referring to the secret.
 - **User Name:** The username used to login into the registry.
 - **Password:** The password used to login into the registry.
-- **Registry Url:** The url of the registry being used.
+- **Registry Url:** The URL of the registry.
 
 ![Create Docker Secret](/images/screenshots/create-docker-secret.png)
 
-Once you have the secret ready, simply use it while creating / updating the service.
+Once you have the secret ready, use it while creating/updating the service.
 
 ![Docker image private](/images/screenshots/docker-image-private.png)
 

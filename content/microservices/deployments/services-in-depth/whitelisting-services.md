@@ -1,11 +1,11 @@
 ---
-title: "Whitelisting services"
+title: "Whitelisting Services"
 date: 2020-02-14T10:45:00+05:30
 draft: false
 weight: 6
 ---
 
-Space Cloud allows you to whitelist the downstream services which are allowed to communicate with the current service in an extremely easy manner.
+Space Cloud allows you to whitelist the downstream services which are allowed to communicate with the current service in an effortless manner.
 
 ![Whitelisting Services](/images/screenshots/whitelisting-services.png)
 
@@ -22,7 +22,7 @@ Space Cloud requires two parameters to configure whitelisting.
 - **Project Id:** The project id of the service to be whitelisted
 - **Service Id:** The id of the service to be whitelisted
 
-Clearly, Space Cloud allows you to whitelist services from different projects.
+Space Cloud allows you to whitelist services from different projects.
 
 > **Whitelisting services from different projects works inside the same cluster only.**
 
