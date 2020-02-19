@@ -5,13 +5,13 @@ draft: false
 weight: 1
 ---
 
-The first step to start using Space Cloud is setting it up. Space Cloud requires several components to be running for proper functions. The most notable components are:
+The first step to start using Space Cloud is setting it up. Space Cloud requires several components to be running for proper functions. The most important components are:
 
 - **Gateway:** Responsible for ingress traffic and generation of REST / GaphQL APIs
-- **Runner:** Responsible for intra cluster traffic and policy enforcement
+- **Runner:** Responsible for intra-cluster traffic and policy enforcement
 - **Container Registry:** Responsible for storing docker images. We won't be needing this for local setup.
 
-Luckily, we don't have to interact with these components in most use cases directly. Space Cloud ships with a utility named `space-cli` which will bootstrap a cluster for us.
+Luckily, we don't have to interact with these components directly. Space Cloud ships with a utility named `space-cli` which bootstraps a cluster for us.
 
 ## Prerequisites
 
@@ -31,13 +31,13 @@ Unzip the compressed archive.
 
 **For Windows:** Right-click on the archive and select `extract here`.
 
-To make sure if space-cli binary is correct, type the following command from the directory where space-cli is downloaded:
+To make sure if the space-cli binary is correct, type the following command from the directory where you downloaded space-cli:
 
 **For Linux / Mac:** `./space-cli -v`
 
 **For Windows:** `space-cli.exe -v`
 
-This will print the `space-cli` version.
+The above command will print the `space-cli` version.
 
 > Optionally, you can copy the `space-cli` binary to your environment path variable for global usage.
 
@@ -49,10 +49,10 @@ We can set up all Space Cloud components using a single command.
 ./space-cli setup --dev
 ```
 
-The `setup` command selects `Docker` as a target by default and runs all the containers required to setup Space Cloud. On successful installation it will generate an output similar to this one:
+The `setup` command selects `Docker` as a target by default and runs all the containers required to setup Space Cloud. On successful installation it generates an output similar to this one:
 
 ```bash
-INFO[0000] Setting up space cloud on docker
+INFO[0000] Setting up space cloud on Docker
 INFO[0000] Starting container space-cloud-gateway...
 INFO[0000] Starting container space-cloud-runner...
 INFO[0001] Space Cloud (id: "local-admin") has been successfully setup! :D
