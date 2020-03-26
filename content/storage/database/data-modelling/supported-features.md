@@ -133,13 +133,32 @@ In queries or mutations, `DateTime` fields have to be specified either in ISO 86
 - `datetime: "2015-11-22T13:57:31.123Z"`
 - `datetime: 1571207400000`
 
+**JSON fields**
+
+A `JSON` type stores JSON data. It is typically used when your data has nested structures rather than a flat structure.
+
+> **Note:** This is only available in PostgreSQL as of now. It uses the `JSONB` type of Postgres underneath to provide this feature. 
+
+For example: We might want to store the `address` of each user in the `user` table. However, `address` field itself can have other fields like `pincode`, `city`, etc. You can model such data easily in the following way using the `JSON` type:
+
+{{< highlight graphql "hl_lines=5">}}
+type user {
+  id: ID! @primary
+  email: ID!
+  name: String!
+  address: JSON
+}
+{{< /highlight >}}
+
+Providing such a schema allows you to use JSON objects in your mutations and queries directly. Serializing and unserializing of the JSON data is handled automatically.
+
 **Nested/embedded fields**
 
-Document oriented databases like MongoDB can have nested structures. 
+Document oriented databases like MongoDB have first-class support of nested structures. Modelling nested structures in such databases is as easy as writing a separate schema for the nested structure and using that schema in the parent schema. 
+
+> **Note:** This feature is only available in MongoDB.
 
 **Example:** Let's say each document in `post` collection has an embedded document called `author`: 
-
-> **Note:** All the embedded types for a collection are provided in the schema of the collection itself.
 
 {{< highlight graphql "hl_lines=6">}}
 type post {
@@ -156,7 +175,7 @@ type author {
 }
 {{< /highlight >}}
 
-> `Note:` The schema in MongoDB is used only for data validation.
+> **Note:** All the embedded types for a collection are provided in the schema of the collection itself.
 
 
 ### Field constraints
