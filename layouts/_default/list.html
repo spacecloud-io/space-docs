@@ -50,6 +50,95 @@
       $('.tabs').tabs();
     });
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/algoliasearch@3/dist/algoliasearchLite.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
+  <script>
+  const client = algoliasearch('6UWRFSDKNM', '5db50d933f260cd4b18a781bd16d5e85');
+  const introduction = client.initIndex('Introduction');
+  const install = client.initIndex('Install');
+  const storage = client.initIndex('Storage');
+  const microservices = client.initIndex('Microservices');
+  const userManagement = client.initIndex('User Management');
+
+  autocomplete(
+    '#aa-search-input',
+    {
+      debug: true
+    },
+    [
+      {
+        source: autocomplete.sources.hits(introduction, {hitsPerPage: 1}),
+        displayKey: 'page',
+        page: 'description',
+        templates: {
+          header: '<div class="aa-suggestions-category">Introduction</div>',
+          suggestion({_highlightResult, url}) {
+            return `<a class="search-link" href="${url}"> <span class="search-page">${_highlightResult.title.value} | ${_highlightResult.sub_title.value} | ${_highlightResult.page.value}</span><hr style="color: #333">
+            <span class="search-heading">${_highlightResult.heading.value}</span><br>
+            <span class="search-description">${_highlightResult.description.value}</span></a>`;
+          },
+          empty: '<div class="aa-empty">No matching players</div>',
+        },
+      },
+      {
+        source: autocomplete.sources.hits(install, {hitsPerPage: 1}),
+        displayKey: 'page',
+        page: 'description',
+        templates: {
+          header: '<div class="aa-suggestions-category">Install</div>',
+          suggestion({_highlightResult, url}) {
+            return `<a class="search-link" href="${url}"> <span class="search-page">${_highlightResult.title.value} | ${_highlightResult.sub_title.value} | ${_highlightResult.page.value}</span><hr style="color: #333">
+            <span class="search-heading">${_highlightResult.heading.value}</span><br>
+            <span class="search-description">${_highlightResult.description.value}</span></a>`;
+          },
+          empty: '<div class="aa-empty">No matching players</div>',
+        },
+      },
+      {
+        source: autocomplete.sources.hits(storage, {hitsPerPage: 2}),
+        displayKey: 'page',
+        page: 'description',
+        templates: {
+          header: '<div class="aa-suggestions-category">Storage</div>',
+          suggestion({_highlightResult, url}) {
+            return `<a class="search-link" href="${url}"> <span class="search-page">${_highlightResult.title.value} | ${_highlightResult.sub_title.value} | ${_highlightResult.page.value}</span><hr style="color: #333">
+            <span class="search-heading">${_highlightResult.heading.value}</span><br>
+            <span class="search-description">${_highlightResult.description.value}</span></a>`;
+          },
+          empty: '<div class="aa-empty">No matching players</div>',
+        },
+      },
+      {
+        source: autocomplete.sources.hits(microservices, {hitsPerPage: 2}),
+        displayKey: 'page',
+        page: 'description',
+        templates: {
+          header: '<div class="aa-suggestions-category">Microservices</div>',
+          suggestion({_highlightResult, url}) {
+            return `<a class="search-link" href="${url}"> <span class="search-page">${_highlightResult.title.value} | ${_highlightResult.sub_title.value} | ${_highlightResult.page.value}</span><hr style="color: #333">
+            <span class="search-heading">${_highlightResult.heading.value}</span><br>
+            <span class="search-description">${_highlightResult.description.value}</span></a>`;
+          },
+          empty: '<div class="aa-empty">No matching players</div>',
+        },
+      },
+      {
+        source: autocomplete.sources.hits(userManagement, {hitsPerPage: 1}),
+        displayKey: 'page',
+        page: 'description',
+        templates: {
+          header: '<div class="aa-suggestions-category">User Management</div>',
+          suggestion({_highlightResult, url}) {
+            return `<a class="search-link" href="${url}"> <span class="search-page">${_highlightResult.title.value} | ${_highlightResult.sub_title.value} | ${_highlightResult.page.value}</span><hr style="color: #333">
+            <span class="search-heading">${_highlightResult.heading.value}</span><br>
+            <span class="search-description">${_highlightResult.description.value}</span></a>`;
+          },
+          empty: '<div class="aa-empty">No matching players</div>',
+        },
+      },
+    ]
+  );
+  </script>
 </body>
 
 </html>
