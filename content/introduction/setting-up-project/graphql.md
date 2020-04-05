@@ -164,10 +164,9 @@ Great! You have initialized the graphql client in your project.
 
 Feel free to check out various capabalities of `space-cloud`:
 
-- Perform database [queries](/essentials/queries)
-- [Mutate](/essentials/mutations) data
-- [Realtime](/essentials/subscriptions) data sync across all devices
-- Manage files with ease using [File Storage](/essentials/file-storage) module
+- Perform database [queries](/storage/database/queries)
+- [Mutate](/storage/database/mutations) data
+- [Realtime](/storage/database/subscriptions) data sync across all devices
+- Manage files with ease using [File Storage](/storage/file-storage) module
 - [Authenticate](/auth/authentication) your users
-- Write [custom business logic](/essentials/remote-services)
-- [Secure](/auth/authorization) your apps
+- [Deploy your custom services](/microservices/deployments)
