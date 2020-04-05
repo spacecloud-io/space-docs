@@ -244,7 +244,7 @@ A foreign key constraint is used to maintain the integrity of a relation.
 
 **Example:** Create a foreign key on the `id` field of `author` for `post` table:
 
-{{< highlight graphql "hl_lines=3" >}}
+{{< highlight graphql "hl_lines=8" >}}
 type author {
   id: ID! @primary
   name: String! @unique
@@ -257,6 +257,22 @@ type post {
 }
 {{< /highlight >}}
 
+**Example:** Specifying `onDelete` behaviour of foreign key:
+
+{{< highlight graphql "hl_lines=8" >}}
+type author {
+  id: ID! @primary
+  name: String! @unique
+}
+
+type post {
+  id: ID! @primary
+  title: String!
+  author: ID @foreign(table: "author", field: "id", onDelete: "cascade")
+}
+{{< /highlight >}}
+
+> **If the `onDelete` is not specified, then the default behaviour is to restrict the deletes violating the foreign key contraint.**
 
 ## Directives
 
@@ -347,6 +363,24 @@ type order {
 In the above example, a foreign key is created from the `customer_id` field of `order` table to the `id` field of `customer` table.
 
 > **Note:** Both the fields involved in the foreign key (in this case `order.customer_id` and `customer.id`) should have the same type (`ID` in this case).
+
+**Example:** Specifying `onDelete` behaviour of foreign key:
+
+{{< highlight graphql "hl_lines=10" >}}
+type customer {
+  id: ID! @primary
+  name: String!
+}
+
+type order {
+  id: ID! @primary
+  order_date: DateTime!
+  amount: Float!
+  customer_id: ID! @foreign(table: "customer", field: "id", onDelete: "cascade")
+}
+{{< /highlight >}}
+
+> **If the `onDelete` is not specified, then the default behaviour is to restrict the deletes violating the foreign key contraint.**
 
 ### Link directive
 

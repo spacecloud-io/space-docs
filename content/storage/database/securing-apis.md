@@ -2,12 +2,12 @@
 title: "Securing your APIs"
 date: 2019-09-23T10:07:49+05:30
 draft: false
-weight: 5
+weight: 7
 ---
 
 The security rules for database access works to authorize client request for database operations. Authorization works on the operation level (create, read, update, delete) for each table / collection in the database. This means that you can have different rules for different operations. 
 
-> **Note:** All security rules for database have to be configured via Mission Control only. (`Rules` tab in `Database` section)
+> **Note:** Security rules for database have to be configured via the `Rules` tab in the `Database` section of Mission Control.
 
 Here's a sample snippet which shows the rules on the `users` collection in MongoDB. Operations `create`  and `read` are allowed while `update` and `delete` are blocked:
 
@@ -45,7 +45,7 @@ With security rules for database you can:
 - Allow users to read posts without signin but allow only signed in users to create a post.
 - Protect certain private fields based on roles.
 - Check if the request contains a certain field.
-- Encrypting, decrypting, hasing values of certain fields.
+- Encrypting, decrypting, hashing values of certain fields.
 - The Instagram problem - Allow a user to view a profile only if it is public or if he is following them.
 - Custom validation.
 
@@ -240,7 +240,7 @@ The basic syntax looks like this:
 {{< highlight json >}}
 {
   "rule": "query",
-  "db": "mongo | sql-mysql | sql-postgres",
+  "db": "< db-alias-name >",
   "col": "< collection-name >",
   "find": "< mongo-find-query >",
   "clause": "<clause>"

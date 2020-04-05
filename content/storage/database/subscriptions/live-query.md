@@ -5,6 +5,12 @@ draft: false
 weight: 1
 ---
 
+## Prerequisites
+
+In order to use the realtime functionality (liveQuery) on any table/collection, you need to make sure that the following things are true:
+
+- The schema of the table/collection has some fields that uniquely identify each row (i.e. the table should have primary or unique fields). These fields should also be present in the `where` clause during update and delete mutations. 
+- The particular table/collection has the realtime feature enabled. You can find and change this setting for each table/collection in the `Overview` tab of the `Database` section.
 
 ## Live query
 When you make a live query request to Space Cloud, it first pushes down the initial data in the result set one by one.  After that, it just notifies you of any changes that happen to your result set.

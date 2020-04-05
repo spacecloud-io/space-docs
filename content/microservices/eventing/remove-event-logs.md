@@ -2,7 +2,7 @@
 title: "Remove event logs"
 date: 2019-10-19T13:39:18+05:30
 draft: false
-weight: 4
+weight: 5
 ---
 
 Space Cloud stores the event logs related to Event Triggers in the `event_logs` table/collection. If there are lots of events, the `event_logs` table can get huge, and you may want to prune them. You can use any of the following options to prune your event logs depending on your need.
@@ -20,7 +20,7 @@ The `event_logs` table managed by Space Cloud has the following structure:
 | `type`            | Number |                                                                      Event type |
 | `token`           | String |                                                             Authorization token |
 | `timestamp`       | Number |                                Timestamp of when the event should get executed. |
-| `event_timestamp` | Number |                                         Timestamp of when the event was queued. |
+| `event_ts`        | String |                           DateTime string specifying when the event was queued. |
 | `payload`         | String |                                                         Event data stringified. |
 | `status`          | String |                            Status of event - `staged`, `processed` or `failed`. |
 | `retries`         | Number |                                                    Number of retries performed. |
