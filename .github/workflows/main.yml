@@ -8,8 +8,7 @@ on: [push, pull_request]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  sass:
+  hugo:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -19,21 +18,17 @@ jobs:
     - name: Check out code into the repository
       uses: actions/checkout@v2      
      
-    - name: Set up NodeJS
-      uses: actions/setup-node@v1.1.0
-
-
     - name: Make destination directory for compiled CSS
       run: mkdir static/css
-      
+
     - name: Compile CSS from SCSS files
       uses: gha-utilities/sass-build@v0.2.2
       with:
         source: static/sass/app.scss
-        destination: static/css/app.scss
-      
+        destination: static/css/app.css
+
     - name: Build hugo
-      run: hugo
-      
+      uses: srt32/hugo-action@v0.0.3
+
     - name: Run htmltest to detect errors in html files
-      run: curl https://htmltest.wjdp.uk | bash && ./bin/htmltest                
+      run: curl https://htmltest.wjdp.uk | bash && ./bin/htmltest        
