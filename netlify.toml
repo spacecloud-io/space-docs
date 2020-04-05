@@ -1,6 +1,6 @@
 [build]
   publish = "public"
-  command = "npm run build && hugo && curl https://htmltest.wjdp.uk | bash && ./bin/htmltest"
+  command = "npm run build and hugo"
 [context.production.environment]
   HUGO_VERSION = "0.64.0"
   HUGO_ENV = "production"
