@@ -1,4 +1,4 @@
-DirectoryPath: "../public"
+DirectoryPath: "./public"
 EnforceHTTPS: true
 CacheExpires: "6h"
 IgnoreAltMissing: true
