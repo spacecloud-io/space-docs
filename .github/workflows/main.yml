@@ -22,8 +22,15 @@ jobs:
     - name: Set up NodeJS
       uses: actions/setup-node@v1.1.0
 
-    - name: Compile Sass files to CSS
-      run: npm run build
+
+    - name: Make destination directory for compiled CSS
+      run: mkdir static/css
+      
+    - name: Compile CSS from SCSS files
+      uses: gha-utilities/sass-build@v0.2.2
+      with:
+        source: static/sass/app.scss
+        destination: static/css/app.scss
       
     - name: Build hugo
       run: hugo
