@@ -167,6 +167,8 @@
   left: 0;
   transform: translateX(0);
   position: fixed;
+  max-height: 100%;
+  overflow-y: auto;
 }
 
 // Fixed Sidenav hide on smaller
