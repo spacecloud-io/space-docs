@@ -67,8 +67,8 @@ between two of our services with equal probability. And let's say we also want t
 
 | Scheme | Service Host                         | Port   | Weight |
 |--------|--------------------------------------|--------|--------|
-| `HTTP` | `myapp1.myproject.svc.cluster.local` | `8080` | `50`     |
-| `HTTP` | `myapp2.myproject.svc.cluster.local` | `8080` | `50`     |
+| `HTTP` | `myapp1.myproject.svc.cluster.local` | `8080` | `50`   |
+| `HTTP` | `myapp2.myproject.svc.cluster.local` | `8080` | `50`   |
 
 ## Limitations
 

@@ -13,6 +13,8 @@ The first step to start using Space Cloud is setting it up. Space Cloud requires
 
 Luckily, we don't have to interact with these components directly. Space Cloud ships with a utility named `space-cli` which bootstraps a cluster for us.
 
+> If you just want to use the `Gateway` component of Space Cloud directly, you can [follow this guide](/install/using-gateway-directly) instead.
+
 ## Prerequisites
 
 - Make sure you have [Docker installed](https://docs.docker.com/install/).

@@ -13,7 +13,9 @@ If you would like to take Space Cloud for a quick spin, refer to our [Space Clou
 
 ## Deployment guides
 
-Choose one of the guides below to deploy Space Cloud:
+Choose one of the guides below to deploy Space Cloud platform:
 
 - [Docker](/install/docker) **(recommended for local setup)**
 - [Kubernetes](/install/kubernetes)  **(recommended for production)**
+
+> If you just want to use the `Gateway` component of Space Cloud directly, you can [follow this guide](/install/using-gateway-directly) instead.

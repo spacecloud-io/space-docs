@@ -229,7 +229,7 @@ const whereClause = cond("id", "==", 1)
 
 const { status } = await db.update("trainers")
   .where(whereClause)
-  .min({highest_score: 200})
+  .max({highest_score: 200})
   .apply()
 {{< /highlight >}}  
   </div>
