@@ -113,7 +113,7 @@ const { status } = await db.insert("items")
 
 ## Insert an object along with its related objects through relationships
 
-Let's say you have linked the `pokemon` table to the `pokemons` field of the `trainer` table via the [`@link`](/storage/database/data-modelling/types-and-directives/#link-directive) directive. Then you can insert a trainer along with their pokemons:
+Let's say you have linked the `pokemon` table to the `pokemons` field of the `trainer` table via the [`@link`](/storage/database/data-modelling/supported-features/#link-directive) directive. Then you can insert a trainer along with their pokemons:
 
 {{< highlight graphql >}}
 mutation {

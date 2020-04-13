@@ -210,4 +210,3 @@ Feel free to check out various capabalities of `space-cloud`:
 - Manage files with ease using [File Storage](/storage/filestore) module
 - [Authenticate](/user-management) your users
 - Write [custom business logic](/microservices/graphql)
-- [Secure](/auth/authorization) your apps

@@ -52,7 +52,7 @@ Mutations are used to make changes to your data. Following mutations are support
 - [Update](/storage/database/mutations/update) all records or those that match a filter.
 - [Upsert](/storage/database/mutations/upsert) i.e. update record(s) if exists or insert.
 - [Delete](/storage/database/mutations/delete) all records or those that match a filter.
-- [Batch](/storage/database/mutations/multiple-mutations) multiple mutations in a single transaction.
+- [Transactions](/storage/database/mutations/transactions) multiple mutations in a single transaction.
 
 The following operations are supported in `update` - `set`, `inc`, `mul`, `max`, `min`, `currentDate`, `push`, `unset` and `rename`.
 

@@ -260,4 +260,4 @@ In some cases, you would want to verify the sender of the request received by yo
 Space cloud adds a `X-SC-Token` header which contains a token containing the identity of the caller space cloud instance. This token can be used to check if the incoming request is coming from an authentic source. This token is signed with the `secret` key provided in the project's configuration.
 
 ## Next steps
-Great! You have learned how to secure file access. You may now checkout the [security rules for remote services](/auth/authorization/services).
+Great! You have learned how to secure file access. You can now checkout the [microservices](/microservices) section.

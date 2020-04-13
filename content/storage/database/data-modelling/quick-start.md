@@ -11,7 +11,7 @@ This guide helps you model a Pokemon app 😛 to explore the data modelling in S
 
 ## Setup
 
-If you want to follow this guide along practically, first [deploy Space Cloud](/getting-started/deployment) along with PostgreSQL and create a project in Mission Control with PostgreSQL as the primary database.
+If you want to follow this guide along practically, first [deploy Space Cloud](https://learn.spaceuptech.com/space-cloud/basics/setup/) along with PostgreSQL and create a project in Mission Control with PostgreSQL as the primary database.
 
 Then head over to the `Overview` tab in the `Database` section.
 
@@ -218,7 +218,7 @@ You should be able to see a response which looks like this:
 }
 {{< /highlight >}}
 
-The query that we used above performs a join operation on the backend between `trainer` and `pokemon` table with the condition - `trainer.id == pokemon.trainer_id`. This condition is derived by the arguments (`table`, `from`, `to`) of the `@link` directive, which we mentioned earlier. You can read more about `@link` directive from [here](/storage/database/data-modelling/types-and-directives/#link-directive).
+The query that we used above performs a join operation on the backend between `trainer` and `pokemon` table with the condition - `trainer.id == pokemon.trainer_id`. This condition is derived by the arguments (`table`, `from`, `to`) of the `@link` directive, which we mentioned earlier. You can read more about `@link` directive from [here](/storage/database/data-modelling/supported-features/#link-directive).
 
 Notice that we even received the values for `caught_on` even though we did not specify it while inserting. It means that Space Cloud auto-generated the values for `caught_on` field for us! Pretty great right?
 
@@ -291,4 +291,4 @@ This mutation should fail with the following response:
 
 It means Space Cloud has created foreign keys for us which helped us maintain the integrity of the relation.
 
-Great! You have just learned the basics of data modelling in Space Cloud. The next steps would be to take a deep dive into all the [field types and directives](/storage/database/data-modelling/types-and-directives) or learn [modelling relations](/storage/database/data-modelling/relations) in detail.
+Great! You have just learned the basics of data modelling in Space Cloud. The next steps would be to take a deep dive into all the [features of data modelling](/storage/database/data-modelling/supported-features) or learn [modelling relations](/storage/database/data-modelling/relations) in detail.

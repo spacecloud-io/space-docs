@@ -16,7 +16,7 @@ To deploy your code, it should have these two files:
 - `Dockerfile` - To build the docker image since Space Cloud can only deploy docker containers.
 - `service.yaml` - To describe the service configuration (example: resources, auto-scaling, ports)
 
-> **If you already have these two files, you can straight away jump to [deploying service]().**
+> **If you already have these two files, you can straight away jump to [deploying the service](/microservices/deployments/deploy-your-code/#deploying-the-service).**
 
 `space-cli` has a built-in command to generate both of these. It automatically generates a `Dockerfile` for us and a `service.yaml` as well with suitable defaults by asking us only a few required questions.
 

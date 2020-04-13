@@ -41,7 +41,7 @@ Then copy-paste the **connection string** of the selected file storage and hit *
 
 This connection string is used by Space Cloud to connect to the selected file storage. In the case of Local File Storage, connection string is the path of the folder where you want to store all your files.
 
-> **Note:** Before you can use the file storage module from the frontend, you need to [add security rules](https://docs.spaceuptech.com/auth/authorization) too.
+> **Note:** Before you can use the file storage module from the frontend, you should [secure the file storage module with security rules](/microservices/filestore/securing-apis) too.
 
 ## How it works
 

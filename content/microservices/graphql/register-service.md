@@ -48,4 +48,4 @@ You need to enter the following information:
 
 > **Note:** You can also use arguments to make the path dynamic. For example, a path - `/hello/{args.name}` will receive the `name` URL param from the arguments sent by the client in the query.
 
-- **Rules:** These are the security rules for your endpoint. Read more about security [here](/auth/authorization).
+- **Rules:** These are the security rules for your endpoint. Read more about security [here](/microservices/graphql/securing-apis).
