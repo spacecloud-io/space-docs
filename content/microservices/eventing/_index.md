@@ -14,7 +14,7 @@ Event triggers enable:
 - **Improved performance**: Due to the **async** nature, event creators don't have to wait. 
 - **Better reliability**: Configurable retry logic.
 - **Simplified decoupling**: Change business logic without changing event data. 
-- **Scheduling events**: Reschedule the event for some time in the future for flexible processing.  
+- **Scheduling events**: Reschedule the event for some time in the future for flexible processing.
 
 ## Use cases
 
@@ -31,9 +31,9 @@ You add an event trigger to Space Cloud via Mission Control. Each event trigger 
 
 Events can be of the following types:
 
-- `CRUD_CREATE`: When a row/document gets created.
-- `CRUD_UPDATE`: When a row/document gets updated.
-- `CRUD_DELETE`: When a row/document gets deleted.
+- `DB_INSERT`: When a row/document gets created.
+- `DB_UPDATE`: When a row/document gets updated.
+- `DB_DELETE`: When a row/document gets deleted.
 - `FILE_CREATE`: When a file/folder is created.
 - `FILE_DELETE`: When a file/folder is deleted.
 - `<CUSTOM>`: Whenever you queue a custom event to Space Cloud.

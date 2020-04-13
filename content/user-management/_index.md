@@ -37,7 +37,7 @@ Head to the `Database` section and create a table/collection with the following 
 
 {{< highlight graphql >}}
 type users {
-  id: ID! @id     ## _id for MongoDB
+  id: ID! @primary     ## _id for MongoDB
   email: String!
   name: String!
   pass: String

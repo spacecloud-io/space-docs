@@ -1,17 +1,21 @@
 ---
-title: "Securing your APIs"
-date: 2020-02-12T08:04:06+05:30
+title: "Securing Custom Events"
+date: 2020-03-30T20:37:14+05:30
 draft: false
-weight: 4
+weight: 3
 ---
 
-The security rules for remote services works to authorize client request for remote services. Authorization works on the endpoint level of each service. This means that you can have different rules for each endpoint in a service. 
 
-![Add endpoint screen](/images/screenshots/add-endpoint.png)
 
-See the `Rule` section in the above image? That's where the rule goes.
+The security rules for custom event triggers works to authorize client request for queing/triggering custom events. Authorization works on the event type level. This means you can have different rules for different types of custom events.
 
-Here's a sample snippet which shows the security rules to access the endpoint `endpoint1` of service `service1`.
+> **Note:** You only need to secure custom events as they are queued via REST API of Space Cloud unlike database and file storage events that are queued by Space Cloud internally. Specifying security rules for database and file storage events wont have any effect as they are not necessary.
+
+Security rules for custom event triggers are configured in the `Rules` tab in `Eventing` section of Mission Control.
+
+> **Note:** Security rules for custom events have to be configured via the `Rules` tab in `Eventing` section of Mission Control.
+
+Here's a sample snippet which shows the rules of a custom event type:
 
 {{< highlight json >}}
 {
@@ -19,23 +23,22 @@ Here's a sample snippet which shows the security rules to access the endpoint `e
 }
 {{< /highlight >}}
 
-
-You can add write rules for each endpoint under each service. A request to an endpoint is denied if there is no corresponding rule for it. This ensures that all calls to remote services are secure by default.
+You can add write rules for each custom event type. A request to queue an endpoint is denied if there is no rule for its type. This ensures that all calls to queue events are secure by default.
 
 ## Features
 Using the security rules you can:
 
-- Allow / deny access to a remote endpoint.
-- Allow access to a remote endpoint only if the user is authenticated.
-- Allow access to a remote endpoint only if certain conditions are met (via JSON rules or custom logic).
-- Encrypting, decrypting, hashing values of certain fields in request or response.
+- Allow / deny access to queue an event.
+- Allow queuing an event only if the user is authenticated.
+- Allow queueing an event only if certain conditions are met (via JSON rules or custom logic).
+- Encrypting, decrypting, hashing values of certain fields in event data.
 
 ## Popular use cases
 
-- Allow only signed in users to call a function (For example only allow signed in users to make a payment).
-- Role based authentication (For example only allow admin to access a particular function)
-- Check if the params sent by user contains a certain field.
-- Call another function to authorize the function call (For example you might have an authorization service which validates all types of request).
+- Allow only signed in users to queue an event.
+- Role based authentication (For example, only allow admin to queue a particular event)
+- Check if the event data sent by user contains a certain field.
+- Call another function to authorize the event queue request (For example you might have an authorization service which validates all types of request).
 
 All these problems can be solved by the security module of Space Cloud.
 
@@ -43,11 +46,11 @@ All these problems can be solved by the security module of Space Cloud.
 All requests for function calls contains 2 variables which are availabe to you for matching conditions:
 
 - **auth:** The claims present in the JWT token. If you are using in-built user management service of Space Cloud, then the `auth` has `id`, `name` and `role` of the user. While making a custom service, you are free to choose the claims which go inside the JWT token and thus available in the `auth` variable.
-- **params:** The params object sent by the user to call the function.
+- **params:** The event data/payload queued by the user.
 
 ## Allow anonymous access
  
-You can disable authentication and authorization for a particular function of a service completely by using `allow`. The request is allowed to be made even if the JWT token is absent in the request. You might want to use this when you want your users to perform certain operation without signin. Here's how to give access to a particular operation using `allow`:
+You can disable authentication and authorization for a particular event type completely by using `allow`. The event is allowed to queued even if the JWT token is absent in the request. You might want to use this when you want your users to queue certain events without signin. Here's how to give access to a particular event type using `allow`:
 
 {{< highlight json >}}
 {
@@ -57,7 +60,7 @@ You can disable authentication and authorization for a particular function of a 
 
 ## Deny access
 
-This rule is to deny all calls to a particular function irrespective of any thing. It might be useful to temporarily deny access to a function (For example in testing). Here's how to deny access to a particular function using `deny`:
+This rule is to deny all calls to queue events of a particular type. It might be useful to temporarily deny access to an event type function (For example in testing). Here's how to deny access to a particular event type using `deny`:
 
 {{< highlight json >}}
 {
@@ -68,7 +71,7 @@ This rule is to deny all calls to a particular function irrespective of any thin
 
 ## Allow only authenticated users
 
-You can allow a certain function to be called only if the caller is authenticated. (For example, allow only logged in users to make a payment). This rule is used to allow the request only if a valid JWT token is found in the request. No checks are imposed beyond that. Basically it authorizes every request which has passed the authentication stage. Here's how to allow a function call for authenticated users:
+You can allow certain events to be queued only if the caller is authenticated. (For example, allow only logged in users to queue an event). This rule is used to allow the request only if a valid JWT token is found in the request. No checks are imposed beyond that. Basically it authorizes every request which has passed the authentication stage. Here's how to allow events with a particular type to be queued for authenticated users:
 
 {{< highlight json >}}
 {
@@ -78,10 +81,10 @@ You can allow a certain function to be called only if the caller is authenticate
 
 ## Allow function call on certain conditions
 
-Many a times you might want a user to call a particular function only when certain conditions are met. Such conditions might require you to check the value of certain fields from the incoming request or from the database. Or it can be a custom validation altogether. The security rules in Space Cloud are made keeping this flexibility in mind.
+Many a times you might want a user to queue a particular event only when certain conditions are met. Such conditions might require you to check the value of certain fields from the event data or from the database. Or it can be a custom validation altogether. The security rules in Space Cloud are made keeping this flexibility in mind.
 
 ### Match incoming requests
-This rule is used to allow a certain request only when a certain condition has been met and all the variables required for matching are present in the request itself. Every request for a function call contains 2 variables - `auth` and `params` present in the `args` object. Generally this rule is used to match the parameters sent by user with the auth object. It can also be used for role based authentication.
+This rule is used to allow a certain request only when a certain condition has been met and all the variables required for matching are present in the request itself. Every request to queue an event contains 2 variables - `auth` and `params` present in the `args` object. `params` is the event payload queued by the user. Generally this rule is used to match the payload sent by user with the auth object. It can also be used for role based authentication.
 
 The basic syntax looks like this:
 
@@ -135,9 +138,9 @@ Example (Check if a field is present in the `params`):
 
 ### Remove fields from the request
 
-This rule is used to remove certain fields from the request.  This is especially helpful if you want to [protect certain fields from some operation](https://github.com/spaceuptech/space-cloud/issues/552).
+This rule is used to remove certain fields from the event payload.  This is especially helpful if you want to [protect certain fields from some operation](https://github.com/spaceuptech/space-cloud/issues/552).
 
-**Example:** Protect the `amount` field by removing it from the request if the remote endpoint is not called by an admin:
+**Example:** Protect the `amount` field by removing it from the event payload if the event is not queued by an admin:
 
 {{< highlight json >}}
 {
@@ -153,7 +156,7 @@ This rule is used to remove certain fields from the request.  This is especially
 }
 {{< /highlight >}}
 
-As you can see, the above rule instructs the Space Cloud to remove the `amount` field from the request (`args.params`  object) if the role is not equalled to admin. 
+As you can see, the above rule instructs the Space Cloud to remove the `amount` field from the event payload (`args.params` object) if the role is not equalled to admin. 
 
 The above rule uses the `match` clause. However, you can even use `and`|`or` clause also. The provided `fields` would only be removed if the `clause` evaluates to true. If you want to remove the fields without any condition, then omit the `clause` field.
 
@@ -161,9 +164,9 @@ The above rule uses the `match` clause. However, you can even use `and`|`or` cla
 
 ### Force certain fields
 
-This rule is used to override request by forcing the value of certain fields in the request.
+This rule is used to override event payload by forcing the value of certain fields in the request.
 
-**Example:** Ensure that an user can query only his profile by forcing the `userId` field in the request with the value of the `id` in the JWT token claims of the request:
+**Example:** Ensure that the `userId` in the event payload is always set to the `id` field of the JWT claims:
 
 {{< highlight json >}}
 {
@@ -173,7 +176,7 @@ This rule is used to override request by forcing the value of certain fields in 
 }
 {{< /highlight >}}
 
-The above rule sets the value of `args.params.userId` (`args.params` contains the parameters sent by the user while calling the remote service from the frontend) before the request is sent to the remote service.
+The above rule sets the value of `userId` in the event payload (`args.params`) before the event is queued.
 
 > **Note:** You can also specify the condition on which to force certain fields with the help of the `clause` field. 
 
@@ -194,7 +197,7 @@ The basic syntax looks like this:
 
 The `query` rule executes a database query with the user-defined find object with operation type set to `one`. It is useful for policies which depend on the values stored in the database.
 
-**Example:** Make sure a user can call a function only if he is author of some book:
+**Example:** Make sure a user can queue an event only if he is author of some book:
 
 {{< highlight json >}}
 {
@@ -218,7 +221,7 @@ The `query` rule executes a database query with the user-defined find object wit
 
 You can conditionally encrypt and decrypt fields in the request using the `encrypt` and `decrypt` rules respectively. Typical use-cases include using the `encrypt` rule to encrypt the confidential data of a user like email, name, etc before passing it to a remote service. You can also perform this encryption/decryption conditionally by using the `clause` field.
 
-**Example:** Encrypt confidential fields like name and email before passing it to a remote service:
+**Example:** Encrypt confidential fields like name and email in the event payload before queuing it:
 
 {{< highlight json >}}
 {
@@ -229,9 +232,9 @@ You can conditionally encrypt and decrypt fields in the request using the `encry
 
 ### Hash fields
 
-The `hash` rule is to create a SHA256 hash of the specified fields in the request/response. Real-life use-cases include hashing passwords before storing it in the database.
+The `hash` rule is to create a SHA256 hash of the specified fields in the request. Real-life use-cases include hashing passwords.
 
-**Example:** Hash `password` field been sent to the remote service:
+**Example:** Hash `password` field in the event payload:
 
 {{< highlight json >}}
 {
@@ -255,7 +258,7 @@ The basic syntax looks like this:
 }
 {{< /highlight >}}
 
-Example (Make sure an user can call a function only if he has the role `admin` or `super-user`)
+Example (Make sure an user can queue an event only if he has the role `admin` or `super-user`)
 
 {{< highlight json >}}
 {

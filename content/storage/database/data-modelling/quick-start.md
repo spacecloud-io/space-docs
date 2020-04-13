@@ -67,6 +67,18 @@ type pokemon {
 
 The `@foreign` directive above instructs Space Cloud to create a foreign key on the `id` field of the `trainer` table.  This foreign key prevents any actions that would destroy the links between the `pokemon` and `trainer` table. Which means that the database would throw an error if you delete a trainer before deleting their pokemons.
 
+> **You can modify the foreign key behaviour to delete the child record(s) automatically when parent record is deleted instead of throwing error. This can be done by specifying the `onDelete` argument of the `foreign` directive as follows:**
+
+{{< highlight graphql "hl_lines=6" >}}
+type pokemon {
+  id: ID! @primary
+  name: String!
+  combat_power: Integer
+  caught_on: DateTime! @createdAt
+  trainer_id: ID! @foreign(table: "trainer", field: "id", onDelete: "cascade")
+}
+{{< /highlight >}}
+
 The `@createdAt` directive helps Space Cloud to automatically insert the datetime value whenever you insert a pokemon into the `pokemon` table.
 
 ## Time to play around

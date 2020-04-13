@@ -6,6 +6,8 @@ weight: 1
 ---
 You can trigger webhooks on any mutations performed on your database via Space Cloud.
 
+> **Note: For update and delete mutations, the webhook will be triggered only if the `where` clause of mutation consists of the fields uniquely identifying the row (i.e. the primary fields or fields having unique constraints).** 
+
 ## Create database event trigger
 
 Open a project in Mission Control, head to the `Event Triggers` section and click on the `Add` button to open the form below:

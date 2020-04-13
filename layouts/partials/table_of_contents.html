@@ -21,9 +21,10 @@
         {{ $base := ($.Page.File.LogicalName) }}
         {{ $anchorId := ($header | plainify | htmlEscape | urlize) }}
         {{ $href := delimit (slice $base $anchorId) "#" | string }}
+        {{ $hrefWithoutSlashes := replace $href "/" ""}}
         <li>
-            <a href="{{ relref $.Page $href }}">
-                {{ $header | plainify | htmlEscape }}
+            <a href="{{ relref $.Page $hrefWithoutSlashes }}">
+                {{ $header | plainify | htmlUnescape }}
             </a>
         </li>
 

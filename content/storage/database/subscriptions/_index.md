@@ -2,7 +2,7 @@
 title: "Subscriptions"
 date: 2019-09-17T18:15:32+05:30
 draft: false
-weight: 4
+weight: 6
 ---
 
 With Space Cloud, you can subscribe to realtime changes in your database.
@@ -21,12 +21,3 @@ However, for **efficient bandwidth utilization**, Space Cloud doesn't send the e
 To _offload the database_, Space Cloud does not rely on any CDC (Change Data Capture) mechanism. Space Cloud uses its in-built eventing system to guarantee that **all changes irrespective of any network failures propagate to the clients** over a bi-directional link in an orderly fashion. 
 
 Isolating the database querying and the realtime module helps it scale the realtime piece independent of database. However, this poses some limitations which are acceptable for most applications. 
-
-## Limitations
-
-- The table/collection should have a unique identity (primary key or a unique key) in its schema.
-- All mutations (inserts, updates and deletes) have to take place via Space Cloud.
-- All updates and deletes can be made on a single document only using the unique identity (primary/unique fields) in the where clause.
-- Another request should not update the fields used in the where clause of `liveQuery`.
-
-> **Note:** These limitations are only applicable if you intend to use the realtime functionality.

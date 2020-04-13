@@ -2,7 +2,7 @@
 title: "Sample use cases"
 date: 2019-09-17T18:18:52+05:30
 draft: false
-weight: 2
+weight: 3
 ---
 
 The following are a few use cases for using subscription:

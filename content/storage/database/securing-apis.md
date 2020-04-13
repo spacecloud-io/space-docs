@@ -2,12 +2,12 @@
 title: "Securing your APIs"
 date: 2019-09-23T10:07:49+05:30
 draft: false
-weight: 5
+weight: 7
 ---
 
 The security rules for database access works to authorize client request for database operations. Authorization works on the operation level (create, read, update, delete) for each table / collection in the database. This means that you can have different rules for different operations. 
 
-> **Note:** All security rules for database have to be configured via Mission Control only. (`Rules` tab in `Database` section)
+> **Note:** Security rules for database have to be configured via the `Rules` tab in the `Database` section of Mission Control.
 
 Here's a sample snippet which shows the rules on the `users` collection in MongoDB. Operations `create`  and `read` are allowed while `update` and `delete` are blocked:
 
@@ -45,6 +45,7 @@ With security rules for database you can:
 - Allow users to read posts without signin but allow only signed in users to create a post.
 - Protect certain private fields based on roles.
 - Check if the request contains a certain field.
+- Encrypting, decrypting, hashing values of certain fields.
 - The Instagram problem - Allow a user to view a profile only if it is public or if he is following them.
 - Custom validation.
 
@@ -177,20 +178,29 @@ Example (Check if a field is present in the request):
 
 ### Remove fields from request/response
 
-This rule is used to remove certain fields from request or response.  This is specially helpful if you want to [protect certain fields from some operation](https://github.com/spaceuptech/space-cloud/issues/552).
+This rule is used to remove certain fields from request or response.  This is especially helpful if you want to [protect certain fields from some operation](https://github.com/spaceuptech/space-cloud/issues/552).
 
-**Example:** Protect the `password` field from being queried by removing it from the response:
+**Example:** Protect the `password` field from being queried by removing it from the response if the query is not being made by an admin:
 
 {{< highlight json >}}
 {
   "rule": "remove",
-  "fields": ["res.password"]
+  "fields": ["res.password"],
+  "clause": {
+    "rule": "match",
+    "eval": "!=",
+    "type": "bool",
+    "f1": "args.auth.role",
+    "f2": "admin"
+  }
 }
 {{< /highlight >}}
 
-As yo can see the above rule instructs the Space Cloud to remove `password` field from the `res` (response) object. 
+As you can see, the above rule instructs the Space Cloud to remove the `password` field from the `res` (response) object if the role is not equalled to admin. Even if the response is an array of objects, the above rule will still work and will remove the `password` field from each object in the response array.
 
-> **Note:** Even if the response is an array of objects, the above rule will still work and will remove the `password` field fom each object in the response array.
+The above rule uses the `match` clause. However, you can even use `and`|`or` clause also. The provided `fields` would only be removed if the `clause` evaluates to true. If you want to remove the fields without any condition, then omit the `clause` field.
+
+> **Note:** Irrespective of whether you use `clause` field or not, the `remove` rule always evaluates to true in an `and`|`or` clause.
 
 In order to remove fields from the request, you have the `args` object. 
 
@@ -202,6 +212,7 @@ In order to remove fields from the request, you have the `args` object.
   "fields": ["args.update.$set.role"]
 }
 {{< /highlight >}}
+
 
 ### Force certain fields
 
@@ -219,23 +230,26 @@ This rule is used to [override request/response] by forcing the value of certain
 
 The above rule sets the value of `args.find.userId` (`args.find` is the `where` clause sent to the database) with the value of `args.auth.id` (auth object contains the token claims) before the request is sent to the database.
 
+> **Note:** You can also specify the condition on which to force certain fields with the help of the `clause` field. 
+
 ### Database Query
-This rule is used to allow a certain request only if a database request returns successfully. The query's find clause is generated dynamically using this rule. The query is considered to be successful if even a single row is successfully returned.
+This rule is used to allow a certain request based on the results of a query on the database. The query's find clause is generated dynamically using this rule. This rule is evaluated to true based on whether the `clause` field of the query rule evaluates to true or not.
 
 The basic syntax looks like this:
 
 {{< highlight json >}}
 {
   "rule": "query",
-  "db": "mongo | sql-mysql | sql-postgres",
+  "db": "< db-alias-name >",
   "col": "< collection-name >",
-  "find": "< mongo-find-query >"
+  "find": "< mongo-find-query >",
+  "clause": "<clause>"
 }
 {{< /highlight >}}
 
-The `query` rule executes a database query with the user defined find object with operation type set to `one`. It is useful for policies which depend on the values stored in the database.
+The `query` rule executes a database query with the user-defined find object with operation type set to `one`. It is useful for policies which depend on the values stored in the database.
 
-Example (make sure user can query only public `profiles`):
+**Example:** Make sure user can query only public `profiles`:
 
 {{< highlight json >}}
 {
@@ -246,11 +260,71 @@ Example (make sure user can query only public `profiles`):
     "find": {
       "userId": "args.find.userId",
       "isPublic": true
+    },
+    "clause": {
+      "rule": "match",
+      "type": "number",
+      "eval": "==",
+      "f1": "utils.length(args.result)",
+      "f2": 1
     }
   }
 }
 {{< /highlight >}}
 
+> **Note:** You can also perform a particular action if the database query returned no rows by comparing the length of `args.result` to zero. 
+
+### Encrypt/decrypt fields
+
+You can conditionally encrypt and decrypt fields using the `encrypt` and `decrypt` rules respectively. `encrypt` rule is to encrypt certain fields in request/response. `decrypt` rule is used on the other hand to decrypt the encrypted fields in the request/response. Typical use-cases include using the `encrypt` rule to encrypt the confidential data of a user like email, name, etc before inserting it into a database and using the `decrypt` rule to decrypt it while reading from the database. However, you can use the `clause` field to perform encryption and decryption conditionally.
+
+**Example:** Encrypt name and email fields of a user while inserting a user:
+
+{{< highlight json >}}
+{
+  "create": {
+    "rule": "encrypt",
+    "fields": ["args.doc.email", "args.doc.name"]
+  }
+}
+{{< /highlight >}}
+
+> **Note:** `args.doc` is the document to be inserted.
+
+**Example:** Make sure that a user can query only his decrypted name and email:
+
+{{< highlight json >}}
+{
+  "read": {
+    "rule": "decrypt",
+    "fields": ["res.email", "res.name"],
+    "clause": {
+      "rule": "match",
+      "type": "string",
+      "eval": "==",
+      "f1": "args.auth.id",
+      "f2": "args.auth.userId"
+    }
+  }
+}
+{{< /highlight >}}
+
+### Hash fields
+
+The `hash` rule is to create a SHA256 hash of the specified fields in the request/response. Real-life use-cases include hashing passwords before storing it in the database.
+
+**Example:** Hash `password` field of the row being inserted into the `user` table:
+
+{{< highlight json >}}
+{
+  "create": {
+    "rule": "hash",
+    "fields": ["args.doc.password"]
+  }
+}
+{{< /highlight >}}
+
+> **Note:** You can even use the `clause` field to hash fields conditionally.
 
 ### Combine multiple conditions
 

@@ -1,8 +1,8 @@
 ---
-title: "Custom Events"
-date: 2019-10-19T13:38:53+05:30
+title: "Create custom event trigger"
+date: 2020-03-30T10:55:58+05:30
 draft: false
-weight: 3
+weight: 1
 ---
 
 With Space Cloud, you can trigger webhooks on any custom events in your application. Space Cloud uses an in-built eventing queue to invoke your webhooks reliably.
@@ -25,7 +25,7 @@ Select `Custom` as the event source.
 
 **Type**
 
-The type of event for which you want to create a trigger. (eg: `sent-email`)
+The type of event for which you want to create a trigger. (eg: `sent-email`). Whenever, an event of a particular type is queued, all event triggers registered with that type are triggered.
 
 **Webhook URL**
 
@@ -167,7 +167,7 @@ The `POST` body of the webhook is a JSON object which follows the [Cloud Events 
 |:------------|--------|--------------------------------------------------------------:|
 | specversion | String |                   Version of the Cloud Events specifications. |
 | id          | String |                              A unique identifier of an event. |
-| type        | String | Event type. One of `DB_INSERT` , `DB_UPDATE` or `DB_DELETE` . |
+| type        | String |                                                   Event type. |
 | source      | String |                  Unique identifier of a Space Cloud instance. |
 | time        | String |            Time at which the event occurred(ISO 8601 format). |
 | data        | Object |                                Event data sent by the client. |

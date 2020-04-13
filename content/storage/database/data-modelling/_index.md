@@ -2,7 +2,7 @@
 title: "Data Modelling"
 date: 2019-10-15T08:56:08+05:30
 draft: false
-weight: 1
+weight: 3
 ---
 
 With Space Cloud, you can quickly **model your data and the relations** that exist between them via the GraphQL Schema Definition Language (SDL).
