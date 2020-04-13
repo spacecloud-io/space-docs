@@ -7,9 +7,9 @@ weight: 3
 
 
 
-The security rules for custom event triggers works to authorize client request for queing/triggering custom events. Authorization works on the event type level. This means you can have different rules for different types of custom events.
+The security rules for custom event triggers works to authorize client request for queuing/triggering custom events. Authorization works on the event type level. This means you can have different rules for different types of custom events.
 
-> **Note:** You only need to secure custom events as they are queued via REST API of Space Cloud unlike database and file storage events that are queued by Space Cloud internally. Specifying security rules for database and file storage events wont have any effect as they are not necessary.
+> **Note:** You only need to secure custom events as they are queued via REST API of Space Cloud, unlike database and file storage events that are queued by Space Cloud internally. Specifying security rules for database and file storage events won't have any effect as they are not necessary.
 
 Security rules for custom event triggers are configured in the `Rules` tab in `Eventing` section of Mission Control.
 
@@ -23,10 +23,10 @@ Here's a sample snippet which shows the rules of a custom event type:
 }
 {{< /highlight >}}
 
-You can add write rules for each custom event type. A request to queue an endpoint is denied if there is no rule for its type. This ensures that all calls to queue events are secure by default.
+You can add rules for each custom event type. A request to queue an endpoint is denied if there is no rule for its type. This ensures that all calls to queue events are secure by default.
 
 ## Features
-Using the security rules you can:
+Using the security rules, you can:
 
 - Allow / deny access to queue an event.
 - Allow queuing an event only if the user is authenticated.
@@ -35,22 +35,22 @@ Using the security rules you can:
 
 ## Popular use cases
 
-- Allow only signed in users to queue an event.
-- Role based authentication (For example, only allow admin to queue a particular event)
-- Check if the event data sent by user contains a certain field.
+- Allow only signed-in users to queue an event.
+- Role-based authentication (For example, only allow admin to queue a particular event)
+- Check if the event data sent by the user contains a certain field.
 - Call another function to authorize the event queue request (For example you might have an authorization service which validates all types of request).
 
-All these problems can be solved by the security module of Space Cloud.
+The security module of Space Cloud can solve all these problems.
 
 ## Available variables
-All requests for function calls contains 2 variables which are availabe to you for matching conditions:
+All requests for function calls contains 2 variables which are available to you for matching conditions:
 
-- **auth:** The claims present in the JWT token. If you are using in-built user management service of Space Cloud, then the `auth` has `id`, `name` and `role` of the user. While making a custom service, you are free to choose the claims which go inside the JWT token and thus available in the `auth` variable.
+- **auth:** The claims present in the JWT token. If you are using the in-built user management service of Space Cloud, then the `auth` has `id`, `name` and `role` of the user. While making a custom service, you are free to choose the claims which go inside the JWT token and thus available in the `auth` variable.
 - **params:** The event data/payload queued by the user.
 
 ## Allow anonymous access
  
-You can disable authentication and authorization for a particular event type completely by using `allow`. The event is allowed to queued even if the JWT token is absent in the request. You might want to use this when you want your users to queue certain events without signin. Here's how to give access to a particular event type using `allow`:
+You can disable authentication and authorization for a particular event type completely by using `allow`. The event is allowed to queue even if the JWT token is absent in the request. You might want to use this when you want your users to queue certain events without sign-in. Here's how to give access to a particular event type using `allow`:
 
 {{< highlight json >}}
 {
@@ -60,7 +60,7 @@ You can disable authentication and authorization for a particular event type com
 
 ## Deny access
 
-This rule is to deny all calls to queue events of a particular type. It might be useful to temporarily deny access to an event type function (For example in testing). Here's how to deny access to a particular event type using `deny`:
+This rule is to deny all calls to queue events of a particular type. It might be useful to deny access to an event type function temporarily. Here's how to deny access to a particular event type using `deny`:
 
 {{< highlight json >}}
 {
@@ -71,7 +71,7 @@ This rule is to deny all calls to queue events of a particular type. It might be
 
 ## Allow only authenticated users
 
-You can allow certain events to be queued only if the caller is authenticated. (For example, allow only logged in users to queue an event). This rule is used to allow the request only if a valid JWT token is found in the request. No checks are imposed beyond that. Basically it authorizes every request which has passed the authentication stage. Here's how to allow events with a particular type to be queued for authenticated users:
+You can allow certain events to be queued only if the caller is authenticated. (For example, allow only logged in users to queue an event). This rule is used to allow the request only if a valid JWT token is found in the request. No checks are imposed beyond that. It authorizes every request which has passed the authentication stage. Here's how to allow events with a particular type to be queued for authenticated users:
 
 {{< highlight json >}}
 {
@@ -81,10 +81,10 @@ You can allow certain events to be queued only if the caller is authenticated. (
 
 ## Allow function call on certain conditions
 
-Many a times you might want a user to queue a particular event only when certain conditions are met. Such conditions might require you to check the value of certain fields from the event data or from the database. Or it can be a custom validation altogether. The security rules in Space Cloud are made keeping this flexibility in mind.
+Many times you might want a user to queue a particular event only when certain conditions are met. Such conditions might require you to check the value of certain fields from the event data or the database. Or it can be a custom validation altogether. The security rules in Space Cloud are made, keeping this flexibility in mind.
 
 ### Match incoming requests
-This rule is used to allow a certain request only when a certain condition has been met and all the variables required for matching are present in the request itself. Every request to queue an event contains 2 variables - `auth` and `params` present in the `args` object. `params` is the event payload queued by the user. Generally this rule is used to match the payload sent by user with the auth object. It can also be used for role based authentication.
+This rule is used to allow a certain request only when a specific condition has been met, and all the variables required for matching are present in the request itself. Every request to queue an event contains 2 variables - `auth` and `params` present in the `args` object. `params` is the event payload queued by the user. Generally, this rule is used to match the payload sent by the user with the auth object. It can also be used for role-based authentication.
 
 The basic syntax looks like this:
 
@@ -110,7 +110,7 @@ Example (Match the value of a field in `params` sent by the user):
 }
 {{< /highlight >}}
 
-Example (Role based authentication - allow only admin to call a certain function):
+Example (Role-based authentication - allow only admin to call a certain function):
 
 {{< highlight json >}}
 {
@@ -219,7 +219,7 @@ The `query` rule executes a database query with the user-defined find object wit
 
 ### Encrypt/decrypt fields
 
-You can conditionally encrypt and decrypt fields in the request using the `encrypt` and `decrypt` rules respectively. Typical use-cases include using the `encrypt` rule to encrypt the confidential data of a user like email, name, etc before passing it to a remote service. You can also perform this encryption/decryption conditionally by using the `clause` field.
+You can conditionally encrypt and decrypt fields in the request using the `encrypt` and `decrypt` rules respectively. Typical use-cases include using the `encrypt` rule to encrypt the confidential data of a user like email, name, etc. before passing it to a remote service. You can also perform this encryption/decryption conditionally by using the `clause` field.
 
 **Example:** Encrypt confidential fields like name and email in the event payload before queuing it:
 
@@ -258,7 +258,7 @@ The basic syntax looks like this:
 }
 {{< /highlight >}}
 
-Example (Make sure an user can queue an event only if he has the role `admin` or `super-user`)
+Example (Make sure a user can queue an event only if he has the role `admin` or `super-user`)
 
 {{< highlight json >}}
 {
@@ -284,7 +284,7 @@ Example (Make sure an user can queue an event only if he has the role `admin` or
 
 ### Custom validations
 
-In case where the matching and db query for validating conditions are not enough, Space Cloud can use your custom authorization logic by triggering a webhook on your servers. Here's an example showing how to do this by rule `webhook`:
+In a case where the matching and db query for validating conditions are not enough, Space Cloud can use your custom authorization logic by triggering a webhook on your servers. Here's an example showing how to do this by rule `webhook`:
 
 {{< highlight json >}}
 {
@@ -306,4 +306,4 @@ Space Cloud transparently forwards the token provided by the user in the `Author
 
 In some cases, you would want to verify the sender of the request received by your service. This is required when your service is running in an open or untrusted network.
 
-Space cloud adds a `X-SC-Token` header which contains a token containing the identity of the caller space cloud instance. This token can be used to check if the incoming request is coming from an authentic source. This token is signed with the `secret` key provided in the project's configuration.
+Space cloud adds an `X-SC-Token` header which contains a token containing the identity of the caller space cloud instance. This token can be used to check if the incoming request is coming from an authentic source. This token is signed with the `secret` key provided in the project's configuration.

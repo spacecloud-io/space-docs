@@ -5,7 +5,7 @@ draft: false
 weight: 4
 ---
 
-A delete request only requires a `where` clause to filter rows to be deleted. The `where` clause has the same [filtering options](/essentials/queries/filtering) as queries.
+A delete request only requires a `where` clause to filter rows to be deleted. The `where` clause has the same [filtering options](/storage/database/queries/filtering) as queries.
 
 **Example:** Delete all pokemons with combat_power lesser than 200:
 

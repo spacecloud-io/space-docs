@@ -11,7 +11,7 @@ Sometimes you might want to expose certain services or endpoints to the external
 
 > **The recommended way to expose your endpoints is by using the [GraphQL API](/microservices/graphql/) for enhanced security and flexibility**
 
-![Setting up routing rules](/images/screenshots/expose-basic-service.png)
+![Setting up routing rules](/images/screenshots/add-ingress-route.png)
 
 ## How it works?
 
@@ -48,7 +48,7 @@ Finally, `rewrite` is used to overwrite the prefix of the URL when enabled.
 
 ### Taking an example
 
-Let's say we want to route all the incoming requests matching the following criterias:
+Let's say we want to route all the incoming requests matching the following criteria:
 
 - **HOSTS:** `example.com`
 - **METHODS:** `POST` and `GET`
@@ -72,5 +72,5 @@ between two of our services with equal probability. And let's say we also want t
 
 ## Limitations
 
-- The routing module only works for incoming HTTP(s) based requests. Websokets are currently not supported.
+- The routing module only works for incoming HTTP(s) based requests. WebSockets are currently not supported.
 - Routing rules can be applied based on the `HOST`, `METHOD` and `URL` only of the incoming request.

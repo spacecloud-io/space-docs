@@ -6,7 +6,7 @@ weight: 3
 skipsubheader: true
 ---
 
-Once you [have added a remote service](/essentials/remote-services/adding-remote-service), you can access it via the GraphQL and REST APIs of Space Cloud.
+Once you [have added a remote service](/microservices/graphql/register-service/), you can access it via the GraphQL and REST APIs of Space Cloud.
 
 ## Querying static endpoints
 Here's how you can access a remote endpoint named `adder` of a service named `arithmetic` from your frontend:

@@ -7,7 +7,6 @@ weight: 6
 
 With Space Cloud, you can subscribe to realtime changes in your database.
 
-
 ## How it works
 
 Space Cloud allows you to subscribe to a particular _result set_ in your database by specifying a where clause. So whenever anything within that result set changes, i.e. new documents are added/updated/deleted, you get notified. 

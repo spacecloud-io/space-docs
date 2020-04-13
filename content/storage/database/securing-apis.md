@@ -5,9 +5,9 @@ draft: false
 weight: 7
 ---
 
-The security rules for database access works to authorize client request for database operations. Authorization works on the operation level (create, read, update, delete) for each table / collection in the database. This means that you can have different rules for different operations. 
+The security rules for database access works to authorize client request for database operations. Authorization works on the operation level (create, read, update, delete) for each table/collection in the database. This means that you can have different rules for different operations. 
 
-> **Note:** Security rules for database have to be configured via the `Rules` tab in the `Database` section of Mission Control.
+> **Note:** You can configure the security rules for your database via the `Rules` tab in the `Database` section of Mission Control.
 
 Here's a sample snippet which shows the rules on the `users` collection in MongoDB. Operations `create`  and `read` are allowed while `update` and `delete` are blocked:
 
@@ -32,29 +32,29 @@ An operation is denied if there no corresponding rule for it is configured via t
 
 ## Features
 
-With security rules for database you can:
+With security rules for the database you can:
 
-- Allow / deny access to a collection.
+- Allow/deny access to a collection.
 - Allow a particular operation on a collection only if the user is authenticated.
 - Allow a particular operation on a collection only if certain conditions are met (via JSON rules or custom logic).
 
 ## Popular use cases
 
 - Role based authentication (For example only allow admin to delete a project)
-- Allow a user to be able to query only his / her own data.
-- Allow users to read posts without signin but allow only signed in users to create a post.
+- Allow a user to be able to query only his / her data.
+- Allow users to read posts without sign in but allow only signed-in users to create a post.
 - Protect certain private fields based on roles.
 - Check if the request contains a certain field.
 - Encrypting, decrypting, hashing values of certain fields.
 - The Instagram problem - Allow a user to view a profile only if it is public or if he is following them.
 - Custom validation.
 
-All these problems can be solved by the authorization module of Space Cloud.
+The authorization module of Space Cloud can solve all these problems.
 
 ## Available variables
-All CRUD requests contains following request variables which are availabe to you for matching any conditions:
+All CRUD requests contain following request variables which are available to you for matching any conditions:
 
-- **auth:** The claims present in the JWT token. If you are using in-built user management service of Space Cloud, then the `auth` has `id`, `name` and `role` of the user. While making a custom service, you are free to choose the claims which go inside the JWT token and thus available in the `auth` variable.
+- **auth:** The claims present in the JWT token. If you are using the in-built user management service of Space Cloud, then the `auth` has `id`, `name` and `role` of the user. While making a custom service, you are free to choose the claims which go inside the JWT token and thus available in the `auth` variable.
 
 - **find:** Present when a where clause is supplied by the `where` method/argument (Follows the MongoDB query syntax).
 - **update:** Present for update operations. It contains all the update operations like `set`, `push`, etc. (Follows MongoDB DSL). 
@@ -65,7 +65,7 @@ All CRUD requests contains following request variables which are availabe to you
 
 ## Allow anonymous access
  
-You can disable authentication and authorization for a particular operation on a table completely by using `allow`. The request is allowed to be made even if the JWT token is absent in the request. You might want to use this when you want your users to perform certain operation without signin (For example, read products table of an e-commerce app). Here's how to give access to a particular operation using `allow`:
+You can disable authentication and authorization for a particular operation on a table completely by using `allow`. The request is allowed to be made even if the JWT token is absent in the request. You might want to use this when you want your users to perform a certain operation without sign in (For example, read products table of an e-commerce app). Here's how to give access to a particular operation using `allow`:
 
 {{< highlight json >}}
 {
@@ -77,7 +77,7 @@ You can disable authentication and authorization for a particular operation on a
 
 ## Deny access
 
-This rule is to deny all incoming requests irrespective of any thing. It is especially useful to deny certain dangerous operations like `delete` while selectively allowing the other ones. (For example, deny access to delete products table). Here's how to deny access to a particular operation using `deny`:
+This rule is to deny all incoming requests irrespective of anything. It is especially useful to deny certain dangerous operations like `delete` while selectively allowing the other ones. (For example, deny access to delete products table). Here's how to deny access to a particular operation using `deny`:
 
 {{< highlight json >}}
 {
@@ -89,7 +89,7 @@ This rule is to deny all incoming requests irrespective of any thing. It is espe
 
 ## Allow only authenticated users
 
-You can allow a certain operation on a table only if the user is authenticated. (For example, allow only logged in users to bookmark a product). This rule is used to allow the request only if a valid JWT token is found in the request. No checks are imposed beyond that. Basically it authorizes every request which has passed the authentication stage. Here's how to allow a operation for authenticated users:
+You can allow a certain operation on a table only if the user is authenticated. (For example, allow only logged in users to bookmark a product). This rule is used to allow the request only if a valid JWT token is found in the request. No checks are imposed beyond that. Basically, it authorizes every request which has passed the authentication stage. Here's how to allow operation for authenticated users:
 
 {{< highlight json >}}
 {
@@ -101,10 +101,10 @@ You can allow a certain operation on a table only if the user is authenticated. 
 
 ## Allow operation on certain conditions
 
-Many a times you might want a user to perform a particular operation only when certain conditions are met. For example, a user can edit a post only if it is uploaded by him. Another use case might be allowing a user to read a profile only if it is public or the user is following him (Instagram problem). Such conditions might require you to check the value of certain fields from the incoming request or from the database. Or it can be a custom validation altogether. The security rules in Space Cloud are made keeping this flexibility in mind.
+Many times you might want a user to perform a particular operation only when certain conditions are met. For example, a user can edit a post only his posts. Another use case might be allowing a user to read a profile only if it is public or the user is following him (Instagram problem). Such conditions might require you to check the value of certain fields from the incoming request or the database. Or it can be a custom validation altogether. The security rules in Space Cloud are made, keeping this flexibility in mind.
 
 ### Match incoming requests
-This rule is used to allow a certain request only when a certain condition has been met and all the variables required for matching are present in the request itself. Each CRUD request contains certain variable (`auth`, `find`, `update`, `doc`, `op`) present in the `args` object. Generally this rule is used to match the input parameters (like the where clause or certain fields in the document to be inserted) with the auth object. It can also be used for role based authentication.
+This rule is used to allow a certain request only when a certain condition has been met, and all the variables required for matching are present in the request itself. Each CRUD request contains a certain variable (`auth`, `find`, `update`, `doc`, `op`) present in the `args` object. Generally, this rule is used to match the input parameters (like the where clause or certain fields in the document to be inserted) with the auth object. It can also be used for role-based authentication.
 
 The basic syntax looks like this:
 
@@ -132,7 +132,7 @@ Example (make sure user can query only his `todos`):
 }
 {{< /highlight >}}
 
-Example (Role based authentication - allow only admin to delete a project):
+Example (Role-based authentication - allow only admin to delete a project):
 
 {{< highlight json >}}
 {
@@ -202,7 +202,7 @@ The above rule uses the `match` clause. However, you can even use `and`|`or` cla
 
 > **Note:** Irrespective of whether you use `clause` field or not, the `remove` rule always evaluates to true in an `and`|`or` clause.
 
-In order to remove fields from the request, you have the `args` object. 
+To remove fields from the request, you have the `args` object. 
 
 **Example:** Prevent the `role` from being updated in a mutation by removing the `role` field from the mutation request:
 
@@ -372,7 +372,7 @@ Example (The Instagram problem - Make sure the user can query a profile only if 
 
 ### Custom validations
 
-In case where the matching and db query for validating conditions are not enough, Space Cloud can use your custom authorization logic by triggering a webhook on your servers. Here's an example showing how to do this by rule `webhook`:
+In the case where the matching and db query for validating conditions are not enough, Space Cloud can use your custom authorization logic by triggering a webhook on your servers. Here's an example showing how to do this by rule `webhook`:
 
 {{< highlight json >}}
 {
@@ -394,9 +394,8 @@ Space Cloud transparently forwards the token provided by the user in the `Author
 
 In some cases, you would want to verify the sender of the request received by your service. This is required when your service is running in an open or untrusted network.
 
-Space cloud adds a `X-SC-Token` header which contains a token containing the identity of the caller space cloud instance. This token can be used to check if the incoming request is coming from an authentic source. This token is signed with the `secret` key provided in the project's configuration.
+Space cloud adds an `X-SC-Token` header which contains a token containing the identity of the caller space cloud instance. This token can be used to check if the incoming request is coming from an authentic source. This token is signed with the `secret` key provided in the project's configuration.
 
 ## Next steps
 
-Great! You have learned how to secure database access. You may now checkout the [security rules for file storage module](/auth/authorization/file-storage).
-
+Great! With this, you have completed the database module. You can now check out the [file storage module](/storage/filestore).

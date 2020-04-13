@@ -11,7 +11,7 @@ Space Cloud can process custom events synchronously and return the response from
 
 - Event is queued to Space Cloud with the `isSynchronous` option set to `true` in the request body for queueing event.
 - Space Cloud persists the event and then triggers the desired webhooks with the appropriate retry/delivery guarantees.
-- The `response` in the webhook response body is returned back to the client.
+- The `response` in the webhook response body is returned to the client.
 
 ## Triggering synchronous custom events
 

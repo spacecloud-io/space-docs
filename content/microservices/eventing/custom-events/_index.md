@@ -4,7 +4,7 @@ date: 2020-03-30T10:26:43+05:30
 draft: false
 ---
 
-Database and File storage are the source of events for majority of applications. However, certain use cases involve events from some other sources as well. With Space Cloud, you can trigger webhooks on any custom events in your application. Space Cloud uses an in-built eventing queue to invoke your webhooks reliably. 
+Database and File storage are the source of events for the majority of applications. However, certain use cases involve events from some other sources as well. With Space Cloud, you can trigger webhooks on any custom events in your application. Space Cloud uses an in-built eventing queue to invoke your webhooks reliably. 
 
 ## Modes of custom event triggers
 

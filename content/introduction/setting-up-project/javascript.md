@@ -71,17 +71,16 @@ Let's say you have provided the alias name for your database as `mydb` while add
 const db = api.DB("mydb");
 {{< /highlight >}}
 
-Alias name is used to uniquely identify a database in your project. You can find out the alias name for your database from the database selector of the topbar in the Database section of Mission Control.
+The alias name identifies a database in your project uniquely. You can find out the alias name for your database from the database selector of the topbar in the Database section of Mission Control.
 
 ## Next steps
 Great! Since you have initialized the `api` and `db` instance, you can start building apps with `space-cloud`. 
 
 Feel free to check out various capabalities of `space-cloud`:
 
-- Perform database [queries](/essentials/queries)
-- [Mutate](/essentials/mutations) data
-- [Realtime](/essentials/subscriptions) data sync across all devices
-- Manage files with ease using [File Storage](/essentials/file-storage) module
-- [Authenticate](/auth/authentication) your users
-- Write [custom business logic](/essentials/remote-services)
-- [Secure](/auth/authorization) your apps
+- Perform database [queries](/storage/database/queries)
+- [Mutate](/storage/database/mutations) data
+- [Realtime](/storage/database/subscriptions) data sync across all devices
+- Manage files with ease using [File Storage](/storage/filestore) module
+- [Authenticate](/user-management) your users
+- Write [custom business logic](/microservices/graphql)

@@ -7,15 +7,15 @@ weight: 5
 
 `space-cli` requires a container registry to push the docker images of your code. 
 
-> **If you have followed the guide for [deploying your code](), you already know that `space-cli` can setup a docker registry as well for us. However, if you want to specify a custom container registry, this guide will help you do that.**
+> **If you have followed the guide for [deploying your code](/microservices/deployments/deploy-your-code), you already know that `space-cli` can set up a docker registry as well for us. However, if you want to specify a custom container registry, this guide helps you do that.**
 
 ## Specifying custom container registry
 
-Checkout the `Settings` section of `Mission Control` and click on the `Add Docker Registry` button to open the following form:
+Check out the `Settings` section of `Mission Control` and click on the `Add Docker Registry` button to open the following form:
 
 You can add any custom registry by selecting the `Others` option and providing the Docker registry like this:
 
-However, to make it easy to add managed container registries of popular cloud vendors like Google, AWS and Azure, we have options for their managed registries as well. If you select an option apart from `Others`, you will be asked few more questions to auto generate the docker registry for that managed service. For example, if you choose `Google ACR`, you need to provide the `GCR Region` and `GCR Project`. 
+However, to make it easy to add managed container registries of popular cloud vendors like Google, AWS and Azure, we have options for their managed registries as well. If you select an option apart from `Others`, you will be asked a few more questions to auto-generate the docker registry for that managed service. For example, if you choose `Google ACR`, you need to provide the `GCR Region` and `GCR Project`. 
 
 ## Authenticating with custom container registry
 

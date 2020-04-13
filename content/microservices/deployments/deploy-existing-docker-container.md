@@ -7,20 +7,20 @@ weight: 1
 
 Space Cloud lets you leverage all the capabilities of Kubernetes without having to learn the Kubernetes API. 
 
-> **If you don't already have a docker container published for your code/service, then you should checkout [deploying your code](/microservices/deployments/deploy-your-code).**
+> **If you don't already have a docker container published for your code/service, then you should check out [deploying your code](/microservices/deployments/deploy-your-code).**
 
 ## Deploying docker container
 
 Checkout to the `Deployments` section in the `Microservices` navigation. Click on the `Add` button to open the following form to create a service:
 
-![Deployment add service form](/images/screenshots/deploy-basic-service.png)
+![Deployment add service form](/images/screenshots/add-deployment.png)
 
 Enter the following config:
 
-- **Service Id:** A unique name to indentify your service.
+- **Service Id:** A unique name to identify your service.
 - **Version:** A unique name (e.g. `v1`) to identify the different versions of your service. 
 - **Docker Image:** The docker image that you want to deploy.
-- **Ports:** Ports of the docer container that you want to expose.
+- **Ports:** Ports of the docker container that you want to expose.
 
 Hit the `Deploy` button to deploy the service. 
 

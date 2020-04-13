@@ -6,7 +6,7 @@ weight: 3
 ---
 
 
-This guide will show you how to use the `Gateway` component of Space Cloud directly.
+This guide shows you how to use the `Gateway` component of Space Cloud directly.
 
 ## Why would I need to use the gateway directly?
 
@@ -15,15 +15,15 @@ This guide will show you how to use the `Gateway` component of Space Cloud direc
 
 You can see it as a Firebase + Heroku. On one side, it provides **instant GraphQL APIs for any database** which can be consumed directly from your frontend. On the other, it provides **serverless capabilities on top of kubernetes**. It also has an easy to use authorization system, end to end traffic encryption and a lot more.
 
-To cover this entire spectrum of development (auto generated GraphQL/REST APIs) to operations (auto scaling, end to end traffic encryption, etc.), Space Cloud has two components:
+To cover this entire spectrum of development (auto-generated GraphQL/REST APIs) to operations (auto-scaling, end to end traffic encryption), Space Cloud has two components:
 
-- `Gateway` **(Reduces development time):** Responsible for ingress traffic and providing auto generated GraphQL/REST APIs that can be consumed by frontend directly.
+- `Gateway` **(Reduces development time):** Responsible for ingress traffic and providing auto-generated GraphQL/REST APIs that can be consumed by frontend directly.
 - `Runner` **(Automates operations):** Responsible for providing serverless capabilities, end-to-end traffic encryption, policy enforcement and other such features.
 
-There might be various use cases why one would want to run the `Gateway` component directly such as:
+There might be various use cases why one would want to run the `Gateway` component directly, such as:
 
 - You are just interested in the GraphQL/REST APIs that Space Cloud provides and don't need the serverless capabilities.
-- You already have a deployment platform in place like [Nomad](https://nomadproject.io/) or [DCOS](https://dcos.io/) that provides the features of `Runner` component and so you don't want to install it.
+- You already have a deployment platform in place like [Nomad](https://nomadproject.io/) or [DCOS](https://dcos.io/), and so you don't want the `Runner` component.
 
 Keeping such use cases in mind, we purposely split Space Cloud into two components.
 
@@ -31,8 +31,8 @@ Keeping such use cases in mind, we purposely split Space Cloud into two componen
 
 There are two ways of using the gateway directly:
 
-- [Using the docker image]()
-- [Using the binary]()
+- [Using the docker image](/install/using-gateway-directly/#using-the-docker-image)
+- [Using the binary](/install/using-gateway-directly/#using-the-binary)
 
 ### Using the docker image
 
@@ -45,11 +45,11 @@ The following command runs the gateway on docker in development mode and exposes
 docker run --name sc-gateway -d -p 4122:4122 -p 4126:4126 -e DEV=true spaceuptech/gateway:latest
 {{< /highlight >}}
 
-Checkout the [list of environment variables]() below that you can pass to the gateway container.
+Check out the [list of environment variables](/install/using-gateway-directly/#environment-variables--flags) below that you can pass to the gateway container.
 
 ### Using the binary
 
-To use the binary of gateway directly, you need to first build it from its source.
+To use the binary of gateway directly, you first need to build it from its source.
 
 > **You need to have Go 1.13.0 or above to build gateway from its source.**
 
@@ -66,15 +66,15 @@ Checkout into the gateway folder:
 cd space-cloud/gateway
 {{< /highlight >}}
 
-Now that we have the source code for gateway, lets build it:
+Now that we have the source code for the gateway, let's build it:
 
 {{< highlight bash >}}
 go build
 {{< /highlight >}}
 
-This might take a few minutes depending on the internet as it will be downloading all the dependencies of gateway before building it.
+Building the gateway might take a few minutes depending on the internet as it downloads all the dependencies of gateway before building it.
 
-Once the build is successful, you will see a new binary with the name of `gateway` in case of Linux/Mac or `gateway.exe` in case of Windows. This is the desired binary that we need to use.
+Once the build is successful, you should be able to see a new binary with the name of `gateway` in case of Linux/Mac or `gateway.exe` in case of Windows. This is the desired binary that we need to use.
 
 Now that we have the gateway binary, here's how to run it:
 
@@ -97,15 +97,15 @@ gateway.exe run --dev
   </div>
 </div>
 
-That's it. We have successfully run gateway directly from its source code. You can give yourself a pat on the back now since you deserve it!😛
+That's it. We have successfully run the gateway directly from its source code. You can pat yourself on the back now since you deserve it!😛
 
-Checkout the [list of environment variables/flags]() below that you can pass to the gateway binary.
+Check out the [list of environment variables/flags](/install/using-gateway-directly/#environment-variables--flags) below that you can pass to the gateway binary.
 
 ## Environment variables / flags
 
-You can pass environment variables or flags while running gateway to tweak certain things. Below is a list of the most important environment variables /flags:
+You can pass environment variables or flags while running the gateway to tweak certain things. Below is a list of the most important environment variables /flags:
 
-> **While using docker container you can only set environment variables whereas with the binary you can use use both the environment variables and/or flags**
+> **While using docker container you can only set environment variables whereas with the binary you can use both the environment variables and/or flags**
 
 | Environment variable | Flag             | Default value | Decsription                      |
 |----------------------|------------------|---------------|----------------------------------|
@@ -113,5 +113,6 @@ You can pass environment variables or flags while running gateway to tweak certa
 | `ADMIN_USER`         | `--admin-user`   | `admin`       | Set the admin user name.         |
 | `ADMIN_PASS`         | `--admin-pass`   | `123`         | Set the admin password.          |
 | `ADMIN_SECRET`       | `--admin-secret` | `some-secret` | Set the admin JWT secret.        |
+| `PORT`               | `--port`         | `4122`        | The HTTP port of Space Cloud. HTTPS port is auto calculated as (HTTP port + 4).|
 
 The admin credentials are required to login into the `Mission Control` (Admin UI of Space Cloud).

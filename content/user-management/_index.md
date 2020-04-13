@@ -56,7 +56,7 @@ That's all you need to configure for user management module.
 Once you have configured the user management module as mentioned above, you can start using it in your apps.
 
 On the frontend you can use one of our client SDKs to perform various operations in user management module:
-- Email [sign in](/auth/authentication/signin)
-- Email [sign up](/auth/authentication/signup)
-- Reading [profiles](/auth/authentication/profiles)
+- Email [sign in](/user-management/signin)
+- Email [sign up](/user-management/signup)
+- Reading [profiles](/user-management/profiles)
 

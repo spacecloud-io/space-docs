@@ -9,7 +9,7 @@ Space Cloud allows you to validate the schema of the event payload before queuin
 
 ## Specifying schema of custom events
 
-Space Cloud allows you to define the schema of event payload in an easy way via GraphQL SDL. 
+Space Cloud allows you to define the schema of event payload easily via GraphQL SDL. 
 
 To specify the schema of event payload for a particular event type, go the `Schema` tab of the `Eventing` section in Mission Control. Click on the add button to open the following form:
 ![Event schema form](/images/screenshots/event-schema.png)

@@ -9,7 +9,7 @@ This guide is for setting up Apollo client in your javascript projects.
 
 ## Basic setup
 
-> **The basic setup just uses the HTTP link. If you want to use realtime subscriptions in your app then you must checkout [advanced setup](/introduction/setting-up-project/graphql#advanced-setup).**
+> **The basic setup uses the HTTP link only. If you want to use realtime subscriptions in your app then you must check out [advanced setup](/introduction/setting-up-project/graphql#advanced-setup).**
 
 ### Installing dependencies
 
@@ -78,9 +78,9 @@ client
   .then(({ data }) => console.log(data.pokemons));
 {{< /highlight >}}
 
-> **Note:** To query a database, you need to mention a `@<db-alias-name>` directive (`@mydb` in the above example) specifing which database you want to query.
+> **Note:** To query a database, you need to mention a `@<db-alias-name>` directive (`@mydb` in the above example) specifying which database you want to query.
 
-DB Alias name is used to uniquely identify a database in your project. You can find out the alias name for your database from the database selector of the topbar in the Database section of Mission Control.
+The alias name identifies a database in your project uniquely. You can find out the alias name for your database from the database selector of the topbar in the Database section of Mission Control.
 
 ## Advanced client
 
@@ -194,9 +194,9 @@ const subscription = client
   }, (error) => console.log("Subscription error: ", error.message));  
 {{< /highlight >}}
 
-> **Note:** To query a database, you need to mention a `@<db-alias-name>` directive (`@mydb` in the above example) specifing which database you want to query.
+> **Note:** To query a database, you need to mention a `@<db-alias-name>` directive (`@mydb` in the above example) specifying which database you want to query.
 
-DB Alias name is used to uniquely identify a database in your project. You can find out the alias name for your database from the database selector of the topbar in the Database section of Mission Control.
+The alias name identifies a database in your project uniquely. You can find out the alias name for your database from the database selector of the topbar in the Database section of Mission Control.
 
 ## Next steps
 
@@ -204,10 +204,10 @@ Great! You have initialized the graphql client in your project.
 
 Feel free to check out various capabalities of `space-cloud`:
 
-- Perform database [queries](/essentials/queries)
-- [Mutate](/essentials/mutations) data
-- [Realtime](/essentials/subscriptions) data sync across all devices
-- Manage files with ease using [File Storage](/essentials/file-storage) module
-- [Authenticate](/auth/authentication) your users
-- Write [custom business logic](/essentials/remote-services)
+- Perform database [queries](/storage/database/queries)
+- [Mutate](/storage/database/mutations) data
+- [Realtime](/storage/database/subscriptions) data sync across all devices
+- Manage files with ease using [File Storage](/storage/filestore) module
+- [Authenticate](/user-management) your users
+- Write [custom business logic](/microservices/graphql)
 - [Secure](/auth/authorization) your apps

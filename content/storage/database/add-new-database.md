@@ -7,15 +7,15 @@ weight: 1
 
 ## Spinning up a database
 
-We first need to have a database up and running in order to add it to Space Cloud.
+We first need to have a database up and running to add it to Space Cloud.
 
 ### Development/Testing environment
 
-This guide assumes that you have used the docker setup of Space Cloud for development/testing environment.
+This guide assumes that you are using the docker setup of Space Cloud for development/testing environment.
 
 We will be using the `add database` command of `space-cli` to spin up a database for us on Docker.
 
-> **Note:** We are running database in docker only because it's development environment, For production environment we recommended using a managed database service.
+> **For production environment we recommend using a managed database service.**
 
 Just run the following command to spin a database locally on Docker:
 
@@ -43,20 +43,22 @@ For example, if you had set the `--alias` to `postgres` in the `add database` co
 postgres.db.svc.cluster.local
 {{< /highlight >}}
 
-This domain name will be used as the host name in the connection string while adding the database to Space Cloud. 
+This domain name is to be used as the hostname in the connection string while adding the database to Space Cloud. 
 
 ### Production environment
 
 We recommend using a managed database service for production environment like AWS RDS, Google Cloud SQL, Mongo Atlas, etc.
 
-After spinning up a managed database, note down the hostname from their console as it will be used while adding database to Space Cloud.
+After spinning up a managed database, note down the hostname from their console as it will be used while adding the database to Space Cloud.
 
 
-## Adding database to Space Cloud
+## Adding a database to Space Cloud
 
-Database can be added to a Space Cloud project while creating a project or even after the project has been added. While creating a project, you will see a screen like this to add a database:
+While creating a project, you will be prompted to add a database to your project with the following screen:
 
 ![Add database screen](/images/screenshots/add-database.png)
+
+> **You can also add database(s) later to your project. To add a database to your project, you need to go the `Database` section of that project, click on the database selector/dropdown and then click on the `Add database` button to open the screen to add a database.**
 
 Select a database that you want to add from the following:
 - `MongoDB`
@@ -65,7 +67,7 @@ Select a database that you want to add from the following:
 - `SQL Server`
 - `Embedded` (bbolt db - an embedded document database)
 
-Then, provide a connection string for the selected database. The format for connection string is as follows:
+Then, provide a connection string for the selected database. The format for the connection string is as follows:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -106,7 +108,7 @@ Data Source=<host>,1433;Initial Catalog=master;User ID=<username>;Password=<pass
 
 Use the hostname obtained earlier in the connection string above. 
 
-Then, give your database an alias name. The alias name that you provide here, should be used in your GraphQL queries to identify your database (sinnce Space Cloud can work with multiple databases). By default alias name will be `mongo`, `postgres`, `mysql` and `sqlserver` for MongoDB, Postgres, MySQL and SQL Server respectively.
+Then, give your database an alias name. The alias name that you provide here should be used in your GraphQL queries to identify your database (since Space Cloud can work with multiple databases). By default alias name is `mongo`, `postgres`, `mysql` and `sqlserver` for MongoDB, Postgres, MySQL and SQL Server respectively.
 
 For example, if you change the alias name to `mydb`, then your GraphQL queries should be updated to include `mydb` like this:
 {{< highlight graphql "hl_lines=2">}}
@@ -118,4 +120,4 @@ query {
 }
 {{< /highlight >}}
 
-Finally click on the `Add database` button. That's it! You have added a new database to Space Cloud! You can now start creating tables and using the auto generated GraphQL APIs for them.
+Finally, click on the `Add database` button. That's it! You have added a new database to Space Cloud! You can now start creating tables and using the auto-generated GraphQL APIs for them.

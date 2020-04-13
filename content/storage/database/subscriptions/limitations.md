@@ -5,9 +5,9 @@ draft: false
 weight: 2
 ---
 
-We took some architectural decisions while designing the realtime module of Space Cloud in order to make it performant and scalable. This means that you need to abide by some rules while designing your app for realtime subscriptions.
+We took some architectural decisions while designing the realtime module of Space Cloud to make it performant and scalable. This means that you need to abide by some rules while designing your app for realtime subscriptions.
 
-Following are the rules that you need to follow in order for realtime subbscriptions to work properly:
+Following are the rules that you need to follow for realtime subscriptions to work correctly:
 
 - The table/collection should have a unique identity (primary key or a unique key) in its schema.
 - All mutations (inserts, updates and deletes) have to take place via Space Cloud.
@@ -50,5 +50,5 @@ mutation {
 }
 {{< /highlight >}}
 
-> **Note:** These limitations are only applicable to those tables for which you want the realtime functionality.
+> **These limitations are only applicable to those tables for which you want the realtime functionality.**
 
