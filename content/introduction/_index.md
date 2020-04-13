@@ -11,4 +11,4 @@ This section helps you get started with Space Cloud.
 
 - Read more about [all the features](/introduction/features) Space Cloud has to offer.
 - Explore the architecture of a typical Space Cloud Application. (Coming soon)
-- [Setting up clients](/getting-started/setting-up-project) in your frontend.
+- [Setting up clients](/introduction/setting-up-project) in your frontend.
