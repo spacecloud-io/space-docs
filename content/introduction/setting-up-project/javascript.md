@@ -26,7 +26,7 @@ An `api` instance of Space Cloud on the frontend helps you talk to `space-cloud`
 
 The `API` constructor takes two parameters: 
 
-- **PROJECT_ID:** Unique identifier of a project. It's derived by converting your project name to lowercase and replacing all spaces and hyphens to underscores. For example `Todo App` becomes `todo_app`.
+- **PROJECT_ID:** Unique identifier of a project. It's derived by converting your project name to lowercase. For example `TodoApp` becomes `todoapp`.
 - **SPACE_CLOUD_URL:** This is the URL of your `space-cloud` binary. It's `http://localhost:4122` or `https://localhost:4126` for HTTP and HTTPS endpoints respectively.
 
 > **Note:** Replace `localhost` with the address of your Space Cloud if you are not running it locally. 
@@ -58,30 +58,20 @@ var api = new Space.API("todo_app", "http://localhost:4122");
 
 The `API` instance created above helps you to use `file storage` and `services` modules directly. However, to use `database` and `realTime` modules, you also have to create a `db` instance.
 
-> **Note:** You can use multiple databases in the same project. (For, eg. MongoDB and MySQL)
+> **Note: You can use multiple `db` instances in the same project as space cloud supports multiple databases.**
 
-**For MongoDB:**
-
-{{< highlight javascript >}}
-const db = api.Mongo();
-{{< /highlight >}}
-
-
-**For PostgreSQL:**
-
-> **Note:** This works for all databases that are PostgreSQL compatible (For, e.g. CockroachDB and Yugabyte)
+This is how you create an instance of `db` in your project:
 
 {{< highlight javascript >}}
-const db = api.Postgres();
+const db = api.DB(<db-alias-name>);
 {{< /highlight >}}
 
-**For MySQL:**
-
-> **Note:** This works for all databases that are MySQL compatible (For, e.g. TiDB)
-
+Let's say you have provided the alias name for your database as `mydb` while adding your database in Mission Control, then your db initialization code will be:
 {{< highlight javascript >}}
-const db = api.MySQL();
+const db = api.DB("mydb");
 {{< /highlight >}}
+
+Alias name is used to uniquely identify a database in your project. You can find out the alias name for your database from the database selector of the topbar in the Database section of Mission Control.
 
 ## Next steps
 Great! Since you have initialized the `api` and `db` instance, you can start building apps with `space-cloud`. 

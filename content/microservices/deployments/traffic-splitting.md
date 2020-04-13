@@ -2,7 +2,7 @@
 title: "Traffic Splitting"
 date: 2020-04-05T09:30:07+05:30
 draft: false
-weight: 3
+weight: 4
 ---
 
 Sometimes you might want to split the incoming traffic to a service between its different versions and/or external services. The various use cases for traffic splitting includes but are not limted to:

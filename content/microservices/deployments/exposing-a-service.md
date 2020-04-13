@@ -2,7 +2,7 @@
 title: "Exposing a Service"
 date: 2020-02-14T08:04:06+05:30
 draft: false
-weight: 2
+weight: 3
 ---
 
 All services deployed by Space Cloud can be accessed only from within the cluster. Its as if, they do not exist to the outside world.

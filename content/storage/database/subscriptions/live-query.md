@@ -71,12 +71,12 @@ if (on some logic) {
 Data pushed down in live query have the following fields: 
 
 - **type:** The type of operation which has resulted in Space Cloud pushing down data. Possible values are - `initial`, `insert`, `update`, and `delete`. `initial` is only applicable when Space Cloud is pushing the initial data down.
-- **payload:** The concerned document/object. `null` for `delete` operation.
+- **payload:** The concerned document/object.
 - **find:** An object containing the unique fields of the document. 
 - **time:** The timestamp of the operation in milliseconds.
 
 ## Subscribing to changes only
-In case you are interested in only the changes and not the initial values, pass the `options.skipInitial` argument to the live query:
+In case you are interested in only the changes and not the initial values, use can use `skipInitial`:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -90,13 +90,13 @@ In case you are interested in only the changes and not the initial values, pass 
 subscription {
   caught_pokemons @mongo (
     where: {trainer_id: $trainerId},
-    options: {skipInitial: true}
+    skipInitial: true
   ){
     type
     payload {
       name
     }
-    docId
+    find
   }
 }
 {{< /highlight >}}   
@@ -118,7 +118,7 @@ const onError = (err) => {
 }
 
 let subscription = db.liveQuery("caught_pokemons")
-  .options({skipInitial: true})
+  .skipInitial()
   .where(whereClause).subscribe(onSnapshot, onError)
 
 // Unsubscribe to changes

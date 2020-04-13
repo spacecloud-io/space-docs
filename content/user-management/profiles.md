@@ -17,7 +17,7 @@ import { API } from 'space-api';
 const api = new API('todo_app', 'http://localhost:4122');
 
 // Initialize database(s) you intend to use
-const db = api.Mongo();
+const db = api.DB("mydb");
 
 // Read profile of an user
 const userId = 'some-user-id'
@@ -43,7 +43,7 @@ import { API } from 'space-api';
 const api = new API('todo_app', 'http://localhost:4122');
 
 // Initialize database(s) you intend to use
-const db = api.Mongo();
+const db = api.DB("mydb");
 
 // Read profiles of all users
 db.profiles().then(res => {

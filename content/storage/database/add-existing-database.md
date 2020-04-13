@@ -118,9 +118,9 @@ Data Source=<host>,1433;Initial Catalog=master;User ID=<username>;Password=<pass
 
 Use the hostname collected from the prerequiste step in the above connection string format.
 
-Then, give your database an `alias name`. The alias name that you give here, will be used in your GraphQL queries to identify your database (sinnce Space Cloud can work with multiple databases). 
+Then, give your database an alias name. The alias name that you provide here, should be used in your GraphQL queries to identify your database (sinnce Space Cloud can work with multiple databases). By default alias name will be `mongo`, `postgres`, `mysql` and `sqlserver` for MongoDB, Postgres, MySQL and SQL Server respectively.
 
-For example, if you give alias name as `mydb`, then your GraphQL queries for `pokemon` table will look like this:
+For example, if you change the alias name to `mydb`, then your GraphQL queries should be updated to include `mydb` like this:
 {{< highlight graphql "hl_lines=2">}}
 query {
   pokemon @mydb {

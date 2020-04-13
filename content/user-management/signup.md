@@ -15,7 +15,7 @@ import { API } from 'space-api';
 const api = new API('todo_app', 'http://localhost:4122');
 
 // Initialize database(s) you intend to use
-const db = api.Mongo();
+const db = api.DB("mydb");
 
 // SignUp
 db.signUp('demo@example.com', 'User1', '1234', 'default').then(res => {
