@@ -17,7 +17,7 @@ npm install space-api --save
 **Or import as a stand-alone library:**
 
 {{< highlight html >}}
-<script src="https://spaceuptech.com/downloads/libraries/space-api.js"></script>
+<script src="https://storage.googleapis.com.com/space-cloud/libraries/space-api.js"></script>
 {{< /highlight >}}
 
 ## Step 2: Create an API instance
