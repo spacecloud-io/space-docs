@@ -414,6 +414,57 @@ const { status, data } = await db.get("pokemons")
   </div>
 </div>
 
+## JSON operators
+The `_contains` operator is used to filter based on `JSON` columns.
+
+### Example: _contains
+Fetch all pokemons with a particular `combat_power` (present in stats `JSON` column):
+
+<div class="row tabs-wrapper">
+  <div class="col s12" style="padding:0">
+    <ul class="tabs">
+      <li class="tab col s2"><a class="active" href="#filtering-contains-graphql">GraphQL</a></li>
+      <li class="tab col s2"><a href="#filtering-contains-js">Javascript</a></li>
+    </ul>
+  </div>
+  <div id="filtering-contains-graphql" class="col s12" style="padding:0">
+{{< highlight graphql >}}
+query {
+  pokemons(
+    where: { stats: { _contains: $jsonFilter}}
+  ) @mongo {
+    _id
+    name
+    stats {
+      combat_power
+    }
+  }
+}
+{{< /highlight >}}
+
+with variables:
+
+{{< highlight json >}}
+{
+  "jsonFilter": {
+    "combat_power": 500
+  }
+}
+{{< /highlight >}}
+  </div>
+  <div id="filtering-contains-js" class="col s12" style="padding:0">
+{{< highlight javascript>}}
+const whereClause = cond("stats", "contains", {combat_power: 500})
+
+const { status, data } = await db.get("pokemons")
+  .where(whereClause)
+  .apply()
+{{< /highlight >}}  
+  </div>
+</div>
+
+
+
 ## Using multiple filters in the same query
 
 You can group multiple parameters in the same `where` clause using the logical **AND** and **OR** operations. These logical operations can be **infinitely nested** to apply **complex filters**.

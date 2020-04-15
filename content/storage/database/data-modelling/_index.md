@@ -2,7 +2,7 @@
 title: "Data Modelling"
 date: 2019-10-15T08:56:08+05:30
 draft: false
-weight: 1
+weight: 3
 ---
 
 With Space Cloud, you can quickly **model your data and the relations** that exist between them via the GraphQL Schema Definition Language (SDL).
@@ -12,7 +12,7 @@ Data modelling in Space Cloud has two significant roles:
 - **Define the underlying database schema** (Space Cloud maps the types and directives you mention to database tables and constraints).
 - **Data validation layer** (Space Cloud validates the request for correct schema before any mutations. This is especially helpful for schemaless databases like MongoDB).
 
-If you are already excited and want to take the data modelling in Space Cloud for a quick spin, follow [this guide](/essentials/data-modelling/quick-start).
+If you are already excited and want to take the data modelling in Space Cloud for a quick spin, follow [this guide](/storage/database/data-modelling/quick-start).
 
 
 ## How it works

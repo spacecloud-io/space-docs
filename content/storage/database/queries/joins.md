@@ -5,7 +5,7 @@ draft: false
 weight: 8
 ---
 
-You can join data from **different data sources** by making nested queries. Joins can be performed based on the [relations](/essentials/data-modelling/relations) described in your schema.
+You can join data from **different data sources** by making nested queries. Joins can be performed based on the [relations](/storage/database/data-modelling/relations) described in your schema.
 
 These join work for **any database** even if it is not relational (e.g., MongoDB).
 

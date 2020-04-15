@@ -11,7 +11,7 @@ This guide helps you model a Pokemon app 😛 to explore the data modelling in S
 
 ## Setup
 
-If you want to follow this guide along practically, first [deploy Space Cloud](/getting-started/deployment) along with PostgreSQL and create a project in Mission Control with PostgreSQL as the primary database.
+If you want to follow this guide along practically, first [deploy Space Cloud](https://learn.spaceuptech.com/space-cloud/basics/setup/) along with PostgreSQL and create a project in Mission Control with PostgreSQL as the primary database.
 
 Then head over to the `Overview` tab in the `Database` section.
 
@@ -21,7 +21,7 @@ Time for some data modelling now!
 
 The Pokemon app which we are going to build have trainers and pokemons (quite obvious😅). 
 
-Each pokemon belongs to a single trainer, and each trainer can have multiple pokemons😋. Note that this a **one-to-many relationship**. Read more about modelling relations [here](/essentials/data-modelling/relations).
+Each pokemon belongs to a single trainer, and each trainer can have multiple pokemons😋. Note that this a **one-to-many relationship**. Read more about modelling relations [here](/storage/database/data-modelling/relations).
 
 ### Trainer table
 
@@ -66,6 +66,18 @@ type pokemon {
 {{< /highlight >}}
 
 The `@foreign` directive above instructs Space Cloud to create a foreign key on the `id` field of the `trainer` table.  This foreign key prevents any actions that would destroy the links between the `pokemon` and `trainer` table. Which means that the database would throw an error if you delete a trainer before deleting their pokemons.
+
+> **You can modify the foreign key behaviour to delete the child record(s) automatically when parent record is deleted instead of throwing error. This can be done by specifying the `onDelete` argument of the `foreign` directive as follows:**
+
+{{< highlight graphql "hl_lines=6" >}}
+type pokemon {
+  id: ID! @primary
+  name: String!
+  combat_power: Integer
+  caught_on: DateTime! @createdAt
+  trainer_id: ID! @foreign(table: "trainer", field: "id", onDelete: "cascade")
+}
+{{< /highlight >}}
 
 The `@createdAt` directive helps Space Cloud to automatically insert the datetime value whenever you insert a pokemon into the `pokemon` table.
 
@@ -206,7 +218,7 @@ You should be able to see a response which looks like this:
 }
 {{< /highlight >}}
 
-The query that we used above performs a join operation on the backend between `trainer` and `pokemon` table with the condition - `trainer.id == pokemon.trainer_id`. This condition is derived by the arguments (`table`, `from`, `to`) of the `@link` directive, which we mentioned earlier. You can read more about `@link` directive from [here](/essentials/data-modelling/types-and-directives/#link-directive).
+The query that we used above performs a join operation on the backend between `trainer` and `pokemon` table with the condition - `trainer.id == pokemon.trainer_id`. This condition is derived by the arguments (`table`, `from`, `to`) of the `@link` directive, which we mentioned earlier. You can read more about `@link` directive from [here](/storage/database/data-modelling/supported-features/#link-directive).
 
 Notice that we even received the values for `caught_on` even though we did not specify it while inserting. It means that Space Cloud auto-generated the values for `caught_on` field for us! Pretty great right?
 
@@ -279,4 +291,4 @@ This mutation should fail with the following response:
 
 It means Space Cloud has created foreign keys for us which helped us maintain the integrity of the relation.
 
-Great! You have just learned the basics of data modelling in Space Cloud. The next steps would be to take a deep dive into all the [field types and directives](/essentials/data-modelling/types-and-directives) or learn [modelling relations](/essentials/data-modelling/relations) in detail.
+Great! You have just learned the basics of data modelling in Space Cloud. The next steps would be to take a deep dive into all the [features of data modelling](/storage/database/data-modelling/supported-features) or learn [modelling relations](/storage/database/data-modelling/relations) in detail.

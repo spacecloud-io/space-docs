@@ -5,7 +5,7 @@ draft: false
 weight: 2
 ---
 
-An update request consists of two parts - a `where` clause and `update operators` for new values. The `where` clause has the same [filtering options](/essentials/queries/filtering) as queries.
+An update request consists of two parts - a `where` clause and `update operators` for new values. The `where` clause has the same [filtering options](/storage/database/queries/filtering) as queries.
 
 > **Note:** At least any one of the `update operations` is required to update the rows.
 
@@ -229,7 +229,7 @@ const whereClause = cond("id", "==", 1)
 
 const { status } = await db.update("trainers")
   .where(whereClause)
-  .min({highest_score: 200})
+  .max({highest_score: 200})
   .apply()
 {{< /highlight >}}  
   </div>

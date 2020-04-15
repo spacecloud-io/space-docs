@@ -5,6 +5,12 @@ draft: false
 weight: 1
 ---
 
+## Prerequisites
+
+To use the realtime functionality (liveQuery) on any table/collection, you need to make sure that the following things are true:
+
+- The schema of the table/collection has some fields that uniquely identify each row (i.e. the table should have primary or unique fields). These fields should also be present in the `where` clause during update and delete mutations. 
+- The particular table/collection has the realtime feature enabled. You can find and change this setting for each table/collection in the `Overview` tab of the `Database` section.
 
 ## Live query
 When you make a live query request to Space Cloud, it first pushes down the initial data in the result set one by one.  After that, it just notifies you of any changes that happen to your result set.
@@ -65,12 +71,12 @@ if (on some logic) {
 Data pushed down in live query have the following fields: 
 
 - **type:** The type of operation which has resulted in Space Cloud pushing down data. Possible values are - `initial`, `insert`, `update`, and `delete`. `initial` is only applicable when Space Cloud is pushing the initial data down.
-- **payload:** The concerned document/object. `null` for `delete` operation.
+- **payload:** The concerned document/object.
 - **find:** An object containing the unique fields of the document. 
 - **time:** The timestamp of the operation in milliseconds.
 
 ## Subscribing to changes only
-In case you are interested in only the changes and not the initial values, pass the `options.skipInitial` argument to the live query:
+In case you are interested in only the changes and not the initial values, use can use `skipInitial`:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -84,13 +90,13 @@ In case you are interested in only the changes and not the initial values, pass 
 subscription {
   caught_pokemons @mongo (
     where: {trainer_id: $trainerId},
-    options: {skipInitial: true}
+    skipInitial: true
   ){
     type
     payload {
       name
     }
-    docId
+    find
   }
 }
 {{< /highlight >}}   
@@ -112,7 +118,7 @@ const onError = (err) => {
 }
 
 let subscription = db.liveQuery("caught_pokemons")
-  .options({skipInitial: true})
+  .skipInitial()
   .where(whereClause).subscribe(onSnapshot, onError)
 
 // Unsubscribe to changes

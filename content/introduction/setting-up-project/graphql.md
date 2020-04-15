@@ -7,20 +7,21 @@ weight: 1
 
 This guide is for setting up Apollo client in your javascript projects.
 
-## Basic client
+## Basic setup
 
-The basic client uses the HTTP link which is enough if you don't intend to use subscriptions. See [advanced client](/getting-started/setting-up-project/graphql#advanced-client) for subscriptions. 
+> **The basic setup uses the HTTP link only. If you want to use realtime subscriptions in your app then you must check out [advanced setup](/introduction/setting-up-project/graphql#advanced-setup).**
+
 ### Installing dependencies
 
 {{< highlight bash >}}
-npm install --save apollo-client apollo-cache-inmemory apollo-link-http graphql-tag
+npm install --save npm i graphql apollo-boost subscriptions-transport-ws apollo-link-context
 {{< /highlight >}}
 
 ### Creating client
 
 The `URI` for the client takes two parameters: 
 
-- **PROJECT_ID:** Unique identifier of a project. It's derived by converting your project name to lowercase and replacing all spaces and hyphens to underscores. For example `Todo App` becomes `todo_app`.
+- **PROJECT_ID:** Unique identifier of a project. It's derived by converting your project name to lowercase. For example `TodoApp` becomes `todoapp`.
 - **SPACE_CLOUD_URL:** This is the URL of your `space-cloud` binary. It's `http://localhost:4122` or `https://localhost:4126` for HTTP and HTTPS endpoints respectively.
 
 > **Note:** Replace `localhost` with the address of your Space Cloud if you are not running it locally.
@@ -31,14 +32,31 @@ The `URI` for the client takes two parameters:
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
+import { setContext } from 'apollo-link-context';
 
-const link = new HttpLink({
+const httpLink = new HttpLink({
   uri: 'http://localhost:4122/v1/api/PROJECT_ID/graphql'
 })
 
+// Middleware to pass token in each HTTP request
+const httpAuthLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  // replace the below implementation to get token from wherever you might have stored it.
+  const token = localStorage.getItem("token")
+
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      Authorization: token ? `Bearer ${token}` : ""
+    }
+  }
+});
+
+// Instantiate client
 const client = new ApolloClient({
-  link,
-  cache: new InMemoryCache()
+  cache: new InMemoryCache({ addTypename: false }),
+  link: httpAuthLink.concat(httpLink)
 })
 {{< /highlight >}}
 
@@ -51,32 +69,27 @@ client
   .query({
     query: gql`
       query {
-        pokemons @mongo {
+        pokemons @mydb {
           name
         }
       }
     `
   })
-  .then(result => console.log(result));
+  .then(({ data }) => console.log(data.pokemons));
 {{< /highlight >}}
 
-> **Note:** To query a database, you need to mention a `@directive` to specify which database you want to query.
+> **Note:** To query a database, you need to mention a `@<db-alias-name>` directive (`@mydb` in the above example) specifying which database you want to query.
 
-The directives for databases are:
-
-- `@mongo`: For MongoDB
-- `@postgres` : For PostgreSQL and PostgreSQL compatible databases (eg: CockroachDB, Yugabyte)
-- `@mysql`: For MySQL and MySQL compatible databases (eg: TiDB)
-- `@sqlserver`: For SQL Server
+The alias name identifies a database in your project uniquely. You can find out the alias name for your database from the database selector of the topbar in the Database section of Mission Control.
 
 ## Advanced client
 
-This client setup uses both the HTTP and WebSocket links smartly based on the type of request.
+This client setup uses both the HTTP and WebSocket links smartly based on the type of request. You should use this configuration if you want to use GraphQL subscriptions along with queries and mutations.
 
 ### Installing dependencies
 
 {{< highlight bash >}}
-npm install --save apollo-client apollo-link-ws apollo-link-http apollo-link apollo-utilities apollo-cache-inmemory subscriptions-transport-ws graphql-tag
+npm install --save npm i graphql apollo-boost subscriptions-transport-ws apollo-link-context apollo-link-ws
 {{< /highlight >}}
 
 ### Creating client
@@ -88,18 +101,20 @@ All queries and mutations go over the HTTP link, whereas the subscriptions go ov
 **Example:**
 
 {{< highlight javascript >}}
-import ApolloClient from "apollo-client";
-import { WebSocketLink } from 'apollo-link-ws';
-import { HttpLink } from 'apollo-link-http';
-import { split } from 'apollo-link';
-import { getMainDefinition } from 'apollo-utilities';
+import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { split } from 'apollo-link';
+import { HttpLink } from 'apollo-link-http';
+import { WebSocketLink } from 'apollo-link-ws';
+import { setContext } from 'apollo-link-context';
+import { getMainDefinition } from 'apollo-utilities';
 
-
+// Create HTTP link that will be used for queries and mutations
 const httpLink = new HttpLink({
   uri: "http://localhost:4122/v1/api/PROJECT_ID/graphql", // use https for secure endpoint
 });
 
+// Create Websocket link that will be used for subscriptions
 const wsLink = new WebSocketLink({
   uri: "ws://localhost:4122/v1/api/PROJECT_ID/graphql/socket", // use wss for a secure endpoint
   options: {
@@ -107,21 +122,52 @@ const wsLink = new WebSocketLink({
   }
 });
 
+wsLink.subscriptionClient.onReconnected(() => console.log("Reconnected"))
+
+// Subscription middleware that adds token to each subscription request
+const subscriptionAuthMiddleware = {
+  applyMiddleware: async (options, next) => {
+    options.authToken = getToken()
+    next()
+  }
+}
+
+// Add the subscription auth middleware to the web socket link
+wsLink.subscriptionClient.use([subscriptionAuthMiddleware])
+
+// Using the ability to split links, you can send data to each link
+// depending on what kind of operation is being sent
 const link = split(
   // split based on operation type
   ({ query }) => {
-    const { kind, operation } = getMainDefinition(query);
-    return kind === 'OperationDefinition' && operation === 'subscription';
+    const definition = getMainDefinition(query);
+    return (
+      definition.kind === 'OperationDefinition' &&
+      definition.operation === 'subscription'
+    );
   },
   wsLink,
   httpLink,
 );
 
+// Middleware to pass token in each HTTP request
+const httpAuthLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = getToken()
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      Authorization: token ? `Bearer ${token}` : ""
+    }
+  }
+});
+
 // Instantiate client
 const client = new ApolloClient({
-  link,
-  cache: new InMemoryCache()
-})
+  cache: new InMemoryCache({ addTypename: false }),
+  link: httpAuthLink.concat(link)
+});
 {{< /highlight >}}
 
 ### Subscribing to data
@@ -133,30 +179,24 @@ const subscription = client
   .subscribe({
     query: gql`
       subscription {
-        caught_pokemons(
+        pokemons(
           where: {trainer_id: TRAINER_ID}
-        ) @mongo {
+        ) @mydb {
           type
           payload # Contains the actual document
           find # Object containing the unique fields of the concerned document 
         }
       }
     `
-  })
-
-subscription.subscribe(value => console.log(value));  
-
+  }).subscribe(({ data }) => {
+    const { type, payload, find } = data.pokemons
+    console.log("Subscription data: ", type, payload, find)
+  }, (error) => console.log("Subscription error: ", error.message));  
 {{< /highlight >}}
 
-> **Note:** To query a database, you need to mention a `@directive` to specify which database you want to query.
+> **Note:** To query a database, you need to mention a `@<db-alias-name>` directive (`@mydb` in the above example) specifying which database you want to query.
 
-The directives for databases are:
-
-- `@mongo`: For MongoDB
-- `@postgres` : For PostgreSQL and PostgreSQL compatible databases (eg: CockroachDB, Yugabyte)
-- `@mysql`: For MySQL and MySQL compatible databases (eg: TiDB)
-- `@sqlserver`: For SQL Server
-
+The alias name identifies a database in your project uniquely. You can find out the alias name for your database from the database selector of the topbar in the Database section of Mission Control.
 
 ## Next steps
 
@@ -164,10 +204,9 @@ Great! You have initialized the graphql client in your project.
 
 Feel free to check out various capabalities of `space-cloud`:
 
-- Perform database [queries](/essentials/queries)
-- [Mutate](/essentials/mutations) data
-- [Realtime](/essentials/subscriptions) data sync across all devices
-- Manage files with ease using [File Storage](/essentials/file-storage) module
-- [Authenticate](/auth/authentication) your users
-- Write [custom business logic](/essentials/remote-services)
-- [Secure](/auth/authorization) your apps
+- Perform database [queries](/storage/database/queries)
+- [Mutate](/storage/database/mutations) data
+- [Realtime](/storage/database/subscriptions) data sync across all devices
+- Manage files with ease using [File Storage](/storage/filestore) module
+- [Authenticate](/user-management) your users
+- Write [custom business logic](/microservices/graphql)
