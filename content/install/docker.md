@@ -23,9 +23,9 @@ Luckily, we don't have to interact with these components directly. Space Cloud s
 
 The first step is downloading `space-cli`. You can download a version for your particular platform:
 
-- [Linux](https://storage.googleapis.com.com/space-cloud/linux/space-cli.zip)
-- [MacOS](https://storage.googleapis.com.com/space-cloud/darwin/space-cli.zip)
-- [Windows](https://storage.googleapis.com.com/space-cloud/windows/space-cli.zip)
+- [Linux](https://storage.googleapis.com/space-cloud/linux/space-cli.zip)
+- [MacOS](https://storage.googleapis.com/space-cloud/darwin/space-cli.zip)
+- [Windows](https://storage.googleapis.com/space-cloud/windows/space-cli.zip)
 
 Unzip the compressed archive.
 
@@ -35,9 +35,9 @@ Unzip the compressed archive.
 
 To make sure if the space-cli binary is correct, type the following command from the directory where you downloaded space-cli:
 
-**For Linux / Mac:** `./space-cli -v`
+**For Linux / Mac:** `./space-cli --version`
 
-**For Windows:** `space-cli.exe -v`
+**For Windows:** `space-cli.exe --version`
 
 The above command will print the `space-cli` version.
 
