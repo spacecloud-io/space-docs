@@ -118,7 +118,7 @@ const onError = (err) => {
 }
 
 let subscription = db.liveQuery("caught_pokemons")
-  .skipInitial()
+  .options({ skipInitial: true })
   .where(whereClause).subscribe(onSnapshot, onError)
 
 // Unsubscribe to changes
