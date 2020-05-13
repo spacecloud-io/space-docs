@@ -1,5 +1,6 @@
 ---
 title: "Custom Events"
+description: "Using Custom Events"
 date: 2020-03-30T10:26:43+05:30
 draft: false
 ---

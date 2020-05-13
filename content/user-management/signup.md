@@ -1,5 +1,6 @@
 ---
 title: "Email Signup"
+description: "Email Signup"
 date: 2019-09-23T09:21:46+05:30
 draft: false
 weight: 2

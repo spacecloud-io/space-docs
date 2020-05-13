@@ -1,5 +1,6 @@
 ---
-title: "Deploy existing docker container"
+title: "Deploy Docker Container"
+description: "Deploying Existing Docker Container"
 date: 2020-02-12T08:04:06+05:30
 draft: false
 weight: 1

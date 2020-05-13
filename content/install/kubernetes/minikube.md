@@ -1,5 +1,6 @@
 ---
 title: "Minikube"
+description: "Installing Space Cloud on Minikube"
 date: 2020-02-18T18:04:00+05:30
 draft: false
 weight: 1

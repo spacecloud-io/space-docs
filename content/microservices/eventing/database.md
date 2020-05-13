@@ -1,5 +1,6 @@
 ---
 title: "Database events"
+description: "Database events"
 date: 2019-10-19T13:38:05+05:30
 draft: false
 weight: 1

@@ -1,5 +1,6 @@
 ---
 title: "Kubernetes"
+description: "Installing Space Cloud on Kubernetes"
 date: 2020-02-15T18:04:00+05:30
 draft: false
 weight: 2

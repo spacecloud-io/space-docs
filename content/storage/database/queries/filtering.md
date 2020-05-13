@@ -1,5 +1,6 @@
 ---
 title: "Filter query results"
+description: "Filter query results"
 date: 2019-09-17T07:22:25+05:30
 draft: false
 weight: 2

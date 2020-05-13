@@ -1,5 +1,6 @@
 ---
 title: "Setting up a Project"
+description: "Setting up a project using Space Cloud"
 date: 2019-09-26T09:23:13+05:30
 draft: false
 weight: 5

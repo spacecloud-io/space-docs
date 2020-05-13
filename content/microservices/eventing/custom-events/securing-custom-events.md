@@ -1,5 +1,6 @@
 ---
 title: "Securing Custom Events"
+description: "Securing Custom Events"
 date: 2020-03-30T20:37:14+05:30
 draft: false
 weight: 3

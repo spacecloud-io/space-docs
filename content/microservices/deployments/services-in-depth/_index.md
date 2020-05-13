@@ -1,8 +1,9 @@
 ---
 title: "Services in Depth"
+description: "Services in Depth"
 date: 2020-02-14T10:45:00+05:30
 draft: false
-weight: 4
+weight: 6
 ---
 
 At the core of the _Deployments Module_ is the `Service Configuration` commonly called `services`.

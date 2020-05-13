@@ -1,5 +1,6 @@
 ---
 title: "Specifying a Docker Image"
+description: "Specifying a Docker Image"
 date: 2020-02-14T10:45:00+05:30
 draft: false
 weight: 1

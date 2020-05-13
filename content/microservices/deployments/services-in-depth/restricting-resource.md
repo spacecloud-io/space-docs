@@ -1,5 +1,6 @@
 ---
 title: "Restricting Resources"
+description: "Restricting Service Resources"
 date: 2020-02-14T10:45:00+05:30
 draft: false
 weight: 3

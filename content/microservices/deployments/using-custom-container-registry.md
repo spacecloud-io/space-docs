@@ -1,5 +1,6 @@
 ---
-title: "Using custom container registry"
+title: "Configuring container registry"
+description: "Using an Existing Container Registry"
 date: 2020-04-07T09:17:32+05:30
 draft: false
 weight: 5
