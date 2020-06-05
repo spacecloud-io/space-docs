@@ -1,5 +1,6 @@
 ---
 title: "Setting up graphql"
+description: "Setting up a GraphQL Client"
 date: 2019-09-26T09:23:36+05:30
 draft: false
 weight: 1

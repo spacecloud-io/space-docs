@@ -1,5 +1,6 @@
 ---
 title: "Browse Event Logs"
+description: "Browse Event Logs"
 date: 2020-04-02T08:17:25+05:30
 draft: false
 weight: 4

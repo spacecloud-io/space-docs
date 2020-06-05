@@ -1,5 +1,6 @@
 ---
 title: "Sample use cases"
+description: "Sample use cases for Subscription"
 date: 2019-09-17T18:18:52+05:30
 draft: false
 weight: 3

@@ -1,4 +1,11 @@
-# Space Cloud
+---
+title: "Space Cloud Documentation"
+description: "Space Cloud Documentation"
+date: 2019-09-23T08:08:17+05:30
+draft: false
+weight: 0
+---
+
 Space Cloud is an **open-source, kubernetes based platform which lets you build, scale and secure cloud native apps at scale**. 
 
 It provides instant **GraphQL** and **REST** APIs for your database and microservices that can be consumed directly from your frontend in a secure manner. With that, it also deploys and scales your docker images on Kubernetes.

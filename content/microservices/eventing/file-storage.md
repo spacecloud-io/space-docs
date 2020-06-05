@@ -1,5 +1,6 @@
 ---
 title: "File Storage Events"
+description: "File Storage Events"
 date: 2019-12-28T16:22:12+05:30
 draft: false
 weight: 2

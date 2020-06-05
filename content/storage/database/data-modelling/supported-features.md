@@ -1,5 +1,6 @@
 ---
 title: "Supported Features"
+description: "Supported Features"
 date: 2019-10-16T10:51:01+05:30
 draft: false
 weight: 3

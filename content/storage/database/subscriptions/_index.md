@@ -1,5 +1,6 @@
 ---
 title: "Subscriptions"
+description: "Subscriptions"
 date: 2019-09-17T18:15:32+05:30
 draft: false
 weight: 6

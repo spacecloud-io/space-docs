@@ -1,5 +1,6 @@
 ---
 title: "Cloud"
+description: "Installing Space Cloud on a Managed Kubernetes Solution"
 date: 2020-02-18T18:04:00+05:30
 draft: false
 weight: 3

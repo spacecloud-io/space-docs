@@ -1,5 +1,6 @@
 ---
 title: "Design Goals"
+description: "Space Cloud Design Goals"
 date: 2020-02-12T06:42:53+05:30
 draft: false
 weight: 2

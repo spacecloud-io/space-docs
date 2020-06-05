@@ -1,5 +1,6 @@
 ---
 title: "Synchronous Event Triggers"
+description: "Synchronous Event Triggers"
 date: 2020-03-30T19:38:07+05:30
 draft: false
 weight: 2

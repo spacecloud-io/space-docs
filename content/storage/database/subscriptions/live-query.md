@@ -1,5 +1,6 @@
 ---
 title: "Live Query"
+description: "Live Query"
 date: 2019-09-28T11:37:46+05:30
 draft: false
 weight: 1

@@ -1,5 +1,6 @@
 ---
 title: "Queries"
+description: "Queries"
 date: 2019-09-17T07:24:04+05:30
 draft: false
 weight: 4

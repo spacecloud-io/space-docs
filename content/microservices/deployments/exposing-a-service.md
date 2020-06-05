@@ -1,5 +1,6 @@
 ---
 title: "Exposing a Service"
+description: "Exposing a Service to the Outside World"
 date: 2020-02-14T08:04:06+05:30
 draft: false
 weight: 3

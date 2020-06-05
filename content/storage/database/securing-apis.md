@@ -1,5 +1,6 @@
 ---
-title: "Securing your APIs"
+title: "Securing your Database"
+title: "Securing your Database APIs"
 date: 2019-09-23T10:07:49+05:30
 draft: false
 weight: 7

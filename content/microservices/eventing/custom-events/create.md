@@ -1,5 +1,6 @@
 ---
 title: "Create custom event trigger"
+description: "Create a Custom Event Trigger"
 date: 2020-03-30T10:55:58+05:30
 draft: false
 weight: 1

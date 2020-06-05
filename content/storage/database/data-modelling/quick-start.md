@@ -1,5 +1,6 @@
 ---
 title: "Getting Started"
+description: "Getting Started with Data Modeling"
 date: 2019-10-15T10:25:42+05:30
 draft: false
 weight: 1

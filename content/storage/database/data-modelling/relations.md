@@ -1,5 +1,6 @@
 ---
 title: "Modelling Relations"
+description: "Modelling Relations"
 date: 2019-10-16T08:21:54+05:30
 draft: false
 weight: 2

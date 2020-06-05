@@ -1,5 +1,6 @@
 ---
 title: "GraphQL APIs"
+description: "GraphQL APIs"
 date: 2019-10-19T10:45:00+05:30
 draft: false
 weight: 1

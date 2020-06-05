@@ -1,5 +1,6 @@
 ---
 title: "Javascript client SDK"
+description: "Setting up the JS SDK"
 date: 2019-09-26T09:23:20+05:30
 draft: false
 weight: 2

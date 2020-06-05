@@ -1,5 +1,6 @@
 ---
 title: "Register a Service"
+description: "Registering a Service"
 date: 2020-02-15T10:45:42+05:30
 draft: false
 weight: 2

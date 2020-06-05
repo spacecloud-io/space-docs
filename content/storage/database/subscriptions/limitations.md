@@ -1,5 +1,6 @@
 ---
 title: "Limitations"
+description: "Limitations"
 date: 2020-04-02T18:30:15+05:30
 draft: false
 weight: 2

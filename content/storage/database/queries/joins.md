@@ -1,5 +1,6 @@
 ---
 title: "Joins / nested queries"
+description: "Joins / nested queries"
 date: 2019-09-17T07:20:48+05:30
 draft: false
 weight: 8

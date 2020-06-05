@@ -1,5 +1,6 @@
 ---
 title: "Securing your APIs"
+description: "Securing your APIs"
 date: 2019-09-23T10:07:57+05:30
 draft: false
 weight: 6

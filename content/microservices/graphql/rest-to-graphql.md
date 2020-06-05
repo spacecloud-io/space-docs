@@ -1,5 +1,6 @@
 ---
 title: "Rest to GraphQL in Minutes"
+description: "Rest to GraphQL in Minutes"
 date: 2020-02-12T08:04:06+05:30
 draft: false
 weight: 1

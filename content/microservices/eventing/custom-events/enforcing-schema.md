@@ -1,5 +1,6 @@
 ---
 title: "Enforcing Schema"
+description: "Enforcing Schema"
 date: 2020-03-31T20:23:24+05:30
 draft: false
 weight: 4
