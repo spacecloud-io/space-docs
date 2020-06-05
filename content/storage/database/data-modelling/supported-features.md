@@ -521,9 +521,6 @@ type user {
 
 The above schema creates an index on the `email` field. 
 
-
-> **Note:** The `@unique` index 
-
 > **Note:** The `@index` directive isn't available on MongoDB yet and only works with type `ID`, `Integer`, `Float`, `Boolean` and `DateTime`.
 
 You can provide the following arguments in order to customize the index:
