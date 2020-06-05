@@ -351,13 +351,13 @@ const whereClause = cond("_id", "==", "1")
 
 const { status } = await db.update("caught_pokemons")
   .where(whereClause)
-  .remove({is_favourite: ""})
+  .remove("caught_pokemons")
   .apply()
 {{< /highlight >}}  
   </div>
 </div>
 
-> **Note:** The specified value in the \$unset expression (i.e. "") does not impact the operation.
+> **Note:** The specified value in the unset object (i.e. "") does not impact the operation.
 
 ### Rename operation
 
