@@ -3,7 +3,7 @@ title: "Using Multiple Operations"
 description: "Using Multiple Operations"
 date: 2019-09-17T17:36:29+05:30
 draft: false
-weight: 6
+weight: 8
 ---
 
 Multiple operations can be used together in the same query. For example, you can filter the results, sort and limit them all in a single query.

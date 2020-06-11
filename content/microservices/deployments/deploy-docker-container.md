@@ -8,7 +8,7 @@ weight: 1
 
 Space Cloud lets you leverage all the capabilities of Kubernetes without having to learn the Kubernetes API. 
 
-> **If you don't already have a docker container published for your code/service, then you should check out [deploying your code](/microservices/deployments/deploy-your-code).**
+> **If you don't already have a docker container published for your code/service, then you should check out [deploying your code](/microservices/deployments/deploy-custom-code).**
 
 ## Deploying docker container
 

@@ -14,6 +14,7 @@ The following topics will be covered in this section:
 
 - Making [simple queries](/storage/database/queries/simple-queries)
 - Performing [join](/storage/database/queries/joins) operations
+- Performing [aggregations](/storage/database/queries/aggregations) on your data
 - [Filtering](/storage/database/queries/filtering)
 - [Sorting](/storage/database/queries/sorting)
 - [Pagination](/storage/database/queries/pagination)

@@ -33,9 +33,8 @@ With Space Cloud, you can query your data in 3 ways:
 
 - [Read](/storage/database/queries/simple-queries) directly from a table/collection.
 - Perform [joins](/storage/database/queries/joins) on multiple tables (across databases).
-- For complex aggregations, make views on your table and read data from a view as you would from a table.
-
-> **Note:** You can make views only on SQL databases (e.g., PostgreSQL and MySQL)
+- Perform common [aggregations](/storage/database/queries/aggregations) on your data like `count`, `min`, `max`, `sum`, `avg`. 
+- For complex queries, you can execute custom SQL statements as [prepared queries](/storage/database/prepared-queries).
 
 You can also [request data from multiple databases](/storage/database/queries/multiple-queries) within a single request.
 

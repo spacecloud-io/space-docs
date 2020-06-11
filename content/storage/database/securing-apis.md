@@ -3,7 +3,7 @@ title: "Securing your Database"
 title: "Securing your Database APIs"
 date: 2019-09-23T10:07:49+05:30
 draft: false
-weight: 7
+weight: 8
 ---
 
 The security rules for database access works to authorize client request for database operations. Authorization works on the operation level (create, read, update, delete) for each table/collection in the database. This means that you can have different rules for different operations. 

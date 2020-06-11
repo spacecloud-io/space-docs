@@ -8,7 +8,7 @@ weight: 5
 
 `space-cli` requires a container registry to push the docker images of your code. 
 
-> **If you have followed the guide for [deploying your code](/microservices/deployments/deploy-your-code), you already know that `space-cli` can set up a docker registry as well for us. However, if you want to specify a custom container registry, this guide helps you do that.**
+> **If you have followed the guide for [deploying your code](/microservices/deployments/deploy-custom-code), you already know that `space-cli` can set up a docker registry as well for us. However, if you want to specify a custom container registry, this guide helps you do that.**
 
 ## Specifying custom container registry
 
