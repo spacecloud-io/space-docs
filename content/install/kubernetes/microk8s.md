@@ -21,8 +21,6 @@ sudo microk8s.enable DNS RBAC
 
 Space Cloud requires [Istio](https://istio.io/docs/setup/getting-started/) to work correctly. The default Istio profile works perfectly well.
 
-> **Make sure you have disabled `istio-ingressgateway`. Space Cloud configures and uses an internal ingress gateway.**
-
 For convenience, we have already made a YAML file to install istio for a [local cluster](https://raw.githubusercontent.com/spaceuptech/space-cloud/master/install-manifests/kubernetes/local/istio.yaml).
 
 ```bash
@@ -52,7 +50,7 @@ microk8s.kubectl get pods -n space-cloud --watch
 The last step would be to port forward Space Cloud's ports.
 
 ```bash
-microk8s.kubectl port-forward -n space-cloud service/gateway 4122:4122
+microk8s.kubectl port-forward -n space-cloud gateway-0 4122:4122
 ```
 
 ## Step 4: Open Mission Control
