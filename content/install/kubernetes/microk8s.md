@@ -37,10 +37,16 @@ Wait for all the pods to start:
 microk8s.kubectl get pods -n space-cloud --watch
 ```
 
-The last step would be to port forward Space Cloud's ports on localhost.
+The last step would be to port forward Space Cloud's ports on localhost:
 
 ```bash
 microk8s.kubectl port-forward -n space-cloud gateway-0 4122:4122
+```
+
+Or if you are going to access microk8s remotely from another machine, use the following command instead (replacing YOUR_IP with its value):
+
+```bash
+microk8s.kubectl port-forward -n space-cloud gateway-0 --address localhost,YOUR_IP 4122:4122
 ```
 
 ## Step 3: Open Mission Control
