@@ -37,21 +37,21 @@ Wait for all the pods to start:
 microk8s.kubectl get pods -n space-cloud --watch
 ```
 
-The last step would be to port forward Space Cloud's ports on localhost:
+Set up port forwarding to access Mission Control on `localhost:4122/mission-control`.
 
 ```bash
 microk8s.kubectl port-forward -n space-cloud gateway-0 4122:4122
 ```
 
-Or if you are going to access microk8s remotely from another machine, use the following command instead (replacing YOUR_IP with its value):
+Or to access Mission Control remotely from another machine, use the following command instead:
 
 ```bash
-microk8s.kubectl port-forward -n space-cloud gateway-0 --address localhost,YOUR_IP 4122:4122
+microk8s.kubectl port-forward -n space-cloud gateway-0 --address localhost,$(your-ip) 4122:4122
 ```
 
 ## Step 3: Open Mission Control
 
-You should be able to access Mission Control on `http://localhost:4122/mission-control` or `http://YOUR_IP:4122/mission-control`
+You should be able to access Mission Control on `http://localhost:4122/mission-control` or `http://$(your-ip):4122/mission-control`.
 
 The default credentials are:
 - **Username:** admin
