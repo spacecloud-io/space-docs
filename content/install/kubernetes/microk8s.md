@@ -43,15 +43,15 @@ Set up port forwarding to access Mission Control on `localhost:4122/mission-cont
 microk8s.kubectl port-forward -n space-cloud gateway-0 4122:4122
 ```
 
-Or to access Mission Control remotely from another machine, use the following command instead:
+Or to access Mission Control remotely from another machine, use the following command instead (replacing YOUR_IP with its value):
 
 ```bash
-microk8s.kubectl port-forward -n space-cloud gateway-0 --address localhost,$(your-ip) 4122:4122
+microk8s.kubectl port-forward -n space-cloud gateway-0 --address localhost,YOUR_IP 4122:4122
 ```
 
 ## Step 3: Open Mission Control
 
-You should be able to access Mission Control on `http://localhost:4122/mission-control` or `http://$(your-ip):4122/mission-control`.
+You should be able to access Mission Control on `http://localhost:4122/mission-control` or `http://YOUR_IP:4122/mission-control`.
 
 The default credentials are:
 - **Username:** admin
