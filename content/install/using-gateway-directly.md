@@ -108,7 +108,7 @@ You can pass environment variables or flags while running the gateway to tweak c
 
 > **While using docker container you can only set environment variables whereas with the binary you can use both the environment variables and/or flags**
 
-| Environment variable | Flag             | Default value | Decsription                      |
+| Environment variable | Flag             | Default value | Description                      |
 |----------------------|------------------|---------------|----------------------------------|
 | `DEV`                | `--dev`          | `false`       | Run gateway in development mode. |
 | `ADMIN_USER`         | `--admin-user`   | `admin`       | Set the admin user name.         |
