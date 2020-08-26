@@ -14,19 +14,7 @@ Install the latest version of [MicroK8s](https://microk8s.io/) for Windows, Linu
 
 Install the required add-ons:
 ```bash
-sudo microk8s.enable DNS RBAC
-```
-
-## Step 2: Install Istio
-
-Space Cloud requires [Istio](https://istio.io/docs/setup/getting-started/) to work correctly. The default Istio profile works perfectly well.
-
-> **Make sure you have disabled `istio-ingressgateway`. Space Cloud configures and uses an internal ingress gateway.**
-
-For convenience, we have already made a YAML file to install istio for a [local cluster](https://raw.githubusercontent.com/spaceuptech/space-cloud/master/install-manifests/kubernetes/local/istio.yaml).
-
-```bash
-microk8s.kubectl apply -f https://raw.githubusercontent.com/spaceuptech/space-cloud/master/install-manifests/kubernetes/local/istio.yaml
+sudo microk8s.enable dns rbac istio
 ```
 
 Wait for all the pods to start:
@@ -35,7 +23,7 @@ Wait for all the pods to start:
 microk8s.kubectl get pods -n istio-system --watch
 ```
 
-## Step 3: Install Space Cloud
+## Step 2: Install Space Cloud
 
 To install Space Cloud, run the command:
 
@@ -49,15 +37,21 @@ Wait for all the pods to start:
 microk8s.kubectl get pods -n space-cloud --watch
 ```
 
-The last step would be to port forward Space Cloud's ports.
+Set up port forwarding to access Mission Control on `localhost:4122/mission-control`.
 
 ```bash
-microk8s.kubectl port-forward -n space-cloud service/gateway 4122:4122
+microk8s.kubectl port-forward -n space-cloud gateway-0 4122:4122
 ```
 
-## Step 4: Open Mission Control
+Or to access Mission Control remotely from another machine, use the following command instead (replacing YOUR_IP with its value):
 
-You should be able to access Mission Control on `http://localhost:4122/mission-control`
+```bash
+microk8s.kubectl port-forward -n space-cloud gateway-0 --address localhost,YOUR_IP 4122:4122
+```
+
+## Step 3: Open Mission Control
+
+You should be able to access Mission Control on `http://localhost:4122/mission-control` or `http://YOUR_IP:4122/mission-control`.
 
 The default credentials are:
 - **Username:** admin

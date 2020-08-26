@@ -24,8 +24,6 @@ minikube start --cpus=4 --memory=8096
 
 Space Cloud requires [Istio](https://istio.io/docs/setup/getting-started/) to work correctly. The default Istio profile works perfectly well.
 
-> **Make sure you have disabled `istio-ingressgateway`. Space Cloud configures and uses an internal ingress gateway.**
-
 For convenience, we have already made a YAML file to install istio for a [local cluster](https://raw.githubusercontent.com/spaceuptech/space-cloud/master/install-manifests/kubernetes/local/istio.yaml).
 
 ```bash
@@ -59,7 +57,7 @@ You should be able to access Mission Control on `http://$(minikube ip):30122/mis
 Set up port forwarding to access Mission Control on `localhost:4122`.
 
 ```bash
-kubectl port-forward -n space-cloud service/gateway 4122:4122
+kubectl port-forward -n space-cloud gateway-0 4122:4122
 ```
 
 You should be able to access Mission Control on `http://localhost:4122/mission-control`.

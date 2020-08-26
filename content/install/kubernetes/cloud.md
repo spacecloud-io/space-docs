@@ -19,8 +19,6 @@ Follow these instructions to install a production Space Cloud cluster on any clo
 
 Space Cloud requires [Istio](https://istio.io/docs/setup/getting-started/) to work correctly. The default Istio profile works perfectly well.
 
-> **Make sure you have disabled `istio-ingressgateway`. Space Cloud configures and uses an internal ingress gateway.**
-
 For convenience, we have already made a YAML file to install istio for a [production cluster](https://raw.githubusercontent.com/spaceuptech/space-cloud/master/install-manifests/kubernetes/prod/istio.yaml).
 
 ```bash
@@ -60,7 +58,7 @@ kubectl get -n space-cloud svc gateway
 Set up port forwarding to access Mission Control on `localhost:4122`.
 
 ```bash
-kubectl port-forward -n space-cloud service/gateway 4122:4122
+kubectl port-forward -n space-cloud gateway-0 4122:4122
 ```
 
 You should be able to access Mission Control on `http://localhost:4122/mission-control`.
