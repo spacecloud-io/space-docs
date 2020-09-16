@@ -24,16 +24,10 @@ minikube start --cpus=4 --memory=8096
 
 Space Cloud requires [Istio](https://istio.io/docs/setup/getting-started/) to work correctly. The default Istio profile works perfectly well.
 
-For convenience, we have already made a YAML file to install istio for a [local cluster](https://raw.githubusercontent.com/spaceuptech/space-cloud/master/install-manifests/kubernetes/local/istio.yaml).
-
-```bash
-kubectl apply -f https://raw.githubusercontent.com/spaceuptech/space-cloud/master/install-manifests/kubernetes/local/istio.yaml
+Download and install the istio release:
 ```
-
-Wait for all the pods to start:
-
-```bash
-kubectl get pods -n istio-system --watch
+curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.7.1 sh -
+./istio-1.7.1/bin/istioctl install --set profile=demo
 ```
 
 ## Step 3: Install Space Cloud
