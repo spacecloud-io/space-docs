@@ -43,6 +43,10 @@ Set up port forwarding to access Mission Control on `localhost:4122/mission-cont
 microk8s kubectl port-forward -n space-cloud statefulsets/gateway --address 0.0.0.0 4122:4122
 ```
 
+## Step 3: Open Mission Control
+
+You should be able to access Mission Control on `http://localhost:4122/mission-control` or `http://YOUR_IP:4122/mission-control`.
+
 If you are running microk8s on Windows or MacOS, k8s runs in a separate VM. Run `multipass list` to find the IP of that VM. It should have an ouptut similar to:
 
 ```
@@ -51,10 +55,6 @@ microk8s-vm             Running           192.168.64.17    Ubuntu 18.04 LTS
 ```
 
 Use the IP printed on the terminal to connect to Space Cloud instead of `localhost`.
-
-## Step 3: Open Mission Control
-
-You should be able to access Mission Control on `http://localhost:4122/mission-control` or `http://YOUR_IP:4122/mission-control`.
 
 The default credentials are:
 - **Username:** admin
