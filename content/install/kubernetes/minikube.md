@@ -34,7 +34,7 @@ curl -L https://istio.io/downloadIstio | sh -
 Move to the Istio package directory and install Istio. For example, if the package is `istio-1.7.2`:
 ```bash
 cd istio-1.7.2
-./bin/istioctl install
+./bin/istioctl install --set profile=demo
 ```
 
 For more detailed Istio install instructions, visit the [Istio Docs](https://istio.io/latest/docs/setup/install/istioctl/)
@@ -60,7 +60,7 @@ You should be able to access Mission Control on `http://$(minikube ip):30122/mis
 Set up port forwarding to access Mission Control on `localhost:4122`.
 
 ```bash
-kubectl port-forward -n space-cloud gateway-0 4122:4122
+kubectl port-forward -n istio-system deployments/istio-ingressgateway 4122:8080
 ```
 
 You should be able to access Mission Control on `http://localhost:4122/mission-control`.

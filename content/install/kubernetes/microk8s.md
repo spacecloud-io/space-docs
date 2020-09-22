@@ -46,7 +46,7 @@ microk8s.kubectl port-forward -n space-cloud gateway-0 4122:4122
 Or to access Mission Control remotely from another machine, use the following command instead (replacing YOUR_IP with its value):
 
 ```bash
-microk8s.kubectl port-forward -n space-cloud gateway-0 --address localhost,YOUR_IP 4122:4122
+microk8s.kubectl port-forward -n istio-system deployments/istio-ingressgateway 4122:8080
 ```
 
 ## Step 3: Open Mission Control

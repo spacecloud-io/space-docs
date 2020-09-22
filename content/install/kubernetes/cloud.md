@@ -61,7 +61,7 @@ kubectl get -n space-cloud svc gateway
 Set up port forwarding to access Mission Control on `localhost:4122`.
 
 ```bash
-kubectl port-forward -n space-cloud gateway-0 4122:4122
+kubectl port-forward -n istio-system deployments/istio-ingressgateway 4122:8080
 ```
 
 You should be able to access Mission Control on `http://localhost:4122/mission-control`.
