@@ -49,7 +49,7 @@ You should be able to access Mission Control on `http://localhost:4122/mission-c
 
 If you are running microk8s on Windows or MacOS, k8s runs in a separate VM. Run `multipass list` to find the IP of that VM. It should have an ouptut similar to:
 
-```
+```bash
 Name                    State             IPv4             Image
 microk8s-vm             Running           192.168.64.17    Ubuntu 18.04 LTS
 ```
