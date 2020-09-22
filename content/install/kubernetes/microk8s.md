@@ -8,7 +8,7 @@ weight: 1
 
 Follow these instructions to install Space Cloud on MicroK8s.
 
-## Step 1: Install MicroK8s
+## Step 1: Install MicroK8s along with Istio
 
 Install the latest version of [MicroK8s](https://microk8s.io/) for Windows, Linux or macOS.
 

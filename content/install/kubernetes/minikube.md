@@ -24,11 +24,20 @@ minikube start --cpus=4 --memory=8096
 
 Space Cloud requires [Istio](https://istio.io/docs/setup/getting-started/) to work correctly. The default Istio profile works perfectly well.
 
-Download and install the istio release:
+Download the latest istio release:
+```bash
+curl -L https://istio.io/downloadIstio | sh -
 ```
-curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.7.1 sh -
-./istio-1.7.1/bin/istioctl install --set profile=demo
+
+> **Space Cloud has been tested with Istio versions `v1.7.X` and `v1.6.X`.**
+
+Move to the Istio package directory and install Istio. For example, if the package is `istio-1.7.2`:
+```bash
+cd istio-1.7.2
+./bin/istioctl install
 ```
+
+For more detailed Istio install instructions, visit the [Istio Docs](https://istio.io/latest/docs/setup/install/istioctl/)
 
 ## Step 3: Install Space Cloud
 
