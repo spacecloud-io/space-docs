@@ -34,7 +34,7 @@ microk8s kubectl apply -f https://raw.githubusercontent.com/spaceuptech/space-cl
 Wait for all the pods to start:
 
 ```bash
-microk8s.kubectl get pods -n space-cloud --watch
+microk8s kubectl get pods -n space-cloud --watch
 ```
 
 Set up port forwarding to access Mission Control on `localhost:4122/mission-control`.
