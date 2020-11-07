@@ -1,12 +1,13 @@
 ---
-title: "Matching fields"
-description: "Matching fields"
-date: 2020-06-18T12:07:00+05:30
+title: "Matching request and claims"
+description: "Matching request and claims"
+date: 2020-10-22T13:28:29+05:30
 draft: false
 weight: 1
 ---
 
-Many a times we want to allow access to a particular resource based on certain conditions. In such scenarios, we use a `match` rule to match/compare two values.
+
+The `match` rule is used to match/compare two values.
 
 For example, to allow an operation only if the role is `admin`, we can write the following `match` rule:
 
@@ -34,7 +35,9 @@ The basic syntax for the `match` rule is as follows:
 }
 {{< /highlight >}}
 
-The `match` rule performs a comparison between the two fields `f1` and `f2` as per the operator specified in the `eval` field. If the comparison evaluates to true, the `match` rule is resolved and the access is granted. Otherwise the access is denied.
+The `match` rule performs a comparison between the two fields `f1` and `f2` as per the operator specified in the `eval` field. If the comparison evaluates to true, the `match` rule is resolved and the access is granted. Otherwise the access is denied and the user gets an error.
+
+> **Did you know?** To optimize performance in case of read operations (in SQL databases), Space Cloud pushes the match conditions onto the database. That means an authorized request will lead to an empty result array instead of an error.  
 
 ## Comparison operations
 
@@ -95,7 +98,7 @@ Let's say if you have a token with the following claims:
 
 Then you can refer to the organization name in your `f1`/`f2` of the `match` rule as `args.auth.organization.name`.
 
-The value of the variable is decided at the run time by the Space Cloud.
+The value of the variable is evaluated at the run time by the Space Cloud.
 
 ### Using helper functions in fields
 

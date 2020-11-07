@@ -1,7 +1,7 @@
 ---
-title: "Querying a Database"
-description: "Querying a Database"
-date: 2020-06-18T12:07:18+05:30
+title: "Querying database"
+description: "Querying database"
+date: 2020-10-22T13:28:01+05:30
 draft: false
 weight: 2
 ---
@@ -22,13 +22,16 @@ The basic syntax for the `query` rule is:
   "db": "<alias name of the database to be queried>",
   "col": "<table/collection name>",
   "find": "<find object>",
+  "store": "<variable to store the response>"
   "clause": "<clause>" 
 }
 {{< /highlight >}}
 
 The `query` rule makes a database query to the database and table/collection specified in the rule with the find object (where clause) specified in the rule. More details about find object is provided [below]().
 
-The response from the database is available in `args.result` variable. The security rule provided in the `clause` of the `query` rule is then evaluated to resolve the `query` rule. More details about the `clause` is provided [below]().
+The response from the database is stored in the variable specified in the `store` field. If no value is specified in the `store` field, then the response is stored in the `args.result` field. 
+
+The security rule provided in the `clause` of the `query` rule is then evaluated to resolve the `query` rule. More details about the `clause` is provided [below]().
 
 ### Find object
 
@@ -60,27 +63,29 @@ Don't confuse the `args.find` with the find object that you are writing for the 
 
 ### Clause
 
-The `clause` field in the `query` rule helps to decide whether the `query` rule will be resolved or not. You can write any security rule inside a `clause` field. The `query` rule will get resolved only if the rule provided in the `clause` gets resolved.
+The `clause` field in the `query` rule helps to decide whether the `query` rule will be resolved or not. You can write any security rule inside a `clause` field. The result of the database query can be accessed inside the `clause` along with any other [available variables](). The `query` rule will get resolved only if the rule provided in the `clause` gets resolved.
 
-**Example:** Check if the database query returned any rows with the help of `match` clause:
+**Example:** Allow an user to create max 10 articles in the free plan. This requires you to first use the `query` rule to find the user's articles and then use the `clause` to check if the rows returned by the database are lesser than 10. Here's how you can use the `match` rule inside the `clause` to check this:
 
 {{< highlight javascript >}}
 {
   "clause": {
     {
       "rule": "match",
-      "eval": ">",
+      "eval": "<",
       "type": "number",
       "f1": "utils.length(args.result)",
-      "f2": 0 
+      "f2": 10 
     }
   }
 }
 {{< /highlight >}}
 
-`args.result` is an array containing the records returned from the database query. `utils.length` is a helper function that helps us to check the length of an array/string. The database `query` rule will get resolved only if the length of `args.result` is greater than zero in the above example.
+`args.result` is an array containing the records returned from the database query. `utils.length` is a helper function that helps us to check the length of an array/string. The database `query` rule will get resolved only if the length of `args.result` is lesser than 10 in the above example.
 
-## Instagram example
+You can even match certain fields in the database query response. For example, `args.result.0.id` in the above example would mean the `id` field of the first row of the database result.
+
+## Example
 
 This is a popular use case for the database `query` rule. In Instagram, you can view a profile only if its public or if you are in the followers of that profile.
 
@@ -164,3 +169,53 @@ If the followers was a separate table in the above example, then we would have h
   ]
 }
 {{< /highlight >}}
+
+## Forwarding the database query results to your service
+
+While using the database query rule to secure your remote services, you might often want to use the result of the database query used in the security rules in your remote service.
+
+For example, lets say you are building an e-commerce shop. You have written a remote service that redeems a coupon code to users. You want to make sure that the coupon code that the user has provided is still active. So you write the following `query` rule to query the status of the coupon code and provide a `match` clause to allow the request only when the coupon code's status is active:
+
+{{< highlight javascript >}}
+{
+  "rule": "query",
+  "db": "mydb",
+  "col": "coupon_codes",
+  "find": {
+    "id": "args.params.couponId"
+  },
+  "clause": {
+    "rule": "match",
+     "eval": "==",
+    "type": "string",
+    "f1": "args.result.0.status",
+    "f2": "active" 
+  }
+}
+{{< /highlight >}}
+
+However, you want to access the coupon code details in the remote service as well to redeem the proper amount. Instead of querying the database again for the same details, you can just forward the results of the database query to the payload of your remote service. 
+
+Here's how you can forward the query results to your remote service by using the `store` field:
+
+{{< highlight javascript "hl_lines=8 13">}}
+{
+  "rule": "query",
+  "db": "mydb",
+  "col": "coupon_codes",
+  "find": {
+    "id": "args.params.couponId"
+  },
+  "store": "args.params.couponDetails"
+  "clause": {
+    "rule": "match",
+     "eval": "==",
+    "type": "string",
+    "f1": "args.params.couponDetails.0.status",
+    "f2": "active" 
+  }
+}
+{{< /highlight >}}
+
+We have stored the query results in a field (`couponDetails`) inside `args.params` which is nothing but the payload of the remote service call. Thus the remote service will recieve a field `couponDetails` inside the request payload/body.
+

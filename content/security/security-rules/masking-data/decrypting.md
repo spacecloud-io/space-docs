@@ -74,6 +74,28 @@ After passing through the `decrypt` rule, the `args.res` would look become:
 ]
 {{< /highlight >}}
 
+## Decrypting fields conditionally
+
+In certain cases, you might want to decrypt the value of fields based on a certain condition. You can do so easily by adding the `clause` field in the `decrypt` rule. 
+
+For example, let's say we want to decrypt the `email` field only if a person's role is `admin`. Here's how you can use a `match` rule in the `clause` field of the `decrypt` rule to do so:
+
+{{< highlight javascript >}}
+{
+  "rule": "decrypt",
+  "fields": ["res.email"]
+  "clause": {
+    "rule": "match",
+    "eval": "==",
+    "type": "string",
+    "f1": "args.auth.role",
+    "f2": "admin"
+  }
+}
+{{< /highlight >}}
+
+Any security rule of Space Cloud can go inside the `clause` field including `and/or` for nested conditions. The decryption operation will only take place if the `clause` evaluates to true. However, the `decrypt` rule itself will always evaluate to true irrespective of the output of the `clause`.
+
 ## Combining decrypt with other rules
 
 Decrypt rule can be easily combined with any other data masking operations or authorization logic by using the `and` rule. Check out the [documentation of and rule]().

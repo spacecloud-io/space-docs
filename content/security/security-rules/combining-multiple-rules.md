@@ -3,7 +3,7 @@ title: "Combining Multiple Rules"
 description: "Combining Multiple Rules"
 date: 2020-06-18T12:09:06+05:30
 draft: false
-weight: 5
+weight: 7
 ---
 
 Real world use cases often demand complex access control logic. Space Cloud allows you to mix and match various security rules using the `and` and `or` rules.

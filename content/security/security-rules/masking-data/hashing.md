@@ -70,6 +70,28 @@ After passing through the `hash` rule, the `args.doc` would look like this:
 
 This hashed data will then be inserted by the crud module of Space Cloud.
 
+## Hashing fields conditionally
+
+In certain cases, you might want to hash the value of fields based on a certain condition. You can do so easily by adding the `clause` field in the `hash` rule. 
+
+For example, let's say we want to hash the `password` field only if a person's role is `user`. Here's how you can use a `match` rule in the `clause` field of the `hash` rule to do so:
+
+{{< highlight javascript >}}
+{
+  "rule": "decrypt",
+  "fields": ["args.doc.password"]
+  "clause": {
+    "rule": "match",
+    "eval": "==",
+    "type": "string",
+    "f1": "args.auth.role",
+    "f2": "user"
+  }
+}
+{{< /highlight >}}
+
+Any security rule of Space Cloud can go inside the `clause` field including `and/or` for nested conditions. The hashing operation will only take place if the `clause` evaluates to true. However, the `hash` rule itself will always evaluate to true irrespective of the output of the `clause`.
+
 ## Combining hash with other rules
 
 Hash rule can be easily combined with any other data masking operations or authorization logic by using the `and` rule. Check out the [documentation of and rule]().

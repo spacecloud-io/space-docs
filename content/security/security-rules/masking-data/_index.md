@@ -1,9 +1,9 @@
 ---
-title: "Masking Data"
-description: "Masking Data"
+title: "Masking/Transforming Data"
+description: "Masking/Transforming Data"
 date: 2020-06-18T12:08:02+05:30
 draft: false
-weight: 4
+weight: 5
 ---
 
 Masking is the process of replacing/hiding parts of your data from the user or the system. 

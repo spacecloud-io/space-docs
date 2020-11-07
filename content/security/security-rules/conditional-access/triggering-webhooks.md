@@ -1,7 +1,7 @@
 ---
 title: "Triggering webhooks"
 description: "Triggering webhooks"
-date: 2020-06-18T12:07:18+05:30
+date: 2020-10-22T13:28:01+05:30
 draft: false
 weight: 3
 ---
@@ -15,13 +15,16 @@ The basic syntax for the `webhook` rule is:
 {{< highlight javascript >}}
 {
   "rule": "webhook",
-  "url": "<webhook-url>"
+  "url": "<webhook-url>",
+  "store": "<variable to store the response>"
 }
 {{< /highlight >}}
 
 The `webhook` rule triggers an HTTP `POST` request on the url specified in the rule. 
 
-The target service performs the custom validation and provides a response accordingly. The `webhook` rule is resolved only if the webhook target provides a response with status code `2xx`. Otherwise the rule is considered rejected and the access is denied.
+The target service performs the custom validation and provides a response accordingly. The `webhook` rule is resolved only if the webhook target provides a response with status code `2xx`. 
+
+You can optionally specify the variable to store the result of the webhook, so that you can use the fields from the webhook response body in your other security rules like `match`. 
 
 ### Request headers
 
@@ -77,3 +80,38 @@ The access token contains the following claims:
 {{< /highlight >}}
 
 To verify whether a webhook is coming from Space Cloud only, you can verify the access token with the primary secret. As an additional security step you can also check the value of role inside the token claims.
+
+### Overriding claims
+
+You can override the claims of the access token specified above to suite your webhook target by specifying the `claims` field in the `webhook` rule. Example:
+
+{{< highlight javascript >}}
+{
+  "rule": "webhook",
+  "url": "<webhook-url>",
+  "claims": { // Any object
+    "foo": "bar"
+  }
+}
+{{< /highlight >}}
+
+To configure the claims in the security rule builder, check the `Override claims` option and provide your claims as a JSON object in the `Specify claims` input:
+
+[Screenshot of security rules form]!
+
+
+## Forwarding the webhook results to your service
+
+Often while securing your remote services via the `webhook` rule, you might even want to forward the result of the webhook call to your remote service. You can do that easily by using the `store` field. Just point the `store` field to any variable inside the payload (`args.params`) of the remote service.
+
+Example:
+
+{{< highlight javascript >}}
+{
+  "rule": "webhook",
+  "url": "<webhook-url>",
+  "store": "args.params.foo"
+}
+{{< /highlight >}}
+
+`args.params` is nothing but a variable available in the security rules of remote services that contains the payload of the remote service call. (Check out the list of all available variables). Hence, storing the result in `args.params.foo` will make sure that the request payload to your remote service contains a field call `foo`, which is nothing but the response of your webhook request.
