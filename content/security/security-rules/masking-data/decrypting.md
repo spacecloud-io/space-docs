@@ -6,7 +6,7 @@ draft: false
 weight: 2
 ---
 
-Often you would use the [encrypt](/security/security-rules/data-masking/encrypting) rule to encrypt certain private fields in your data. To read the original values of such fields, you need to use the `decrypt` rule.
+Often you would use the [encrypt](/security/security-rules/masking-data/encrypting) rule to encrypt certain private fields in your data. To read the original values of such fields, you need to use the `decrypt` rule.
 
 ## How it works
 
@@ -25,7 +25,7 @@ The `encrypt` rule replaces the `fields` specified in the rule with their encryp
 
 ### Decrytion algorithm
 
-Space Cloud can only decrypt the fields that are encrypted by AES encryption (CFB mode). This is the algorithm which Space Cloud uses for encryption in the [encrypt](/security/security-rules/data-masking/encrypting) rule. 
+Space Cloud can only decrypt the fields that are encrypted by AES encryption (CFB mode). This is the algorithm which Space Cloud uses for encryption in the [encrypt](/security/security-rules/masking-data/encrypting) rule. 
 
 
 The AES key used for decryption is configurable. Whenever you create a project through the Mission Control, it configures a random AES key for that project. This AES key can be changed later from the project settings in Mission Control. The AES key used for encryption should be a 32 byte string that is base64 encoded.

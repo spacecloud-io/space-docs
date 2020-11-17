@@ -23,7 +23,7 @@ The syntax for `encrypt` rule is:
 
 The `encrypt` rule replaces the `fields` specified in the rule with their encrypted value. These fields can be present either in the request or response.
 
-The values of the encrypted fields can be retrieved by using the [decrypt](/security/security-rules/data-masking/decrypting) rule.
+The values of the encrypted fields can be retrieved by using the [decrypt](/security/security-rules/masking-data/decrypting) rule.
 
 > **Performing an encrypt operation generates a different output each time even for the same input value. If you want to generate same output each time for a value, you should use the `hash` rule. However, hashed fields cannot be decrypted back.** 
 

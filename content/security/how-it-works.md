@@ -61,4 +61,4 @@ On the platform layer, Space Cloud utilizes the power of Kubernetes and Istio un
 ## Next steps
 
 - In depth explanation of [various security rules](/security/security-rules)..
-- [Configuring the security rules](/security/configuring-rules).
+- [Configuring the security rules](/security/security-rules/configuring-rules).
