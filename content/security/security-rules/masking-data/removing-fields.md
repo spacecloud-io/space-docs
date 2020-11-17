@@ -70,7 +70,7 @@ Any security rule of Space Cloud can go inside the `clause` field including `and
 
 ## Combining remove with other rules
 
-Remove rule can be easily combined with any other data masking operations or authorization logic by using the `and` rule. Check out the [documentation of and rule]().
+Remove rule can be easily combined with any other data masking operations or authorization logic by using the `and` rule. Check out the [documentation of and rule](/security/security-rules/combining-multiple-rules).
 
 **Example:** Remove the `password` field from the response and encrypt the `email` field if the user performing the operation is not an `admin`. Here's how you can write this access control logic using `and` rule:
 

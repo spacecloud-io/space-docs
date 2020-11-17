@@ -23,7 +23,7 @@ The syntax for `encrypt` rule is:
 
 The `encrypt` rule replaces the `fields` specified in the rule with their encrypted value. These fields can be present either in the request or response.
 
-The values of the encrypted fields can be retrieved by using the [decrypt]() rule.
+The values of the encrypted fields can be retrieved by using the [decrypt](/security/security-rules/data-masking/decrypting) rule.
 
 > **Performing an encrypt operation generates a different output each time even for the same input value. If you want to generate same output each time for a value, you should use the `hash` rule. However, hashed fields cannot be decrypted back.** 
 
@@ -48,7 +48,7 @@ Let's say we want to encrypt the `email` and `name` fields of user before insert
 
 `args.doc` is nothing but a variable containing the document/record that the user is trying to insert. 
 
-You can even encrypt the fields sent back to user in response by using the `args.res` variable. You can check out the [list of available variables]() in security rules for each operation.
+You can even encrypt the fields sent back to user in response by using the `args.res` variable. You can check out the [list of available variables](/security/security-rules/available-variables) in security rules for each operation.
 
 Let's say the document to be inserted (`args.doc`) was:
 {{< highlight javascript >}}
@@ -98,9 +98,9 @@ Any security rule of Space Cloud can go inside the `clause` field including `and
 
 ## Combining encrypt with other rules
 
-Encrypt rule can be easily combined with any other data masking operations or authorization logic by using the `and` rule. Check out the [documentation of and rule]().
+Encrypt rule can be easily combined with any other data masking operations or authorization logic by using the `and` rule. Check out the [documentation of and rule](/security/security-rules/combining-multiple-rules).
 
-**Example:** Allow a record to be inserted in users table only if the length of username is greater than 10. The email field in the record should be encrypted, while the password field should be hashed. ([hash rule]()). Here's how you can write this access control logic using `and` rule:
+**Example:** Allow a record to be inserted in users table only if the length of username is greater than 10. The email field in the record should be encrypted, while the password field should be hashed. (`hash` rule). Here's how you can write this access control logic using `and` rule:
 
 {{< highlight javascript >}}
 {

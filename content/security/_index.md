@@ -17,11 +17,11 @@ Space Cloud provides powerful and flexible mechanisms to secure your apps/servic
 
 ## Application layer security features
 
-- [Validating authentication]()
-- Allowing [anonymous access]() to public data
-- [Granting access conditionally]() based on the request, auth token claims and any existing data in your app:
-- [Masking]() sensitive/private data     
-- Implementing [custom authorization/validation logic]()
+- [Validating authentication](/security/security-rules/authenticated-access)
+- Allowing [anonymous access](/security/security-rules/anonymous-access) to public data
+- [Granting access conditionally](/security/security-rules/conditional-access) based on the request, auth token claims and any existing data in your app:
+- [Masking](/security/security-rules/masking-data) sensitive/private data     
+- Implementing [custom authorization/validation logic](/security/security-rules/custom-authorization-logic)
 
 
 ## Platform layer security features

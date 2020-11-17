@@ -6,7 +6,7 @@ draft: false
 weight: 2
 ---
 
-Often you would use the [encrypt]() rule to encrypt certain private fields in your data. To read the original values of such fields, you need to use the `decrypt` rule.
+Often you would use the [encrypt](/security/security-rules/data-masking/encrypting) rule to encrypt certain private fields in your data. To read the original values of such fields, you need to use the `decrypt` rule.
 
 ## How it works
 
@@ -25,7 +25,7 @@ The `encrypt` rule replaces the `fields` specified in the rule with their encryp
 
 ### Decrytion algorithm
 
-Space Cloud can only decrypt the fields that are encrypted by AES encryption (CFB mode). This is the algorithm which Space Cloud uses for encryption in the [encrypt]() rule. 
+Space Cloud can only decrypt the fields that are encrypted by AES encryption (CFB mode). This is the algorithm which Space Cloud uses for encryption in the [encrypt](/security/security-rules/data-masking/encrypting) rule. 
 
 
 The AES key used for decryption is configurable. Whenever you create a project through the Mission Control, it configures a random AES key for that project. This AES key can be changed later from the project settings in Mission Control. The AES key used for encryption should be a 32 byte string that is base64 encoded.
@@ -46,7 +46,7 @@ Let's say the `email` and `name` are stored in an encrypted format in the databa
 
 Space Cloud is smart enough to handle arrays. If the variable (`args.res` in this case) is an array of objects, then Space Cloud would decrypt the fields (email and name in this case) inside each object of that variable. 
 
-You can check out the [list of available variables]() in security rules for each operation.
+You can check out the [list of available variables](/security/security-rules/available-variables) in security rules for each operation.
 
 Let's say the documents to be read (`args.res`) were:
 {{< highlight javascript >}}
@@ -98,7 +98,7 @@ Any security rule of Space Cloud can go inside the `clause` field including `and
 
 ## Combining decrypt with other rules
 
-Decrypt rule can be easily combined with any other data masking operations or authorization logic by using the `and` rule. Check out the [documentation of and rule]().
+Decrypt rule can be easily combined with any other data masking operations or authorization logic by using the `and` rule. Check out the [documentation of and rule](/security/security-rules/combining-multiple-rules).
 
 **Example:** Decrypt the name and email fields in the response only if the user is reading his own profile. Here's how you can write a security rule on the `profiles` table to do so:
 

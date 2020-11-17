@@ -20,4 +20,4 @@ The various types of security rules available for data masking in Space Cloud ar
 - **force:** Used to force the value of a certain field in the request.
 - **remove:** Used to remove certain fields from the request or response.
 
-These data masking rules can be combined with other other as well as other rules in Space Cloud. Check out the docs for [combining multiple rules]().
+These data masking rules can be combined with other other as well as other rules in Space Cloud. Check out the docs for [combining multiple rules](/security/security-rules/available-variables).

@@ -41,7 +41,7 @@ You should select this type when your auth server is using RSA with SHA256 for s
 
 Many third party auth services provide a JWK URL where they publish their JWKs (JSON Web Keys used for signing the JWTs). The URL must publish the JWKs in the standard format as described in [https://tools.ietf.org/html/rfc7517](https://tools.ietf.org/html/rfc7517).
 
-To integrate with such auth services, select the type as `JWK URL` and provide the JWK URL of your auth service. Check out the docs for [integrating with third party auth services]() to learn the URL formats and security consideratons for the popular auth services like Firebase Auth, Auth0, etc.
+To integrate with such auth services, select the type as `JWK URL` and provide the JWK URL of your auth service. Check out the docs for [integrating with third party auth services](/security/jwt-based-authentication/third-party-auth) to learn the URL formats and security consideratons for the popular auth services like Firebase Auth, Auth0, etc.
 
 Once a JWK URL is provided, Space Cloud automatically syncs the JWKS from the auth service to itself.
 

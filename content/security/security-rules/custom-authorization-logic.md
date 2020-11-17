@@ -12,10 +12,10 @@ The `match` and `query` rules combined with `and/or` are flexible enough to enfo
 
 - You write a service for performing custom validations.
 - Use the [webhook] rule to secure the access of the desired resource. 
-- Space Cloud makes an HTTP post request to the `url` specified in the webhook rule. This POST request encapsulates the request context nicely by including all the request variables. Checkout the list of [available variables]() to learn which request variables are available while securing different resources.
+- Space Cloud makes an HTTP post request to the `url` specified in the webhook rule. This POST request encapsulates the request context nicely by including all the request variables. Checkout the list of [available variables](/security/security-rules/available-variables) to learn which request variables are available while securing different resources.
 - Your service uses the request context provided in the request body to peform custom validations and respond with either a `2xx` status code or non `2xx` status code. The webhook rule is resolved only if your service responds with a `2xx` status code.
 
-Checkout the [webhook security rule]() in more details to find out all the possibilities with it.
+Checkout the [webhook security rule](/security/security-rules/conditional-access/triggering-webhooks) in more details to find out all the possibilities with it.
 
 ## Example
 
@@ -64,4 +64,4 @@ Now, whenever someone tries to read from the `orders` table, Space Cloud will ma
 
 If our endpoint responds with a 200, Space Cloud will consider the request to be authorized and allow the user to perform the desired operation (reading `orders` table in this case). Otherwise, Space Cloud will consider the request to be unauthorized and return an error to the user. 
 
-Checkout the list of [available variables]() to learn which variables you will receive in the request body. 
+Checkout the list of [available variables](/security/security-rules/available-variables) to learn which variables you will receive in the request body. 

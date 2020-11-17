@@ -63,7 +63,7 @@ Any security rule of Space Cloud can go inside the `clause` field including `and
 
 ## Combining force with other rules
 
-Force rule can be easily combined with any other data masking operations or authorization logic by using the `and` rule. Check out the [documentation of and rule]().
+Force rule can be easily combined with any other data masking operations or authorization logic by using the `and` rule. Check out the [documentation of and rule](/security/security-rules/combining-multiple-rules).
 
 **Example:** Allow a record to be inserted in users table only if the length of username is greater than 10. The `role` field in the record should be forced with the value `user` and the `password` field should be hashed. Here's how you can write this access control logic using `and` rule:
 

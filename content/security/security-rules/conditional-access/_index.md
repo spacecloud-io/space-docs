@@ -14,7 +14,7 @@ There are three primary security rules in Space Cloud for granting access confit
 - **query:** Performs a database query to make use of additional data for matching conditions in the `match` rule. 
 - **webhook:** Triggers a webhook to invoke custom logic for edge cases that can't be covered by `match` and `query`.
 
-> **You can easily model complex authorization tasks in Space Cloud by [combining multiple security rules together]() using `and`/`or` rules.**
+> **You can easily model complex authorization tasks in Space Cloud by [combining multiple security rules together](/security/security-rules/combining-multiple-rules) using `and`/`or` rules.**
 
 For example, an user with role `author` should be allowed to delete an article only if he is the author of that article. (i.e. the article's `author_id` field is equal to the id claim of the user) However, an admin should be able to delete any article. This can be modelled as - an article should be allowed to delete only if the user has role `admin`, or if the user has role `user` and the article id is equal to user id. 
 

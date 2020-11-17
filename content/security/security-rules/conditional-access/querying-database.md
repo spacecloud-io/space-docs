@@ -8,7 +8,7 @@ weight: 2
 
 Many a times we want to allow access to a particular resource based on certain values in database. In such scenarios, we can use the `query` rule to fetch data from database.
 
-Take the [Instagram example]() for instance, you can view a profile only if it's public or if you are in the followers list of that profile. This use case requires us to fetch the profile that you want to view from a database. 
+Take the [Instagram example](#example) for instance, you can view a profile only if it's public or if you are in the followers list of that profile. This use case requires us to fetch the profile that you want to view from a database. 
 
 Such complex authorization problems can be easily solved in Space Cloud by just writing security rules.
 
@@ -27,11 +27,11 @@ The basic syntax for the `query` rule is:
 }
 {{< /highlight >}}
 
-The `query` rule makes a database query to the database and table/collection specified in the rule with the find object (where clause) specified in the rule. More details about find object is provided [below]().
+The `query` rule makes a database query to the database and table/collection specified in the rule with the find object (where clause) specified in the rule. More details about find object is provided below.
 
 The response from the database is stored in the variable specified in the `store` field. If no value is specified in the `store` field, then the response is stored in the `args.result` field. 
 
-The security rule provided in the `clause` of the `query` rule is then evaluated to resolve the `query` rule. More details about the `clause` is provided [below]().
+The security rule provided in the `clause` of the `query` rule is then evaluated to resolve the `query` rule. More details about the `clause` is provided below.
 
 ### Find object
 
@@ -59,11 +59,11 @@ You can even use variables inside a find object.
 }
 {{< /highlight >}}
 
-Don't confuse the `args.find` with the find object that you are writing for the `query` rule in the above example. `args.find` is a variable availabe in security rules for `read`, `update` and `delete` database operations. Check out the [list of available variables]() for all operations in Space Cloud. 
+Don't confuse the `args.find` with the find object that you are writing for the `query` rule in the above example. `args.find` is a variable availabe in security rules for `read`, `update` and `delete` database operations. Check out the [list of available variables](/security/security-rules/available-variables) for all operations in Space Cloud. 
 
 ### Clause
 
-The `clause` field in the `query` rule helps to decide whether the `query` rule will be resolved or not. You can write any security rule inside a `clause` field. The result of the database query can be accessed inside the `clause` along with any other [available variables](). The `query` rule will get resolved only if the rule provided in the `clause` gets resolved.
+The `clause` field in the `query` rule helps to decide whether the `query` rule will be resolved or not. You can write any security rule inside a `clause` field. The result of the database query can be accessed inside the `clause` along with any other [available variables](/security/security-rules/available-variables). The `query` rule will get resolved only if the rule provided in the `clause` gets resolved.
 
 **Example:** Allow an user to create max 10 articles in the free plan. This requires you to first use the `query` rule to find the user's articles and then use the `clause` to check if the rows returned by the database are lesser than 10. Here's how you can use the `match` rule inside the `clause` to check this:
 

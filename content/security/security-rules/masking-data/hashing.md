@@ -44,7 +44,7 @@ Let's say we want to hash the `password` field of user before inserting it into 
 
 `args.doc` is nothing but a variable containing the document/record that the user is trying to insert. 
 
-You can even hash the fields sent back to user in response by using the `args.res` variable. You can check out the [list of available variables]() in security rules for each operation.
+You can even hash the fields sent back to user in response by using the `args.res` variable. You can check out the [list of available variables](/security/security-rules/available-variables) in security rules for each operation.
 
 Let's say the document to be inserted (`args.doc`) was:
 {{< highlight javascript >}}
@@ -94,9 +94,9 @@ Any security rule of Space Cloud can go inside the `clause` field including `and
 
 ## Combining hash with other rules
 
-Hash rule can be easily combined with any other data masking operations or authorization logic by using the `and` rule. Check out the [documentation of and rule]().
+Hash rule can be easily combined with any other data masking operations or authorization logic by using the `and` rule. Check out the [documentation of and rule](/security/security-rules/combining-multiple-rules).
 
-**Example:** Allow a record to be inserted in users table only if the length of username is greater than 10. The password field in the record should be hashed, while the email field should be encrypted. ([encrypt rule]()). Here's how you can write this access control logic using `and` rule:
+**Example:** Allow a record to be inserted in users table only if the length of username is greater than 10. The password field in the record should be hashed, while the email field should be encrypted. (`encrypt` rule). Here's how you can write this access control logic using `and` rule:
 
 {{< highlight javascript >}}
 {

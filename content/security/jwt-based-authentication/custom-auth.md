@@ -6,7 +6,7 @@ draft: false
 weight: 3
 ---
 
-Space Cloud supports JWT based suthentication. Hence, integrating your custom auth services with Space Cloud is a straight forward task. Check out [how JWT based authentication works]() in Space Cloud to learn more about it.
+Space Cloud supports JWT based suthentication. Hence, integrating your custom auth services with Space Cloud is a straight forward task. Check out [how JWT based authentication works](/security/jwt-based-authentication) in Space Cloud to learn more about it.
 
 ## How it works
 
@@ -16,9 +16,9 @@ The supported signing algorithms as of now are `HS256` and `RS256`. This [answer
 
 Thereafter, the user should provide the token in each request to Space Cloud. For HTTP requests, the token should be present inside `Authorization` header as `Bearer <token>`, whereas for websocket requests, the token should be present in the `data.token` key of the message body.
 
-You need to ensure that Space Cloud is configured with the same secret that is used by your auth service for signing tokens. Checkout the section for [configuring JWT secrets]() in Space Cloud.
+You need to ensure that Space Cloud is configured with the same secret that is used by your auth service for signing tokens. Checkout the section for [configuring JWT secrets](/security/jwt-based-authentication/configuring-jwt-secrets) in Space Cloud.
 
-Based on the resource that the user is trying to access and the security rules you have configured for that resource, Space Cloud will validate the token and enforce your access control logic. Checkout the [security rules]() to learn more about the possibilities of access control in Space Cloud.
+Based on the resource that the user is trying to access and the security rules you have configured for that resource, Space Cloud will validate the token and enforce your access control logic. Checkout the [security rules](/security/jwt-based-authentication/configuring-jwt-secrets) to learn more about the possibilities of access control in Space Cloud.
 
 ## Security checks
 

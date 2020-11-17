@@ -10,13 +10,13 @@ Space Cloud integrates out of the box with most of the popular third party auth 
 
 ## How it works
 
-Space Cloud supports JWT based authentication. Check out [how JWT based authentication works]() in Space Cloud to learn more about it. 
+Space Cloud supports JWT based authentication. Check out [how JWT based authentication works](/security/jwt-based-authentication) in Space Cloud to learn more about it. 
 
 Most third party auth services provide a JWK URL where they publish their JWKs (JSON Web Keys used for signing the JWTs). The URL must publish the JWKs in the standard format as described in [https://tools.ietf.org/html/rfc7517](https://tools.ietf.org/html/rfc7517).
 
 Once you provide the JWK URL of your auth provider to Space Cloud, it will automatically sync the JWKs from your auth provider to itself. Thus, Space Cloud would be able to verify any JWTs signed by your authentication service. 
 
-You can then configure Space Cloud to enforce authentication and authorization on various resources using Space Cloud's [security rules](). All the claims inside the JWT tokens would be available inside `args.auth` variables in your security rules. 
+You can then configure Space Cloud to enforce authentication and authorization on various resources using Space Cloud's [security rules](/security/security-rules). All the claims inside the JWT tokens would be available inside `args.auth` variables in your security rules. 
 
 ## Adding JWK URL
 

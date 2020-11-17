@@ -80,7 +80,7 @@ Things that are unique to each request are avialble in the form of variables to 
 
 For instance, the `args.auth` variable contains the JWT claims of the request. So if your JWT token has a claim called `id`, you can refer to it as `args.auth.id`. 
 
-Check out the [list of available variables]() to know what variables are available for each operation in Space Cloud.
+Check out the [list of available variables](/security/security-rules/available-variables) to know what variables are available for each operation in Space Cloud.
 
 You can refer to any nested property in the variables using the dot notation. 
 
@@ -122,4 +122,4 @@ The security module of Space Cloud provides you helper functions to use in field
 
 In the above example, first the current time is calculated by a helper function `now`. The time value is then rounded up to the nearest date by using another helper function `roundUpDate`. The rounded up date value is then compared to the deadline - `2020-10-25`.
 
-Check out the [list of all helper functions]() available in the security rules. 
+Check out the [list of all helper functions](/security/security-rules/helper-functions) available in the security rules. 

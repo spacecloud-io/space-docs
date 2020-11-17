@@ -14,11 +14,11 @@ All incoming requests to the Space Cloud are first validated by the API controll
 
 Security rules help you enforce various access control mechanisms on an operation:
 
-- [Validating authentication]()
-- Allowing [anonymous access]() to public data
-- [Granting access conditionally]() based on the request, auth token claims and any existing data in your app:
-- [Masking]() sensitive/private data     
-- Implementing [custom authorization/validation logic]()
+- [Validating authentication](/security/security-rules/authenticated-access)
+- Allowing [anonymous access](/security/security-rules/anonymous-access) to public data
+- [Granting access conditionally](/security/security-rules/conditional-access) based on the request, auth token claims and any existing data in your app:
+- [Masking](/security/security-rules/masking-data) sensitive/private data     
+- Implementing [custom authorization/validation logic](/security/security-rules/custom-authorization-logic)
 
 The various types of Security rules in Space Cloud are:
 
@@ -38,4 +38,4 @@ The various types of Security rules in Space Cloud are:
 
 Read more about the different security rule types in the upcoming pages.
 
-You can also check out the [available variables]() or [helper functions]() in security rules.  
+You can also check out the [available variables](/security/security-rules/available-variables) or [helper functions](/security/security-rules/helper-functions) in security rules.  
