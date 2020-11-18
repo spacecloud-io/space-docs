@@ -51,7 +51,7 @@ Security rules help you perform various access control operations like:
 
 ## Platform layer security
 
-On the platform layer, Space Cloud utilizes the power of Kubernetes and Istio under the hood to provide you the following security benefits:
+On the platform layer, Space Cloud utilizes the power of Kubernetes and Istio under the hood to provide you with the following security benefits:
 
 - Automatic mTLS between all your services.
 - Whitelisting of services (i.e. you can describe which services can talk to each other) 

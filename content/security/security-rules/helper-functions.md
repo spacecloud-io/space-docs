@@ -6,7 +6,7 @@ draft: false
 weight: 9
 ---
 
-Often while writing security rules, you may want to transform certain variables/data. Space Cloud comes packed with quite a few helper functions that you can use in order to do so.
+Often while writing security rules, you may want to transform certain variables/data. Space Cloud comes packed with quite a few helper functions that you can use to do so.
 
 However, these helper functions are not limited to just security rules. They can be used anywhere where variables can be used.
 
@@ -36,7 +36,7 @@ This function is used to calculate the length of a string. It takes a single str
 
 This function is used to check whether a provided variable exists or not. It takes a single string containing the variable to be tested for existence and returns a boolean value indicating whether that variable exists or not.
 
-**Example:** Check whether the `author_id` is provided or not in the create operation of an `article`. Here's how we can use the `exists` function in order to check that:
+**Example:** Check whether the `author_id` is provided or not in the create operation of an `article`. Here's how we can use the `exists` function to check that:
 
 {{< highlight javascript >}}
 {
@@ -69,7 +69,7 @@ This function is used to add duration to a particular timestamp. It takes two pa
 - A timestamp string (e.g. `2020-09-25T00:00:00Z`)
 - A duration string denoting the duration to be added. (e.g. `300ms`, `-1.5h` or `2h45m`) Valid time units are `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`.
 
-**Example1:** Ading duration to a static timestamp:
+**Example1:** Adding duration to a static timestamp:
 
 {{< highlight javascript >}}
 {
@@ -79,7 +79,7 @@ This function is used to add duration to a particular timestamp. It takes two pa
 }
 {{< /highlight >}}
 
-**Example2:** Ading duration to a timestamp from a variable:
+**Example2:** Adding duration to a timestamp from a variable:
 
 {{< highlight javascript >}}
 {
@@ -89,7 +89,7 @@ This function is used to add duration to a particular timestamp. It takes two pa
 }
 {{< /highlight >}}
 
-**Example3:** Ading duration to the current timestamp:
+**Example3:** Adding duration to the current timestamp:
 
 {{< highlight javascript >}}
 {
@@ -101,13 +101,13 @@ This function is used to add duration to a particular timestamp. It takes two pa
 
 ### roundUpDate
 
-This function is used to round up time to a particular unit (e.g. `day`).
+This function is used to round up the time to a particular unit (e.g. `day`).
 
 It takes two parameters:
 - A timestamp string (e.g. `2020-09-25T00:00:00Z`)
 - The unit for rounding operation. Valid units are `year`, `month`, `day`, `hour`, `minute` and `second`.
 
-**Example1:** Ading duration to a static timestamp:
+**Example1:** Adding duration to a static timestamp:
 
 {{< highlight javascript >}}
 {
@@ -121,9 +121,9 @@ The `roundUpDate` function in the above example will return `2020-09-01T00:00:00
 
 ### stringToObjectId
 
-This function takes a string and converts it to a ObjectID. This is mostly useful while joining data between collections in MongoDB, if one collection has `_id` in string format and the other in object format.
+This function takes a string and converts it to an ObjectID. This is mostly useful while joining data between collections in MongoDB if one collection has `_id` in string format and the other in object format.
 
-**Example:** Perform an on-the-fly join between the `users` and `posts` collection in MongoDB, wherein the `_id` of the `users` collection is a string and the `_id` of the `posts` field is an ObjectID.   
+**Example:** Perform an on-the-fly join between the `users` and `posts` collection in MongoDB, wherein the `_id` of the `users` collection is a string, and the `_id` of the `posts` field is an ObjectID.   
 
 {{< highlight graphql >}}
 query {
@@ -140,7 +140,7 @@ query {
 
 This function is the exact opposite of `stringToObjectId`. It converts an ObjectID to a string.
 
-**Example:** Perform an on-the-fly join between the `users` and `posts` collection in MongoDB, wherein the `_id` of the `users` collection is a ObjectID and the `_id` of the `posts` field is a string.   
+**Example:** Perform an on-the-fly join between the `users` and `posts` collection in MongoDB, wherein the `_id` of the `users` collection is an ObjectID, and the `_id` of the `posts` field is a string.   
 
 {{< highlight graphql >}}
 query {

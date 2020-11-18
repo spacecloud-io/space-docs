@@ -6,7 +6,7 @@ draft: false
 weight: 2
 ---
 
-Space Cloud integrates out of the box with most of the popular third party auth providers out there.
+Space Cloud integrates out of the box with most of the popular third-party auth providers out there.
 
 ## How it works
 
@@ -22,13 +22,9 @@ You can then configure Space Cloud to enforce authentication and authorization o
 
 Head over to the Project settings tab in the Settings section of Mission Control. You would see a JWT secrets section there:
 
-![JWT secrets image]
+![JWK URL secret](/images/screenshots/add-secret/jwk-url.pn
 
-Click on the add button there to open the following modal:
-
-![Add secret modal]
-
-Select the type as `JWK URL` and then provide the JWK URL as follows:
+Click on the `Add` button. Select the type as `JWK URL` and then provide the JWK URL as follows:
 
 That's it!
 
@@ -51,19 +47,23 @@ In these case, you **MUST** set the audience field to the appropriate value. Fai
 
 Setting the audience field in the secrets configuration will make sure that the `aud` claim from the JWT is also checked during verification. Not doing this check will allow JWTs issued for other tenants to be valid as well.
 
-To set the audience field, check the `Check audience` option in the `Advanced` section while adding a JWT secret. and specify the intended audience value there: 
+To set the audience field, check the `Check audience` option in the `Advanced` section while adding a JWT secret, and specify the intended audience value there: 
 
-Space Cloud supports specifying multiple audiences for a secret. The audience check will pass if the value in the `aud` field of JWT matches with any one of the specified audiences. If the `aud` field in the JWT is an array of audiences (string), then the audience check passes if any of the audience in the `aud` field matches with any one of the secified audiences.
+![Audience Check](/images/screenshots/add-secret/audience-check.png)
+
+Space Cloud supports specifying multiple audiences for a secret. The audience check will pass if the value in the `aud` field of JWT matches with any one of the specified audiences. If the `aud` field in the JWT is an array of audiences (string), then the audience check passes if any of the audience in the `aud` field matches with any one of the specified audiences.
 
 ### Issuer check
 
 Certain JWT providers set the `iss` field of the JWT so that the issuer of the JWT provider can be verified. 
 
-Setting the issuer field in the secrets configuration of Space Cloud will make sure that the `iss` claim from the JWT is also checked during verification. This is an additional secrity check which must be enforced if the JWT provider supports it.  
+Setting the issuer field in the secrets configuration of Space Cloud will make sure that the `iss` claim from the JWT is also checked during verification. This is an additional security check which must be enforced if the JWT provider supports it.  
 
 To set the issuer field, check the `Check issuer` option in the `Advanced` section while adding a JWT secret. and specify the issuer value there: 
 
-Space Cloud supports specifying multiple issuers for a secret. The issuer check will pass if the value in the `iss` field of JWT matches with any one of the specified issuer. If the `iss` field in the JWT is an array of issuers (string), then the issuer check passes if any of the issuer in the `iss` field matches with any one of the secified issuers.
+![Issuer Check](/images/screenshots/add-secret/issuer-check.png)
+
+Space Cloud supports specifying multiple issuers for a secret. The issuer check will pass if the value in the `iss` field of JWT matches with any one of the specified issuers. If the `iss` field in the JWT is an array of issuers (string), then the issuer check passes if any of the issuers in the `iss` field matches with any one of the specified issuers.
 
 ## Popular auth provider configs
 

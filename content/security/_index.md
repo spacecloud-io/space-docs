@@ -6,11 +6,11 @@ draft: false
 weight: 6
 ---
 
-Security is a crucial part of building cloud native apps. We take security so seriously that we are close to being paranoid about it.
+Security is a crucial part of building cloud-native apps. We take security so seriously that we are close to being paranoid about it.
 
 ## Overview
 
-Space Cloud provides powerful and flexible mechanisms to secure your apps/services at both the layers:
+Space Cloud provides powerful and flexible mechanisms to secure your apps/services at both layers:
 
 - Application layer (L7)
 - Platform layer (L4)
@@ -30,14 +30,3 @@ Space Cloud provides powerful and flexible mechanisms to secure your apps/servic
 - Whitelisting of services (i.e. you can describe which services can talk to each other) 
 - Storing environment variables and secrets in a secure manner.
 - Securing external traffic via Letsencrypt's SSL certificates.  
-
-
-<!-- ## Capabilities of security rules in Space Cloud
-
-- Allowing / denying access to a particular resource.
-- Allowing access to a particular resource to only authenticated users.
-- Allowing access to a particular resource based on certain criterias. These criterias range from simple [matching on the incoming request]() to even [querying your database]() for advanced validations.
-- Querying your custom access control APIs to grant access.
-- [Masking data]() (encrypting, decrypting, hashing, etc) for sensitive information.
-
-To learn more about how access control works in Space Cloud, check out the [access control basics](). -->

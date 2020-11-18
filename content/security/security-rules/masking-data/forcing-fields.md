@@ -22,7 +22,7 @@ The syntax for `force` rule is:
 
 > **The force rule will always get resolved no matter what.**
 
-The force rule replaces the contents of the `field` specified in the rule with the specifief `value`. These fields can be present either in the request or response. The `value` can be a literal value or any other variable.
+The force rule replaces the contents of the `field` specified in the rule with the specified `value`. These fields can be present either in the request or response. The `value` can be a literal value or any other variable.
 
 ### Example
 
@@ -65,7 +65,7 @@ Any security rule of Space Cloud can go inside the `clause` field including `and
 
 Force rule can be easily combined with any other data masking operations or authorization logic by using the `and` rule. Check out the [documentation of and rule](/security/security-rules/combining-multiple-rules).
 
-**Example:** Allow a record to be inserted in users table only if the length of username is greater than 10. The `role` field in the record should be forced with the value `user` and the `password` field should be hashed. Here's how you can write this access control logic using `and` rule:
+**Example:** Allow a record to be inserted in users table only if the length of the username is greater than 10. The `role` field in the record should be forced with the value `user` and the `password` field should be hashed. Here's how you can write this access control logic using `and` rule:
 
 {{< highlight javascript >}}
 {
@@ -91,4 +91,4 @@ Force rule can be easily combined with any other data masking operations or auth
 }
 {{< /highlight >}}
 
-With the above security rule, a record will only get inserted whenever the `match` clause gets resolved, since the `force` and `hash` rule always gets resolved. However, due to the nature of the `and` rule, the `force` and `hash` rules will only get processed if the `match` rule passes since they are after the `match` rule.
+With the above security rule, a record will only get inserted whenever the `match` clause gets resolved since the `force` and `hash` rule always gets resolved. However, due to the nature of the `and` rule, the `force` and `hash` rules will only get processed if the `match` rule passes since they are after the `match` rule.

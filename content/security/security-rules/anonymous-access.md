@@ -6,13 +6,13 @@ draft: false
 weight: 3
 ---
 
-Many a times, you might want to expose/restrict certain operations on a resource publicly i.e. grant/deny access irrespective of whether the user is logged in or not. 
+Many times, you might want to expose/restrict certain operations on a resource publicly, i.e. grant/deny access irrespective of whether the user is logged in or not. 
 
 Space Cloud allows you to do this in a very easy manner by using the `allow` and `deny` rules. 
 
 ## Grant access to anonymous users
 
-The `allow` rule is used to disable access control entirely for a particular operation on a resource. The request is allowed to be made even if the JWT token is absent in the request. This rule is used only when you want to publicly expose a resource.
+The `allow` rule is used to disable access control entirely for a particular operation on a resource. The request is allowed to be made even if the JWT token is absent in the request. This rule is used only when you want to expose a resource publicly.
 
 **Example:** Allow anonymous users to view articles of your blog by providing the following rule for the `read` operation of the `articles` table:
 
@@ -22,7 +22,7 @@ The `allow` rule is used to disable access control entirely for a particular ope
 }
 {{< /highlight >}}
 
-> **You shouldn't use `allow` for mutations like `update` or `delete`. Otherwise any anonymous user might just update or delete your entire table.**
+> **You shouldn't use `allow` for mutations like `update` or `delete`. Otherwise, any anonymous user might update or delete your entire table.**
 
 ## Deny access completely
 

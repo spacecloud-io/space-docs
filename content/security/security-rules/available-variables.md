@@ -9,11 +9,11 @@ weight: 8
 
 ## What are variables?
 
-Each operation that is performed in Space Cloud has certain context associated to it. 
+Each operation that is performed in Space Cloud has a context associated with it. 
 
-For example, the token claims for that request. Some context information is specific to a particular type of request only. For example, the document to be inserted in case of database create operation. 
+For example, the token claims for that request. Some context information is specific to a particular type of request only. For example, the document to be inserted in case of the database create operation. 
 
-Such context information are available in the form of variables to each security rule that is processed for an operation. You can take advantage of these context variables to enrich your security rules. 
+Such context information is available in the form of variables to each security rule that is processed for an operation. You can take advantage of these context variables to enrich your security rules. 
 
 ## Available variables
 
@@ -23,7 +23,7 @@ Following are the variables available in the security rules of Space Cloud for t
 
 | Variable     | Data type | Description                                                                                            |
 |--------------|-----------|--------------------------------------------------------------------------------------------------------|
-| `args.auth`  | Object    | Object containing the jwt claims present in the token.                                                 |
+| `args.auth`  | Object    | Object containing the JWT claims present in the token.                                                 |
 | `args.doc`   | Object    | Document/row to be inserted into the database.                                                         |
 | `args.token` | String    | Raw token present under the `Authorization` header in the request. (with the `Bearer ` prefix removed) |
 
@@ -31,7 +31,7 @@ Following are the variables available in the security rules of Space Cloud for t
 
 | Variable     | Data type | Description                                                                                            |
 |--------------|-----------|--------------------------------------------------------------------------------------------------------|
-| `args.auth`  | Object    | Object containing the jwt claims present in the token.                                                 |
+| `args.auth`  | Object    | Object containing the JWT claims present in the token.                                                 |
 | `args.find`  | Object    | The `find/where` clause of the read operation. Follows the MongoDB DSL.                                |
 | `args.token` | String    | Raw token present under the `Authorization` header in the request. (with the `Bearer ` prefix removed) |
 
@@ -39,7 +39,7 @@ Following are the variables available in the security rules of Space Cloud for t
 
 | Variable      | Data type | Description                                                                                            |
 |---------------|-----------|--------------------------------------------------------------------------------------------------------|
-| `args.auth`   | Object    | Object containing the jwt claims present in the token.                                                 |
+| `args.auth`   | Object    | Object containing the JWT claims present in the token.                                                 |
 | `args.find`   | Object    | The `find/where` clause of the update operation. Follows the MongoDB DSL.                              |
 | `args.update` | Object    | The `update` clause of the update operation. Follows the MongoDB DSL.                                  |
 | `args.token`  | String    | Raw token present under the `Authorization` header in the request. (with the `Bearer ` prefix removed) |
@@ -48,7 +48,7 @@ Following are the variables available in the security rules of Space Cloud for t
 
 | Variable     | Data type | Description                                                                                            |
 |--------------|-----------|--------------------------------------------------------------------------------------------------------|
-| `args.auth`  | Object    | Object containing the jwt claims present in the token.                                                 |
+| `args.auth`  | Object    | Object containing the JWT claims present in the token.                                                 |
 | `args.find`  | Object    | The `find/where` clause of the delete operation. Follows the MongoDB DSL.                              |
 | `args.token` | String    | Raw token present under the `Authorization` header in the request. (with the `Bearer ` prefix removed) |
 
@@ -56,7 +56,7 @@ Following are the variables available in the security rules of Space Cloud for t
 
 | Variable      | Data type | Description                                                                                            |
 |---------------|-----------|--------------------------------------------------------------------------------------------------------|
-| `args.auth`   | Object    | Object containing the jwt claims present in the token.                                                 |
+| `args.auth`   | Object    | Object containing the JWT claims present in the token.                                                 |
 | `args.params` | Object    | Object containing the `params` to be passed to the prepared query.                                     |
 | `args.token`  | String    | Raw token present under the `Authorization` header in the request. (with the `Bearer ` prefix removed) |
 
@@ -64,7 +64,7 @@ Following are the variables available in the security rules of Space Cloud for t
 
 | Variable      | Data type | Description                                                                                            |
 |---------------|-----------|--------------------------------------------------------------------------------------------------------|
-| `args.auth`   | Object    | Object containing the jwt claims present in the token.                                                 |
+| `args.auth`   | Object    | Object containing the JWT claims present in the token.                                                 |
 | `args.params` | Object    | Object containing the path params of the file/folder to be created.                                    |
 | `args.token`  | String    | Raw token present under the `Authorization` header in the request. (with the `Bearer ` prefix removed) |
 
@@ -72,7 +72,7 @@ Following are the variables available in the security rules of Space Cloud for t
 
 | Variable      | Data type | Description                                                                                            |
 |---------------|-----------|--------------------------------------------------------------------------------------------------------|
-| `args.auth`   | Object    | Object containing the jwt claims present in the token.                                                 |
+| `args.auth`   | Object    | Object containing the JWT claims present in the token.                                                 |
 | `args.params` | Object    | Object containing the path params of the file/folder to be read.                                       |
 | `args.token`  | String    | Raw token present under the `Authorization` header in the request. (with the `Bearer ` prefix removed) |
 
@@ -80,7 +80,7 @@ Following are the variables available in the security rules of Space Cloud for t
 
 | Variable      | Data type | Description                                                                                            |
 |---------------|-----------|--------------------------------------------------------------------------------------------------------|
-| `args.auth`   | Object    | Object containing the jwt claims present in the token.                                                 |
+| `args.auth`   | Object    | Object containing the JWT claims present in the token.                                                 |
 | `args.params` | Object    | Object containing the path params of the file/folder to be deleted.                                    |
 | `args.token`  | String    | Raw token present under the `Authorization` header in the request. (with the `Bearer ` prefix removed) |
 
@@ -88,7 +88,7 @@ Following are the variables available in the security rules of Space Cloud for t
 
 | Variable      | Data type | Description                                                                                            |
 |---------------|-----------|--------------------------------------------------------------------------------------------------------|
-| `args.auth`   | Object    | Object containing the jwt claims present in the token.                                                 |
+| `args.auth`   | Object    | Object containing the JWT claims present in the token.                                                 |
 | `args.params` | Object    | Object containing the params/arguments provided while calling the remote service.                      |
 | `args.token`  | String    | Raw token present under the `Authorization` header in the request. (with the `Bearer ` prefix removed) |
 
@@ -96,7 +96,7 @@ Following are the variables available in the security rules of Space Cloud for t
 
 | Variable      | Data type | Description                                                                                            |
 |---------------|-----------|--------------------------------------------------------------------------------------------------------|
-| `args.auth`   | Object    | Object containing the jwt claims present in the token.                                                 |
+| `args.auth`   | Object    | Object containing the JWT claims present in the token.                                                 |
 | `args.params` | Object    | The event data object.                                                                                 |
 | `args.token`  | String    | Raw token present under the `Authorization` header in the request. (with the `Bearer ` prefix removed) |
 
@@ -104,7 +104,7 @@ Following are the variables available in the security rules of Space Cloud for t
 
 | Variable               | Data type     | Description                                                                                            |
 |------------------------|---------------|--------------------------------------------------------------------------------------------------------|
-| `args.auth`            | Object        | Object containing the jwt claims present in the token.                                                 |
+| `args.auth`            | Object        | Object containing the JWT claims present in the token.                                                 |
 | `args.params`          | Object        | Object containing the path params of the ingress route.                                                |
 | `args.query.path`      | String        | The exact request path.                                                                                |
 | `args.query.pathArray` | Array<String> | Request path splitted by `/`.                                                                          |

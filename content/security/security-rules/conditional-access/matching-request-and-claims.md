@@ -35,9 +35,9 @@ The basic syntax for the `match` rule is as follows:
 }
 {{< /highlight >}}
 
-The `match` rule performs a comparison between the two fields `f1` and `f2` as per the operator specified in the `eval` field. If the comparison evaluates to true, the `match` rule is resolved and the access is granted. Otherwise the access is denied and the user gets an error.
+The `match` rule performs a comparison between the two fields `f1` and `f2` as per the operator specified in the `eval` field. If the comparison evaluates to true, the `match` rule is resolved, and the access is granted. Otherwise, access is denied, and the user gets an error.
 
-> **Did you know?** To optimize performance in case of read operations (in SQL databases), Space Cloud pushes the match conditions onto the database. That means an authorized request will lead to an empty result array instead of an error.  
+> **Did you know?** To optimize performance in case of read operations (in SQL databases), Space Cloud pushes the match conditions onto the database. That means an unauthorized request will lead to an empty result array instead of an error.  
 
 ## Comparison operations
 
@@ -45,20 +45,20 @@ The field `eval` inside the `match` rule specifies the comparison operator. Foll
 
 | eval    | Description                                                                                                                  |
 |---------|------------------------------------------------------------------------------------------------------------------------------|
-| `==`    | The match rule is resolved only if the value of `f1` is equal to `f2`                                                        |
-| `!=`    | The match rule is resolved only if the value of `f1` is not equal to `f2`                                                    |
-| `>`     | The match rule is resolved only if the value of `f1` is greater than `f2`                                                    |
-| `<`     | The match rule is resolved only if the value of `f1` is lesser than `f2`                                                     |
-| `>=`    | The match rule is resolved only if the value of `f1` is greater than or equal to `f2`                                        |
-| `<=`    | The match rule is resolved only if the value of `f1` is lesser than or equal to `f2`                                         |
-| `in`    | The match rule is resolved only if the value of `f1` is equal to one of the values in `f2`. (`f2` is an array of values)     |
+| `==`    | The match rule is resolved, only if the value of `f1` is equal to `f2`                                                       |
+| `!=`    | The match rule is resolved, only if the value of `f1` is not equal to `f2`                                                   |
+| `>`     | The match rule is resolved, only if the value of `f1` is greater than `f2`                                                   |
+| `<`     | The match rule is resolved, only if the value of `f1` is lesser than `f2`                                                    |
+| `>=`    | The match rule is resolved, only if the value of `f1` is greater than or equal to `f2`                                       |
+| `<=`    | The match rule is resolved, only if the value of `f1` is lesser than or equal to `f2`                                        |
+| `in`    | The match rule is resolved, only if the value of `f1` is equal to one of the values in `f2`. (`f2` is an array of values)    |
 | `notIn` | The match rule is resolved only if the value of `f1` is not equal to any of the values in `f2`. (`f2` is an array of values) |
 
 ## Data type
 
 The `type` field in match rule specifies the data type of the fields `f1` and `f2`. 
 
-> **The values of `f1` and `f2` should be of the `type` specified in the rule. Otherwise the rule will not get resolved. Only in the case of `in` and `notIn` operator, the type of `f2` field should be array of the specified `type` rather than the `type` directly.**  
+> **The values of `f1` and `f2` should be of the `type` specified in the rule. Otherwise, the rule will not get resolved. Only in the case of `in` and `notIn' operator, the type of `f2` field should be an array of the specified `type` rather than the `type` directly.**  
 
 The value of `type` can be one of the following:
 
@@ -76,7 +76,7 @@ Static values are nothing but harcoded or literal values. For example, "admin"`,
 
 ### Using variables
 
-Things that are unique to each request are avialble in the form of variables to the security rules. 
+Things that are unique to each request are available in the form of variables to the security rules. 
 
 For instance, the `args.auth` variable contains the JWT claims of the request. So if your JWT token has a claim called `id`, you can refer to it as `args.auth.id`. 
 
@@ -102,9 +102,9 @@ The value of the variable is evaluated at the run time by the Space Cloud.
 
 ### Using helper functions in fields
 
-The security module of Space Cloud provides you helper functions to use in fields. These helper functions let you perform various operations on your variables including but not limited to:
+The security module of Space Cloud provides you helper functions to use in fields. These helper functions let you perform various operations on your variables, including but not limited to:
 
-- Accessing current time.
+- Accessing the current time.
 - Computing the length of an array of string.
 - Checking if a key exists in a variable.
 
@@ -120,6 +120,6 @@ The security module of Space Cloud provides you helper functions to use in field
 }
 {{< /highlight >}}
 
-In the above example, first the current time is calculated by a helper function `now`. The time value is then rounded up to the nearest date by using another helper function `roundUpDate`. The rounded up date value is then compared to the deadline - `2020-10-25`.
+In the above example, first, the current time is calculated by a helper function `now`. The time value is then rounded up to the nearest date by using another helper function `roundUpDate`. The rounded up date value is then compared to the deadline - `2020-10-25`.
 
 Check out the [list of all helper functions](/security/security-rules/helper-functions) available in the security rules. 
