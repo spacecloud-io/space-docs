@@ -3,7 +3,7 @@ title: "Security"
 description: "Security"
 date: 2020-06-17T07:33:39+05:30
 draft: false
-weight: 6
+weight: 7
 ---
 
 Security is a crucial part of building cloud-native apps. We take security so seriously that we are close to being paranoid about it.
