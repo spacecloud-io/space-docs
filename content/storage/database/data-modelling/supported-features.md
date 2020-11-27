@@ -389,11 +389,15 @@ Links are used to model relational data. They help you fetch a type along with i
 
 > **Note:** Links are not physical fields in table. They are virtual fields which help Space Cloud to perform join operations on the backend.
 
-The `@link` directive is used to link a field to:
+The `@link` directive is used to link a field to another field/table/link in the same or a different database.
 
-- Another type/table
-- A field within another type/table
-- Another link
+You can pass the following arguments in the `@link` directive:
+
+- `table`: The table to link to.
+- `from`: The field in the current table used for linking both the tables.
+- `to`: The field in the linked table that used for linking both the tables.
+- `field`: Optional. The field in the linked table that you want to link to. Used if you want to link to a field/link.
+- `db`: Optional. The alias name of the database to link to. Used in cross-database links.
 
 **Case 1: (Linking to another type/table)**
 
@@ -505,6 +509,27 @@ query {
       price
     }
   }
+}
+{{< /highlight >}}
+
+**Case 4: (Cross-database links)** 
+
+When we want to link a field in one database to a field/table/link in _another database_, we use the `db` argument of the `@link` directive.
+
+Let's say we have our `customer` table in one database (`db1`) and the `order` table in another database (`db2`). Here's how we can link them together with the `db` argument:
+
+{{< highlight graphql "hl_lines=4">}}
+type customer {
+  id: ID! @primary
+  name: String!
+  orders: [order] @link(db: "db2", table: "order", from: "id", to: "customer_id")
+}
+
+type order {
+  id: ID! @primary
+  order_date: DateTime!
+  amount: Float!
+  customer_id: ID!
 }
 {{< /highlight >}}
 
