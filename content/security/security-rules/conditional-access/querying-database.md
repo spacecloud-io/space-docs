@@ -6,7 +6,7 @@ draft: false
 weight: 2
 ---
 
-Many times we want to allow access to a particular resource based on certain values in the database. In such scenarios, we can use the `query` rule to fetch data from the database.
+Many times, we want to allow access to a particular resource based on certain values in the database. In such scenarios, we can use the `query` rule to fetch data from the database.
 
 Take the [Instagram example](#example) for instance. You can view a profile only if it's public or if you are in the followers' list of that profile. This use case requires us to fetch the profile that you want to view from a database. 
 

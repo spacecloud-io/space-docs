@@ -34,6 +34,8 @@ Following are the variables available in the security rules of Space Cloud for t
 | `args.auth`  | Object    | Object containing the JWT claims present in the token.                                                 |
 | `args.find`  | Object    | The `find/where` clause of the read operation. Follows the MongoDB DSL.                                |
 | `args.token` | String    | Raw token present under the `Authorization` header in the request. (with the `Bearer ` prefix removed) |
+| `args.opts.limit` | Number    | Value of the limit clause if specified in the request. |
+| `args.opts.skip` | Number    | Value of the skip clause if specified in the request. |
 
 ### Database update
 
@@ -44,7 +46,7 @@ Following are the variables available in the security rules of Space Cloud for t
 | `args.update` | Object    | The `update` clause of the update operation. Follows the MongoDB DSL.                                  |
 | `args.token`  | String    | Raw token present under the `Authorization` header in the request. (with the `Bearer ` prefix removed) |
 
-### Database read
+### Database delete
 
 | Variable     | Data type | Description                                                                                            |
 |--------------|-----------|--------------------------------------------------------------------------------------------------------|
