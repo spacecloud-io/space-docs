@@ -3,7 +3,7 @@ title: "Securing your Database"
 description: "Securing your Database APIs"
 date: 2019-09-23T10:07:49+05:30
 draft: false
-weight: 8
+weight: 9
 ---
 
 You can easily configure access control for the database APIs with Space Cloud's security rules. The security rules in the database module work on the operation level (create, read, update, delete) for each table/collection. This means that you can have different rules for different operations on each table/collection.
