@@ -8,56 +8,53 @@ weight: 1
 
 Follow these instructions to install Space Cloud on MicroK8s.
 
-## Step 1: Install MicroK8s
+## Step 1: Install MicroK8s along with Istio
 
 Install the latest version of [MicroK8s](https://microk8s.io/) for Windows, Linux or macOS.
 
 Install the required add-ons:
 ```bash
-sudo microk8s.enable DNS RBAC
-```
-
-## Step 2: Install Istio
-
-Space Cloud requires [Istio](https://istio.io/docs/setup/getting-started/) to work correctly. The default Istio profile works perfectly well.
-
-> **Make sure you have disabled `istio-ingressgateway`. Space Cloud configures and uses an internal ingress gateway.**
-
-For convenience, we have already made a YAML file to install istio for a [local cluster](https://raw.githubusercontent.com/spaceuptech/space-cloud/master/install-manifests/kubernetes/local/istio.yaml).
-
-```bash
-microk8s.kubectl apply -f https://raw.githubusercontent.com/spaceuptech/space-cloud/master/install-manifests/kubernetes/local/istio.yaml
+microk8s enable dns rbac istio
 ```
 
 Wait for all the pods to start:
 
 ```bash
-microk8s.kubectl get pods -n istio-system --watch
+microk8s kubectl get pods -n istio-system --watch
 ```
 
-## Step 3: Install Space Cloud
+## Step 2: Install Space Cloud
 
 To install Space Cloud, run the command:
 
 ```bash
-microk8s.kubectl apply -f https://raw.githubusercontent.com/spaceuptech/space-cloud/master/install-manifests/kubernetes/local/space-cloud.yaml
+microk8s kubectl apply -f https://raw.githubusercontent.com/spaceuptech/space-cloud/master/install-manifests/kubernetes/local/space-cloud.yaml
 ```
 
 Wait for all the pods to start:
 
 ```bash
-microk8s.kubectl get pods -n space-cloud --watch
+microk8s kubectl get pods -n space-cloud --watch
 ```
 
-The last step would be to port forward Space Cloud's ports.
+Set up port forwarding to access Mission Control on `localhost:4122/mission-control`.
 
 ```bash
-microk8s.kubectl port-forward -n space-cloud service/gateway 4122:4122
+microk8s kubectl port-forward -n space-cloud statefulsets/gateway --address 0.0.0.0 4122:4122
 ```
 
-## Step 4: Open Mission Control
+## Step 3: Open Mission Control
 
-You should be able to access Mission Control on `http://localhost:4122/mission-control`
+You should be able to access Mission Control on `http://localhost:4122/mission-control` or `http://YOUR_IP:4122/mission-control`.
+
+If you are running microk8s on Windows or MacOS, k8s runs in a separate VM. Run `multipass list` to find the IP of that VM. It should have an ouptut similar to:
+
+```bash
+Name                    State             IPv4             Image
+microk8s-vm             Running           192.168.64.17    Ubuntu 18.04 LTS
+```
+
+Use the IP printed on the terminal to connect to Space Cloud instead of `localhost`.
 
 The default credentials are:
 - **Username:** admin

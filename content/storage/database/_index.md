@@ -8,6 +8,8 @@ weight: 1
 
 The database module is responsible for creating **Instant, GraphQL APIs for all supported databases**. It also supports a subscriptions feature which lets you **listen on database changes in realtime**.
 
+> **Space Cloud also allows you to execute native [prepared queries](/storage/database/prepared-queries) directly as an escape hatch in edge cases.**
+
 Currently the database module supports the following databases :heart: :
 - MongoDB
 - PostgreSQL and PostgreSQL compatible databases (For eg. CockroachDB, Yugabyte etc.)

@@ -15,7 +15,7 @@ This guide is for setting up Apollo client in your javascript projects.
 ### Installing dependencies
 
 {{< highlight bash >}}
-npm install --save npm i graphql apollo-boost subscriptions-transport-ws apollo-link-context
+npm install --save graphql apollo-boost subscriptions-transport-ws apollo-link-context
 {{< /highlight >}}
 
 ### Creating client
@@ -90,7 +90,7 @@ This client setup uses both the HTTP and WebSocket links smartly based on the ty
 ### Installing dependencies
 
 {{< highlight bash >}}
-npm install --save npm i graphql apollo-boost subscriptions-transport-ws apollo-link-context apollo-link-ws
+npm install --save graphql apollo-boost subscriptions-transport-ws apollo-link-context apollo-link-ws
 {{< /highlight >}}
 
 ### Creating client

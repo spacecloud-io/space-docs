@@ -3,7 +3,7 @@ title: "Multiple Queries"
 description: "Multiple Queries"
 date: 2019-09-17T17:36:20+05:30
 draft: false
-weight: 7
+weight: 9
 ---
 
 

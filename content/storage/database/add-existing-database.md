@@ -142,15 +142,55 @@ query {
 
 Finally, click on the `Add database` button. That's it! You have added your existing database to Space Cloud! You can now start tracking your existing tables/collection or create new ones.
 
-## Tracking existing tables
+## Tracking existing tables 
 
-Head to the `Overview` tab of `Database` section in Mission Control. If you have any existing tables in your database that haven't been tracked yet, you will see them under `Untracked Tables` like these:
+Tracking a table/collection in Space Cloud exposes that table/collection via its GraphQL/REST APIs to the outside world (with security rules of course).
+
+New tables created via Mission Control are automatically tracked. However, existing tables need to be explicitly tracked if you want to expose them via Space Cloud's GraphQL/REST APIs.
+
+To track existing tables, head to the `Overview` tab of `Database` section in Mission Control. If you have any existing tables in your database that haven't been tracked yet, you will see them under `Untracked Tables` like these:
 
 ![Untracked tables](/images/screenshots/untracked-tables.png)
 
-Tracking a table/collection in Space Cloud exposes that table/collection via its REST/GraphQL APIs to the outside world (with security rules of course). When you track an existing table, you don't need to provide schema as Space Cloud understands it automatically by inspecting the database.
+Click on the `Track` button beside the table name that you want to track. If you want to track all tables/collections, then click on the `Track all` button. 
 
-Click on the `Track` button beside the table name that you want to track. If you want to track all tables/collections, then click on the `Track all` button. Once you track a table, you can see it inside the Tables/Collections header as follows:
+You don't need to provide a schema while tracking tables in SQL databases as Space Cloud understands it automatically by inspecting the database. However, in the case of schemaless databases such as MongoDB, you need to edit the table after it is tracked to provide a schema. 
+
+### Tracking indexes
+
+Space Cloud automatically detects and tracks any primary/foreign keys when you track a table. However, as of now, **indexes are only tracked if the index name starts with `index`**. 
+
+There are 2 workarounds this problem:
+
+- Drop the index directly from the database shell and create the index once again through Mission Control.
+- Rename the index directly from the database shell before tracking the table so that the index name starts with `index`.
+
+The following SQL query can be used to rename an index:
+
+<div class="row tabs-wrapper">
+  <div class="col s12" style="padding:0">
+    <ul class="tabs">
+      <li class="tab col s2"><a class="active" href="#rename-index-postgres">Postgres</a></li>
+      <li class="tab col s2"><a class="active" href="#rename-index-mysql">MySQL</a></li>
+      <li class="tab col s2"><a href="#rename-index-sqlserver">SQL Server</a></li>
+    </ul>
+  </div>
+  <div id="rename-index-postgres" class="col s12" style="padding:0">
+{{< highlight sql>}}
+ALTER INDEX <index-name> RENAME TO <new-index-name>;
+{{< /highlight >}}   
+  </div>
+  <div id="rename-index-mysql" class="col s12" style="padding:0">
+{{< highlight sql>}}
+ALTER TABLE <table-name> RENAME INDEX <index-name> TO <new-index-name>;
+{{< /highlight >}}   
+  </div>
+  <div id="rename-index-sqlserver" class="col s12" style="padding:0">
+{{< highlight sql >}}
+EXEC sp_rename N'<schema-name>.<table-name>.<index-name>', N'<new-index-name>', N'INDEX';
+{{< /highlight >}}  
+  </div>
+</div>
 
 That's it you can now start various operations on your existing data like:
 - [Queries](/storage/database/queries)

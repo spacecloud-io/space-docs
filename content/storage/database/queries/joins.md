@@ -3,14 +3,14 @@ title: "Joins / nested queries"
 description: "Joins / nested queries"
 date: 2019-09-17T07:20:48+05:30
 draft: false
-weight: 8
+weight: 6
 ---
 
 You can join data from **different data sources** by making nested queries. Joins can be performed based on the [relations](/storage/database/data-modelling/relations) described in your schema.
 
 These join work for **any database** even if it is not relational (e.g., MongoDB).
 
-> **Note:** The joins capability is available only via GraphQL as of now. If you instead want to join data from our client SDKs or have some complex join operations, we recommend to make views on your tables and query them as regular tables.
+> **Note:** The joins capability is available only via GraphQL as of now. If you instead want to join data from our client SDKs or have some complex join operations, we recommend to use [prepared queries](/storage/database/prepared-queries).
 
 ## Same database joins
 
