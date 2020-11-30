@@ -3,7 +3,7 @@ title: "Anonymous/Public Access"
 description: "Anonymous/Public Access"
 date: 2020-10-22T13:26:45+05:30
 draft: false
-weight: 3
+weight: 2
 ---
 
 Many times, you might want to expose/restrict certain operations on a resource publicly, i.e. grant/deny access irrespective of whether the user is logged in or not. 

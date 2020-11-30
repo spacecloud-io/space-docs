@@ -3,7 +3,7 @@ title: "Authenticated Access"
 description: "Authenticated Access"
 date: 2020-10-22T13:26:31+05:30
 draft: false
-weight: 2
+weight: 3
 ---
 
 Space Cloud supports JWT based authentication. 

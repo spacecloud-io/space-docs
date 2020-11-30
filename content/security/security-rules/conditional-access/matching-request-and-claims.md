@@ -65,6 +65,7 @@ The value of `type` can be one of the following:
 - **string:** For comparing string/text values. 
 - **number:** For comparing integer/float values.
 - **boolean:** For comparing boolean values.
+- **date:** For comparing datetime values.
 
 ## Fields
 
@@ -113,9 +114,9 @@ The security module of Space Cloud provides you helper functions to use in field
 {{< highlight javascript >}}
 {
   "rule": "match",
-  "type": "string",
+  "type": "date",
   "eval": "<",
-  "f1": "utils.roundUpDate(utils.now(), 'date')",
+  "f1": "utils.roundUpDate(utils.now(), 'day')",
   "f2": "2020-10-25"
 }
 {{< /highlight >}}
