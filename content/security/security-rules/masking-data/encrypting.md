@@ -96,6 +96,19 @@ For example, let's say we want to encrypt the `email` field only if a person's r
 
 Any security rule of Space Cloud can go inside the `clause` field including `and/or` for nested conditions. The encryption operation will only take place if the `clause` evaluates to true. However, the `encrypt` rule itself will always evaluate to true irrespective of the output of the `clause`.
 
+## Encrypting fields dynamically
+
+In certain cases, the fields you want to encrypt might be dynamic. In such cases, you can specify a variable pointing to an array of fields instead of directly specifying the array. 
+
+For example, let's say the fields we want to encrypt in a remote service call are specified as a `fieldsToBeEncrypted` argument. Here's how you can write the encrypt rule for it:
+
+{{< highlight javascript >}}
+{
+  "rule": "encrypt",
+  "fields": "args.params.fieldsToBeEncrypted"
+}
+{{< /highlight >}}
+
 ## Combining encrypt with other rules
 
 Encrypt rule can be easily combined with any other data masking operations or authorization logic by using the `and` rule. Check out the [documentation of and rule](/security/security-rules/combining-multiple-rules).

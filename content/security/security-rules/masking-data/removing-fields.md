@@ -68,6 +68,19 @@ For example, let's say we want the `address` field of a user to be read by a use
 
 Any security rule of Space Cloud can go inside the `clause` field including `and/or` for nested conditions. The remove operation will only take place if the `clause` evaluates to true. However, the `remove` rule itself will always evaluate to true irrespective of the output of the `clause`.
 
+## Removing fields dynamically
+
+In certain cases, the fields you want to remove might be dynamic. In such cases, you can specify a variable pointing to an array of fields instead of directly specifying the array. 
+
+For example, let's say the fields we want to remove in a remote service call are specified as a `fieldsToBeRemoved` argument. Here's how you can write the remove rule for it:
+
+{{< highlight javascript >}}
+{
+  "rule": "remove",
+  "fields": "args.params.fieldsToBeRemoved"
+}
+{{< /highlight >}}
+
 ## Combining remove with other rules
 
 Remove rule can be easily combined with any other data masking operations or authorization logic by using the `and` rule. Check out the [documentation of and rule](/security/security-rules/combining-multiple-rules).

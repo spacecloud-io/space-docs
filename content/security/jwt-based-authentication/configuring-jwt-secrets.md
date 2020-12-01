@@ -61,8 +61,8 @@ Some providers rotate their JWKs (e.g. Firebase). If the provider sends
 with the response of JWK, then Space Cloud will refresh the JWKs automatically. If the provider does not send the above, the JWKs are not refreshed.
 
 **Example JWK URL:**
-- Firebase publishes their JWK URL at: https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com.
-- Auth0 publishes their JWK URL at: https://<YOUR_AUTH0_DOMAIN>.auth0.com.
+- Firebase publishes their JWK URL at: `https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com`.
+- Auth0 publishes their JWK URL at: `https://<your-auth0-domain>.auth0.com/.well-known/jwks.json`.
 
 ## Security checks
 

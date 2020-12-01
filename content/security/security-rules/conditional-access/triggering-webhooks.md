@@ -81,25 +81,6 @@ The access token contains the following claims:
 
 To verify whether a webhook is coming from Space Cloud only, you can verify the access token with the primary secret. As an additional security step, you can also check the value of role inside the token claims.
 
-### Overriding claims
-
-You can override the claims of the access token specified above to suite your webhook target by specifying the `claims` field in the `webhook` rule. Example:
-
-{{< highlight javascript >}}
-{
-  "rule": "webhook",
-  "url": "<webhook-url>",
-  "claims": { // Any object
-    "foo": "bar"
-  }
-}
-{{< /highlight >}}
-
-To configure the claims in the security rule builder, check the `Override claims` option and provide your claims as a JSON object in the `Specify claims` input:
-
-[Screenshot of security rules form]!
-
-
 ## Forwarding the webhook results to your service
 
 Often while securing your remote services via the `webhook` rule, you might even want to forward the result of the webhook call to your remote service. You can do that easily by using the `store` field. Just point the `store` field to any variable inside the payload (`args.params`) of the remote service.
@@ -115,3 +96,18 @@ Example:
 {{< /highlight >}}
 
 `args.params` is nothing but a variable available in the security rules of remote services that contain the payload of the remote service call. (Check out the list of all available variables). Hence, storing the result in `args.params.foo` will make sure that the request payload to your remote service contains a field call `foo', which is nothing but the response of your webhook request.
+
+## Transforming webhook requests
+
+You can easily the transform the JWT claims and the body of the webhook request using [Go templates](https://golang.org/pkg/text/template/). Check out the [documentation of transformations](/transformations) to learn more about transformations in detail.
+
+To specify the Go templates for JWT claims and request body, we need to configure the following fields in the `webhook` rule:
+
+- **outputFormat:**: `yaml|json`
+- **template:** `go` (Templating language. Currently only Go templates are supported.)
+- **claims:** The Go template for JWT claims. If not provided, the claims will not be transformed.
+- **requestTemplate:**: The Go template for the request body. If not provided, the request body will not be 
+
+To set the templates via security rule builder, check the `Apply transformations` option and provide the output format, JWT claims template and the request body template:
+
+![Webhook Rule Transformations](/images/screenshots/webhook-rule-transformations.png)

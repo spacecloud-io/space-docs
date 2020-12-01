@@ -47,13 +47,13 @@ Click on the `Add rule` Button to open the following modal:
 
 ![Add Service Role Rule](/images/screenshots/add-service-role-rule.png)
 
-The API Groups, Verbs and Resources correspond to the `apiGroups`, `verbs` and `resources` in Kubernetes.
+Enter the match expression rule of Kubernetes for service roles in JSON.
 
 For example, a rule to grant read access for pods would look like this:
 
 {{< highlight json >}}
 { 
-  "apiGroups": [],
+  "apiGroups": [""],
   "resources": ["pods"],
   "verbs": ["get", "watch", "list"]
 }
