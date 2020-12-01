@@ -3,7 +3,7 @@ title: "Configuring container registry"
 description: "Using an Existing Container Registry"
 date: 2020-04-07T09:17:32+05:30
 draft: false
-weight: 5
+weight: 6
 ---
 
 `space-cli` requires a container registry to push the docker images of your code. 
