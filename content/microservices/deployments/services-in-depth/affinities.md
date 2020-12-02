@@ -12,12 +12,34 @@ Affinities help you control where your service runs.
 
 The default scheduling of Kubernetes is enough for most applications. However, in certain use cases, you might want to control where a service runs. 
 
-For example, you might require that a particular service runs on nodes with SSD. Or that a particular service runs next to another service.
+For example, you might prefer that a particular service runs on nodes with SSD. Or that a particular service runs next to another service. This preference is known as affinity.
 
-For a more in-depth understanding of affinities, you should consider reading [this guide](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) from Kubernetes  
+There are two types of affinities:
 
-## Configuring Node affinity
+- **Node affinity:** Affinity or anti-affinity towards a group of nodes.
+- **Service affinity:** Affinity or anti-affinity towards a group of services.
 
+For a more in-depth understanding of affinities, you should consider reading [this guide](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) from Kubernetes.
+
+## Prerequisites
+
+In order to specify service affinity, you must first attach labels to the service towards which you have an affinity. By default the following labels are attached to a service deployed by Space Cloud:
+
+- `app`: `{{service.ID}}`
+- `version`: `{{service.Version}}`
+- `app.kubernetes.io/name`: `{{service.ID}}`
+- `app.kubernetes.io/version`: `{{service.ID}}`
+- `app.kubernetes.io/managed-by`: `space-cloud`
+- `space-cloud.io/version`: `{{Space Cloud Version}}`
+
+Apart from these labels, you can attach custom labels to a service. To attach labels to service, open the `Advanced` section of the service configuration and scroll below to the `Labels` section:
+
+![Affinities](/images/screenshots/affinities.png)
+
+You can add/edit/delete your labels from here. Click on the `Add a label` button to add a label. 
+
+## Configuring affinity
+ 
 Head over to the `Deployments` section in Mission Control:
 
 ![Deployments](/images/screenshots/deployments.png)
@@ -67,11 +89,3 @@ Each match expression contains the following fields:
 - **Value:** The label values.
 
 To use affinities, you first need to make sure your nodes/services have appropriate labels so that you can use the match expressions. You can easily manage the labels on your services via Mission Control.
-
-## Attaching labels to your service
-
-Open the `Advanced` section of the service configuration and scroll below to the `Labels` section:
-
-![Affinities](/images/screenshots/affinities.png)
-
-You can add/edit/delete your labels from here. Click on the `Add a label` button to add a label. 

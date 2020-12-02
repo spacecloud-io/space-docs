@@ -1,22 +1,116 @@
 ---
-title: "Synchronous Event Triggers"
-description: "Synchronous Event Triggers"
-date: 2020-03-30T19:38:07+05:30
+title: "Triggering Custom Events"
+description: "Triggering Custom Events"
+date: 2020-12-02T13:40:08+05:30
 draft: false
 weight: 2
 ---
 
-Space Cloud can process custom events synchronously and return the response from the webhook to the client. Synchronous event triggers are useful only when you want the response back at the client. 
+There are two ways of triggering custom events:
 
-## How it works
+- **Asynchronously:** Space Cloud queues the event and processes it in the background. This is the recommended way of triggering events. 
+- **Synchronously:** Space Cloud triggers the event immediately and returns the response from the webhook back to the client. This should be used, only when you want the response from the processing of the event back on the client.
 
-- Event is queued to Space Cloud with the `isSynchronous` option set to `true` in the request body for queueing event.
-- Space Cloud persists the event and then triggers the desired webhooks with the appropriate retry/delivery guarantees.
-- The `response` in the webhook response body is returned to the client.
+## Trigerring events asynchronously
 
-## Triggering synchronous custom events
+You can trigger your custom event asynchronously either via Mission Control or programmatically via the HTTP API of Space Cloud. You can also schedule an event for the future.
 
-You can trigger your custom event either via Mission Control or programmatically via the HTTP API of Space Cloud. An event is made synchronous by specifying the `isSynchronous` option.
+### HTTP API
+
+To deliver/queue an event to Space Cloud asynchronously, make an `HTTP POST` request to Space Cloud:
+
+**Endpoint:**
+
+{{< highlight bash >}}
+http://<space-cloud-url>/v1/api/<project-id>/eventing/queue
+{{< /highlight >}}
+
+**JSON payload:**
+
+{{< highlight json >}}
+{
+  "type": "<event-type>",
+  "delay": "Number",
+  "timestamp": "Number",
+  "data": "Object"
+}
+{{< /highlight >}}
+
+| Key       | Type   | Required | Default value       |                                                                                              Description |
+|:----------|--------|----------|---------------------|---------------------------------------------------------------------------------------------------------:|
+| type      | String | yes      |                     |                                                                                           Type of event. |
+| timestamp | Number | no       | <current-timestamp> | Used to schedule event trigger at the given timestamp (in milliseconds) schedule time for event trigger. |
+| delay     | Number | no       | 0                   |                                                   Number of seconds to delay the trigger from timestamp. |
+| data      | Object | no       | null                |                                                                                              Event data. |
+
+
+**For example,**
+
+{{< highlight json >}}
+{
+  "type": "sent-email",
+  "data": {
+    "to": "user1@email.com",
+    "from": "user2@email.com",
+    "subject": "Some Subject"
+  }
+}
+{{< /highlight >}}
+
+### Scheduling events
+
+You can schedule events to be triggered later by using `timestamp` and/or `delay` fields:
+
+**Example:** Delay event trigger by 1 minute:
+
+{{< highlight json "hl_lines=3">}}
+{
+  "type": "my-custom-event",
+  "delay": 3600,
+  "data": {
+    "foo": "bar"
+  }
+}
+{{< /highlight >}}
+
+**Example:** Schedule event trigger for a particular time:
+
+{{< highlight json "hl_lines=3">}}
+{
+  "type": "my-custom-event",
+  "timestamp": 1587902400,
+  "data": {
+    "foo": "bar"
+  }
+}
+{{< /highlight >}}
+
+**Example:** Delay event trigger by 1 minute from a particular time:
+
+{{< highlight json "hl_lines=3">}}
+{
+  "type": "my-custom-event",
+  "delay": 3600,
+  "timestamp": 1587902400,
+  "data": {
+    "foo": "bar"
+  }
+}
+{{< /highlight >}}
+
+### Invoking events from Mission Control
+
+Custom event triggers can be invoked via the Mission Control as well.
+
+Head to the `Eventing` section and click the `Trigger` button for any event trigger in the `Actions` column to open the following form:
+
+![Trigger event screen](/images/screenshots/trigger-event.png)
+
+Put the event data and hit `Trigger`.
+
+## Triggering events synchronously
+
+You can trigger your custom events synchronously either via Mission Control or programmatically via the HTTP API of Space Cloud. An event is made synchronous by specifying the `isSynchronous` option.
 
 ### HTTP API
 
@@ -25,7 +119,7 @@ To deliver/queue a synchronous event to Space Cloud, make an `HTTP POST` request
 **Endpoint:**
 
 {{< highlight bash >}}
-http://<space-cloud-url>/v1/api/<project-id>/event-triggers/queue
+http://<space-cloud-url>/v1/api/<project-id>/eventing/queue
 {{< /highlight >}}
 
 **JSON payload:**
@@ -66,7 +160,7 @@ http://<space-cloud-url>/v1/api/<project-id>/event-triggers/queue
 
 Custom event triggers can be invoked via the Mission Control as well.
 
-Head to the `Event Triggers` section and click the `Trigger` button for any event trigger in the `Actions` column to open the following form:
+Head to the `Eventing` section and click the `Trigger` button for any event trigger in the `Actions` column to open the following form:
 
 ![Trigger event screen](/images/screenshots/trigger-synchronous-event.png)
 
@@ -74,7 +168,7 @@ Check the `Trigger event synchronously` option.
 
 Put the event data and hit `Trigger`.
 
-The event response will be shown in the modal itself like this:
+The event response will be shown in that page itself like this:
 
 ![Trigger event screen with response](/images/screenshots/trigger-synchronous-event-response.png)
 
@@ -121,23 +215,13 @@ The `POST` body of the webhook is a JSON object which follows the [Cloud Events 
   "source": "1fb07d5d-b670-468e-ba94-ad5f06a5c053",
   "time": "2019-10-19T12:40:50.053Z",
   "data": {
-    "key1": "value1"
+    "foo": "bar"
   }
 }
 {{< /highlight >}}
 
 ## Webhook response structure
 A `2xx` response status code from the webhook target is deemed to be a successful invocation of the webhook. Any other response status results in an unsuccessful invocation that causes retries as per the retry configuration.
-
-The `response` field in the response body of the webhook is returned back to the client. For example:
-
-{{< highlight json >}}
-{
-  "response": {
-    "foo": "bar"
-  }
-}
-{{< /highlight >}}
 
 <!-- ### Retry-After header
 If the webhook response contains a `Retry-After` header, then the event gets redelivered once more after the duration (in seconds) found in the header. Note that the header is respected if the response status code is `429` (Too many requests).

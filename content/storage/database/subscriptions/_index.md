@@ -18,6 +18,19 @@ However, for **efficient bandwidth utilization**, Space Cloud doesn't send the e
 
 ## Architecture
 
-To _offload the database_, Space Cloud does not rely on any CDC (Change Data Capture) mechanism. Space Cloud uses its in-built eventing system to guarantee that **all changes irrespective of any network failures propagate to the clients** over a bi-directional link in an orderly fashion. 
+Space Cloud uses a CDC (Change Data Capture) mechanism to provide strong guarantees and reliability. 
 
-Isolating the database querying and the realtime module helps it scale the realtime piece independent of database. However, this poses some limitations which are acceptable for most applications. 
+Benefits of using CDC based architecture:
+
+- Space Cloud can even capture mutations happening to the database directly from outside of Space Cloud.
+- Reliability. All events get captured reliably.
+- Performance. No need for polling database. Changes are streamed in realtime.
+
+CDC based architecture has a few limitations which are documented below.
+
+## Limitations
+
+Following are the limitations of the subscriptions in Space Cloud:
+
+- Truncating a table doesn't spawn the corresponding `DELETE` events.
+- Subscriptions doesn't work for SQL Server yet.
