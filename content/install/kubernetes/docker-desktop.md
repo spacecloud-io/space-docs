@@ -6,7 +6,7 @@ draft: false
 weight: 2
 ---
 
-## Step 1: Install Docuer Desktop
+## Step 1: Install Docker Desktop
 
 Install the latest version of [Docker Desktop](https://www.docker.com/products/docker-desktop).
 
