@@ -7,13 +7,11 @@ weight: 7
 ---
 
 
-You can easily perform aggregations on any table/collection using the `aggregate` field a table/collection. The allowed aggregation functions are `count`, `min`, `max`, `avg`, `sum`. For more advanced use cases, you can use [prepared queries](/storage/database/prepared-queries). You can also group, filter, sort data in the aggregations.
-
-> **Note:** Aggregations are only available in SQL databases as of now.
+You can easily perform aggregations on any table/collection using the `@aggregate` directive. The allowed aggregation functions are `count`, `min`, `max`, `avg`, `sum`. For more advanced use cases, you can use [prepared queries](/storage/database/prepared-queries). You can also group, filter, sort data in the aggregations.
 
 ## Simple aggregation query
 
-**Example:** Fetch aggregated data of `expenditures` of a particular user:
+**Example:** Fetch total amount of expenditures for all users:
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -23,26 +21,11 @@ You can easily perform aggregations on any table/collection using the `aggregate
     </ul>
   </div>
   <div id="aggregations-graphql" class="col s12" style="padding:0">
-{{< highlight graphql "hl_lines=3">}}
+{{< highlight graphql "hl_lines=4">}}
 query {
-  expenditures(where: {user_id: "1"}) @postgres {
-    aggregate {
-      count {
-        id
-      }
-      min {
-        amount
-      }
-      max {
-        amount
-      }
-      sum {
-        amount
-      }
-      avg {
-        amount
-      }
-    }
+  expenditures(group: ["user_id"]) @postgres {
+    user_id
+    amount @aggregate(op: "sum")
   }
 }
 {{< /highlight >}}
@@ -50,22 +33,16 @@ query {
   <div id="aggregations-js" class="col s12" style="padding:0">
 {{< highlight javascript>}}
 const { status, data } = db.get("expenditures")
-    .aggregateCount("id")
-    .aggregateMin("amount")
-    .aggregateMax("amount")
     .aggregateSum("amount")
-    .aggregateAverage("amount")
 {{< /highlight >}}  
   </div>
 </div>
 
-If you notice carefully, we can specify fields inside the aggregation function. For instance, in the above example, we have used the `amount` field inside the `sum` aggregation to specify that we want to sum the values of the `amount` field. You can also specify multiple fields inside an aggregate function.
+You can specify the `@aggregate` directive against multiple fields in a query.
 
-## Grouping data in aggregations
+## Multiple aggregations on a single field
 
-You can use the `group` argument to group the data by one or more columns.
-
-**Example:** Fetch the category wise max expenditures of each user. We need to group the data by `user_id` and `category` here:
+To specify multiple aggregations on the same field, you need to use the `field` argument in the `@aggregate` directive.
 
 <div class="row tabs-wrapper">
   <div class="col s12" style="padding:0">
@@ -75,23 +52,21 @@ You can use the `group` argument to group the data by one or more columns.
     </ul>
   </div>
   <div id="aggregations-group-by-graphql" class="col s12" style="padding:0">
-{{< highlight graphql "hl_lines=2">}}
+{{< highlight graphql>}}
 query {
-  expenditures(group: ["user_id", "category"]) @postgres {
-    aggregate {
-      max {
-        amount
-      }
-    }
+  expenditures(group: ["user_id"]) @postgres {
+    user_id
+    total_amount @aggregate(op: "sum" field: "amount")
+    max_amount @aggregate(op: "max" field: "amount")
+    min_amount @aggregate(op: "min" field: "amount")
+    average_amount @aggregate(op: "avg" field: "amount")
   }
 }
 {{< /highlight >}}
   </div>
   <div id="aggregations-group-by-js" class="col s12" style="padding:0">
 {{< highlight javascript>}}
-const { status, data } = db.get("expenditures")
-    .groupBy("user_id", "category")
-    .aggregateMax("amount")
+// Coming soon!
 {{< /highlight >}}  
   </div>
 </div>
