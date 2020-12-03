@@ -12,11 +12,6 @@ If you would like to take Space Cloud for a quick spin, refer to our [Space Clou
 
 > **Note:** Make sure that any database that you want to integrate with Space Cloud is up and running.
 
-## Deployment guides
-
-Choose one of the guides below to deploy Space Cloud platform:
-
-- [Docker](/install/docker) **(recommended for local setup)**
-- [Kubernetes](/install/kubernetes)  **(recommended for production)**
+The recommended way to get started with Space Cloud is by [installing it on Kubernetes](/install/kubernetes).
 
 > If you just want to use the `Gateway` component of Space Cloud directly, you can [follow this guide](/install/using-gateway-directly) instead.

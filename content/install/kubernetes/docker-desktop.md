@@ -1,21 +1,24 @@
 ---
-title: "Cloud"
-description: "Installing Space Cloud on a Managed Kubernetes Solution"
-date: 2020-02-18T18:04:00+05:30
+title: "Docker Desktop"
+description: "Installing Space Cloud on Docker Desktop"
+date: 2020-12-01T18:04:00+05:30
 draft: false
-weight: 5
+weight: 2
 ---
 
-Follow these instructions to install a production Space Cloud cluster on any cloud vendor.
+## Step 1: Install Docker Desktop
 
-## Prerequisites
+Install the latest version of [Docker Desktop](https://www.docker.com/products/docker-desktop).
 
-- Make sure you have a Kubernetes cluster ready.
-- Point `kubectl` to your cluster
+> **We recommend enabling WSL2 on Windows for the best experience. Refer [this guide](https://docs.microsoft.com/en-us/windows/wsl/install-win10) to enable WSL2 on Windows.
 
-> **Each node must have a minimum of 2 CPUs**
+**Don't forget to enable Kubernetes from the Docker Desktop Dashboard.**
 
-## Step 1: Install Istio
+![Enable Kubernetes in Docker Desktop](/images/screenshots/enable-k8s-docker-desktop.png)
+
+> Make sure you provide atleast _2 CPUs and 4GB Memory_ to the Docker Desktop VM. This isn't required when using WSL2.
+
+## Step 2: Install Istio
 
 Space Cloud requires [Istio](https://istio.io/docs/setup/getting-started/) to work correctly. The default Istio profile works perfectly well.
 
@@ -29,12 +32,12 @@ curl -L https://istio.io/downloadIstio | sh -
 Move to the Istio package directory and install Istio. For example, if the package is `istio-1.8.0`:
 ```bash
 cd istio-1.8.0
-./bin/istioctl install
+./bin/istioctl install --set profile=demo
 ```
 
 For more detailed Istio install instructions, visit the [Istio Docs](https://istio.io/latest/docs/setup/install/istioctl/)
 
-## Step 2: Install Space Cloud
+## Step 3: Install Space Cloud
 
 To install Space Cloud, first download `space-cli`:
 
@@ -50,29 +53,16 @@ space-cli setup
 
 > **For details on how to customise Space Cloud installation, visit the [customisation docs](/install/kubernetes/configure).**
 
+
 Wait for all the pods to start:
 
 ```bash
 kubectl get pods -n space-cloud --watch
 ```
 
-## Step 3: Open Mission Control
+## Step 4: Open Mission Control
 
-You should be able to access Mission Control on `http://LOADBALANCER_IP/mission-control`
-
-You can find the public IP address by running:
-
-```bash
-kubectl get -n istio-system svc
-```
-
-Set up port forwarding to access Mission Control on `localhost:4122`.
-
-```bash
-kubectl port-forward -n istio-system deployments/istio-ingressgateway 4122:8080
-```
-
-You should be able to access Mission Control on `http://localhost:4122/mission-control`.
+You should be able to access Mission Control on `http://localhost/mission-control`.
 
 The default credentials are:
 - **Username:** admin

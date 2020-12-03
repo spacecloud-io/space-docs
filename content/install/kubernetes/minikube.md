@@ -3,12 +3,14 @@ title: "Minikube"
 description: "Installing Space Cloud on Minikube"
 date: 2020-02-18T18:04:00+05:30
 draft: false
-weight: 1
+weight: 3
 ---
 
 Follow these instructions to install Space Cloud on Minikube.
 
 ## Step 1: Install Minikube
+
+> **Make sure you have `kubectl` installed before installing minikube.**
 
 Install the latest version of [Minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/) for Windows, Linux or macOS.
 
@@ -17,8 +19,6 @@ Start minikube:
 ```bash
 minikube start --cpus=4 --memory=8096
 ```
-
-> **Make sure you have `kubectl` installed.**
 
 ## Step 2: Install Istio
 
@@ -29,11 +29,11 @@ Download the latest istio release:
 curl -L https://istio.io/downloadIstio | sh -
 ```
 
-> **Space Cloud has been tested with Istio versions `v1.7.X` and `v1.6.X`.**
+> **Space Cloud has been tested with Istio versions `v1.8.X`, `v1.7.X` and `v1.6.X`.**
 
-Move to the Istio package directory and install Istio. For example, if the package is `istio-1.7.2`:
+Move to the Istio package directory and install Istio. For example, if the package is `istio-1.8.0`:
 ```bash
-cd istio-1.7.2
+cd istio-1.8.0
 ./bin/istioctl install --set profile=demo
 ```
 
@@ -41,11 +41,19 @@ For more detailed Istio install instructions, visit the [Istio Docs](https://ist
 
 ## Step 3: Install Space Cloud
 
-To install Space Cloud, run the command:
+To install Space Cloud, first download `space-cli`:
+
+- [Linux](https://storage.googleapis.com/space-cloud/linux/space-cli.zip)
+- [MacOS](https://storage.googleapis.com/space-cloud/darwin/space-cli.zip)
+- [Windows](https://storage.googleapis.com/space-cloud/windows/space-cli.zip)
+
+Now install Space Cloud using the following command:
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/spaceuptech/space-cloud/master/install-manifests/kubernetes/local/space-cloud.yaml
+space-cli setup
 ```
+
+> **For details on how to customise Space Cloud installation, visit the [customisation docs](/install/kubernetes/configure).**
 
 Wait for all the pods to start:
 
@@ -69,7 +77,7 @@ The default credentials are:
 - **Username:** admin
 - **Key:** 1234
 
-You can change it by editing the `ADMIN_USER` and `ADMIN_PASS` env variables of the `gateway` deployment. You can find these towards the end of the [space-cloud.yaml](https://raw.githubusercontent.com/spaceuptech/space-cloud/master/install-manifests/kubernetes/local/space-cloud.yaml) file.  
+You can change it by editing the `admin.username` and `admin.password` variables of [the space-cloud configuration](/install/kubernetes/configure) file.
 
 ## Next Steps
 
