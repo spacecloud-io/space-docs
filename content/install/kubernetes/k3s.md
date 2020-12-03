@@ -1,21 +1,33 @@
 ---
-title: "Cloud"
-description: "Installing Space Cloud on a Managed Kubernetes Solution"
-date: 2020-02-18T18:04:00+05:30
+title: "K3s"
+description: "Installing Space Cloud on K3s"
+date: 2020-12-01T18:04:00+05:30
 draft: false
-weight: 5
+weight: 1
 ---
 
-Follow these instructions to install a production Space Cloud cluster on any cloud vendor.
+Follow these instructions to install Space Cloud on K3s.
 
-## Prerequisites
+## Step 1: Install K3s
 
-- Make sure you have a Kubernetes cluster ready.
-- Point `kubectl` to your cluster
+Install the latest version of [K3s](https://rancher.com/docs/k3s/latest/en/quick-start/).
 
-> **Each node must have a minimum of 2 CPUs**
+> **K3s only works on Linux**
 
-## Step 1: Install Istio
+Start K3s:
+
+```bash
+curl -sfL https://get.k3s.io | sh -s - server --disable traefik --docker
+```
+
+Copy the config file for future use
+
+```bash
+sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+sudo chmod 775 ~/.kube/config
+```
+
+## Step 2: Install Istio
 
 Space Cloud requires [Istio](https://istio.io/docs/setup/getting-started/) to work correctly. The default Istio profile works perfectly well.
 
@@ -29,12 +41,12 @@ curl -L https://istio.io/downloadIstio | sh -
 Move to the Istio package directory and install Istio. For example, if the package is `istio-1.8.0`:
 ```bash
 cd istio-1.8.0
-./bin/istioctl install
+./bin/istioctl install --set profile=demo
 ```
 
 For more detailed Istio install instructions, visit the [Istio Docs](https://istio.io/latest/docs/setup/install/istioctl/)
 
-## Step 2: Install Space Cloud
+## Step 3: Install Space Cloud
 
 To install Space Cloud, first download `space-cli`:
 
@@ -50,29 +62,16 @@ space-cli setup
 
 > **For details on how to customise Space Cloud installation, visit the [customisation docs](/install/kubernetes/configure).**
 
+
 Wait for all the pods to start:
 
 ```bash
 kubectl get pods -n space-cloud --watch
 ```
 
-## Step 3: Open Mission Control
+## Step 4: Open Mission Control
 
-You should be able to access Mission Control on `http://LOADBALANCER_IP/mission-control`
-
-You can find the public IP address by running:
-
-```bash
-kubectl get -n istio-system svc
-```
-
-Set up port forwarding to access Mission Control on `localhost:4122`.
-
-```bash
-kubectl port-forward -n istio-system deployments/istio-ingressgateway 4122:8080
-```
-
-You should be able to access Mission Control on `http://localhost:4122/mission-control`.
+You should be able to access Mission Control on `http://localhost/mission-control`.
 
 The default credentials are:
 - **Username:** admin
