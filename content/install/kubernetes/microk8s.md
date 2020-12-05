@@ -22,6 +22,7 @@ microk8s enable dns rbac
 Copy the kubernetes config file to your host:
 
 ```bash
+mkdir ~/.kube
 microk8s config > ~/.kube/config
 ```
 
