@@ -160,7 +160,7 @@ type order {
 type order_item {
   id: ID! @primary
   order_id: ID! @foreign(table: "order", field: "id")
-  item_id: ID! @relation(table: "item", field: "item")
+  item_id: ID! @foreign(table: "item", field: "item")
   items: [item] @link (table: "item", from: "item_id", to:"id")
 }
 
