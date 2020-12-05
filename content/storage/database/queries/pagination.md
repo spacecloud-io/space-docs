@@ -44,6 +44,12 @@ const { status, data } = await db.get("trainers")
   </div>
 </div>
 
+### Default limit
+
+By default, if you don't specify a `limit` clause in your query, Space Cloud enforces a limit of `1000` rows. 
+
+This default limit value can be configured easily in the database config. Head over to the `Settings` tab in the `Database` section of the Mission Control and scroll to the `Default limit clause` section. Change the value for the default limit and hit `Save`.
+
 ## Skip and limit results
 
 **Example:** Fetch 5 trainers from the list of all trainers starting from the 6th one:

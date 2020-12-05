@@ -11,13 +11,9 @@ The _Deployments Module_ automatically deploys and scales your microservices on 
 > **Follow the [Space Cloud Basic guide](https://learn.spaceuptech.com/space-cloud/basics/deploy-a-service/) for step-by-step instructions to get started with the Deployments Module!**
 
 In a nutshell, the deployments module lets you:
-- Deploy docker images to Kubernetes / Docker
+- Deploy docker images to Kubernetes.
 - Fully encrypt all internal traffic by default for enhanced security.
 - PKI authentication for all services to prevent rogue services from accessing internal APIs.
 - AutoScale HTTP workloads even down to zero!
 - Define service to service communication policy for easy compliance with regulations.
 - Ability to manage your microservice lifecycle for easy adoption of DevOps best practices like GitOps.
-
-Space Cloud can also deploy docker images on a single node using the docker driver. However, this comes with a few limitations, which includes:
-- No autoscaling
-- No benefits of a service mesh

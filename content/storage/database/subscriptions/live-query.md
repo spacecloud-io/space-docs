@@ -8,6 +8,27 @@ weight: 1
 
 ## Prerequisites
 
+### Enable eventing
+
+Make sure you have enabled eventing for your Space Cloud cluster. To enable eventing, head over to the `Settings` tab in the `Eventing` section:
+
+![Eventing config](/images/screenshots/eventing-config.png)
+
+Check the `Enable eventing module` checkbox. 
+
+Select an `Eventing DB` and hit `Save`.
+
+> **Eventing DB is used to store event and invocation logs.**
+
+### Other prerequisites
+
+- Enable logical replication for Postgres, if you want to capture events from Postgres.
+- Enable replica mode in MongoDB, if you want to capture events from MongoDB.
+
+Make sure you have read the [limitations](/storage/database/subscriptions/live-query#limitations).
+
+## Prerequisites
+
 To use the realtime functionality (liveQuery) on any table/collection, you need to make sure that the following things are true:
 
 - The schema of the table/collection has some fields that uniquely identify each row (i.e. the table should have primary or unique fields). These fields should also be present in the `where` clause during update and delete mutations. 
@@ -129,3 +150,10 @@ if (on some logic) {
 {{< /highlight >}}  
   </div>
 </div>
+
+## Limitations
+
+Following are the limitations of the subscriptions in Space Cloud:
+
+- Truncating a table doesn't spawn the corresponding `DELETE` events.
+- Subscriptions doesn't work for SQL Server yet.

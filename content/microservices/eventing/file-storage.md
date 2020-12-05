@@ -7,6 +7,18 @@ weight: 2
 ---
 You can trigger webhooks on any file storage operations (create/delete) performed via Space Cloud.
 
+## Prerequisites
+
+Make sure you have enabled eventing for your Space Cloud cluster. To enable eventing, head over to the `Settings` tab in the `Eventing` section:
+
+![Eventing config](/images/screenshots/eventing-config.png)
+
+Check the `Enable eventing module` checkbox. 
+
+Select an `Eventing DB` and hit `Save`.
+
+> **Eventing DB is used to store event and invocation logs.**
+
 ## Create file storage event trigger
 
 Open a project in Mission Control, head to the `Event Triggers` section and click on the `Add` button to open the form below:

@@ -12,22 +12,34 @@ Space Cloud lets you leverage all the capabilities of Kubernetes without having 
 
 ## Deploying docker container
 
-Checkout to the `Deployments` section in the `Microservices` navigation. Click on the `Add` button to open the following form to create a service:
+Checkout to the `Deployments` section in the `Microservices` navigation. Click on the `Add` button to open the following page to create a service:
 
-![Deployment add service form](/images/screenshots/add-deployment.png)
+![Deployment add service page](/images/screenshots/add-deployment.png)
 
 Enter the following config:
 
-- **Service Id:** A unique name to identify your service.
+- **Service ID:** A unique name to identify your service.
 - **Version:** A unique name (e.g. `v1`) to identify the different versions of your service. 
+- **Tasks:** Docker containers of the service.
+
+> Space Cloud supports multiple tasks in a service. Most applications don't require multiple tasks per service. However, some use cases require that certain containers be co-located because of their tight coupling. For example, one container serving data stored in a shared volume to the public, while a separate sidecar container refreshes or updates those files. In such use cases, you should add multiple tasks to a service.
+
+To add a task, click on the `Add task` button. You will see the following modal:
+
+![Add task page](/images/screenshots/add-task.png)
+
+Enter the following config for the task:
+- **Task ID:** A unique name to identify your task.
 - **Docker Image:** The docker image that you want to deploy.
 - **Ports:** Ports of the docker container that you want to expose.
 
-Hit the `Deploy` button to deploy the service. 
+Hit the `Add` button to add the task. 
+
+Once you are done adding all the tasks, hit the `Save` button to deploy the service.
 
 > **We haven't changed any of the advanced configurations in this example. Feel free to explore those as well.**
 
-Space Cloud will now pull the docker image (if it was not cached earlier) and run the docker container with the specified ports being exposed.
+Space Cloud will now pull the docker image(s) (if it was not cached earlier) and run the docker container(s) with the specified ports being exposed.
 
 > **You can deploy containers from any docker registry as long as it is accessible to Space Cloud.**
 
@@ -37,7 +49,7 @@ Space Cloud also creates an internal domain to access the service from within th
 <service-id>.<project-id>.svc.cluster.local
 {{< /highlight >}}
 
-Assuming your project id is `myproject`, and you haved named your service as `myapp`, then the the internal domain will be:
+Assuming your project id is `myproject`, and you have named your service as `myapp`, then the internal domain will be:
 
 {{< highlight bash >}}
 myapp.myproject.svc.cluster.local

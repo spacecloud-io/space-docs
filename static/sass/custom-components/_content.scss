@@ -60,6 +60,22 @@
     }
   }
 
+  
+  h4 {
+    font-family: "Raleway", sans-serif;
+    font-weight: 600;
+    color: $dark-color;
+    font-size: 14px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+
+    @media #{$large-and-up} {
+      font-size: 18px;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+  }
+
   p {
     color: $dark-color;
     line-height: 1.7;

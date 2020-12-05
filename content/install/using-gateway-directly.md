@@ -110,12 +110,13 @@ You can pass environment variables or flags while running the gateway to tweak c
 
 > **While using docker container you can only set environment variables whereas with the binary you can use both the environment variables and/or flags**
 
-| Environment variable | Flag             | Default value   | Decsription                      |
-|----------------------|------------------|-----------------|----------------------------------|
-| `DEV`                | `--dev`          | `false`         | Run gateway in development mode. |
-| `ADMIN_USER`         | `--admin-user`   | `admin`         | Set the admin user name.         |
-| `ADMIN_PASS`         | `--admin-pass`   | `123`           | Set the admin password.          |
-| `ADMIN_SECRET`       | `--admin-secret` | `some-secret`   | Set the admin JWT secret.        |
+| Environment variable | Flag             | Default value | Description                      |
+|----------------------|------------------|---------------|----------------------------------|
+| `DEV`                | `--dev`          | `false`       | Run gateway in development mode. |
+| `ADMIN_USER`         | `--admin-user`   | `admin`       | Set the admin user name.         |
+| `ADMIN_PASS`         | `--admin-pass`   | `123`         | Set the admin password.          |
+| `ADMIN_SECRET`       | `--admin-secret` | `some-secret` | Set the admin JWT secret.        |
+| `PORT`               | `--port`         | `4122`        | The HTTP port of Space Cloud. HTTPS port is auto calculated as (HTTP port + 4).|
 | `REDIS_CONN`         | `n/a`            | `localhost:6379`| Set redis connection string.     |
 
 The admin credentials are required to login into the `Mission Control` (Admin UI of Space Cloud).
