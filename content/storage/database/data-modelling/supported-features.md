@@ -437,7 +437,9 @@ type order {
 
 Links are used to model relational data. They help you fetch a type along with its related type with a simple query. 
 
-> **Note:** Links are not physical fields in table. They are virtual fields which help Space Cloud to perform join operations on the backend.
+Links don't require you to create _foreign keys_ either. So you can use it on relational and non relational databases.
+
+> **Links are not physical fields in table. They are virtual fields which help Space Cloud to perform join operations on the backend.**
 
 The `@link` directive is used to link a field to another field/table/link in the same or a different database.
 
@@ -449,7 +451,7 @@ You can pass the following arguments in the `@link` directive:
 - `field`: Optional. The field in the linked table that you want to link to. Used if you want to link to a field/link.
 - `db`: Optional. The alias name of the database to link to. Used in cross-database links.
 
-**Case 1: (Linking to another type/table)**
+#### Case 1: (Linking to another type/table)
 
 In this example, we are going to link the orders of a customer to `orders` field in `customer` so that you can query a customer along with all his orders. Here's a schema example to achieve this: 
 
@@ -488,7 +490,7 @@ query {
 The above query results in a join between the customer and order table with the condition - `customer.id == order.customer_id`. This condition is described by the `from` and `to` arguments in the `@link` directive. 
 
 
-**Case 2: (Linking to a field in another type/table)**
+#### Case 2: (Linking to a field in another type/table)
 
 Let's say you want to query a customer along with the dates of all his orders. For that, we need to link the `order_dates` of all the orders placed by a `customer`. Here's a schema example to achieve this:
 
@@ -518,7 +520,7 @@ query {
 }
 {{< /highlight >}}
 
-**Case 3: (Linking to another link)**
+#### Case 3: (Linking to another link)
 
 Many to many relationships in SQL are tracked by a third table called the **tracking table**. 
 
@@ -562,7 +564,7 @@ query {
 }
 {{< /highlight >}}
 
-**Case 4: (Cross-database links)** 
+#### Case 4: (Cross-database links)
 
 When we want to link a field in one database to a field/table/link in _another database_, we use the `db` argument of the `@link` directive.
 

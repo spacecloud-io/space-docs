@@ -226,7 +226,9 @@ query {
 
 If you have defined links in your schema, then you can fetch the linked/nested data without specifying the `join` clause or any conditions for joining in the `where` clause.
 
-**Example:** Fetch a list of trainers along with their caught pokemons:
+**Example:** Fetch a list of trainers along with their caught pokemons.
+
+> **You can use links for cross database joins as well. Refer to the [links documentation](/storage/database/data-modelling/supported-features/#link-directive) for more details.**
 
 To fetch trainers along with their pokemons using links, we first need to describe the relationship between trainer and pokemon using the `@link` directive: 
 
