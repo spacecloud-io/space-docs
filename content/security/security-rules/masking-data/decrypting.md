@@ -38,17 +38,17 @@ Let's say the `email` and `name` are stored in an encrypted format in the databa
 {{< highlight javascript >}}
 {
   "rule": "decrypt",
-  "fields": ["args.res.email", "args.res.name"]
+  "fields": ["res.email", "res.name"]
 }
 {{< /highlight >}}
 
-`args.res` is nothing but a variable containing the response sent back to the client. 
+`res` is nothing but a variable containing the response sent back to the client. 
 
-Space Cloud is smart enough to handle arrays. If the variable (`args.res` in this case) is an array of objects, then Space Cloud would decrypt the fields (email and name in this case) inside each object of that variable. 
+Space Cloud is smart enough to handle arrays. If the variable (`res` in this case) is an array of objects, then Space Cloud would decrypt the fields (email and name in this case) inside each object of that variable. 
 
 You can check out the [list of available variables](/security/security-rules/available-variables) in security rules for each operation.
 
-Let's say the documents to be read (`args.res`) were:
+Let's say the documents to be read (`res`) were:
 {{< highlight javascript >}}
 [
   {
@@ -61,7 +61,7 @@ Let's say the documents to be read (`args.res`) were:
 ]
 {{< /highlight >}}
 
-After passing through the `decrypt` rule, the `args.res` would look become:
+After passing through the `decrypt` rule, the `res` would look become:
 {{< highlight javascript >}}
 [
   {
