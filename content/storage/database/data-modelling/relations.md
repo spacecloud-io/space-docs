@@ -154,14 +154,14 @@ type order {
   id: ID! @primary
   order_date: DateTime!
   amount: Float!
-  items: [item] @link(table: "order_item", field: "items" from: "id", to: "order_id")
+  items: [item] @link(table: "order_item", field: "item" from: "id", to: "order_id")
 }
 
 type order_item {
   id: ID! @primary
   order_id: ID! @foreign(table: "order", field: "id")
-  item_id: ID! @foreign(table: "item", field: "item")
-  items: [item] @link (table: "item", from: "item_id", to:"id")
+  item_id: ID! @foreign(table: "item", field: "id")
+  item: item @link (table: "item", from: "item_id", to:"id")
 }
 
 type item {
