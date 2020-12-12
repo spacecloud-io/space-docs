@@ -10,7 +10,7 @@ weight: 2
 
 Install the latest version of [Docker Desktop](https://www.docker.com/products/docker-desktop).
 
-> **We recommend enabling WSL2 on Windows for the best experience. Refer [this guide](https://docs.microsoft.com/en-us/windows/wsl/install-win10) to enable WSL2 on Windows.
+> **We recommend enabling WSL2 on Windows for the best experience. Refer [this guide](https://docs.microsoft.com/en-us/windows/wsl/install-win10) to enable WSL2 on Windows.**
 
 **Don't forget to enable Kubernetes from the Docker Desktop Dashboard.**
 
