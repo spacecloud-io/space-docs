@@ -136,7 +136,7 @@ To define security rules on a prepared query, head to the `Prepared queries` tab
   "rule": "match",
   "type": "string",
   "eval": "==",
-  "f1": "args.userId",
+  "f1": "args.params.userId",
   "f2": "args.auth.id" // assuming that id inside the jwt claims is the user id 
 }
 {{< /highlight >}}
