@@ -80,6 +80,7 @@ query {
 
 The above query will join the customer and address table on the backend with the condition - `customer.id == address.customer_id`. This condition is described by the arguments - `table`, `from` and `to` of the `@link` directive.
 
+> **You should use the [Native SQL joins](/storage/database/queries/joins#native-sql-joins) via Space Cloud's GraphQL API wherever possible as they are far more performant than the one described above.**
 
 **Foreign Key:**
 
@@ -153,14 +154,14 @@ type order {
   id: ID! @primary
   order_date: DateTime!
   amount: Float!
-  items: [item] @link(table: "order_item", field: "items" from: "id", to: "order_id")
+  items: [item] @link(table: "order_item", field: "item" from: "id", to: "order_id")
 }
 
 type order_item {
   id: ID! @primary
   order_id: ID! @foreign(table: "order", field: "id")
-  item_id: ID! @relation(table: "item", field: "item")
-  items: [item] @link (table: "item", from: "item_id", to:"id")
+  item_id: ID! @foreign(table: "item", field: "id")
+  item: item @link (table: "item", from: "item_id", to:"id")
 }
 
 type item {

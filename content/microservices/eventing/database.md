@@ -7,7 +7,26 @@ weight: 1
 ---
 You can trigger webhooks on any mutations performed on your database via Space Cloud.
 
-> **Note: For update and delete mutations, the webhook will be triggered only if the `where` clause of mutation consists of the fields uniquely identifying the row (i.e. the primary fields or fields having unique constraints).** 
+## Prerequisites
+
+### Enable eventing
+
+Make sure you have enabled eventing for your Space Cloud cluster. To enable eventing, head over to the `Settings` tab in the `Eventing` section:
+
+![Eventing config](/images/screenshots/eventing-config.png)
+
+Check the `Enable eventing module` checkbox. 
+
+Select an `Eventing DB` and hit `Save`.
+
+> **Eventing DB is used to store event and invocation logs.**
+
+### Other prerequisites
+
+- Enable logical replication for Postgres, if you want to capture events from Postgres.
+- Enable replica mode in MongoDB, if you want to capture events from MongoDB.
+
+Make sure you have read the [limitations of the eventing moule](/microservices/eventing/database#limitations).
 
 ## Create database event trigger
 
@@ -27,11 +46,11 @@ Select `Database` as the event source.
 
 **Database**
 
-Select the database for which you want to create an event trigger.
+Select the databases for which you want to create an event trigger. If not provided, then the event trigger will be applicable for all the databases.
 
 **Collection/Table Name**
 
-Put the table/collection name for which you want to create an event trigger. It is an optional field. If you leave this field empty, the event trigger gets configured for all tables/collections in the selected database.
+Put the table/collection names for which you want to create an event trigger. If not provided, then the event trigger will be applicable for all the tables/collections in the selected databases.
 
 **Trigger operation**
 
@@ -121,6 +140,14 @@ The `POST` body of the webhook is a JSON object which follows the [Cloud Events 
 
 ## Webhook response structure
 A `2xx` response status code from the webhook target is deemed to be a successful invocation of the webhook. Any other response status results in an unsuccessful invocation that causes retries as per the retry configuration.
+
+
+## Limitations
+
+Following are the limitations of the eventing module:
+
+- Truncating a table doesn't spawn the corresponding `DELETE` events.
+- Space Cloud can't capture events from SQL Server yet.
 
 <!-- ### Retry-After header
 If the webhook response contains a `Retry-After` header, then the event gets redelivered once more after the duration (in seconds) found in the header. Note that the header is respected if the response status code is `429` (Too many requests).

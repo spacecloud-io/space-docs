@@ -6,7 +6,7 @@ draft: false
 weight: 2
 ---
 
-Space Cloud can be used to create event triggers on database, file storage or custom events. The in-built eventing system in Space Cloud **reliably** invokes webhooks to carry out any custom logic.
+Space Cloud can be used to create event triggers on database, file storage or custom events. The eventing system in Space Cloud **reliably** invokes webhooks to carry out any custom logic.
 
 ## Why use event triggers?
 
@@ -41,7 +41,7 @@ Events can be of the following types:
 
 Whenever an event takes place (e.g., insert mutation via Space Cloud or a custom event), Space Cloud invokes the webhook with the event payload. If the webhook responds with a `2xx` status code, Space Cloud marks the event to be `processed`. Otherwise, it retries the webhook, a certain number of times (configurable) before finally marking it as `failed`. 
 
-Space Cloud stores the events log in `event_logs` table in the eventing database (both of them are configurable). The primary database that you selected while creating a project is selected as the eventing database by default.
+Space Cloud stores the events log in `event_logs` table in the eventing database (configurable).
 
 ### Service to service authentication
 

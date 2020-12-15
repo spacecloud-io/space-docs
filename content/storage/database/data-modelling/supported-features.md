@@ -34,8 +34,6 @@ Fields are the building blocks of an object type. A field either refers to a sca
 
 An `ID` is used to hold a string value of up to 50 characters. You use `ID` to store prominent strings in your model like the unique identifier of a row/document.
 
-> **Note:** As of now, only field with type`ID` can be a primary key.
-
 Space Cloud auto-generates the value of `ID` fields with [ksuid](https://github.com/segmentio/ksuid) (sortable unique identifiers) if you don't provide their value during an insert operation.
 
 **Example:** Uniquely identify an order in an e-commerce app:
@@ -114,9 +112,41 @@ type pokemon {
 
 In queries or mutations, `Boolean` fields have to be specified without any enclosing characters: `boolean: true, boolean: false`.
 
+**Date**
+
+A `Date` stores date values. A good example might be a person's date of birth or the date a blog post was published.
+
+**Example:**
+{{< highlight graphql "hl_lines=5">}}
+type post {
+  id: ID! @primary
+  title: String!
+  is_published: Boolean
+  published_date: Date
+}
+{{< /highlight >}}
+
+In queries or mutations, `Date` fields have to be specified in ISO 8601 format with enclosing double quotes: `date: "2015-11-22"`
+
+**Time**
+
+A `Time` stores time values.
+
+**Example:**
+{{< highlight graphql "hl_lines=5">}}
+type post {
+  id: ID! @primary
+  title: String!
+  is_published: Boolean
+  published_time: Time
+}
+{{< /highlight >}}
+
+In queries or mutations, `Time` fields have to be specified in `hh:mm:ss` format with enclosing double quotes: `time: "04:05:06"`.
+
 **DateTime**
 
-A `DateTime` stores date or time values. A good example might be a person's date of birth or the date a blog post was published.
+A `DateTime` stores date and time values. A good example might be a person's date of birth or the date a blog post was published.
 
 **Example:**
 {{< highlight graphql "hl_lines=5">}}
@@ -138,7 +168,7 @@ In queries or mutations, `DateTime` fields have to be specified either in ISO 86
 
 A `JSON` type stores JSON data. It is typically used when your data has nested structures rather than a flat structure.
 
-> **Note:** This is only available in PostgreSQL as of now. It uses the `JSONB` type of Postgres underneath to provide this feature. 
+> **Note:** This is only available in PostgreSQL and MySQL as of now. Space Cloud uses the `JSONB` type for Postgres and `JSON` type for MySQL underneath to provide this feature. 
 
 For example: We might want to store the `address` of each user in the `user` table. However, `address` field itself can have other fields like `pincode`, `city`, etc. You can model such data easily in the following way using the `JSON` type:
 
@@ -210,6 +240,16 @@ type order {
 {{< /highlight >}}
 
 > Note: Space Cloud doesn't support composite primary keys ([Github issue](https://github.com/spaceuptech/space-cloud/issues/476)) yet.
+
+
+**Example:** Using primary key constraint on autoincrement/serial field:
+
+{{< highlight graphql "hl_lines=3" >}}
+type order {
+  order_id: Integer! @primary(autoIncrement: true)
+  amount: Float!
+}
+{{< /highlight >}}
 
 **Unique constraint**
 
@@ -288,6 +328,16 @@ The `@primary` directive is used to make a field as the **primary key** in that 
 {{< highlight graphql "hl_lines=2" >}}
 type order {
   id: ID! @primary
+  amount: Float!
+}
+{{< /highlight >}}
+
+> **Note:** You can specify the `autoIncrement` argument inside the `@primary` directive for `Integer` fields to use autoincrementing or serial IDs.
+
+**Example:** Using autoincrementing primary field:
+{{< highlight graphql "hl_lines=2" >}}
+type order {
+  id: Integer! @primary(autoIncrement: true)
   amount: Float!
 }
 {{< /highlight >}}
@@ -387,7 +437,9 @@ type order {
 
 Links are used to model relational data. They help you fetch a type along with its related type with a simple query. 
 
-> **Note:** Links are not physical fields in table. They are virtual fields which help Space Cloud to perform join operations on the backend.
+Links don't require you to create _foreign keys_ either. So you can use it on relational and non relational databases.
+
+> **Links are not physical fields in table. They are virtual fields which help Space Cloud to perform join operations on the backend.**
 
 The `@link` directive is used to link a field to another field/table/link in the same or a different database.
 
@@ -399,7 +451,7 @@ You can pass the following arguments in the `@link` directive:
 - `field`: Optional. The field in the linked table that you want to link to. Used if you want to link to a field/link.
 - `db`: Optional. The alias name of the database to link to. Used in cross-database links.
 
-**Case 1: (Linking to another type/table)**
+#### Case 1: (Linking to another type/table)
 
 In this example, we are going to link the orders of a customer to `orders` field in `customer` so that you can query a customer along with all his orders. Here's a schema example to achieve this: 
 
@@ -438,7 +490,7 @@ query {
 The above query results in a join between the customer and order table with the condition - `customer.id == order.customer_id`. This condition is described by the `from` and `to` arguments in the `@link` directive. 
 
 
-**Case 2: (Linking to a field in another type/table)**
+#### Case 2: (Linking to a field in another type/table)
 
 Let's say you want to query a customer along with the dates of all his orders. For that, we need to link the `order_dates` of all the orders placed by a `customer`. Here's a schema example to achieve this:
 
@@ -468,7 +520,7 @@ query {
 }
 {{< /highlight >}}
 
-**Case 3: (Linking to another link)**
+#### Case 3: (Linking to another link)
 
 Many to many relationships in SQL are tracked by a third table called the **tracking table**. 
 
@@ -512,7 +564,7 @@ query {
 }
 {{< /highlight >}}
 
-**Case 4: (Cross-database links)** 
+#### Case 4: (Cross-database links)
 
 When we want to link a field in one database to a field/table/link in _another database_, we use the `db` argument of the `@link` directive.
 

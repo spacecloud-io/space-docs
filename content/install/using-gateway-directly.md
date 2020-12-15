@@ -28,6 +28,8 @@ There might be various use cases why one would want to run the `Gateway` compone
 
 Keeping such use cases in mind, we purposely split Space Cloud into two components.
 
+> **Both these components require Redis as a dependency.**
+
 ## Using gateway directly
 
 There are two ways of using the gateway directly:
@@ -43,7 +45,7 @@ You can directly use the [docker image](https://hub.docker.com/r/spaceuptech/gat
 The following command runs the gateway on docker in development mode and exposes its HTTP and HTTPS ports:
 
 {{< highlight bash >}}
-docker run --name sc-gateway -d -p 4122:4122 -p 4126:4126 -e DEV=true spaceuptech/gateway:latest
+docker run --name sc-gateway -d -p 4122:4122 -p 4126:4126 -e DEV=true -e REDIS_CONN=redis:6379 spaceuptech/gateway:latest
 {{< /highlight >}}
 
 Check out the [list of environment variables](/install/using-gateway-directly/#environment-variables--flags) below that you can pass to the gateway container.
@@ -108,12 +110,13 @@ You can pass environment variables or flags while running the gateway to tweak c
 
 > **While using docker container you can only set environment variables whereas with the binary you can use both the environment variables and/or flags**
 
-| Environment variable | Flag             | Default value | Decsription                      |
+| Environment variable | Flag             | Default value | Description                      |
 |----------------------|------------------|---------------|----------------------------------|
 | `DEV`                | `--dev`          | `false`       | Run gateway in development mode. |
 | `ADMIN_USER`         | `--admin-user`   | `admin`       | Set the admin user name.         |
 | `ADMIN_PASS`         | `--admin-pass`   | `123`         | Set the admin password.          |
 | `ADMIN_SECRET`       | `--admin-secret` | `some-secret` | Set the admin JWT secret.        |
 | `PORT`               | `--port`         | `4122`        | The HTTP port of Space Cloud. HTTPS port is auto calculated as (HTTP port + 4).|
+| `REDIS_CONN`         | `n/a`            | `localhost:6379`| Set redis connection string.     |
 
 The admin credentials are required to login into the `Mission Control` (Admin UI of Space Cloud).

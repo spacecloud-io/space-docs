@@ -71,7 +71,7 @@ Let's say we have defined the following prepared query in Space Cloud:
 | Field         | Value                                                  |
 |:--------------|--------------------------------------------------------|
 | **Name**      | `fetchArticles`                                        |
-| **SQL Query** | `select id, title articles where user_id = ? and category = ?` |
+| **SQL Query** | `select id, title from articles where user_id = ? and category = ?` |
 | **Arguments** | [`args.userId`, `args.category`]                       |
 
 To execute this prepared query, we can make the following request from client:
@@ -116,7 +116,7 @@ Let's say we have executed the above GraphQL query with the following variables:
 The SQL query thus executed in effect will be:
 
 {{< highlight sql >}}
-select id, title articles where user_id = '1' and category = 'arts'
+select id, title from articles where user_id = '1' and category = 'arts'
 {{< /highlight >}}
 
 Notice the selection set (id, title in the above GraphQL query). These are nothing but the fields returned by the execution of SQL query.
