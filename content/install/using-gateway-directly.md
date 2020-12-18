@@ -45,7 +45,7 @@ You can directly use the [docker image](https://hub.docker.com/r/spaceuptech/gat
 The following command runs the gateway on docker in development mode and exposes its HTTP and HTTPS ports:
 
 {{< highlight bash >}}
-docker run --name sc-gateway -d -p 4122:4122 -p 4126:4126 -e DEV=true -e REDIS_CONN=redis:6379 spaceuptech/gateway:latest
+docker run --name sc-gateway -d -p 4122:4122 -p 4126:4126 -e CLUSTER_ID=my-cluster -e DEV=true -e REDIS_CONN=redis:6379 spaceuptech/gateway:latest
 {{< /highlight >}}
 
 Check out the [list of environment variables](/install/using-gateway-directly/#environment-variables--flags) below that you can pass to the gateway container.
@@ -90,12 +90,12 @@ Now that we have the gateway binary, here's how to run it:
   </div>
   <div id="unix" class="col s12" style="padding:0">
 {{< highlight bash >}}
-./gateway run --dev
+./gateway run --dev --cluster my-cluster
 {{< /highlight >}}
   </div>
   <div id="windows" class="col s12" style="padding:0">
 {{< highlight bash >}}
-gateway.exe run --dev
+gateway.exe run --dev --cluster my-cluster
 {{< /highlight >}}
   </div>
 </div>
@@ -112,6 +112,7 @@ You can pass environment variables or flags while running the gateway to tweak c
 
 | Environment variable | Flag             | Default value | Description                      |
 |----------------------|------------------|---------------|----------------------------------|
+| `CLUSTER_ID`         | `--cluster`      | `na`          | Set gateway's cluster id.        |
 | `DEV`                | `--dev`          | `false`       | Run gateway in development mode. |
 | `ADMIN_USER`         | `--admin-user`   | `admin`       | Set the admin user name.         |
 | `ADMIN_PASS`         | `--admin-pass`   | `123`         | Set the admin password.          |
