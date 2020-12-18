@@ -30,7 +30,7 @@ Following are the helper functions available in the security rules of Space Clou
 
 ### length
 
-This function is used to calculate the length of a string. It takes a single string / string variable as an argument and returns a number indicating the length of the string.
+This function is used to calculate the length of a string, map and array. It takes a single string / variable as an argument and returns a number indicating the length of the string, map or array.
 
 ### exists
 
