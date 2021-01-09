@@ -8,6 +8,8 @@ weight: 1
 
 Follow these instructions to install Space Cloud on K3s.
 
+**Make sure [docker](https://docs.docker.com/engine/install/) is installed first.**
+
 ## Step 1: Install K3s
 
 Install the latest version of [K3s](https://rancher.com/docs/k3s/latest/en/quick-start/).
