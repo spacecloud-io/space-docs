@@ -8,7 +8,9 @@
 @import "custom-components/table_of_content";
 @import "custom-components/page_link_card";
 @import "custom-components/page_cards";
+@import "custom-components/footer";
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Poppins", sans-serif;
+  color: $dark-color;
 }
