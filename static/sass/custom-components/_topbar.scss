@@ -16,7 +16,7 @@
     padding: 0 40px;
   }
   .sidenav-trigger {
-    color: #002c39;
+    color: $blue;
   }
   a {
     display: flex;
@@ -28,9 +28,9 @@
       padding: 0 16px;
       height: 100%;
       a {
-        color: #9f9f9f;
+        color: $dark-color;
         transition: color 0.3s;
-        font-weight: 600;
+        font-weight: normal;
         font-size: 16px;
 
         .github-logo {
@@ -38,11 +38,11 @@
           width: 48px;
         }
         &.active {
-          color: #002c39;
+          color: $blue;
         }
         &:hover {
           background-color: transparent;
-          color: #6f6f6f;
+          color: $blue;
         }
       }
     }

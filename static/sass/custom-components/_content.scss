@@ -11,10 +11,10 @@
   @media #{$large-and-up} {
     top: 64px;
     left: 300px;
-    padding: 48px;
+    padding: 48px 48px 0 48px;
   }
   h1 {
-    font-family: "Raleway", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-weight: 600;
     margin-top: 0;
     margin-bottom: 24px;
@@ -31,9 +31,9 @@
   }
 
   h2 {
-    font-family: "Raleway", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-weight: 600;
-    color: $dark-color;
+    color: $desc-color;
     font-size: 20px;
     margin-top: 24px;
     margin-bottom: 24px;
@@ -46,9 +46,9 @@
   }
 
   h3 {
-    font-family: "Raleway", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-weight: 600;
-    color: $dark-color;
+    color: $desc-color;
     font-size: 16px;
     margin-top: 24px;
     margin-bottom: 24px;
@@ -62,9 +62,9 @@
 
   
   h4 {
-    font-family: "Raleway", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-weight: 600;
-    color: $dark-color;
+    color: $desc-color;
     font-size: 14px;
     margin-top: 24px;
     margin-bottom: 24px;
@@ -77,7 +77,7 @@
   }
 
   p {
-    color: $dark-color;
+    color: $desc-color;
     line-height: 1.7;
     font-size: 14px !important;
     margin-top: 12px;
@@ -94,7 +94,7 @@
   a {
     color: $link;
     cursor: pointer;
-    text-decoration: underline dotted #8381e0;
+    text-decoration: underline dotted $desc-color;
   }
 
   img {
@@ -110,6 +110,7 @@
   ul {
     padding-left: 14px;
     margin: 16px 0;
+    color: $desc-color;
 
     @media #{$large-and-up} {
       padding-left: 16px;
@@ -165,7 +166,7 @@
         }
 
         a {
-          color: $dark-color;
+          color: $desc-color;
           text-decoration: none;
           padding: 0px;
           border: 1px solid $border-color;
@@ -320,7 +321,7 @@
 
     .chat-title,
     .github-title {
-      font-family: "Raleway", sans-serif;
+      font-family: "Poppins", sans-serif;
       font-weight: 600;
       margin: 0;
     }
@@ -343,7 +344,7 @@
     }
   }
   q {
-    color: #ff6700;
+    color: $blue;
     font-size: 16px;
     font-style: italic;
     padding-bottom: 24px;

@@ -1,6 +1,6 @@
 .sidenav {
   font-size: 14px;
-  color: $dark-color;
+  color: $desc-color;
 
   @media #{$large-and-up} {
     top: 64px;
@@ -21,18 +21,18 @@
     background-color: transparent !important;
 
     a {
-      color: $dark-color;
+      color: $desc-color;
       background-color: transparent !important;
     }
     
     a:hover {
-      color: $orange;
+      color: $blue;
     }
   }
 
 
   .selectedPage {
-    color: $orange;
+    color: $blue;
   }
 
   .collapsible-header:hover {
@@ -61,7 +61,7 @@
       & > * {
         color: inherit;
         &:hover {
-          color: $orange !important;
+          color: $blue !important;
           transition: 0.2s ease-out;
         }
       }
