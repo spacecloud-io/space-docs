@@ -17,22 +17,25 @@ Space Cloud is started by sensible defaults which works out of the box for most 
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-clusterId: "default" # Can contain lowercase alphanumeric characters only.
+clusterId: "default"
 devMode: "true" # Turn this to false for production mode
-version: "0.20.0" # This ensures both runner & gateway using the same version
 isKedaEnabled: true # Set this to false to skip installing keda
 
 admin:
-  username: "admin" # Log in username. Consider changing this in production.
-  password: "1234" # Log in password. Consider changing this in production.
+  username: "admin" # Log in username
+  password: "1234" # Log in password
   secret: "some-secret" # Space cloud uses this secret for parsing jwt tokens for config APIs
 
 meta:
-  logLevel: "debug" # debug | info | warn
-  logFormat: "json" # text | json
+  logLevel: "debug" # other values info, warn
+  logFormat: "json" # other values text
 
 # Gateway service configuration
 gateway:
+  healthCheck:
+    initialDelaySeconds: 100 # tells the kubelet that it should wait 100 seconds before performing the first health check.
+    periodSeconds: 10 # field specifies that the kubelet should perform a liveness probe every 10 seconds.
+    timeout: 5 # http request timeout, it should be less than (periodSeconds)
   image:
     name: "spaceuptech/gateway"
     pullPolicy: "IfNotPresent" # IfNotPresent | Always
