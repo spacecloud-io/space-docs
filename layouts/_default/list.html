@@ -3,8 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <link rel="shortcut icon" type="image/png" href="/images/kit/logo.svg"/>
   <link type="text/css" rel="stylesheet" href="/css/app.css" media="screen,projection" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -48,10 +47,15 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script>
     $(document).ready(function () {
+      $('p > img').each(function(){
+        $(this).addClass('materialboxed responsive-img');
+        const caption = $(this).attr('alt');
+        $(this).attr('data-caption', caption);
+      });
+      $('table').addClass('responsive-table')
       $('.sidenav').sidenav();
       $('.collapsible').collapsible();
       $('.tabs').tabs();
-      $('p > img').addClass('materialboxed');
       $('.materialboxed').materialbox();
     });
   </script>
