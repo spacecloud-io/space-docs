@@ -34,14 +34,12 @@
 
   <div class="docs-content">
     <div class="row">
-      <div class="col s12 l9 offset-l3" style="padding: 0;">
-        <div class="col s12 l9" style="padding: 0;">
+      <div class="col s12 l9">
           <h1>{{.Description}}</h1>
           {{ partial "table_of_contents" . }}
           {{ emojify .Content }}
           {{ partial "prev_next_section.html" . }}
           {{ partial "contribution.html" . }}
-        </div>
       </div>
     </div>
   </div>
