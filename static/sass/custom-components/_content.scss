@@ -1,17 +1,10 @@
 .docs-content {
-  position: fixed;
-  top: 56px;
-  left: 0;
-  bottom: 0;
-  right: 0;
   overflow-y: auto;
-  padding: 16px;
-  z-index: 996;
+  padding: 72px 16px 16px 16px;
+  z-index: 4;
 
   @media #{$large-and-up} {
-    top: 64px;
-    left: 300px;
-    padding: 48px 48px 0 48px;
+    padding: 112px 48px 0 0;
   }
   h1 {
     font-family: "Poppins", sans-serif;
