@@ -35,14 +35,41 @@
   <div class="docs-content">
     <div class="row">
       <div class="col s12 l9">
-          <h1>{{.Description}}</h1>
-          {{ partial "table_of_contents" . }}
-          {{ emojify .Content }}
-          {{ partial "prev_next_section.html" . }}
-          {{ partial "contribution.html" . }}
+        <div class="table_of_contents">
+          <ul class="collapsible hide-on-large-only">
+            <li class="collapsible-li">
+              <div class="collapsible-header">{{.Title}}</div>
+              <div class="collapsible-body">
+                <div class="edit_page">
+                  {{ with .File.Path }}
+                  <a class="edit_link" href="https://github.com/spaceuptech/space-docs/tree/master/content/{{ . }}" target="_blank"><i class="material-icons" style="font-size: 20px; margin-right: 8px;">edit</i>Edit this page</a>
+                  {{ end }}
+                  <a class="" href="https://github.com/spaceuptech/space-docs/issues" target="_blank"><img src="/images/kit/github.svg" style="filter: brightness(0) saturate(100%) invert(35%) sepia(78%) saturate(5017%) hue-rotate(218deg) brightness(101%) contrast(103%); width: 20px; height: 20px; margin-right: 8px;"/><span>Create an issue</span></a>
+                </div>
+                {{ partial "table_of_contents" . }}
+              </div>
+            </li>
+          </ul>
+        </div>
+        <h1>{{.Description}}</h1>
+        {{ emojify .Content | replaceRE "(<h[1-6] id=\"(.+)\".*>)(.*)(</h[1-6]>)" `${1}<a class="sub-heading" href="#${2}">${3}<i class="material-icons">link</i></a>${4}` | safeHTML }}
+        {{ partial "prev_next_section.html" . }}
+        {{ partial "contribution.html" . }}
+      </div>
+      <div class="col l3 hide-on-med-and-down">
+        <div class="edit_page">
+          <a class="edit_link" href="https://github.com/spaceuptech/space-docs/tree/master/content{{ strings.TrimSuffix `/` .Page.RelPermalink }}.md" target="_blank"><i class="material-icons" style="font-size: 16px; margin-right: 8px;">edit</i>Edit this page</a>
+          <a class="" href="https://github.com/spaceuptech/space-docs/issues" target="_blank"><img src="/images/kit/github.svg" style="filter: brightness(0) saturate(100%) invert(35%) sepia(78%) saturate(5017%) hue-rotate(218deg) brightness(101%) contrast(103%); width: 16px; height: 16px; margin-right: 8px;"/><span>Create an issue</span></a>
+        </div>
+        {{ partial "table_of_contents" . }}
       </div>
     </div>
   </div>
+  <!-- Load Algolia scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/algoliasearch@3/dist/algoliasearchLite.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
+  <!-- Initialise search -->
+  <script src="/js/search.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script>

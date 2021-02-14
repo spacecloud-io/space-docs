@@ -4,3 +4,12 @@ title = "Space Cloud"
 
 [markup.goldmark.renderer]
 unsafe= true
+
+[outputs]
+home = ["HTML","RSS","Algolia"]
+
+[outputFormats.Algolia]
+  mediaType = "application/json"
+  baseName = "algolia"
+  isPlainText = true
+  notAlternative = true

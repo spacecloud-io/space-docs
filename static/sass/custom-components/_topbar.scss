@@ -56,4 +56,96 @@
       height: 36px;
     }
   }
+
+  .aa-input-container {
+    display: inline-block;
+    position: relative;
+  }
+  .aa-input-search{
+    width: 500px;
+    padding: 12px 28px 12px 12px;
+    border: 1px solid #e4e4e4;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  .aa-hint{
+    top: 11px !important;
+  }
+  #aa-search-input, .aa-input-search{
+    vertical-align: middle !important;
+  }
+
+  .aa-input-search::-webkit-search-decoration, .aa-input-search::-webkit-search-cancel-button,
+  .aa-input-search::-webkit-search-results-button, .aa-input-search::-webkit-search-results-decoration {
+    display: none;
+  }
+  .aa-input-icon {
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    fill: #e4e4e4;
+    pointer-events: none;
+  }
+  .aa-dropdown-menu {
+    background-color: #fff;
+    border: 1px solid rgba(155, 155, 155, 0.8);
+    width: 500px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+  }
+  .aa-suggestion {
+    padding: 8px;
+    cursor: pointer;
+    width: 500px;
+  }
+  .aa-suggestion + .aa-suggestion {
+    border-top: 1px solid rgba(228, 228, 228, 0.6);
+  }
+
+  .search-link{
+    text-decoration: none;
+    color: $desc-color;
+    display: block;
+    line-height: normal;
+  }
+  .search-section{
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: bold;
+  }
+  .search-summary {
+    width: 475px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
+  @media #{$medium-and-down}{
+    .aa-input-search, .aa-dropdown-menu, .aa-suggestion{
+      width: auto;
+    }
+    
+    .aa-hint{
+      top: 8px !important;
+    }
+
+    .search-section{
+      font-size: 16px;
+      width: auto;
+    }
+
+    .search-summary{
+      font-size: 14px;
+      -webkit-line-clamp: 2;
+      width: auto;
+    }
+  }
 }
