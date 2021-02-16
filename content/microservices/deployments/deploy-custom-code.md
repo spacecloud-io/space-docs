@@ -36,7 +36,7 @@ It asks you the following bunch of questions to auto-generate the config file. M
 
 This will generate a `Dockerfile` and a `service.yaml` file if these files did not exist before. Feel free to explore and change both these files before finally deploying the service. The `service.yaml` file looks something like this:
 
-{{< highlight bash >}}
+{{< highlight yaml >}}
 api: /v1/runner/{project}/services/{id}/{version}
 meta:
   id: basic-test
