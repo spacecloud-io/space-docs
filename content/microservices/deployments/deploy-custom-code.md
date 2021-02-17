@@ -36,8 +36,49 @@ It asks you the following bunch of questions to auto-generate the config file. M
 
 This will generate a `Dockerfile` and a `service.yaml` file if these files did not exist before. Feel free to explore and change both these files before finally deploying the service. The `service.yaml` file looks something like this:
 
-{{< highlight bash >}}
-./space-cli deploy
+{{< highlight yaml >}}
+api: /v1/runner/{project}/services/{id}/{version}
+meta:
+  id: basic-test
+  project: myproject
+  version: v1
+spec:
+  autoScale:
+    coolDownInterval: 120
+    maxReplicas: 100
+    minReplicas: 1
+    pollingInterval: 15
+    triggers:
+    - authRef: null
+      metadata:
+        target: "50"
+      name: Request per second
+      type: requests-per-second
+  statsInclusionPrefixes: http.inbound,cluster_manager,listener_manager
+  tasks:
+  - docker:
+      cmd: []
+      image: dockerhub/myproject-basic-test:v1
+      imagePullPolicy: pull-if-not-exists
+      secret: ""
+    env: {}
+    id: basic-test
+    ports:
+    - name: http
+      port: 8080
+      protocol: http
+    resources:
+      cpu: 250
+      memory: 512
+    runtime: image
+    secrets: []
+  upstreams:
+  - projectId: myproject
+    service: '*'
+  whitelists:
+  - projectId: myproject
+    service: '*'
+type: service
 {{< /highlight >}}
 
 Great! Your service now has everything that is required to deploy it.
