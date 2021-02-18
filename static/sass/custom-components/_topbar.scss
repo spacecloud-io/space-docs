@@ -63,6 +63,7 @@
   }
   .aa-input-search{
     width: 500px;
+    height: 50px;
     padding: 12px 28px 12px 12px;
     border: 1px solid #e4e4e4;
     box-sizing: border-box;
@@ -71,10 +72,16 @@
     appearance: none;
   }
   .aa-hint{
-    top: 11px !important;
+    top: 7px !important;
   }
   #aa-search-input, .aa-input-search{
     vertical-align: middle !important;
+    border-radius: 50px;
+  }
+
+  #aa-search-input:focus, .aa-input-search:focus{
+    outline: none;
+    border: 1px solid $blue;
   }
 
   .aa-input-search::-webkit-search-decoration, .aa-input-search::-webkit-search-cancel-button,
@@ -96,11 +103,11 @@
     background-color: #fff;
     border: 1px solid rgba(155, 155, 155, 0.8);
     width: 500px;
-    margin-top: 10px;
+    border-radius: 10px;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
   }
-  .aa-suggestion {
+  .aa-suggestion, .aa-empty {
     padding: 8px;
     cursor: pointer;
     width: 500px;
@@ -115,35 +122,49 @@
     display: block;
     line-height: normal;
   }
-  .search-section{
-    font-size: 18px;
+
+  .search-section, .search-title{
+    font-size: 12px;
+    font-weight: 100;
+  }
+
+  .search-desc{
+    font-size: 16px;
     line-height: 1.5;
-    font-weight: bold;
   }
   .search-summary {
+    font-size: 14px;
     width: 475px;
     display: -webkit-box;
-    -webkit-box-orient: vertical;
+    -webkit-box-orient: block-axis;
     -webkit-line-clamp: 3;
     overflow: hidden;
   }
 
   @media #{$medium-and-down}{
-    .aa-input-search, .aa-dropdown-menu, .aa-suggestion{
+    .aa-input-search{
       width: auto;
+    }
+
+    .aa-dropdown-menu, .aa-suggestion, .aa-empty{
+      width: 300px;
+      left: -50px!important;
+      right: -50px !important;
+    }
+
+    .aa-input-search{
+      height: 42px;
     }
     
     .aa-hint{
       top: 8px !important;
     }
 
-    .search-section{
-      font-size: 16px;
+    .search-desc{
       width: auto;
     }
 
     .search-summary{
-      font-size: 14px;
       -webkit-line-clamp: 2;
       width: auto;
     }

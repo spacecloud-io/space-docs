@@ -38,7 +38,7 @@
         <div class="table_of_contents">
           <ul class="collapsible hide-on-large-only">
             <li class="collapsible-li">
-              <div class="collapsible-header">{{.Title}}</div>
+              <div class="collapsible-header"><i class="material-icons drop-icon">arrow_right</i>Table of content</div>
               <div class="collapsible-body">
                 <div class="edit_page">
                   {{ with .File.Path }}
@@ -72,19 +72,7 @@
   <script src="/js/search.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script>
-    $(document).ready(function () {
-      $('p > img').each(function(){
-        $(this).addClass('materialboxed responsive-img');
-        const caption = $(this).attr('alt');
-        $(this).attr('data-caption', caption);
-      });
-      $('table').addClass('responsive-table')
-      $('.sidenav').sidenav();
-      $('.collapsible').collapsible();
-      $('.tabs').tabs();
-      $('.materialboxed').materialbox();
-    });
+  <script src="/js/general.js"> 
   </script>
   <script src="/js/newsletter.js"></script>
 </body>
