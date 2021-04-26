@@ -1,9 +1,14 @@
 #table_of_contents {
   margin-bottom: 24px;
-  padding: 16px 24px;
+  padding: 16px;
   border-radius: 4px;
-  border: 1px solid #eaeaec;
-  background-color: #f5f5f5;
+  border-left: 1px solid #D9D9D9;
+  position: fixed;
+  top: 140px;
+  overflow-y: auto;
+  z-index: 4;
+  height: auto;
+  max-height: 80%;
   p {
     margin: 0;
     font-weight: 600;
@@ -15,5 +20,40 @@
     color: $blue;
     border-bottom: 1px dotted $desc-color;
     text-decoration: none;
+  }
+
+  @media #{$medium-and-down}{
+    position: inherit;
+    margin-bottom: 0;
+  }
+}
+
+
+.table_of_contents{
+  .collapsible{
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    z-index: 4; 
+  }
+
+  ul.collapsible{
+    margin: 0;
+    padding-left: 0;
+  }
+
+  ul.collapsible li.collapsible-li{
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .collapsible-header{
+    background: #FFFFFF;
+  }
+
+  .collapsible-body{
+    background: #FFFFFF;
+    padding: 0;
   }
 }
