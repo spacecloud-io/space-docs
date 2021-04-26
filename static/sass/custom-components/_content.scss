@@ -1,8 +1,7 @@
 .docs-content {
   overflow-y: auto;
-  padding: 72px 16px 16px 16px;
+  padding: 122px 16px 16px 16px;
   z-index: 4;
-
   @media #{$large-and-up} {
     padding: 112px 48px 0 348px;
   }
@@ -341,5 +340,47 @@
     font-size: 16px;
     font-style: italic;
     padding-bottom: 24px;
+  }
+  a.sub-heading{
+    color: $desc-color;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+
+    i{
+      display: none !important;
+      transform: rotate(-45deg);
+    }
+  }
+
+  a.sub-heading:hover{
+    color: $blue;
+
+    i{
+      display: inline !important;
+      margin-left: 8px;
+      font-size: 20px;
+    }
+  }
+
+  .edit_page{
+    padding: 16px;
+    border-left: 1px solid #D9D9D9;
+    position: fixed;
+    top: 64px;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    height: 75px;
+    width: auto;
+    justify-content: space-between;
+  
+    a{
+      text-decoration: none;
+    }
+
+    @media #{$medium-and-down}{
+      position: static;
+    }
   }
 }

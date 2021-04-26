@@ -13,3 +13,10 @@ body {
   font-family: "Poppins", sans-serif;
   color: $desc-color;
 }
+
+html{
+  scroll-padding-top: 90px;
+  @media #{$medium-and-down}{
+    scroll-padding-top: 122px;
+  }
+}
