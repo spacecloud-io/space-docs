@@ -1,5 +1,5 @@
-const client = algoliasearch('C0YVLCLXSA', '026df67e9b3f3ce90a7f8d1c62d818a9');
-const docs = client.initIndex('docs_search');
+const client = algoliasearch('ZHA7CLQVCE', '93f9aaa454d7c27d300086d081d7d69d');
+const docs = client.initIndex('space-docs');
 
 autocomplete(
   '#aa-search-input',
