@@ -1,6 +1,6 @@
 [build]
   publish = "public"
-  command = "sh scripts/build.sh"
+  command = "npm run build && hugo"
 [context.production.environment]
   HUGO_VERSION = "0.64.0"
   HUGO_ENV = "production"
@@ -11,7 +11,7 @@
   HUGO_VERSION = "0.64.0"  
 
 [[redirects]]
-  from = "/getting-started/*"
-  to = "https://learn.spaceuptech.com/space-cloud/basics/setup/"
+  from = "/*"
+  to = "https://docs.space-cloud.io/:splat"
   status = 301
   force = true
