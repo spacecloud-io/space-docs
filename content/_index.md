@@ -10,7 +10,7 @@ Space Cloud is an **open-source, kubernetes based platform which lets you build,
 
 It provides instant **GraphQL** and **REST** APIs for your database and microservices that can be consumed directly from your frontend in a secure manner. With that, it also deploys and scales your docker images on Kubernetes.
 
-![Space Cloud Architecture](https://spaceuptech.com/icons/space-cloud-basic.png)
+![Space Cloud Architecture](https://space-cloud.io/icons/space-cloud-basic.png)
 
 ## Aim
 
@@ -23,6 +23,6 @@ Space Cloud aims at simplifying platform development by:
 
 ## Next steps
 
- - Learn what Space Cloud is capable is of with our [step-by-step guide](https://learn.spaceuptech.com/space-cloud/basics/setup/).
+ - Learn what Space Cloud is capable is of with our [step-by-step guide](https://learn.space-cloud.io/space-cloud/basics/setup/).
  - Install Space Cloud in production.
  - Read more about [all the features](/introduction/features) Space Cloud has to offer.

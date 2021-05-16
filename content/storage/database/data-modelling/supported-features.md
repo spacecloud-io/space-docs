@@ -239,7 +239,7 @@ type order {
 }
 {{< /highlight >}}
 
-> Note: Space Cloud doesn't support composite primary keys ([Github issue](https://github.com/spaceuptech/space-cloud/issues/476)) yet.
+> Note: Space Cloud doesn't support composite primary keys ([Github issue](https://github.com/spacecloud-io/space-cloud/issues/476)) yet.
 
 
 **Example:** Using primary key constraint on autoincrement/serial field:

@@ -8,7 +8,7 @@ weight: 2
 
 This section talks in-depth about deploying Space Cloud in production. 
 
-If you would like to take Space Cloud for a quick spin, refer to our [Space Cloud Basics Guide](https://learn.spaceuptech.com/space-cloud/basics/setup/).
+If you would like to take Space Cloud for a quick spin, refer to our [Space Cloud Basics Guide](https://learn.space-cloud.io/space-cloud/basics/setup/).
 
 > **Note:** Make sure that any database that you want to integrate with Space Cloud is up and running.
 

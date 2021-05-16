@@ -8,7 +8,7 @@ weight: 1
 
 Space Cloud has native support to convert your Restful APIs to GraphQL without having to write any code whatsoever.
 
-> **Follow the [Space Cloud Basic guide](https://learn.spaceuptech.com/space-cloud/basics/rest-to-graphql/) to see the power of GraphQL for yourself!**
+> **Follow the [Space Cloud Basic guide](https://learn.space-cloud.io/space-cloud/basics/rest-to-graphql/) to see the power of GraphQL for yourself!**
 
 Next steps
 
