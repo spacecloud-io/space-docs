@@ -129,7 +129,7 @@ connections:
 ## Overriding Default Configuration
 
 To override the default configurations:
-- Download the [default yaml config](https://raw.githubusercontent.com/spaceuptech/space-cloud/master/install-manifests/helm/space-cloud/values.yaml) and store it as a yaml file (Eg. `sc-config.yaml`).
+- Download the [default yaml config](https://raw.githubusercontent.com/spacecloud-io/space-cloud/master/install-manifests/helm/space-cloud/values.yaml) and store it as a yaml file (Eg. `sc-config.yaml`).
 - Make necessary changes in the file directly.
 - Run the following command to install Space Cloud with the provided config:
 

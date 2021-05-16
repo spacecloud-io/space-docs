@@ -8,7 +8,7 @@ weight: 3
 
 The _Deployments Module_ automatically deploys and scales your microservices on any Kubernetes cluster. It has first-class support of Istio; hence all your services enjoy the benefit of using a Service Mesh. All you need to do it provide a docker image and that's it.
 
-> **Follow the [Space Cloud Basic guide](https://learn.spaceuptech.com/space-cloud/basics/deploy-a-service/) for step-by-step instructions to get started with the Deployments Module!**
+> **Follow the [Space Cloud Basic guide](https://learn.space-cloud.io/space-cloud/basics/deploy-a-service/) for step-by-step instructions to get started with the Deployments Module!**
 
 In a nutshell, the deployments module lets you:
 - Deploy docker images to Kubernetes.

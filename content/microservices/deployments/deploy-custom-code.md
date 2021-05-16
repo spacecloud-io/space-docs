@@ -8,7 +8,7 @@ weight: 2
 
 Space Cloud lets you leverage all the capabilities of Kubernetes without having to learn the Kubernetes API. This guide shows how you can deploy your code to Space Cloud.
 
-> **If you want an interactive and step-by-step guide to deploy your code, follow this [Space Cloud Basic guide](https://learn.spaceuptech.com/space-cloud/basics/deploy-a-service/)**
+> **If you want an interactive and step-by-step guide to deploy your code, follow this [Space Cloud Basic guide](https://learn.space-cloud.io/space-cloud/basics/deploy-a-service/)**
 
 ## Preparing your code for deployment
 

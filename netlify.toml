@@ -12,6 +12,6 @@
 
 [[redirects]]
   from = "/getting-started/*"
-  to = "https://learn.spaceuptech.com/space-cloud/basics/setup/"
+  to = "https://learn.space-cloud.io/space-cloud/basics/setup/"
   status = 301
   force = true

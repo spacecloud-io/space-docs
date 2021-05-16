@@ -8,7 +8,7 @@ weight: 1
 
 This section helps you get started with Space Cloud.
 
-> **If you are new to Space Cloud, we strongly recommend following our [step-by-step guide](https://learn.spaceuptech.com/space-cloud/basics/setup/) to get started**
+> **If you are new to Space Cloud, we strongly recommend following our [step-by-step guide](https://learn.space-cloud.io/space-cloud/basics/setup/) to get started**
 
 - Read more about [all the features](/introduction/features) Space Cloud has to offer.
 - Explore the architecture of a typical Space Cloud Application. (Coming soon)

@@ -59,7 +59,7 @@ To use the binary of gateway directly, you first need to build it from its sourc
 Clone the repository of Space Cloud first:
 
 {{< highlight bash >}}
-git clone https://github.com/spaceuptech/space-cloud.git
+git clone https://github.com/spacecloud-io/space-cloud.git
 {{< /highlight >}}
 
 

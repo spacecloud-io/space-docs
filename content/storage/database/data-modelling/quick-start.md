@@ -12,7 +12,7 @@ This guide helps you model a Pokemon app 😛 to explore the data modelling in S
 
 ## Setup
 
-If you want to follow this guide along practically, first [deploy Space Cloud](https://learn.spaceuptech.com/space-cloud/basics/setup/) along with PostgreSQL and create a project in Mission Control with PostgreSQL as the primary database.
+If you want to follow this guide along practically, first [deploy Space Cloud](https://learn.space-cloud.io/space-cloud/basics/setup/) along with PostgreSQL and create a project in Mission Control with PostgreSQL as the primary database.
 
 Then head over to the `Overview` tab in the `Database` section.
 
