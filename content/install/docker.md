@@ -6,4 +6,70 @@ draft: false
 weight: 2
 ---
 
-Coming Soon!
+The recommeded way to run space cloud is using space-cli setup command, which installs space-cloud in a kubernetes cluster, by which you can access all the space-cloud features.
+
+Running space cloud in a dockerized environments comes with some feature restrictions. 
+
+
+The features which are ~~strike throughed~~ are not availble because these features are dependant on **kubernetes environment**.
+
+- Database
+- Filestore
+- Graphql API
+- Eventing (Not availabe when database is sql server)
+- Caching
+- ~~Deployments~~
+- ~~Secrets~~
+- ~~Ingress routing~~
+
+
+## When to use docker compose
+Running space-cloud only in docker can be useful for the following use cases
+- Test out space cloud
+- A POC project
+
+## Installation
+Download the docker compose using commands given below
+
+**NOTE:** Windows users should use power shell for running the below command
+
+
+<div class="row tabs-wrapper">
+  <div class="col s12" style="padding:0">
+    <ul class="tabs">
+      <li class="tab col s2"><a class="active" href="#mongo">Mongo DB</a></li>
+      <li class="tab col s2"><a href="#postgres">Postgres</a></li>
+      <li class="tab col s2"><a href="#mysql">Mysql</a></li>
+      <li class="tab col s2"><a href="#sql-server">Sql server</a></li>
+    </ul>
+  </div>
+
+  <div id="mongo" class="col s12" style="padding:0">
+{{< highlight bash >}}
+curl "https://raw.githubusercontent.com/spacecloud-io/space-cloud/master/install-manifests/docker/mongo/docker-compose.yaml" -o docker-compose.yaml
+{{< /highlight >}}
+  </div>
+
+  <div id="postgres" class="col s12" style="padding:0">
+{{< highlight bash >}}
+curl "https://raw.githubusercontent.com/spacecloud-io/space-cloud/master/install-manifests/docker/postgres/docker-compose.yaml" -o docker-compose.yaml && curl "https://raw.githubusercontent.com/spacecloud-io/space-cloud/master/install-manifests/docker/postgres/postgresql.conf" -o postgresql.conf
+{{< /highlight >}}
+  </div>
+
+  <div id="mysql" class="col s12" style="padding:0">
+{{< highlight bash >}}
+curl "https://raw.githubusercontent.com/spacecloud-io/space-cloud/master/install-manifests/docker/mysql/docker-compose.yaml" -o docker-compose.yaml
+{{< /highlight >}}
+  </div>
+
+  <div id="sql-server" class="col s12" style="padding:0">
+{{< highlight bash >}}
+curl "https://raw.githubusercontent.com/spacecloud-io/space-cloud/master/install-manifests/docker/sql-server/docker-compose.yaml" -o docker-compose.yaml
+{{< /highlight >}}
+  </div>
+</div>
+
+Run this command to start the containers
+{{< highlight bash >}}
+docker-compose up -d
+{{< /highlight >}}
