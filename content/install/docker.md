@@ -69,7 +69,7 @@ curl "https://raw.githubusercontent.com/spacecloud-io/space-cloud/master/install
   </div>
 </div>
 
-Run this command to start the containers
+Run the following command to start the containers:
 {{< highlight bash >}}
 docker-compose up -d
 {{< /highlight >}}
