@@ -16,7 +16,7 @@ The features which are ~~striked through~~ are not available since they depend o
 - Database
 - Filestore
 - Graphql API
-- Eventing (Not availabe when database is sql server)
+- Eventing
 - Caching
 - ~~Deployments~~
 - ~~Secrets~~
