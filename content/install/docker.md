@@ -24,7 +24,7 @@ The features which are ~~striked through~~ are not available since they depend o
 
 
 ## When to use docker compose
-Running space-cloud only in docker can be useful for the following use cases
+Running Space Cloud in docker can be useful for the following use cases:
 - Test out space cloud
 - A POC project
 
