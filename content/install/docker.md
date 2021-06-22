@@ -11,7 +11,7 @@ The recommended way to run Space Cloud is using the `space-cli setup` command, w
 Running Space Cloud as a standalone docker container comes with some feature restrictions. 
 
 
-The features which are ~~strike throughed~~ are not availble because these features are dependant on **kubernetes environment**.
+The features which are ~~striked through~~ are not available since they depend on **Kubernetes**.
 
 - Database
 - Filestore
