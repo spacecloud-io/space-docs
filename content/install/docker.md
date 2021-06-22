@@ -8,7 +8,7 @@ weight: 2
 
 The recommended way to run Space Cloud is using the `space-cli setup` command, which installs Space Cloud in a [Kubernetes cluster](/install/kubernetes/).
 
-Running space cloud in a dockerized environments comes with some feature restrictions. 
+Running Space Cloud as a standalone docker container comes with some feature restrictions. 
 
 
 The features which are ~~strike throughed~~ are not availble because these features are dependant on **kubernetes environment**.
