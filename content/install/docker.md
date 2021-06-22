@@ -31,7 +31,7 @@ Running Space Cloud in docker can be useful for the following use cases:
 ## Installation
 We ship a `docker-compose` file for those seeking to use Space Cloud as a standalone docker image. Download the `docker-compose` file using commands shown below:
 
-**NOTE:** Windows users should use power shell for running the below command
+> **Windows users should use power shell for running the below command.**
 
 
 <div class="row tabs-wrapper">
