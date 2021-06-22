@@ -20,7 +20,7 @@ The features which are ~~striked through~~ are not available since they depend o
 - Caching
 - ~~Deployments~~
 - ~~Secrets~~
-- ~~Ingress routing~~
+- Ingress routing
 
 
 ## When to use docker compose
