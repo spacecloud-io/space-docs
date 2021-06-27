@@ -87,7 +87,7 @@ space-cli get --help
 
 To backup entire configuration with all resources, run the below command
 {{< highlight bash >}}
-space-cli get all "directory-name"
+space-cli --project <project-name> get all "directory-name"
 {{< /highlight >}}
 where **directory-name** is the name of the folder where all config resources will be stored
 
