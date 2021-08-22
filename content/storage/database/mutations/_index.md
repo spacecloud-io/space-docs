@@ -3,7 +3,7 @@ title: "Mutations"
 description: "Mutations"
 date: 2019-09-18T11:09:40+05:30
 draft: false
-weight: 5
+weight: 6
 ---
 
 Mutations are used to modify data on the server (i.e. write, update or delete data).

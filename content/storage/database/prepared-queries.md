@@ -1,9 +1,9 @@
 ---
-title: "Prepared Queries"
-description: "Prepared Queries"
+title: "Prepared SQL Queries"
+description: "Prepared SQL Queries"
 date: 2020-06-10T19:40:27+05:30
 draft: false
-weight: 7
+weight: 8
 ---
 
 The auto-generated APIs that Space Cloud provide for queries and mutations are quite powerful. However, in certain use cases, you need the flexibility to use the native/raw database queries. Prepared Queries help you achieve exactly that! (in a secure way of course 😀) 

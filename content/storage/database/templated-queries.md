@@ -3,7 +3,7 @@ title: "Templated Queries"
 description: "Templated Queries"
 date: 2020-11-29T11:12:13+05:30
 draft: false
-weight: 8
+weight: 9
 ---
 
 Templated queries is a more secure way of accessing the GraphQL APIs of Space Cloud. 😇
