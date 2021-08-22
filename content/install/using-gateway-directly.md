@@ -3,7 +3,7 @@ title: "Using Gateway Directly"
 description: "Using the Gateway Directly"
 date: 2020-04-06T08:12:01+05:30
 draft: false
-weight: 3
+weight: 4
 ---
 
 
