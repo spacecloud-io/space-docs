@@ -3,7 +3,7 @@ title: "Docker"
 description: "Installing Space Cloud on Docker"
 date: 2020-02-14T18:03:53+05:30
 draft: false
-weight: 2
+weight: 3
 ---
 
 The recommended way to run Space Cloud is using the `space-cli setup` command, which installs Space Cloud in a [Kubernetes cluster](/install/kubernetes/).
