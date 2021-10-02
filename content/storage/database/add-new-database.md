@@ -95,7 +95,7 @@ This will create a schema with the name of `<project-id>` inside the specified d
   </div>
   <div id="conn-mysql" class="col s12" style="padding:0">
 {{< highlight bash >}}
-mysql://<username>:<password>@tcp(<hostname>:<password>)/
+mysql://<username>:<password>@tcp(<hostname>:<port>)/
 {{< /highlight >}}
 
 This will create a database with the name of `<project-id>` inside MySQL.
